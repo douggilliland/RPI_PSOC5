@@ -1,0 +1,1054 @@
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.syntax unified
+  20              		.global _printf_float
+  21              		.thumb
+  22              		.syntax unified
+  23              		.global	parity
+  24              		.section	.rodata
+  25              		.align	2
+  26              	.LC0:
+  27 0000 4E6F6E65 		.ascii	"None\000"
+  27      00
+  28 0005 000000   		.align	2
+  29              	.LC1:
+  30 0008 4F646400 		.ascii	"Odd\000"
+  31              		.align	2
+  32              	.LC2:
+  33 000c 4576656E 		.ascii	"Even\000"
+  33      00
+  34 0011 000000   		.align	2
+  35              	.LC3:
+  36 0014 4D61726B 		.ascii	"Mark\000"
+  36      00
+  37 0019 000000   		.align	2
+  38              	.LC4:
+  39 001c 53706163 		.ascii	"Space\000"
+  39      6500
+  40              		.data
+  41              		.align	2
+  42              		.type	parity, %object
+  43              		.size	parity, 20
+  44              	parity:
+  45 0000 00000000 		.word	.LC0
+  46 0004 08000000 		.word	.LC1
+  47 0008 0C000000 		.word	.LC2
+  48 000c 14000000 		.word	.LC3
+  49 0010 1C000000 		.word	.LC4
+  50              		.global	stop
+  51              		.section	.rodata
+  52 0022 0000     		.align	2
+  53              	.LC5:
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 2
+
+
+  54 0024 3100     		.ascii	"1\000"
+  55 0026 0000     		.align	2
+  56              	.LC6:
+  57 0028 312E3500 		.ascii	"1.5\000"
+  58              		.align	2
+  59              	.LC7:
+  60 002c 3200     		.ascii	"2\000"
+  61              		.data
+  62              		.align	2
+  63              		.type	stop, %object
+  64              		.size	stop, 12
+  65              	stop:
+  66 0014 24000000 		.word	.LC5
+  67 0018 28000000 		.word	.LC6
+  68 001c 2C000000 		.word	.LC7
+  69              		.section	.rodata
+  70 002e 0000     		.align	2
+  71              	.LC8:
+  72 0030 42523A25 		.ascii	"BR:%4ld %d%c%s\000"
+  72      346C6420 
+  72      25642563 
+  72      257300
+  73 003f 00       		.align	2
+  74              	.LC9:
+  75 0040 4F4E00   		.ascii	"ON\000"
+  76 0043 00       		.align	2
+  77              	.LC10:
+  78 0044 4F464600 		.ascii	"OFF\000"
+  79              		.align	2
+  80              	.LC11:
+  81 0048 4454523A 		.ascii	"DTR:%s,RTS:%s\000"
+  81      25732C52 
+  81      54533A25 
+  81      7300
+  82              		.section	.text.main,"ax",%progbits
+  83              		.align	2
+  84              		.global	main
+  85              		.thumb
+  86              		.thumb_func
+  87              		.type	main, %function
+  88              	main:
+  89              	.LFB64:
+  90              		.file 1 "main.c"
+   1:main.c        **** /*******************************************************************************
+   2:main.c        **** * File Name: main.c
+   3:main.c        **** *
+   4:main.c        **** * Version: 2.0
+   5:main.c        **** *
+   6:main.c        **** * Description:
+   7:main.c        **** *   The component is enumerated as a Virtual Com port. Receives data from the 
+   8:main.c        **** *   hyper terminal, then sends back the received data.
+   9:main.c        **** *   For PSoC3/PSoC5LP, the LCD shows the line settings.
+  10:main.c        **** *
+  11:main.c        **** * Related Document:
+  12:main.c        **** *  Universal Serial Bus Specification Revision 2.0
+  13:main.c        **** *  Universal Serial Bus Class Definitions for Communications Devices
+  14:main.c        **** *  Revision 1.2
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 3
+
+
+  15:main.c        **** *
+  16:main.c        **** ********************************************************************************
+  17:main.c        **** * Copyright 2015, Cypress Semiconductor Corporation. All rights reserved.
+  18:main.c        **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  19:main.c        **** * by and subject to worldwide patent and copyright laws and treaties.
+  20:main.c        **** * Therefore, you may use this software only as provided in the license agreement
+  21:main.c        **** * accompanying the software package from which you obtained this software.
+  22:main.c        **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  23:main.c        **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  24:main.c        **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  25:main.c        **** *******************************************************************************/
+  26:main.c        **** 
+  27:main.c        **** #include <project.h>
+  28:main.c        **** #include "stdio.h"
+  29:main.c        **** 
+  30:main.c        **** #if defined (__GNUC__)
+  31:main.c        ****     /* Add an explicit reference to the floating point printf library */
+  32:main.c        ****     /* to allow usage of the floating point conversion specifiers. */
+  33:main.c        ****     /* This is not linked in by default with the newlib-nano library. */
+  34:main.c        ****     asm (".global _printf_float");
+  35:main.c        **** #endif
+  36:main.c        **** 
+  37:main.c        **** #define USBFS_DEVICE    (0u)
+  38:main.c        **** 
+  39:main.c        **** /* The buffer size is equal to the maximum packet size of the IN and OUT bulk
+  40:main.c        **** * endpoints.
+  41:main.c        **** */
+  42:main.c        **** #define USBUART_BUFFER_SIZE (64u)
+  43:main.c        **** #define LINE_STR_LENGTH     (20u)
+  44:main.c        **** 
+  45:main.c        **** char8* parity[] = {"None", "Odd", "Even", "Mark", "Space"};
+  46:main.c        **** char8* stop[]   = {"1", "1.5", "2"};
+  47:main.c        **** 
+  48:main.c        **** 
+  49:main.c        **** /*******************************************************************************
+  50:main.c        **** * Function Name: main
+  51:main.c        **** ********************************************************************************
+  52:main.c        **** *
+  53:main.c        **** * Summary:
+  54:main.c        **** *  The main function performs the following actions:
+  55:main.c        **** *   1. Waits until VBUS becomes valid and starts the USBFS component which is
+  56:main.c        **** *      enumerated as virtual Com port.
+  57:main.c        **** *   2. Waits until the device is enumerated by the host.
+  58:main.c        **** *   3. Waits for data coming from the hyper terminal and sends it back.
+  59:main.c        **** *   4. PSoC3/PSoC5LP: the LCD shows the line settings.
+  60:main.c        **** *
+  61:main.c        **** * Parameters:
+  62:main.c        **** *  None.
+  63:main.c        **** *
+  64:main.c        **** * Return:
+  65:main.c        **** *  None.
+  66:main.c        **** *
+  67:main.c        **** *******************************************************************************/
+  68:main.c        **** int main()
+  69:main.c        **** {
+  91              		.loc 1 69 0
+  92              		.cfi_startproc
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 4
+
+
+  93              		@ args = 0, pretend = 0, frame = 88
+  94              		@ frame_needed = 1, uses_anonymous_args = 0
+  95 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  96              		.cfi_def_cfa_offset 20
+  97              		.cfi_offset 4, -20
+  98              		.cfi_offset 5, -16
+  99              		.cfi_offset 6, -12
+ 100              		.cfi_offset 7, -8
+ 101              		.cfi_offset 14, -4
+ 102 0002 99B0     		sub	sp, sp, #100
+ 103              		.cfi_def_cfa_offset 120
+ 104 0004 02AF     		add	r7, sp, #8
+ 105              		.cfi_def_cfa 7, 112
+  70:main.c        ****     uint16 count;
+  71:main.c        ****     uint8 buffer[USBUART_BUFFER_SIZE];
+  72:main.c        ****     
+  73:main.c        **** #if (CY_PSOC3 || CY_PSOC5LP)
+  74:main.c        ****     uint8 state;
+  75:main.c        ****     char8 lineStr[LINE_STR_LENGTH];
+  76:main.c        ****     
+  77:main.c        **** #endif /* (CY_PSOC3 || CY_PSOC5LP) */
+  78:main.c        ****     
+  79:main.c        ****     CyGlobalIntEnable;
+ 106              		.loc 1 79 0
+ 107              		.syntax unified
+ 108              	@ 79 "main.c" 1
+ 109 0006 62B6     		CPSIE   i
+ 110              	@ 0 "" 2
+  80:main.c        **** 
+  81:main.c        ****     /* Start USBFS operation with 5-V operation. */
+  82:main.c        ****     USBUART_Start(USBFS_DEVICE, USBUART_5V_OPERATION);
+ 111              		.loc 1 82 0
+ 112              		.thumb
+ 113              		.syntax unified
+ 114 0008 0121     		movs	r1, #1
+ 115 000a 0020     		movs	r0, #0
+ 116 000c FFF7FEFF 		bl	USBUART_Start
+ 117              	.L12:
+  83:main.c        ****     
+  84:main.c        ****     for(;;)
+  85:main.c        ****     {
+  86:main.c        ****         /* Host can send double SET_INTERFACE request. */
+  87:main.c        ****         if (0u != USBUART_IsConfigurationChanged())
+ 118              		.loc 1 87 0
+ 119 0010 FFF7FEFF 		bl	USBUART_IsConfigurationChanged
+ 120 0014 0346     		mov	r3, r0
+ 121 0016 002B     		cmp	r3, #0
+ 122 0018 06D0     		beq	.L2
+  88:main.c        ****         {
+  89:main.c        ****             /* Initialize IN endpoints when device is configured. */
+  90:main.c        ****             if (0u != USBUART_GetConfiguration())
+ 123              		.loc 1 90 0
+ 124 001a FFF7FEFF 		bl	USBUART_GetConfiguration
+ 125 001e 0346     		mov	r3, r0
+ 126 0020 002B     		cmp	r3, #0
+ 127 0022 01D0     		beq	.L2
+  91:main.c        ****             {
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 5
+
+
+  92:main.c        ****                 /* Enumeration is done, enable OUT endpoint to receive data 
+  93:main.c        ****                  * from host. */
+  94:main.c        ****                 USBUART_CDC_Init();
+ 128              		.loc 1 94 0
+ 129 0024 FFF7FEFF 		bl	USBUART_CDC_Init
+ 130              	.L2:
+  95:main.c        ****             }
+  96:main.c        ****         }
+  97:main.c        **** 
+  98:main.c        ****         /* Service USB CDC when device is configured. */
+  99:main.c        ****         if (0u != USBUART_GetConfiguration())
+ 131              		.loc 1 99 0
+ 132 0028 FFF7FEFF 		bl	USBUART_GetConfiguration
+ 133 002c 0346     		mov	r3, r0
+ 134 002e 002B     		cmp	r3, #0
+ 135 0030 EED0     		beq	.L12
+ 100:main.c        ****         {
+ 101:main.c        ****             /* Check for input data from host. */
+ 102:main.c        ****             if (0u != USBUART_DataIsReady())
+ 136              		.loc 1 102 0
+ 137 0032 FFF7FEFF 		bl	USBUART_DataIsReady
+ 138 0036 0346     		mov	r3, r0
+ 139 0038 002B     		cmp	r3, #0
+ 140 003a 27D0     		beq	.L4
+ 103:main.c        ****             {
+ 104:main.c        ****                 /* Read received data and re-enable OUT endpoint. */
+ 105:main.c        ****                 count = USBUART_GetAll(buffer);
+ 141              		.loc 1 105 0
+ 142 003c 07F11403 		add	r3, r7, #20
+ 143 0040 1846     		mov	r0, r3
+ 144 0042 FFF7FEFF 		bl	USBUART_GetAll
+ 145 0046 0346     		mov	r3, r0
+ 146 0048 A7F85430 		strh	r3, [r7, #84]	@ movhi
+ 106:main.c        **** 
+ 107:main.c        ****                 if (0u != count)
+ 147              		.loc 1 107 0
+ 148 004c B7F85430 		ldrh	r3, [r7, #84]
+ 149 0050 002B     		cmp	r3, #0
+ 150 0052 1BD0     		beq	.L4
+ 108:main.c        ****                 {
+ 109:main.c        ****                     /* Wait until component is ready to send data to host. */
+ 110:main.c        ****                     while (0u == USBUART_CDCIsReady())
+ 151              		.loc 1 110 0
+ 152 0054 00BF     		nop
+ 153              	.L5:
+ 154              		.loc 1 110 0 is_stmt 0 discriminator 1
+ 155 0056 FFF7FEFF 		bl	USBUART_CDCIsReady
+ 156 005a 0346     		mov	r3, r0
+ 157 005c 002B     		cmp	r3, #0
+ 158 005e FAD0     		beq	.L5
+ 111:main.c        ****                     {
+ 112:main.c        ****                     }
+ 113:main.c        **** 
+ 114:main.c        ****                     /* Send data back to host. */
+ 115:main.c        ****                     USBUART_PutData(buffer, count);
+ 159              		.loc 1 115 0 is_stmt 1
+ 160 0060 B7F85420 		ldrh	r2, [r7, #84]
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 6
+
+
+ 161 0064 07F11403 		add	r3, r7, #20
+ 162 0068 1146     		mov	r1, r2
+ 163 006a 1846     		mov	r0, r3
+ 164 006c FFF7FEFF 		bl	USBUART_PutData
+ 116:main.c        **** 
+ 117:main.c        ****                     /* If the last sent packet is exactly the maximum packet 
+ 118:main.c        ****                     *  size, it is followed by a zero-length packet to assure
+ 119:main.c        ****                     *  that the end of the segment is properly identified by 
+ 120:main.c        ****                     *  the terminal.
+ 121:main.c        ****                     */
+ 122:main.c        ****                     if (USBUART_BUFFER_SIZE == count)
+ 165              		.loc 1 122 0
+ 166 0070 B7F85430 		ldrh	r3, [r7, #84]
+ 167 0074 402B     		cmp	r3, #64
+ 168 0076 09D1     		bne	.L4
+ 123:main.c        ****                     {
+ 124:main.c        ****                         /* Wait until component is ready to send data to PC. */
+ 125:main.c        ****                         while (0u == USBUART_CDCIsReady())
+ 169              		.loc 1 125 0
+ 170 0078 00BF     		nop
+ 171              	.L6:
+ 172              		.loc 1 125 0 is_stmt 0 discriminator 1
+ 173 007a FFF7FEFF 		bl	USBUART_CDCIsReady
+ 174 007e 0346     		mov	r3, r0
+ 175 0080 002B     		cmp	r3, #0
+ 176 0082 FAD0     		beq	.L6
+ 126:main.c        ****                         {
+ 127:main.c        ****                         }
+ 128:main.c        **** 
+ 129:main.c        ****                         /* Send zero-length packet to PC. */
+ 130:main.c        ****                         USBUART_PutData(NULL, 0u);
+ 177              		.loc 1 130 0 is_stmt 1
+ 178 0084 0021     		movs	r1, #0
+ 179 0086 0020     		movs	r0, #0
+ 180 0088 FFF7FEFF 		bl	USBUART_PutData
+ 181              	.L4:
+ 131:main.c        ****                     }
+ 132:main.c        ****                 }
+ 133:main.c        ****             }
+ 134:main.c        **** 
+ 135:main.c        **** 
+ 136:main.c        ****         #if (CY_PSOC3 || CY_PSOC5LP)
+ 137:main.c        ****             /* Check for Line settings change. */
+ 138:main.c        ****             state = USBUART_IsLineChanged();
+ 182              		.loc 1 138 0
+ 183 008c FFF7FEFF 		bl	USBUART_IsLineChanged
+ 184 0090 0346     		mov	r3, r0
+ 185 0092 87F85730 		strb	r3, [r7, #87]
+ 139:main.c        ****             if (0u != state)
+ 186              		.loc 1 139 0
+ 187 0096 97F85730 		ldrb	r3, [r7, #87]	@ zero_extendqisi2
+ 188 009a 002B     		cmp	r3, #0
+ 189 009c B8D0     		beq	.L12
+ 140:main.c        ****             {
+ 141:main.c        ****                 /* Output on LCD Line Coding settings. */
+ 142:main.c        ****                 if (0u != (state & USBUART_LINE_CODING_CHANGED))
+ 190              		.loc 1 142 0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 7
+
+
+ 191 009e 97F85730 		ldrb	r3, [r7, #87]	@ zero_extendqisi2
+ 192 00a2 03F00103 		and	r3, r3, #1
+ 193 00a6 002B     		cmp	r3, #0
+ 194 00a8 1ED0     		beq	.L7
+ 143:main.c        ****                 {                  
+ 144:main.c        ****                     /* Get string to output. */
+ 145:main.c        ****                     sprintf(lineStr,"BR:%4ld %d%c%s", USBUART_GetDTERate(),\
+ 195              		.loc 1 145 0
+ 196 00aa FFF7FEFF 		bl	USBUART_GetDTERate
+ 197 00ae 0546     		mov	r5, r0
+ 146:main.c        ****                                    (uint16) USBUART_GetDataBits(),\
+ 198              		.loc 1 146 0
+ 199 00b0 FFF7FEFF 		bl	USBUART_GetDataBits
+ 200 00b4 0346     		mov	r3, r0
+ 145:main.c        ****                                    (uint16) USBUART_GetDataBits(),\
+ 201              		.loc 1 145 0
+ 202 00b6 1E46     		mov	r6, r3
+ 147:main.c        ****                                    parity[(uint16) USBUART_GetParityType()][0],\
+ 203              		.loc 1 147 0
+ 204 00b8 FFF7FEFF 		bl	USBUART_GetParityType
+ 205 00bc 0346     		mov	r3, r0
+ 206 00be 1A46     		mov	r2, r3
+ 207 00c0 1A4B     		ldr	r3, .L13
+ 208 00c2 53F82230 		ldr	r3, [r3, r2, lsl #2]
+ 209 00c6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 145:main.c        ****                                    (uint16) USBUART_GetDataBits(),\
+ 210              		.loc 1 145 0
+ 211 00c8 1C46     		mov	r4, r3
+ 148:main.c        ****                                    stop[(uint16) USBUART_GetCharFormat()]);
+ 212              		.loc 1 148 0
+ 213 00ca FFF7FEFF 		bl	USBUART_GetCharFormat
+ 214 00ce 0346     		mov	r3, r0
+ 145:main.c        ****                                    (uint16) USBUART_GetDataBits(),\
+ 215              		.loc 1 145 0
+ 216 00d0 1A46     		mov	r2, r3
+ 217 00d2 174B     		ldr	r3, .L13+4
+ 218 00d4 53F82230 		ldr	r3, [r3, r2, lsl #2]
+ 219 00d8 3846     		mov	r0, r7
+ 220 00da 0193     		str	r3, [sp, #4]
+ 221 00dc 0094     		str	r4, [sp]
+ 222 00de 3346     		mov	r3, r6
+ 223 00e0 2A46     		mov	r2, r5
+ 224 00e2 1449     		ldr	r1, .L13+8
+ 225 00e4 FFF7FEFF 		bl	sprintf
+ 226              	.L7:
+ 149:main.c        **** 
+ 150:main.c        ****                 }
+ 151:main.c        **** 
+ 152:main.c        ****                 /* Output on LCD Line Control settings. */
+ 153:main.c        ****                 if (0u != (state & USBUART_LINE_CONTROL_CHANGED))
+ 227              		.loc 1 153 0
+ 228 00e8 97F85730 		ldrb	r3, [r7, #87]	@ zero_extendqisi2
+ 229 00ec 03F00203 		and	r3, r3, #2
+ 230 00f0 002B     		cmp	r3, #0
+ 231 00f2 8DD0     		beq	.L12
+ 154:main.c        ****                 {                   
+ 155:main.c        ****                     /* Get string to output. */
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 8
+
+
+ 156:main.c        ****                     state = USBUART_GetLineControl();
+ 232              		.loc 1 156 0
+ 233 00f4 FFF7FEFF 		bl	USBUART_GetLineControl
+ 234 00f8 0346     		mov	r3, r0
+ 235 00fa 87F85730 		strb	r3, [r7, #87]
+ 157:main.c        ****                     sprintf(lineStr,"DTR:%s,RTS:%s",  (0u != (state & USBUART_LINE_CONTROL_DTR)) ? 
+ 236              		.loc 1 157 0
+ 237 00fe 97F85730 		ldrb	r3, [r7, #87]	@ zero_extendqisi2
+ 238 0102 03F00103 		and	r3, r3, #1
+ 239 0106 002B     		cmp	r3, #0
+ 240 0108 01D0     		beq	.L8
+ 241              		.loc 1 157 0 is_stmt 0 discriminator 1
+ 242 010a 0B4A     		ldr	r2, .L13+12
+ 243 010c 00E0     		b	.L9
+ 244              	.L8:
+ 245              		.loc 1 157 0 discriminator 2
+ 246 010e 0B4A     		ldr	r2, .L13+16
+ 247              	.L9:
+ 158:main.c        ****                                                       (0u != (state & USBUART_LINE_CONTROL_RTS)) ? 
+ 248              		.loc 1 158 0 is_stmt 1 discriminator 4
+ 249 0110 97F85730 		ldrb	r3, [r7, #87]	@ zero_extendqisi2
+ 250 0114 03F00203 		and	r3, r3, #2
+ 157:main.c        ****                     sprintf(lineStr,"DTR:%s,RTS:%s",  (0u != (state & USBUART_LINE_CONTROL_DTR)) ? 
+ 251              		.loc 1 157 0 discriminator 4
+ 252 0118 002B     		cmp	r3, #0
+ 253 011a 01D0     		beq	.L10
+ 157:main.c        ****                     sprintf(lineStr,"DTR:%s,RTS:%s",  (0u != (state & USBUART_LINE_CONTROL_DTR)) ? 
+ 254              		.loc 1 157 0 is_stmt 0 discriminator 5
+ 255 011c 064B     		ldr	r3, .L13+12
+ 256 011e 00E0     		b	.L11
+ 257              	.L10:
+ 157:main.c        ****                     sprintf(lineStr,"DTR:%s,RTS:%s",  (0u != (state & USBUART_LINE_CONTROL_DTR)) ? 
+ 258              		.loc 1 157 0 discriminator 6
+ 259 0120 064B     		ldr	r3, .L13+16
+ 260              	.L11:
+ 157:main.c        ****                     sprintf(lineStr,"DTR:%s,RTS:%s",  (0u != (state & USBUART_LINE_CONTROL_DTR)) ? 
+ 261              		.loc 1 157 0 discriminator 8
+ 262 0122 3846     		mov	r0, r7
+ 263 0124 0649     		ldr	r1, .L13+20
+ 264 0126 FFF7FEFF 		bl	sprintf
+ 159:main.c        **** 
+ 160:main.c        ****                 }
+ 161:main.c        ****             }
+ 162:main.c        ****         #endif /* (CY_PSOC3 || CY_PSOC5LP) */
+ 163:main.c        ****         }
+ 164:main.c        ****     }
+ 265              		.loc 1 164 0 is_stmt 1 discriminator 8
+ 266 012a 71E7     		b	.L12
+ 267              	.L14:
+ 268              		.align	2
+ 269              	.L13:
+ 270 012c 00000000 		.word	parity
+ 271 0130 00000000 		.word	stop
+ 272 0134 30000000 		.word	.LC8
+ 273 0138 40000000 		.word	.LC9
+ 274 013c 44000000 		.word	.LC10
+ 275 0140 48000000 		.word	.LC11
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 9
+
+
+ 276              		.cfi_endproc
+ 277              	.LFE64:
+ 278              		.size	main, .-main
+ 279              		.text
+ 280              	.Letext0:
+ 281              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 282              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 283              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 284              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 285              		.section	.debug_info,"",%progbits
+ 286              	.Ldebug_info0:
+ 287 0000 92010000 		.4byte	0x192
+ 288 0004 0400     		.2byte	0x4
+ 289 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 290 000a 04       		.byte	0x4
+ 291 000b 01       		.uleb128 0x1
+ 292 000c 00000000 		.4byte	.LASF26
+ 293 0010 0C       		.byte	0xc
+ 294 0011 94010000 		.4byte	.LASF27
+ 295 0015 26010000 		.4byte	.LASF28
+ 296 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 297 001d 00000000 		.4byte	0
+ 298 0021 00000000 		.4byte	.Ldebug_line0
+ 299 0025 02       		.uleb128 0x2
+ 300 0026 01       		.byte	0x1
+ 301 0027 06       		.byte	0x6
+ 302 0028 D2010000 		.4byte	.LASF0
+ 303 002c 02       		.uleb128 0x2
+ 304 002d 01       		.byte	0x1
+ 305 002e 08       		.byte	0x8
+ 306 002f A4000000 		.4byte	.LASF1
+ 307 0033 02       		.uleb128 0x2
+ 308 0034 02       		.byte	0x2
+ 309 0035 05       		.byte	0x5
+ 310 0036 A6010000 		.4byte	.LASF2
+ 311 003a 02       		.uleb128 0x2
+ 312 003b 02       		.byte	0x2
+ 313 003c 07       		.byte	0x7
+ 314 003d CA000000 		.4byte	.LASF3
+ 315 0041 03       		.uleb128 0x3
+ 316 0042 94000000 		.4byte	.LASF9
+ 317 0046 02       		.byte	0x2
+ 318 0047 3F       		.byte	0x3f
+ 319 0048 4C000000 		.4byte	0x4c
+ 320 004c 02       		.uleb128 0x2
+ 321 004d 04       		.byte	0x4
+ 322 004e 05       		.byte	0x5
+ 323 004f BD010000 		.4byte	.LASF4
+ 324 0053 02       		.uleb128 0x2
+ 325 0054 04       		.byte	0x4
+ 326 0055 07       		.byte	0x7
+ 327 0056 B8000000 		.4byte	.LASF5
+ 328 005a 02       		.uleb128 0x2
+ 329 005b 08       		.byte	0x8
+ 330 005c 05       		.byte	0x5
+ 331 005d 86010000 		.4byte	.LASF6
+ 332 0061 02       		.uleb128 0x2
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 10
+
+
+ 333 0062 08       		.byte	0x8
+ 334 0063 07       		.byte	0x7
+ 335 0064 0F010000 		.4byte	.LASF7
+ 336 0068 04       		.uleb128 0x4
+ 337 0069 04       		.byte	0x4
+ 338 006a 05       		.byte	0x5
+ 339 006b 696E7400 		.ascii	"int\000"
+ 340 006f 02       		.uleb128 0x2
+ 341 0070 04       		.byte	0x4
+ 342 0071 07       		.byte	0x7
+ 343 0072 02010000 		.4byte	.LASF8
+ 344 0076 03       		.uleb128 0x3
+ 345 0077 75010000 		.4byte	.LASF10
+ 346 007b 03       		.byte	0x3
+ 347 007c 2C       		.byte	0x2c
+ 348 007d 41000000 		.4byte	0x41
+ 349 0081 05       		.uleb128 0x5
+ 350 0082 B7010000 		.4byte	.LASF11
+ 351 0086 04       		.byte	0x4
+ 352 0087 9201     		.2byte	0x192
+ 353 0089 2C000000 		.4byte	0x2c
+ 354 008d 05       		.uleb128 0x5
+ 355 008e FB000000 		.4byte	.LASF12
+ 356 0092 04       		.byte	0x4
+ 357 0093 9301     		.2byte	0x193
+ 358 0095 3A000000 		.4byte	0x3a
+ 359 0099 02       		.uleb128 0x2
+ 360 009a 04       		.byte	0x4
+ 361 009b 04       		.byte	0x4
+ 362 009c 9E000000 		.4byte	.LASF13
+ 363 00a0 02       		.uleb128 0x2
+ 364 00a1 08       		.byte	0x8
+ 365 00a2 04       		.byte	0x4
+ 366 00a3 EF000000 		.4byte	.LASF14
+ 367 00a7 05       		.uleb128 0x5
+ 368 00a8 B2000000 		.4byte	.LASF15
+ 369 00ac 04       		.byte	0x4
+ 370 00ad A301     		.2byte	0x1a3
+ 371 00af B3000000 		.4byte	0xb3
+ 372 00b3 02       		.uleb128 0x2
+ 373 00b4 01       		.byte	0x1
+ 374 00b5 08       		.byte	0x8
+ 375 00b6 9B010000 		.4byte	.LASF16
+ 376 00ba 02       		.uleb128 0x2
+ 377 00bb 08       		.byte	0x8
+ 378 00bc 04       		.byte	0x4
+ 379 00bd C6010000 		.4byte	.LASF17
+ 380 00c1 02       		.uleb128 0x2
+ 381 00c2 04       		.byte	0x4
+ 382 00c3 07       		.byte	0x7
+ 383 00c4 7D010000 		.4byte	.LASF18
+ 384 00c8 06       		.uleb128 0x6
+ 385 00c9 F6000000 		.4byte	.LASF29
+ 386 00cd 01       		.byte	0x1
+ 387 00ce 44       		.byte	0x44
+ 388 00cf 68000000 		.4byte	0x68
+ 389 00d3 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 11
+
+
+ 390 00d7 44010000 		.4byte	.LFE64-.LFB64
+ 391 00db 01       		.uleb128 0x1
+ 392 00dc 9C       		.byte	0x9c
+ 393 00dd 1C010000 		.4byte	0x11c
+ 394 00e1 07       		.uleb128 0x7
+ 395 00e2 A0010000 		.4byte	.LASF19
+ 396 00e6 01       		.byte	0x1
+ 397 00e7 46       		.byte	0x46
+ 398 00e8 8D000000 		.4byte	0x8d
+ 399 00ec 02       		.uleb128 0x2
+ 400 00ed 91       		.byte	0x91
+ 401 00ee 64       		.sleb128 -28
+ 402 00ef 07       		.uleb128 0x7
+ 403 00f0 B0010000 		.4byte	.LASF20
+ 404 00f4 01       		.byte	0x1
+ 405 00f5 47       		.byte	0x47
+ 406 00f6 1C010000 		.4byte	0x11c
+ 407 00fa 03       		.uleb128 0x3
+ 408 00fb 91       		.byte	0x91
+ 409 00fc A47F     		.sleb128 -92
+ 410 00fe 07       		.uleb128 0x7
+ 411 00ff 8E000000 		.4byte	.LASF21
+ 412 0103 01       		.byte	0x1
+ 413 0104 4A       		.byte	0x4a
+ 414 0105 81000000 		.4byte	0x81
+ 415 0109 02       		.uleb128 0x2
+ 416 010a 91       		.byte	0x91
+ 417 010b 67       		.sleb128 -25
+ 418 010c 07       		.uleb128 0x7
+ 419 010d E5010000 		.4byte	.LASF22
+ 420 0111 01       		.byte	0x1
+ 421 0112 4B       		.byte	0x4b
+ 422 0113 2C010000 		.4byte	0x12c
+ 423 0117 03       		.uleb128 0x3
+ 424 0118 91       		.byte	0x91
+ 425 0119 907F     		.sleb128 -112
+ 426 011b 00       		.byte	0
+ 427 011c 08       		.uleb128 0x8
+ 428 011d 81000000 		.4byte	0x81
+ 429 0121 2C010000 		.4byte	0x12c
+ 430 0125 09       		.uleb128 0x9
+ 431 0126 C1000000 		.4byte	0xc1
+ 432 012a 3F       		.byte	0x3f
+ 433 012b 00       		.byte	0
+ 434 012c 08       		.uleb128 0x8
+ 435 012d A7000000 		.4byte	0xa7
+ 436 0131 3C010000 		.4byte	0x13c
+ 437 0135 09       		.uleb128 0x9
+ 438 0136 C1000000 		.4byte	0xc1
+ 439 013a 13       		.byte	0x13
+ 440 013b 00       		.byte	0
+ 441 013c 0A       		.uleb128 0xa
+ 442 013d E2000000 		.4byte	.LASF23
+ 443 0141 05       		.byte	0x5
+ 444 0142 1207     		.2byte	0x712
+ 445 0144 48010000 		.4byte	0x148
+ 446 0148 0B       		.uleb128 0xb
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 12
+
+
+ 447 0149 76000000 		.4byte	0x76
+ 448 014d 08       		.uleb128 0x8
+ 449 014e 5D010000 		.4byte	0x15d
+ 450 0152 5D010000 		.4byte	0x15d
+ 451 0156 09       		.uleb128 0x9
+ 452 0157 C1000000 		.4byte	0xc1
+ 453 015b 04       		.byte	0x4
+ 454 015c 00       		.byte	0
+ 455 015d 0C       		.uleb128 0xc
+ 456 015e 04       		.byte	0x4
+ 457 015f A7000000 		.4byte	0xa7
+ 458 0163 0D       		.uleb128 0xd
+ 459 0164 DE010000 		.4byte	.LASF24
+ 460 0168 01       		.byte	0x1
+ 461 0169 2D       		.byte	0x2d
+ 462 016a 4D010000 		.4byte	0x14d
+ 463 016e 05       		.uleb128 0x5
+ 464 016f 03       		.byte	0x3
+ 465 0170 00000000 		.4byte	parity
+ 466 0174 08       		.uleb128 0x8
+ 467 0175 5D010000 		.4byte	0x15d
+ 468 0179 84010000 		.4byte	0x184
+ 469 017d 09       		.uleb128 0x9
+ 470 017e C1000000 		.4byte	0xc1
+ 471 0182 02       		.byte	0x2
+ 472 0183 00       		.byte	0
+ 473 0184 0D       		.uleb128 0xd
+ 474 0185 DD000000 		.4byte	.LASF25
+ 475 0189 01       		.byte	0x1
+ 476 018a 2E       		.byte	0x2e
+ 477 018b 74010000 		.4byte	0x174
+ 478 018f 05       		.uleb128 0x5
+ 479 0190 03       		.byte	0x3
+ 480 0191 00000000 		.4byte	stop
+ 481 0195 00       		.byte	0
+ 482              		.section	.debug_abbrev,"",%progbits
+ 483              	.Ldebug_abbrev0:
+ 484 0000 01       		.uleb128 0x1
+ 485 0001 11       		.uleb128 0x11
+ 486 0002 01       		.byte	0x1
+ 487 0003 25       		.uleb128 0x25
+ 488 0004 0E       		.uleb128 0xe
+ 489 0005 13       		.uleb128 0x13
+ 490 0006 0B       		.uleb128 0xb
+ 491 0007 03       		.uleb128 0x3
+ 492 0008 0E       		.uleb128 0xe
+ 493 0009 1B       		.uleb128 0x1b
+ 494 000a 0E       		.uleb128 0xe
+ 495 000b 55       		.uleb128 0x55
+ 496 000c 17       		.uleb128 0x17
+ 497 000d 11       		.uleb128 0x11
+ 498 000e 01       		.uleb128 0x1
+ 499 000f 10       		.uleb128 0x10
+ 500 0010 17       		.uleb128 0x17
+ 501 0011 00       		.byte	0
+ 502 0012 00       		.byte	0
+ 503 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 13
+
+
+ 504 0014 24       		.uleb128 0x24
+ 505 0015 00       		.byte	0
+ 506 0016 0B       		.uleb128 0xb
+ 507 0017 0B       		.uleb128 0xb
+ 508 0018 3E       		.uleb128 0x3e
+ 509 0019 0B       		.uleb128 0xb
+ 510 001a 03       		.uleb128 0x3
+ 511 001b 0E       		.uleb128 0xe
+ 512 001c 00       		.byte	0
+ 513 001d 00       		.byte	0
+ 514 001e 03       		.uleb128 0x3
+ 515 001f 16       		.uleb128 0x16
+ 516 0020 00       		.byte	0
+ 517 0021 03       		.uleb128 0x3
+ 518 0022 0E       		.uleb128 0xe
+ 519 0023 3A       		.uleb128 0x3a
+ 520 0024 0B       		.uleb128 0xb
+ 521 0025 3B       		.uleb128 0x3b
+ 522 0026 0B       		.uleb128 0xb
+ 523 0027 49       		.uleb128 0x49
+ 524 0028 13       		.uleb128 0x13
+ 525 0029 00       		.byte	0
+ 526 002a 00       		.byte	0
+ 527 002b 04       		.uleb128 0x4
+ 528 002c 24       		.uleb128 0x24
+ 529 002d 00       		.byte	0
+ 530 002e 0B       		.uleb128 0xb
+ 531 002f 0B       		.uleb128 0xb
+ 532 0030 3E       		.uleb128 0x3e
+ 533 0031 0B       		.uleb128 0xb
+ 534 0032 03       		.uleb128 0x3
+ 535 0033 08       		.uleb128 0x8
+ 536 0034 00       		.byte	0
+ 537 0035 00       		.byte	0
+ 538 0036 05       		.uleb128 0x5
+ 539 0037 16       		.uleb128 0x16
+ 540 0038 00       		.byte	0
+ 541 0039 03       		.uleb128 0x3
+ 542 003a 0E       		.uleb128 0xe
+ 543 003b 3A       		.uleb128 0x3a
+ 544 003c 0B       		.uleb128 0xb
+ 545 003d 3B       		.uleb128 0x3b
+ 546 003e 05       		.uleb128 0x5
+ 547 003f 49       		.uleb128 0x49
+ 548 0040 13       		.uleb128 0x13
+ 549 0041 00       		.byte	0
+ 550 0042 00       		.byte	0
+ 551 0043 06       		.uleb128 0x6
+ 552 0044 2E       		.uleb128 0x2e
+ 553 0045 01       		.byte	0x1
+ 554 0046 3F       		.uleb128 0x3f
+ 555 0047 19       		.uleb128 0x19
+ 556 0048 03       		.uleb128 0x3
+ 557 0049 0E       		.uleb128 0xe
+ 558 004a 3A       		.uleb128 0x3a
+ 559 004b 0B       		.uleb128 0xb
+ 560 004c 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 14
+
+
+ 561 004d 0B       		.uleb128 0xb
+ 562 004e 49       		.uleb128 0x49
+ 563 004f 13       		.uleb128 0x13
+ 564 0050 11       		.uleb128 0x11
+ 565 0051 01       		.uleb128 0x1
+ 566 0052 12       		.uleb128 0x12
+ 567 0053 06       		.uleb128 0x6
+ 568 0054 40       		.uleb128 0x40
+ 569 0055 18       		.uleb128 0x18
+ 570 0056 9642     		.uleb128 0x2116
+ 571 0058 19       		.uleb128 0x19
+ 572 0059 01       		.uleb128 0x1
+ 573 005a 13       		.uleb128 0x13
+ 574 005b 00       		.byte	0
+ 575 005c 00       		.byte	0
+ 576 005d 07       		.uleb128 0x7
+ 577 005e 34       		.uleb128 0x34
+ 578 005f 00       		.byte	0
+ 579 0060 03       		.uleb128 0x3
+ 580 0061 0E       		.uleb128 0xe
+ 581 0062 3A       		.uleb128 0x3a
+ 582 0063 0B       		.uleb128 0xb
+ 583 0064 3B       		.uleb128 0x3b
+ 584 0065 0B       		.uleb128 0xb
+ 585 0066 49       		.uleb128 0x49
+ 586 0067 13       		.uleb128 0x13
+ 587 0068 02       		.uleb128 0x2
+ 588 0069 18       		.uleb128 0x18
+ 589 006a 00       		.byte	0
+ 590 006b 00       		.byte	0
+ 591 006c 08       		.uleb128 0x8
+ 592 006d 01       		.uleb128 0x1
+ 593 006e 01       		.byte	0x1
+ 594 006f 49       		.uleb128 0x49
+ 595 0070 13       		.uleb128 0x13
+ 596 0071 01       		.uleb128 0x1
+ 597 0072 13       		.uleb128 0x13
+ 598 0073 00       		.byte	0
+ 599 0074 00       		.byte	0
+ 600 0075 09       		.uleb128 0x9
+ 601 0076 21       		.uleb128 0x21
+ 602 0077 00       		.byte	0
+ 603 0078 49       		.uleb128 0x49
+ 604 0079 13       		.uleb128 0x13
+ 605 007a 2F       		.uleb128 0x2f
+ 606 007b 0B       		.uleb128 0xb
+ 607 007c 00       		.byte	0
+ 608 007d 00       		.byte	0
+ 609 007e 0A       		.uleb128 0xa
+ 610 007f 34       		.uleb128 0x34
+ 611 0080 00       		.byte	0
+ 612 0081 03       		.uleb128 0x3
+ 613 0082 0E       		.uleb128 0xe
+ 614 0083 3A       		.uleb128 0x3a
+ 615 0084 0B       		.uleb128 0xb
+ 616 0085 3B       		.uleb128 0x3b
+ 617 0086 05       		.uleb128 0x5
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 15
+
+
+ 618 0087 49       		.uleb128 0x49
+ 619 0088 13       		.uleb128 0x13
+ 620 0089 3F       		.uleb128 0x3f
+ 621 008a 19       		.uleb128 0x19
+ 622 008b 3C       		.uleb128 0x3c
+ 623 008c 19       		.uleb128 0x19
+ 624 008d 00       		.byte	0
+ 625 008e 00       		.byte	0
+ 626 008f 0B       		.uleb128 0xb
+ 627 0090 35       		.uleb128 0x35
+ 628 0091 00       		.byte	0
+ 629 0092 49       		.uleb128 0x49
+ 630 0093 13       		.uleb128 0x13
+ 631 0094 00       		.byte	0
+ 632 0095 00       		.byte	0
+ 633 0096 0C       		.uleb128 0xc
+ 634 0097 0F       		.uleb128 0xf
+ 635 0098 00       		.byte	0
+ 636 0099 0B       		.uleb128 0xb
+ 637 009a 0B       		.uleb128 0xb
+ 638 009b 49       		.uleb128 0x49
+ 639 009c 13       		.uleb128 0x13
+ 640 009d 00       		.byte	0
+ 641 009e 00       		.byte	0
+ 642 009f 0D       		.uleb128 0xd
+ 643 00a0 34       		.uleb128 0x34
+ 644 00a1 00       		.byte	0
+ 645 00a2 03       		.uleb128 0x3
+ 646 00a3 0E       		.uleb128 0xe
+ 647 00a4 3A       		.uleb128 0x3a
+ 648 00a5 0B       		.uleb128 0xb
+ 649 00a6 3B       		.uleb128 0x3b
+ 650 00a7 0B       		.uleb128 0xb
+ 651 00a8 49       		.uleb128 0x49
+ 652 00a9 13       		.uleb128 0x13
+ 653 00aa 3F       		.uleb128 0x3f
+ 654 00ab 19       		.uleb128 0x19
+ 655 00ac 02       		.uleb128 0x2
+ 656 00ad 18       		.uleb128 0x18
+ 657 00ae 00       		.byte	0
+ 658 00af 00       		.byte	0
+ 659 00b0 00       		.byte	0
+ 660              		.section	.debug_aranges,"",%progbits
+ 661 0000 1C000000 		.4byte	0x1c
+ 662 0004 0200     		.2byte	0x2
+ 663 0006 00000000 		.4byte	.Ldebug_info0
+ 664 000a 04       		.byte	0x4
+ 665 000b 00       		.byte	0
+ 666 000c 0000     		.2byte	0
+ 667 000e 0000     		.2byte	0
+ 668 0010 00000000 		.4byte	.LFB64
+ 669 0014 44010000 		.4byte	.LFE64-.LFB64
+ 670 0018 00000000 		.4byte	0
+ 671 001c 00000000 		.4byte	0
+ 672              		.section	.debug_ranges,"",%progbits
+ 673              	.Ldebug_ranges0:
+ 674 0000 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 16
+
+
+ 675 0004 44010000 		.4byte	.LFE64
+ 676 0008 00000000 		.4byte	0
+ 677 000c 00000000 		.4byte	0
+ 678              		.section	.debug_line,"",%progbits
+ 679              	.Ldebug_line0:
+ 680 0000 B9010000 		.section	.debug_str,"MS",%progbits,1
+ 680      02004C01 
+ 680      00000201 
+ 680      FB0E0D00 
+ 680      01010101 
+ 681              	.LASF26:
+ 682 0000 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 682      43313120 
+ 682      352E342E 
+ 682      31203230 
+ 682      31363036 
+ 683 0033 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 683      20726576 
+ 683      6973696F 
+ 683      6E203233 
+ 683      37373135 
+ 684 0066 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 684      66756E63 
+ 684      74696F6E 
+ 684      2D736563 
+ 684      74696F6E 
+ 685              	.LASF21:
+ 686 008e 73746174 		.ascii	"state\000"
+ 686      6500
+ 687              	.LASF9:
+ 688 0094 5F5F696E 		.ascii	"__int32_t\000"
+ 688      7433325F 
+ 688      7400
+ 689              	.LASF13:
+ 690 009e 666C6F61 		.ascii	"float\000"
+ 690      7400
+ 691              	.LASF1:
+ 692 00a4 756E7369 		.ascii	"unsigned char\000"
+ 692      676E6564 
+ 692      20636861 
+ 692      7200
+ 693              	.LASF15:
+ 694 00b2 63686172 		.ascii	"char8\000"
+ 694      3800
+ 695              	.LASF5:
+ 696 00b8 6C6F6E67 		.ascii	"long unsigned int\000"
+ 696      20756E73 
+ 696      69676E65 
+ 696      6420696E 
+ 696      7400
+ 697              	.LASF3:
+ 698 00ca 73686F72 		.ascii	"short unsigned int\000"
+ 698      7420756E 
+ 698      7369676E 
+ 698      65642069 
+ 698      6E7400
+ 699              	.LASF25:
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 17
+
+
+ 700 00dd 73746F70 		.ascii	"stop\000"
+ 700      00
+ 701              	.LASF23:
+ 702 00e2 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 702      52784275 
+ 702      66666572 
+ 702      00
+ 703              	.LASF14:
+ 704 00ef 646F7562 		.ascii	"double\000"
+ 704      6C6500
+ 705              	.LASF29:
+ 706 00f6 6D61696E 		.ascii	"main\000"
+ 706      00
+ 707              	.LASF12:
+ 708 00fb 75696E74 		.ascii	"uint16\000"
+ 708      313600
+ 709              	.LASF8:
+ 710 0102 756E7369 		.ascii	"unsigned int\000"
+ 710      676E6564 
+ 710      20696E74 
+ 710      00
+ 711              	.LASF7:
+ 712 010f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 712      206C6F6E 
+ 712      6720756E 
+ 712      7369676E 
+ 712      65642069 
+ 713              	.LASF28:
+ 714 0126 433A5C55 		.ascii	"C:\\Users\\dgilliland\\Documents\\GitHub\\RPI_PSOC5"
+ 714      73657273 
+ 714      5C646769 
+ 714      6C6C696C 
+ 714      616E645C 
+ 715 0154 5C525053 		.ascii	"\\RPS_PSOC5_01\\RPS_PSOC5_01.cydsn\000"
+ 715      5F50534F 
+ 715      43355F30 
+ 715      315C5250 
+ 715      535F5053 
+ 716              	.LASF10:
+ 717 0175 696E7433 		.ascii	"int32_t\000"
+ 717      325F7400 
+ 718              	.LASF18:
+ 719 017d 73697A65 		.ascii	"sizetype\000"
+ 719      74797065 
+ 719      00
+ 720              	.LASF6:
+ 721 0186 6C6F6E67 		.ascii	"long long int\000"
+ 721      206C6F6E 
+ 721      6720696E 
+ 721      7400
+ 722              	.LASF27:
+ 723 0194 6D61696E 		.ascii	"main.c\000"
+ 723      2E6300
+ 724              	.LASF16:
+ 725 019b 63686172 		.ascii	"char\000"
+ 725      00
+ 726              	.LASF19:
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccdUR4ce.s 			page 18
+
+
+ 727 01a0 636F756E 		.ascii	"count\000"
+ 727      7400
+ 728              	.LASF2:
+ 729 01a6 73686F72 		.ascii	"short int\000"
+ 729      7420696E 
+ 729      7400
+ 730              	.LASF20:
+ 731 01b0 62756666 		.ascii	"buffer\000"
+ 731      657200
+ 732              	.LASF11:
+ 733 01b7 75696E74 		.ascii	"uint8\000"
+ 733      3800
+ 734              	.LASF4:
+ 735 01bd 6C6F6E67 		.ascii	"long int\000"
+ 735      20696E74 
+ 735      00
+ 736              	.LASF17:
+ 737 01c6 6C6F6E67 		.ascii	"long double\000"
+ 737      20646F75 
+ 737      626C6500 
+ 738              	.LASF0:
+ 739 01d2 7369676E 		.ascii	"signed char\000"
+ 739      65642063 
+ 739      68617200 
+ 740              	.LASF24:
+ 741 01de 70617269 		.ascii	"parity\000"
+ 741      747900
+ 742              	.LASF22:
+ 743 01e5 6C696E65 		.ascii	"lineStr\000"
+ 743      53747200 
+ 744              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
