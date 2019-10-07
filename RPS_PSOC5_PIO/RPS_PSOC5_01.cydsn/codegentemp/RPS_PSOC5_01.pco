@@ -1,0 +1,116 @@
+# RPS_PSOC5_01
+# 2019-10-07 22:16:45Z
+
+# IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 0
+# IO_1@[IOP=(1)][IoId=(1)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 1
+dont_use_location cancell -1 -1 0
+dont_use_location comparatorcell -1 -1 1
+dont_use_location comparatorcell -1 -1 3
+dont_use_location dfbcell -1 -1 0
+dont_use_location sccell -1 -1 0
+dont_use_location sccell -1 -1 1
+dont_use_location sccell -1 -1 2
+dont_use_location sccell -1 -1 3
+dont_use_location vidaccell -1 -1 1
+dont_use_location vidaccell -1 -1 2
+dont_use_location vidaccell -1 -1 3
+dont_use_location sarcell -1 -1 1
+dont_use_location abufcell -1 -1 0
+dont_use_location abufcell -1 -1 2
+dont_use_location abufcell -1 -1 1
+dont_use_location abufcell -1 -1 3
+set_location "ClockBlock" clockblockcell -1 -1 0
+set_location "SCL_1(0)_SYNC" 0 5 5 1
+set_io "\USBUART:Dm(0)\" iocell 15 7
+set_location "\USBUART:Dp\" logicalport -1 -1 15
+set_io "\USBUART:Dp(0)\" iocell 15 6
+set_io "SDA_1(0)" iocell 12 5
+set_io "SCL_1(0)" iocell 12 4
+set_io "PORT0D0(0)" iocell 0 0
+set_io "PORT0D1(0)" iocell 0 1
+set_io "PORT0D2(0)" iocell 0 2
+set_io "PORT0D3(0)" iocell 0 3
+set_io "PORT0D4(0)" iocell 0 4
+set_io "PORT0D5(0)" iocell 0 5
+set_io "PORT0D6(0)" iocell 0 6
+set_io "PORT0D7(0)" iocell 0 7
+set_io "PORT3D0(0)" iocell 3 0
+set_io "PORT2D0(0)" iocell 2 0
+set_io "PORT2D1(0)" iocell 2 1
+set_io "PORT2D2(0)" iocell 2 2
+set_io "PORT2D3(0)" iocell 2 3
+set_io "PORT2D4(0)" iocell 2 4
+set_io "PORT2D5(0)" iocell 2 5
+set_io "PORT2D6(0)" iocell 2 7
+set_io "PORT2D7(0)" iocell 2 6
+set_io "PORT3D1(0)" iocell 3 1
+set_io "PORT3D2(0)" iocell 3 2
+set_io "PORT3D3(0)" iocell 3 3
+set_io "PORT3D4(0)" iocell 3 4
+set_io "PORT3D5(0)" iocell 3 5
+set_io "PORT3D6(0)" iocell 3 6
+set_io "PORT4D0(0)" iocell 4 0
+set_io "PORT4D1(0)" iocell 6 1
+set_io "PORT4D2(0)" iocell 4 2
+set_io "PORT4D3(0)" iocell 4 3
+set_io "PORT4D4(0)" iocell 4 4
+set_io "PORT4D5(0)" iocell 4 5
+set_io "PORT3D7(0)" iocell 3 7
+set_io "PORT1D0(0)" iocell 1 2
+set_io "PORT1D1(0)" iocell 1 3
+set_io "PORT1D2(0)" iocell 1 5
+set_io "PORT1D3(0)" iocell 1 6
+set_io "PORT1D4(0)" iocell 1 7
+set_io "PORT5D0(0)" iocell 5 0
+set_io "PORT5D1(0)" iocell 5 4
+set_io "PORT5D2(0)" iocell 5 5
+set_io "PORT5D3(0)" iocell 5 6
+set_io "PORT5D4(0)" iocell 5 7
+set_io "PORT6D0(0)" iocell 6 4
+set_io "PORT6D1(0)" iocell 6 5
+set_io "PORT6D2(0)" iocell 6 6
+set_io "PORT6D3(0)" iocell 6 7
+set_io "PORT12D0(0)" iocell 12 0
+set_io "PORT12D1(0)" iocell 12 1
+set_io "PORT12D2(0)" iocell 12 2
+set_io "PORT12D3(0)" iocell 12 3
+set_io "PORT12D4(0)" iocell 12 6
+set_io "PORT12D5(0)" iocell 12 7
+set_io "PORT15D0(0)" iocell 15 0
+set_io "PORT15D1(0)" iocell 15 1
+set_io "PORT15D2(0)" iocell 15 2
+set_io "PORT15D3(0)" iocell 15 3
+set_location "\USBUART:dp_int\" interrupt -1 -1 12
+set_location "\USBUART:USB\" usbcell -1 -1 0
+set_location "\USBUART:ord_int\" interrupt -1 -1 25
+set_location "\USBUART:ep_3\" interrupt -1 -1 2
+set_location "\USBUART:ep_2\" interrupt -1 -1 1
+set_location "\USBUART:ep_1\" interrupt -1 -1 0
+set_location "\USBUART:ep_0\" interrupt -1 -1 24
+set_location "\USBUART:bus_reset\" interrupt -1 -1 23
+set_location "\USBUART:arb_int\" interrupt -1 -1 22
+set_location "\USBUART:sof_int\" interrupt -1 -1 21
+set_location "\DataIn_Port3:sts:sts_reg\" 3 0 3
+set_location "\I2C_EEPROM:I2C_IRQ\" interrupt -1 -1 15
+set_location "\I2C_EEPROM:I2C_FF\" i2ccell -1 -1 0
+set_location "\DataOut_Port0:Sync:ctrl_reg\" 3 4 6
+set_location "\Dir_Ctl:Sync:ctrl_reg\" 0 2 6
+set_location "\DataIn_Port0:sts:sts_reg\" 3 4 3
+set_location "SDA_1(0)_SYNC" 0 5 5 0
+set_location "\DataIn_Port2:sts:sts_reg\" 0 2 3
+set_location "\DataOut_Port2:Sync:ctrl_reg\" 0 5 6
+set_location "\DataIn_Port4:sts:sts_reg\" 2 4 3
+set_location "\DataOut_Port3:Sync:ctrl_reg\" 3 0 6
+set_location "\DataOut_Port4:Sync:ctrl_reg\" 2 4 6
+set_location "\DataIn_Port1:sts:sts_reg\" 1 1 3
+set_location "\DataIn_Port5:sts:sts_reg\" 0 1 3
+set_location "\DataOut_Port1:Sync:ctrl_reg\" 0 1 6
+set_location "\DataIn_Port6:sts:sts_reg\" 1 2 3
+set_location "\DataOut_Port5:Sync:ctrl_reg\" 1 1 6
+set_location "\DataIn_Port12:sts:sts_reg\" 2 0 3
+set_location "\DataOut_Port6:Sync:ctrl_reg\" 1 5 6
+set_location "\DataOut_Port12:Sync:ctrl_reg\" 2 1 6
+set_location "\DataIn_Port15:sts:sts_reg\" 3 1 3
+set_location "\DataOut_Port15:Sync:ctrl_reg\" 3 1 6

@@ -1,7 +1,0 @@
-C:\Users\dgilliland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|8706efa2-53c6-4fb6-b98c-3f3a2d9fba92
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|2dc2c8aa-62d0-4349-81c6-f66ae5f38ba7
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|97e01d25-8e3f-4236-8d34-714b9c569479
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|4ceaf6e8-3fc0-433f-8a7e-bc02d15949c3
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f687edd3-1ece-4374-8849-b15c92e4a84f
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|9a23169d-cdea-4949-b292-68a73e1a4ee3
-C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPS_PSOC5_01\RPS_PSOC5_01.cydsn\RPS_PSOC5_01.cyprj|6491f8e7-a966-4f8b-ac3c-9588d5096578
