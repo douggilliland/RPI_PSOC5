@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DataIn_Port12.h  
+* File Name: Status_Reg_1.h  
 * Version 1.90
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_STATUS_REG_DataIn_Port12_H) /* CY_STATUS_REG_DataIn_Port12_H */
-#define CY_STATUS_REG_DataIn_Port12_H
+#if !defined(CY_STATUS_REG_Status_Reg_1_H) /* CY_STATUS_REG_Status_Reg_1_H */
+#define CY_STATUS_REG_Status_Reg_1_H
 
 #include "cyfitter.h"
 
@@ -38,25 +38,25 @@ typedef struct
 {
     uint8 statusState;
 
-} DataIn_Port12_BACKUP_STRUCT;
+} Status_Reg_1_BACKUP_STRUCT;
 
 
 /***************************************
 *        Function Prototypes
 ***************************************/
 
-uint8 DataIn_Port12_Read(void) ;
-void DataIn_Port12_InterruptEnable(void) ;
-void DataIn_Port12_InterruptDisable(void) ;
-void DataIn_Port12_WriteMask(uint8 mask) ;
-uint8 DataIn_Port12_ReadMask(void) ;
+uint8 Status_Reg_1_Read(void) ;
+void Status_Reg_1_InterruptEnable(void) ;
+void Status_Reg_1_InterruptDisable(void) ;
+void Status_Reg_1_WriteMask(uint8 mask) ;
+uint8 Status_Reg_1_ReadMask(void) ;
 
 
 /***************************************
 *           API Constants
 ***************************************/
 
-#define DataIn_Port12_STATUS_INTR_ENBL    0x10u
+#define Status_Reg_1_STATUS_INTR_ENBL    0x10u
 
 
 /***************************************
@@ -64,7 +64,7 @@ uint8 DataIn_Port12_ReadMask(void) ;
 ***************************************/
 
 /* Status Register Inputs */
-#define DataIn_Port12_INPUTS              6
+#define Status_Reg_1_INPUTS              2
 
 
 /***************************************
@@ -72,12 +72,12 @@ uint8 DataIn_Port12_ReadMask(void) ;
 ***************************************/
 
 /* Status Register */
-#define DataIn_Port12_Status             (* (reg8 *) DataIn_Port12_sts_sts_reg__STATUS_REG )
-#define DataIn_Port12_Status_PTR         (  (reg8 *) DataIn_Port12_sts_sts_reg__STATUS_REG )
-#define DataIn_Port12_Status_Mask        (* (reg8 *) DataIn_Port12_sts_sts_reg__MASK_REG )
-#define DataIn_Port12_Status_Aux_Ctrl    (* (reg8 *) DataIn_Port12_sts_sts_reg__STATUS_AUX_CTL_REG )
+#define Status_Reg_1_Status             (* (reg8 *) Status_Reg_1_sts_sts_reg__STATUS_REG )
+#define Status_Reg_1_Status_PTR         (  (reg8 *) Status_Reg_1_sts_sts_reg__STATUS_REG )
+#define Status_Reg_1_Status_Mask        (* (reg8 *) Status_Reg_1_sts_sts_reg__MASK_REG )
+#define Status_Reg_1_Status_Aux_Ctrl    (* (reg8 *) Status_Reg_1_sts_sts_reg__STATUS_AUX_CTL_REG )
 
-#endif /* End CY_STATUS_REG_DataIn_Port12_H */
+#endif /* End CY_STATUS_REG_Status_Reg_1_H */
 
 
 /* [] END OF FILE */

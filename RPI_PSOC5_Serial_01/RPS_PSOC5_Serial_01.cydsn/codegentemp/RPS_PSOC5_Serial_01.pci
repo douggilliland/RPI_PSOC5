@@ -1,5 +1,5 @@
 # RPS_PSOC5_Serial_01
-# 2019-10-08 17:04:24Z
+# 2019-10-08 18:40:17Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -49,7 +49,7 @@ set_io "PORT3D4(0)" iocell 3 4
 set_io "PORT3D5(0)" iocell 3 5
 set_io "PORT3D6(0)" iocell 3 6
 set_io "PORT4D0(0)" iocell 4 0
-set_io "PORT4D1(0)" iocell 6 1
+set_io "PORT4D1(0)" iocell 4 1
 set_io "PORT4D2(0)" iocell 4 2
 set_io "PORT4D3(0)" iocell 4 3
 set_io "PORT4D4(0)" iocell 4 4
@@ -69,14 +69,14 @@ set_io "PORT6D0(0)" iocell 6 4
 set_io "PORT6D1(0)" iocell 6 5
 set_io "PORT6D2(0)" iocell 6 6
 set_io "PORT6D3(0)" iocell 6 7
-set_io "PORT12D0(0)" iocell 12 0
-set_io "PORT12D1(0)" iocell 12 1
-set_io "PORT12D2(0)" iocell 12 2
 set_io "PORT12D3(0)" iocell 12 3
-set_io "PORT12D4(0)" iocell 12 6
-set_io "PORT12D5(0)" iocell 12 7
+set_io "PORT12D2(0)" iocell 12 2
+set_io "PORT12D1(0)" iocell 12 1
+set_io "PORT12D0(0)" iocell 12 0
 set_io "PORT15D0(0)" iocell 15 0
 set_io "PORT15D1(0)" iocell 15 1
 set_io "PORT15D2(0)" iocell 15 2
 set_io "PORT15D3(0)" iocell 15 3
+set_io "Rx_1(0)" iocell 12 7
+set_io "Tx_1(0)" iocell 12 6
 set_location "\USBUART:USB\" usbcell -1 -1 0

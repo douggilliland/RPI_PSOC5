@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DataOut_Port12.h  
+* File Name: UART_Ctrl.h  
 * Version 1.80
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_CONTROL_REG_DataOut_Port12_H) /* CY_CONTROL_REG_DataOut_Port12_H */
-#define CY_CONTROL_REG_DataOut_Port12_H
+#if !defined(CY_CONTROL_REG_UART_Ctrl_H) /* CY_CONTROL_REG_UART_Ctrl_H */
+#define CY_CONTROL_REG_UART_Ctrl_H
 
 #include "cyfitter.h"
 
@@ -37,20 +37,20 @@ typedef struct
 {
     uint8 controlState;
 
-} DataOut_Port12_BACKUP_STRUCT;
+} UART_Ctrl_BACKUP_STRUCT;
 
 
 /***************************************
 *         Function Prototypes 
 ***************************************/
 
-void    DataOut_Port12_Write(uint8 control) ;
-uint8   DataOut_Port12_Read(void) ;
+void    UART_Ctrl_Write(uint8 control) ;
+uint8   UART_Ctrl_Read(void) ;
 
-void DataOut_Port12_SaveConfig(void) ;
-void DataOut_Port12_RestoreConfig(void) ;
-void DataOut_Port12_Sleep(void) ; 
-void DataOut_Port12_Wakeup(void) ;
+void UART_Ctrl_SaveConfig(void) ;
+void UART_Ctrl_RestoreConfig(void) ;
+void UART_Ctrl_Sleep(void) ; 
+void UART_Ctrl_Wakeup(void) ;
 
 
 /***************************************
@@ -58,10 +58,10 @@ void DataOut_Port12_Wakeup(void) ;
 ***************************************/
 
 /* Control Register */
-#define DataOut_Port12_Control        (* (reg8 *) DataOut_Port12_Sync_ctrl_reg__CONTROL_REG )
-#define DataOut_Port12_Control_PTR    (  (reg8 *) DataOut_Port12_Sync_ctrl_reg__CONTROL_REG )
+#define UART_Ctrl_Control        (* (reg8 *) UART_Ctrl_Sync_ctrl_reg__CONTROL_REG )
+#define UART_Ctrl_Control_PTR    (  (reg8 *) UART_Ctrl_Sync_ctrl_reg__CONTROL_REG )
 
-#endif /* End CY_CONTROL_REG_DataOut_Port12_H */
+#endif /* End CY_CONTROL_REG_UART_Ctrl_H */
 
 
 /* [] END OF FILE */

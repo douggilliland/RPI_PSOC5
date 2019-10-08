@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DataIn_Port12.c  
+* File Name: Status_Reg_1.c  
 * Version 1.90
 *
 * Description:
@@ -15,13 +15,13 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "DataIn_Port12.h"
+#include "Status_Reg_1.h"
 
-#if !defined(DataIn_Port12_sts_sts_reg__REMOVED) /* Check for removal by optimization */
+#if !defined(Status_Reg_1_sts_sts_reg__REMOVED) /* Check for removal by optimization */
 
 
 /*******************************************************************************
-* Function Name: DataIn_Port12_Read
+* Function Name: Status_Reg_1_Read
 ********************************************************************************
 *
 * Summary:
@@ -34,14 +34,14 @@
 *  The current value in the Status Register.
 *
 *******************************************************************************/
-uint8 DataIn_Port12_Read(void) 
+uint8 Status_Reg_1_Read(void) 
 { 
-    return DataIn_Port12_Status;
+    return Status_Reg_1_Status;
 }
 
 
 /*******************************************************************************
-* Function Name: DataIn_Port12_InterruptEnable
+* Function Name: Status_Reg_1_InterruptEnable
 ********************************************************************************
 *
 * Summary:
@@ -54,17 +54,17 @@ uint8 DataIn_Port12_Read(void)
 *  None.
 *
 *******************************************************************************/
-void DataIn_Port12_InterruptEnable(void) 
+void Status_Reg_1_InterruptEnable(void) 
 {
     uint8 interruptState;
     interruptState = CyEnterCriticalSection();
-    DataIn_Port12_Status_Aux_Ctrl |= DataIn_Port12_STATUS_INTR_ENBL;
+    Status_Reg_1_Status_Aux_Ctrl |= Status_Reg_1_STATUS_INTR_ENBL;
     CyExitCriticalSection(interruptState);
 }
 
 
 /*******************************************************************************
-* Function Name: DataIn_Port12_InterruptDisable
+* Function Name: Status_Reg_1_InterruptDisable
 ********************************************************************************
 *
 * Summary:
@@ -77,17 +77,17 @@ void DataIn_Port12_InterruptEnable(void)
 *  None.
 *
 *******************************************************************************/
-void DataIn_Port12_InterruptDisable(void) 
+void Status_Reg_1_InterruptDisable(void) 
 {
     uint8 interruptState;
     interruptState = CyEnterCriticalSection();
-    DataIn_Port12_Status_Aux_Ctrl &= (uint8)(~DataIn_Port12_STATUS_INTR_ENBL);
+    Status_Reg_1_Status_Aux_Ctrl &= (uint8)(~Status_Reg_1_STATUS_INTR_ENBL);
     CyExitCriticalSection(interruptState);
 }
 
 
 /*******************************************************************************
-* Function Name: DataIn_Port12_WriteMask
+* Function Name: Status_Reg_1_WriteMask
 ********************************************************************************
 *
 * Summary:
@@ -100,17 +100,17 @@ void DataIn_Port12_InterruptDisable(void)
 *  None.
 *
 *******************************************************************************/
-void DataIn_Port12_WriteMask(uint8 mask) 
+void Status_Reg_1_WriteMask(uint8 mask) 
 {
-    #if(DataIn_Port12_INPUTS < 8u)
-    	mask &= ((uint8)(1u << DataIn_Port12_INPUTS) - 1u);
-	#endif /* End DataIn_Port12_INPUTS < 8u */
-    DataIn_Port12_Status_Mask = mask;
+    #if(Status_Reg_1_INPUTS < 8u)
+    	mask &= ((uint8)(1u << Status_Reg_1_INPUTS) - 1u);
+	#endif /* End Status_Reg_1_INPUTS < 8u */
+    Status_Reg_1_Status_Mask = mask;
 }
 
 
 /*******************************************************************************
-* Function Name: DataIn_Port12_ReadMask
+* Function Name: Status_Reg_1_ReadMask
 ********************************************************************************
 *
 * Summary:
@@ -123,9 +123,9 @@ void DataIn_Port12_WriteMask(uint8 mask)
 *  The value of the interrupt mask of the Status Register.
 *
 *******************************************************************************/
-uint8 DataIn_Port12_ReadMask(void) 
+uint8 Status_Reg_1_ReadMask(void) 
 {
-    return DataIn_Port12_Status_Mask;
+    return Status_Reg_1_Status_Mask;
 }
 
 #endif /* End check for removal by optimization */

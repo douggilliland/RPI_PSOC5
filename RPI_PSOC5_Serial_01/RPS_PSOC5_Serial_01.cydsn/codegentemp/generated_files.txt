@@ -225,32 +225,21 @@
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT6D3_aliases.h" value="HEADER;;;;;PORT6D3" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT6D3.c" value="SOURCE_C;CortexM3;;;;PORT6D3" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT6D3.h" value="HEADER;;;;;PORT6D3" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataIn_Port12.c" value="SOURCE_C;CortexM3;;;;DataIn_Port12" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataIn_Port12.h" value="HEADER;;;;;DataIn_Port12" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port6.h" value="HEADER;;;;;DataOut_Port6" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port6.c" value="SOURCE_C;CortexM3;;;;DataOut_Port6" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port6_PM.c" value="SOURCE_C;CortexM3;;;;DataOut_Port6" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D0_aliases.h" value="HEADER;;;;;PORT12D0" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D0.c" value="SOURCE_C;CortexM3;;;;PORT12D0" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D0.h" value="HEADER;;;;;PORT12D0" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D1_aliases.h" value="HEADER;;;;;PORT12D1" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D1.c" value="SOURCE_C;CortexM3;;;;PORT12D1" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D1.h" value="HEADER;;;;;PORT12D1" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D2_aliases.h" value="HEADER;;;;;PORT12D2" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D2.c" value="SOURCE_C;CortexM3;;;;PORT12D2" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D2.h" value="HEADER;;;;;PORT12D2" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D3_aliases.h" value="HEADER;;;;;PORT12D3" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D3.c" value="SOURCE_C;CortexM3;;;;PORT12D3" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D3.h" value="HEADER;;;;;PORT12D3" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D4_aliases.h" value="HEADER;;;;;PORT12D4" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D4.c" value="SOURCE_C;CortexM3;;;;PORT12D4" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D4.h" value="HEADER;;;;;PORT12D4" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D5_aliases.h" value="HEADER;;;;;PORT12D5" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D5.c" value="SOURCE_C;CortexM3;;;;PORT12D5" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D5.h" value="HEADER;;;;;PORT12D5" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port12.h" value="HEADER;;;;;DataOut_Port12" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port12.c" value="SOURCE_C;CortexM3;;;;DataOut_Port12" />
-  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port12_PM.c" value="SOURCE_C;CortexM3;;;;DataOut_Port12" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D2_aliases.h" value="HEADER;;;;;PORT12D2" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D2.c" value="SOURCE_C;CortexM3;;;;PORT12D2" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D2.h" value="HEADER;;;;;PORT12D2" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D1_aliases.h" value="HEADER;;;;;PORT12D1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D1.c" value="SOURCE_C;CortexM3;;;;PORT12D1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D1.h" value="HEADER;;;;;PORT12D1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D0_aliases.h" value="HEADER;;;;;PORT12D0" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D0.c" value="SOURCE_C;CortexM3;;;;PORT12D0" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT12D0.h" value="HEADER;;;;;PORT12D0" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataIn_Port15.c" value="SOURCE_C;CortexM3;;;;DataIn_Port15" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataIn_Port15.h" value="HEADER;;;;;DataIn_Port15" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\PORT15D0_aliases.h" value="HEADER;;;;;PORT15D0" />
@@ -268,12 +257,24 @@
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port15.h" value="HEADER;;;;;DataOut_Port15" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port15.c" value="SOURCE_C;CortexM3;;;;DataOut_Port15" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\DataOut_Port15_PM.c" value="SOURCE_C;CortexM3;;;;DataOut_Port15" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_1.c" value="SOURCE_C;CortexM3;;;;UART_1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_1.h" value="HEADER;;;;;UART_1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_1_PM.c" value="SOURCE_C;CortexM3;;;;UART_1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_1_INT.c" value="SOURCE_C;CortexM3;;;;UART_1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_1_BOOT.c" value="SOURCE_C;CortexM3;;;;UART_1" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_Status.c" value="SOURCE_C;CortexM3;;;;UART_Status" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_Status.h" value="HEADER;;;;;UART_Status" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_Ctrl.h" value="HEADER;;;;;UART_Ctrl" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_Ctrl.c" value="SOURCE_C;CortexM3;;;;UART_Ctrl" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_Ctrl_PM.c" value="SOURCE_C;CortexM3;;;;UART_Ctrl" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\USBUART_Dm_aliases.h" value="HEADER;;;;;USBUART_Dm" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\USBUART_Dm.c" value="SOURCE_C;CortexM3;;;;USBUART_Dm" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\USBUART_Dm.h" value="HEADER;;;;;USBUART_Dm" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\USBUART_Dp_aliases.h" value="HEADER;;;;;USBUART_Dp" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\USBUART_Dp.c" value="SOURCE_C;CortexM3;;;;USBUART_Dp" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\USBUART_Dp.h" value="HEADER;;;;;USBUART_Dp" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_1_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_1_IntClock" />
+  <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\UART_1_IntClock.h" value="HEADER;;;;;UART_1_IntClock" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\cy_em_eeprom.c" value="SOURCE_C;CortexM3;;;;Em_EEPROM_Dynamic" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\cy_em_eeprom.h" value="HEADER;;;;;Em_EEPROM_Dynamic" />
   <file name="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />

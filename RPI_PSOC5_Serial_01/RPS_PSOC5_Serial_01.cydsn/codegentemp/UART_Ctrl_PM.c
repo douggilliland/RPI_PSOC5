@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DataOut_Port12_PM.c
+* File Name: UART_Ctrl_PM.c
 * Version 1.80
 *
 * Description:
@@ -15,16 +15,16 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "DataOut_Port12.h"
+#include "UART_Ctrl.h"
 
 /* Check for removal by optimization */
-#if !defined(DataOut_Port12_Sync_ctrl_reg__REMOVED)
+#if !defined(UART_Ctrl_Sync_ctrl_reg__REMOVED)
 
-static DataOut_Port12_BACKUP_STRUCT  DataOut_Port12_backup = {0u};
+static UART_Ctrl_BACKUP_STRUCT  UART_Ctrl_backup = {0u};
 
     
 /*******************************************************************************
-* Function Name: DataOut_Port12_SaveConfig
+* Function Name: UART_Ctrl_SaveConfig
 ********************************************************************************
 *
 * Summary:
@@ -37,14 +37,14 @@ static DataOut_Port12_BACKUP_STRUCT  DataOut_Port12_backup = {0u};
 *  None
 *
 *******************************************************************************/
-void DataOut_Port12_SaveConfig(void) 
+void UART_Ctrl_SaveConfig(void) 
 {
-    DataOut_Port12_backup.controlState = DataOut_Port12_Control;
+    UART_Ctrl_backup.controlState = UART_Ctrl_Control;
 }
 
 
 /*******************************************************************************
-* Function Name: DataOut_Port12_RestoreConfig
+* Function Name: UART_Ctrl_RestoreConfig
 ********************************************************************************
 *
 * Summary:
@@ -58,14 +58,14 @@ void DataOut_Port12_SaveConfig(void)
 *
 *
 *******************************************************************************/
-void DataOut_Port12_RestoreConfig(void) 
+void UART_Ctrl_RestoreConfig(void) 
 {
-     DataOut_Port12_Control = DataOut_Port12_backup.controlState;
+     UART_Ctrl_Control = UART_Ctrl_backup.controlState;
 }
 
 
 /*******************************************************************************
-* Function Name: DataOut_Port12_Sleep
+* Function Name: UART_Ctrl_Sleep
 ********************************************************************************
 *
 * Summary:
@@ -78,14 +78,14 @@ void DataOut_Port12_RestoreConfig(void)
 *  None
 *
 *******************************************************************************/
-void DataOut_Port12_Sleep(void) 
+void UART_Ctrl_Sleep(void) 
 {
-    DataOut_Port12_SaveConfig();
+    UART_Ctrl_SaveConfig();
 }
 
 
 /*******************************************************************************
-* Function Name: DataOut_Port12_Wakeup
+* Function Name: UART_Ctrl_Wakeup
 ********************************************************************************
 *
 * Summary:
@@ -98,9 +98,9 @@ void DataOut_Port12_Sleep(void)
 *  None
 *
 *******************************************************************************/
-void DataOut_Port12_Wakeup(void)  
+void UART_Ctrl_Wakeup(void)  
 {
-    DataOut_Port12_RestoreConfig();
+    UART_Ctrl_RestoreConfig();
 }
 
 #endif /* End check for removal by optimization */

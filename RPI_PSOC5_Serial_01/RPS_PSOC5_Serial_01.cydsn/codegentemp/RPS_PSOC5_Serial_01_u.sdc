@@ -1,3 +1,3 @@
 # Component constraints for C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch
 # Project: C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj
-# Date: Tue, 08 Oct 2019 17:04:22 GMT
+# Date: Tue, 08 Oct 2019 18:40:14 GMT

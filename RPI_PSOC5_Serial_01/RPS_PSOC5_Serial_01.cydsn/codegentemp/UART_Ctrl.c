@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DataOut_Port12.c  
+* File Name: UART_Ctrl.c  
 * Version 1.80
 *
 * Description:
@@ -14,14 +14,14 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "DataOut_Port12.h"
+#include "UART_Ctrl.h"
 
 /* Check for removal by optimization */
-#if !defined(DataOut_Port12_Sync_ctrl_reg__REMOVED)
+#if !defined(UART_Ctrl_Sync_ctrl_reg__REMOVED)
 
     
 /*******************************************************************************
-* Function Name: DataOut_Port12_Write
+* Function Name: UART_Ctrl_Write
 ********************************************************************************
 *
 * Summary:
@@ -34,14 +34,14 @@
 *  None.
 *
 *******************************************************************************/
-void DataOut_Port12_Write(uint8 control) 
+void UART_Ctrl_Write(uint8 control) 
 {
-    DataOut_Port12_Control = control;
+    UART_Ctrl_Control = control;
 }
 
 
 /*******************************************************************************
-* Function Name: DataOut_Port12_Read
+* Function Name: UART_Ctrl_Read
 ********************************************************************************
 *
 * Summary:
@@ -54,9 +54,9 @@ void DataOut_Port12_Write(uint8 control)
 *  Returns the current value in the Control Register.
 *
 *******************************************************************************/
-uint8 DataOut_Port12_Read(void) 
+uint8 UART_Ctrl_Read(void) 
 {
-    return DataOut_Port12_Control;
+    return UART_Ctrl_Control;
 }
 
 #endif /* End check for removal by optimization */
