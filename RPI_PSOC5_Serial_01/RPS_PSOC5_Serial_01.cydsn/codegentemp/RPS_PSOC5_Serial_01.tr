@@ -1,0 +1,157 @@
+##################################################################### 
+                    Table of Contents
+===================================================================== 
+	1::Clock Frequency Summary
+	2::Clock Relationship Summary
+	3::Datasheet Report
+		3.1::Setup to Clock
+		3.2::Clock to Out
+		3.3::Pad to Pad
+	4::Path Details for Clock Frequency Summary
+	5::Path Details for Clock Relationship Summary
+===================================================================== 
+                    End of Table of Contents
+##################################################################### 
+
+##################################################################### 
+                    1::Clock Frequency Summary
+===================================================================== 
+Number of clocks: 8
+Clock: Clock_1                    | N/A  | Target: 64.00 MHz  | 
+Clock: CyBUS_CLK                  | N/A  | Target: 64.00 MHz  | 
+Clock: CyBUS_CLK(fixed-function)  | N/A  | Target: 64.00 MHz  | 
+Clock: CyILO                      | N/A  | Target: 0.10 MHz   | 
+Clock: CyIMO                      | N/A  | Target: 24.00 MHz  | 
+Clock: CyMASTER_CLK               | N/A  | Target: 64.00 MHz  | 
+Clock: CyPLL_OUT                  | N/A  | Target: 64.00 MHz  | 
+Clock: CyScBoostClk               | N/A  | Target: 10.67 MHz  | 
+
+ =====================================================================
+                    End of Clock Frequency Summary
+ #####################################################################
+
+
+ #####################################################################
+                    2::Clock Relationship Summary
+ =====================================================================
+
+Launch Clock  Capture Clock  Constraint(R-R)  Slack(R-R)  Constraint(R-F)  Slack(R-F)  Constraint(F-F)  Slack(F-F)  Constraint(F-R)  Slack(F-R)  
+
+ =====================================================================
+                    End of Clock Relationship Summary
+ #####################################################################
+
+
+ #####################################################################
+                    3::Datasheet Report
+
+All values are in Picoseconds
+ =====================================================================
+
+3.1::Setup to Clock                     
+-------------------                     
+
+Port Name  Setup to Clk  Clock Name:Phase  
+---------  ------------  ----------------  
+
+
+-----------------------3.2::Clock to Out
+----------------------------------------
+
+Port Name            Clock to Out  Clock Name:Phase             
+-------------------  ------------  ---------------------------  
+PORT0D0(0)_PAD:out   24456         CyBUS_CLK:R                  
+PORT0D1(0)_PAD:out   24958         CyBUS_CLK:R                  
+PORT0D2(0)_PAD:out   24470         CyBUS_CLK:R                  
+PORT0D3(0)_PAD:out   23893         CyBUS_CLK:R                  
+PORT0D4(0)_PAD:out   24038         CyBUS_CLK:R                  
+PORT0D5(0)_PAD:out   23242         CyBUS_CLK:R                  
+PORT0D6(0)_PAD:out   24737         CyBUS_CLK:R                  
+PORT0D7(0)_PAD:out   24652         CyBUS_CLK:R                  
+PORT12D0(0)_PAD:out  25137         CyBUS_CLK:R                  
+PORT12D1(0)_PAD:out  26020         CyBUS_CLK:R                  
+PORT12D2(0)_PAD:out  25504         CyBUS_CLK:R                  
+PORT12D3(0)_PAD:out  25552         CyBUS_CLK:R                  
+PORT12D4(0)_PAD:out  28083         CyBUS_CLK:R                  
+PORT12D5(0)_PAD:out  28944         CyBUS_CLK:R                  
+PORT15D0(0)_PAD:out  22602         CyBUS_CLK:R                  
+PORT15D1(0)_PAD:out  23561         CyBUS_CLK:R                  
+PORT15D2(0)_PAD:out  24236         CyBUS_CLK:R                  
+PORT15D3(0)_PAD:out  23640         CyBUS_CLK:R                  
+PORT1D0(0)_PAD:out   24514         CyBUS_CLK:R                  
+PORT1D1(0)_PAD:out   23338         CyBUS_CLK:R                  
+PORT1D2(0)_PAD:out   24385         CyBUS_CLK:R                  
+PORT1D3(0)_PAD:out   24247         CyBUS_CLK:R                  
+PORT1D4(0)_PAD:out   23697         CyBUS_CLK:R                  
+PORT2D0(0)_PAD:out   24956         CyBUS_CLK:R                  
+PORT2D1(0)_PAD:out   25110         CyBUS_CLK:R                  
+PORT2D2(0)_PAD:out   24193         CyBUS_CLK:R                  
+PORT2D3(0)_PAD:out   24050         CyBUS_CLK:R                  
+PORT2D4(0)_PAD:out   24657         CyBUS_CLK:R                  
+PORT2D5(0)_PAD:out   24913         CyBUS_CLK:R                  
+PORT2D6(0)_PAD:out   24150         CyBUS_CLK:R                  
+PORT2D7(0)_PAD:out   24497         CyBUS_CLK:R                  
+PORT3D0(0)_PAD:out   23830         CyBUS_CLK:R                  
+PORT3D1(0)_PAD:out   23580         CyBUS_CLK:R                  
+PORT3D2(0)_PAD:out   23716         CyBUS_CLK:R                  
+PORT3D3(0)_PAD:out   22620         CyBUS_CLK:R                  
+PORT3D4(0)_PAD:out   23101         CyBUS_CLK:R                  
+PORT3D5(0)_PAD:out   24228         CyBUS_CLK:R                  
+PORT3D6(0)_PAD:out   22729         CyBUS_CLK:R                  
+PORT3D7(0)_PAD:out   24027         CyBUS_CLK:R                  
+PORT4D0(0)_PAD:out   24381         CyBUS_CLK:R                  
+PORT4D1(0)_PAD:out   24766         CyBUS_CLK:R                  
+PORT4D2(0)_PAD:out   23488         CyBUS_CLK:R                  
+PORT4D3(0)_PAD:out   24293         CyBUS_CLK:R                  
+PORT4D4(0)_PAD:out   24483         CyBUS_CLK:R                  
+PORT4D5(0)_PAD:out   24670         CyBUS_CLK:R                  
+PORT5D0(0)_PAD:out   23995         CyBUS_CLK:R                  
+PORT5D1(0)_PAD:out   24203         CyBUS_CLK:R                  
+PORT5D2(0)_PAD:out   23334         CyBUS_CLK:R                  
+PORT5D3(0)_PAD:out   24660         CyBUS_CLK:R                  
+PORT5D4(0)_PAD:out   24151         CyBUS_CLK:R                  
+PORT6D0(0)_PAD:out   23935         CyBUS_CLK:R                  
+PORT6D1(0)_PAD:out   23659         CyBUS_CLK:R                  
+PORT6D2(0)_PAD:out   24896         CyBUS_CLK:R                  
+PORT6D3(0)_PAD:out   23655         CyBUS_CLK:R                  
+SCL_1(0)_PAD:out     21217         CyBUS_CLK(fixed-function):R  
+SDA_1(0)_PAD:out     20656         CyBUS_CLK(fixed-function):R  
+
+
+                         3.3::Pad to Pad
+                         ---------------
+
+Port Name (Source)  Port Name (Destination)  Delay  
+------------------  -----------------------  -----  
+
+===================================================================== 
+                    End of Datasheet Report
+##################################################################### 
+##################################################################### 
+                    4::Path Details for Clock Frequency Summary
+
+===================================================================== 
+                    End of Path Details for Clock Frequency Summary
+##################################################################### 
+
+
+##################################################################### 
+                    5::Path Details for Clock Relationship Summary
+===================================================================== 
+
+
+===================================================================== 
+                    End of Path Details for Clock Relationship Summary
+##################################################################### 
+
+##################################################################### 
+                    Detailed Report for all timing paths 
+===================================================================== 
+===================================================================== 
+                    End of Detailed Report for all timing paths 
+##################################################################### 
+
+##################################################################### 
+                    End of Timing Report 
+##################################################################### 
+
