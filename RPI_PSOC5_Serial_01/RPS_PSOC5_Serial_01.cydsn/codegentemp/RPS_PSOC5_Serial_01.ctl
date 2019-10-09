@@ -1,6 +1,6 @@
 -- ======================================================================
 -- RPS_PSOC5_Serial_01.ctl generated from RPS_PSOC5_Serial_01
--- 10/08/2019 at 21:18
+-- 10/09/2019 at 10:24
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 
