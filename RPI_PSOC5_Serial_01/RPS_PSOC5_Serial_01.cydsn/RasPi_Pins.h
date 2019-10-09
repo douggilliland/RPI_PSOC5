@@ -24,19 +24,19 @@
 #define RASPI_PIN_19    9       // SPIMOSI
 #define RASPI_PIN_21    8       // SPIMISO
 #define RASPI_PIN_22    16      // IO_25
-#define RASPI_PIN_23        // SPISCK
-#define RASPI_PIN_24        // SPICE0
-#define RASPI_PIN_26        // SPICE1
-#define RASPI_PIN_27        // SDA0
-#define RASPI_PIN_28        // SCL0
-#define RASPI_PIN_29        // IO_5
-#define RASPI_PIN_31        // IO_6
-#define RASPI_PIN_32        // IO_12
-#define RASPI_PIN_33        // IO_13
-#define RASPI_PIN_35        // IO_19
-#define RASPI_PIN_36        // IO_16
-#define RASPI_PIN_37        // IO_26
-#define RASPI_PIN_38        // IO_20
-#define RASPI_PIN_40        // IO_21
+#define RASPI_PIN_23    23      // SPISCK
+#define RASPI_PIN_24    22      // SPICE0
+#define RASPI_PIN_26    34      // SPICE1
+#define RASPI_PIN_27    5       // SDA0
+#define RASPI_PIN_28    4       // SCL0
+#define RASPI_PIN_29    33      // IO_5
+#define RASPI_PIN_31    3       // IO_6
+#define RASPI_PIN_32    2       // IO_12
+#define RASPI_PIN_33    1       // IO_13
+#define RASPI_PIN_35    98      // IO_19
+#define RASPI_PIN_36    99      // IO_16
+#define RASPI_PIN_37    96      // IO_26
+#define RASPI_PIN_38    97      // IO_20
+#define RASPI_PIN_40    95      // IO_21
 
 /* [] END OF FILE */

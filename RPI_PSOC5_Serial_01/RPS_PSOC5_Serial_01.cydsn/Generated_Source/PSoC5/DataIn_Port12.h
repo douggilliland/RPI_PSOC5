@@ -64,7 +64,7 @@ uint8 DataIn_Port12_ReadMask(void) ;
 ***************************************/
 
 /* Status Register Inputs */
-#define DataIn_Port12_INPUTS              4
+#define DataIn_Port12_INPUTS              6
 
 
 /***************************************

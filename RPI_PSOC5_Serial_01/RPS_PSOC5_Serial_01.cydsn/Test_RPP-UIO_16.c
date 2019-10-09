@@ -15,81 +15,63 @@
 // The high level output turns on the LED.
 
 #include <project.h>
+#include "RasPi_Pins.h"
 
-void blinkLED(channel)
+void blinkLED(uint8 RPI_Pin, uint8 val)
 {
-	GPIO.output(channel, 1)
+	setRasPiPin(RPI_Pin, 1);
     CyDelay(250);
-	GPIO.output(channel, 0)
+	setRasPiPin(RPI_Pin, 0);
 }
 
 // Dir_Ctl bits
 // 
 
+#define PORT0_OUT   0x01
+#define PORT1_OUT   0x02
+#define PORT2_OUT   0x04
+#define PORT3_OUT   0x08
+#define PORT4_OUT   0x10
+#define PORT5_OUT   0x20
+#define PORT6_OUT   0x40
+#define PORT12_OUT  0x80
+
 void testRPPUIO16(void)
 {
 // Set all of the RPI pins to outputs
-    Dir_Ctl_Write(0xff);
-    DataOut_Port15_Write(0x10);
-}
-    
-    
-GPIO.output(I2C_3, 0)
-GPIO.output(I2C_4, 0)
-GPIO.output(UART_3, 0)
-GPIO.output(UART_4, 0)
-GPIO.output(IO4, 0)
-GPIO.output(IO18, 0)
-GPIO.output(IO17, 0)
-GPIO.output(IO27, 0)
-GPIO.output(IO23, 0)
-GPIO.output(IO22, 0)
-GPIO.output(IO24, 0)
-GPIO.output(IO25, 0)
-GPIO.output(SPI0_3, 0)
-GPIO.output(SPI0_4, 0)
-GPIO.output(SPI0_5, 0)
-GPIO.output(SPI0_6, 0)
-GPIO.output(SPI1_6, 0)
-GPIO.output(IO5, 0)
-GPIO.output(IO6, 0)
-GPIO.output(IO12, 0)
-GPIO.output(IO13, 0)
-GPIO.output(IO19, 0)
-GPIO.output(IO16, 0)
-GPIO.output(IO26, 0)
-GPIO.output(IO20, 0)
-GPIO.output(IO21, 0)
+    Dir_Ctl_Write(Dir_Ctl_Read() | PORT1_OUT | PORT2_OUT | PORT5_OUT | PORT12_OUT);   // Port 1,2,5,6 = outputs
 
-# Blink all of the LEDs one at a time forever
-# CTRL-C to exit which is not a particularly elegant exit strategy, but this is a demo program
+// Blink all of the LEDs one at a time forever
+// CTRL-C to exit which is not a particularly elegant exit strategy, but this is a demo program
 
-while 1:
-	blinkLED(IO21)
-	blinkLED(SPI1_6)
-	blinkLED(SPI0_3)
-	blinkLED(SPI0_4)
-	blinkLED(SPI0_5)
-	blinkLED(SPI0_6)
-	blinkLED(I2C_3)
-	blinkLED(I2C_4)
-	blinkLED(UART_3)
-	blinkLED(UART_4)
-	blinkLED(IO4)
-	blinkLED(IO18)
-	blinkLED(IO17)
-	blinkLED(IO27)
-	blinkLED(IO23)
-	blinkLED(IO22)
-	blinkLED(IO24)
-	blinkLED(IO25)
-	blinkLED(IO5)
-	blinkLED(IO6)
-	blinkLED(IO12)
-	blinkLED(IO13)
-	blinkLED(IO19)
-	blinkLED(IO16)
-	blinkLED(IO26)
-	blinkLED(IO20)
+    while (1)
+    {
+    	blinkLED(IO21);
+    	blinkLED(SPI1_6);
+    	blinkLED(SPI0_3);
+    	blinkLED(SPI0_4);
+    	blinkLED(SPI0_5);
+    	blinkLED(SPI0_6);
+    	blinkLED(I2C_3);
+    	blinkLED(I2C_4);
+    	blinkLED(UART_3);
+    	blinkLED(UART_4);
+    	blinkLED(IO4);
+    	blinkLED(IO18);
+    	blinkLED(IO17);
+    	blinkLED(IO27);
+    	blinkLED(IO23);
+    	blinkLED(IO22);
+    	blinkLED(IO24);
+    	blinkLED(IO25);
+    	blinkLED(IO5);
+    	blinkLED(IO6);
+    	blinkLED(IO12);
+    	blinkLED(IO13);
+    	blinkLED(IO19);
+    	blinkLED(IO16);
+    	blinkLED(IO26);
+    	blinkLED(IO20);
+    }
 }
 /* [] END OF FILE */
