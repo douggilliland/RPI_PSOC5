@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="IO_27" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_18" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_23" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_22" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_26" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_20" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_17" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_27" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_24" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_23" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_21" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_25" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_26" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_18" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_17" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LED" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_24" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_15" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_8" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_25" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_10" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_12" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_9" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_11" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_9" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SDA0" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="USBUART" BASE="0x0" SIZE="0x0" desc="USBFS" visible="true" hidden="false">
     <block name="ep_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -964,12 +965,13 @@
     </register>
   </block>
   <block name="SCL0" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_14" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_19" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_8" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_13" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_10" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IO_16" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_14" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_20" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_19" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_6" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_13" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IO_16" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
 </blockRegMap>

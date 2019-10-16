@@ -60,32 +60,32 @@ void testRPPUIO16(void)
 
     while (1)
     {
-    	blinkLED(IO_2);
-    	blinkLED(IO_3);
+//    	blinkLED(IO_2);
+//    	blinkLED(IO_3);
     	blinkLED(IO_4);
     	blinkLED(IO_14);
-    	blinkLED(IO_15);
-    	blinkLED(IO_17);
-    	blinkLED(IO_18);
-    	blinkLED(IO_27);
-    	blinkLED(IO_22);
-    	blinkLED(IO_23);
-    	blinkLED(IO_24);
-    	blinkLED(IO_10);
-    	blinkLED(IO_9);
-    	blinkLED(IO_25);
-    	blinkLED(IO_11);
-    	blinkLED(IO_8);
-    	blinkLED(IO_7);
-    	blinkLED(IO_5);
-    	blinkLED(IO_6);
-    	blinkLED(IO_12);
-    	blinkLED(IO_13);
-    	blinkLED(IO_19);
-    	blinkLED(IO_16);
-    	blinkLED(IO_26);
-    	blinkLED(IO_20);
-    	blinkLED(IO_21);
+//    	blinkLED(IO_15);
+//    	blinkLED(IO_17);
+//    	blinkLED(IO_18);
+//    	blinkLED(IO_27);
+//    	blinkLED(IO_22);
+//    	blinkLED(IO_23);
+//    	blinkLED(IO_24);
+//    	blinkLED(IO_10);
+//    	blinkLED(IO_9);
+//    	blinkLED(IO_25);
+//    	blinkLED(IO_11);
+//    	blinkLED(IO_8);
+//    	blinkLED(IO_7);
+//    	blinkLED(IO_5);
+//    	blinkLED(IO_6);
+//    	blinkLED(IO_12);
+//    	blinkLED(IO_13);
+//    	blinkLED(IO_19);
+//    	blinkLED(IO_16);
+//    	blinkLED(IO_26);
+//    	blinkLED(IO_20);
+//    	blinkLED(IO_21);
     }
 }
 /* [] END OF FILE */

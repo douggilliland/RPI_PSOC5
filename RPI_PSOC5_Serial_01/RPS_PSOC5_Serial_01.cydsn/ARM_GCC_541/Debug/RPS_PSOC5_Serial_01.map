@@ -64,16 +64,6 @@ Archive member included to satisfy reference by file (symbol)
                               .\ARM_GCC_541\Debug\RasPi_Pins.o (IO_15_Write)
 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
                               .\ARM_GCC_541\Debug\RasPi_Pins.o (IO_4_Write)
-.\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
-                              .\ARM_GCC_541\Debug\RasPi_Pins.o (IO_25_Write)
-.\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
-                              .\ARM_GCC_541\Debug\RasPi_Pins.o (IO_9_Write)
-.\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
-                              .\ARM_GCC_541\Debug\RasPi_Pins.o (IO_10_Write)
-.\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
-                              .\ARM_GCC_541\Debug\RasPi_Pins.o (IO_8_Write)
-.\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
-                              .\ARM_GCC_541\Debug\RasPi_Pins.o (IO_11_Write)
 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
                               .\ARM_GCC_541\Debug\cyfitter_cfg.o (CyDelayCycles)
 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
@@ -177,15 +167,12 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
- .text.blinkLED
-                0x00000000       0x2c .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
- .text.testRPPUIO16
-                0x00000000      0x174 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RasPi_Pins.o
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RasPi_Pins.o
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RasPi_Pins.o
- .text.setRasPiPin
-                0x00000000      0x194 .\ARM_GCC_541\Debug\RasPi_Pins.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\Z80_SIO_emul.o
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\Z80_SIO_emul.o
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\Z80_SIO_emul.o
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\cyfitter_cfg.o
@@ -389,7 +376,6 @@ Discarded input sections
                 0x00000000       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
  .text.CySoftwareReset
                 0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
- .text.CyDelay  0x00000000       0x44 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
  .text.CyDelayFreq
                 0x00000000       0x7c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
  .text.CyWdtStart
@@ -501,8 +487,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
- .text.IO_3_Write
-                0x00000000       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
  .text.IO_3_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
  .text.IO_3_Read
@@ -512,8 +496,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
- .text.IO_12_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
  .text.IO_12_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
  .text.IO_12_Read
@@ -523,8 +505,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
- .text.IO_13_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
  .text.IO_13_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
  .text.IO_13_Read
@@ -534,8 +514,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
- .text.IO_6_Write
-                0x00000000       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
  .text.IO_6_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
  .text.IO_6_Read
@@ -545,8 +523,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
- .text.IO_16_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
  .text.IO_16_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
  .text.IO_16_Read
@@ -556,10 +532,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
- .text.IO_2_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
- .text.IO_2_SetDriveMode
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
  .text.IO_2_Read
                 0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
  .text.IO_2_ReadDataReg
@@ -567,8 +539,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
- .text.IO_14_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
  .text.IO_14_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
  .text.IO_14_Read
@@ -578,8 +548,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
- .text.IO_5_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
  .text.IO_5_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
  .text.IO_5_Read
@@ -589,8 +557,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
- .text.IO_19_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
  .text.IO_19_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
  .text.IO_19_Read
@@ -600,8 +566,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
- .text.IO_20_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
  .text.IO_20_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
  .text.IO_20_Read
@@ -611,8 +575,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
- .text.IO_26_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
  .text.IO_26_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
  .text.IO_26_Read
@@ -622,8 +584,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
- .text.IO_21_Write
-                0x00000000       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
  .text.IO_21_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
  .text.IO_21_Read
@@ -633,8 +593,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
- .text.IO_17_Write
-                0x00000000       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
  .text.IO_17_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
  .text.IO_17_Read
@@ -644,8 +602,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
- .text.IO_18_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
  .text.IO_18_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
  .text.IO_18_Read
@@ -655,8 +611,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
- .text.IO_27_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
  .text.IO_27_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
  .text.IO_27_Read
@@ -666,8 +620,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
- .text.IO_22_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
  .text.IO_22_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
  .text.IO_22_Read
@@ -677,8 +629,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
- .text.IO_23_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
  .text.IO_23_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
  .text.IO_23_Read
@@ -688,8 +638,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
- .text.IO_24_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
  .text.IO_24_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
  .text.IO_24_Read
@@ -699,8 +647,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
- .text.IO_7_Write
-                0x00000000       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .text.IO_7_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .text.IO_7_Read
@@ -710,8 +656,6 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
- .text.IO_15_Write
-                0x00000000       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .text.IO_15_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .text.IO_15_Read
@@ -721,69 +665,12 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .text.IO_4_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
  .text.IO_4_SetDriveMode
                 0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
  .text.IO_4_Read
                 0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
  .text.IO_4_ReadDataReg
                 0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .text.IO_25_Write
-                0x00000000       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .text.IO_25_SetDriveMode
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .text.IO_25_Read
-                0x00000000       0x1c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .text.IO_25_ReadDataReg
-                0x00000000       0x1c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .text.IO_9_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .text.IO_9_SetDriveMode
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .text.IO_9_Read
-                0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .text.IO_9_ReadDataReg
-                0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .text.IO_10_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .text.IO_10_SetDriveMode
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .text.IO_10_Read
-                0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .text.IO_10_ReadDataReg
-                0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .text.IO_8_Write
-                0x00000000       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .text.IO_8_SetDriveMode
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .text.IO_8_Read
-                0x00000000       0x1c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .text.IO_8_ReadDataReg
-                0x00000000       0x1c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .text.IO_11_Write
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .text.IO_11_SetDriveMode
-                0x00000000       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .text.IO_11_Read
-                0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .text.IO_11_ReadDataReg
-                0x00000000       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
  .data          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
  .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
  .text          0x00000000        0x0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
@@ -930,6 +817,7 @@ LOAD .\ARM_GCC_541\Debug\testCards.o
 LOAD .\ARM_GCC_541\Debug\program_RPI_EEPROM.o
 LOAD .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
 LOAD .\ARM_GCC_541\Debug\RasPi_Pins.o
+LOAD .\ARM_GCC_541\Debug\Z80_SIO_emul.o
 LOAD .\ARM_GCC_541\Debug\cyfitter_cfg.o
 LOAD .\ARM_GCC_541\Debug\cymetadata.o
 LOAD .\ARM_GCC_541\Debug\Cm3Start.o
@@ -978,7 +866,7 @@ END GROUP
                 0x00000800                ee_size = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?(CY_EE_SIZE / CY_APPL_MAX):CY_EE_SIZE
                 [!provide]                PROVIDE (CY_ECC_OFFSET, ecc_offset)
 
-.text           0x00000000     0x2dfe
+.text           0x00000000     0x35e6
  CREATE_OBJECT_SYMBOLS
                 0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
  *(.romvectors)
@@ -995,340 +883,416 @@ END GROUP
                 0x00000001                ASSERT ((((appl_start + .) <= 0x10000) || 0x1), DMA Init must be within the first 64k of flash)
  *(.text .text.* .gnu.linkonce.t.*)
  .text          0x00000028       0x5c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
- .text.main     0x00000084       0x8c .\ARM_GCC_541\Debug\main.o
+ .text.main     0x00000084       0x90 .\ARM_GCC_541\Debug\main.o
                 0x00000084                main
+ .text.blinkLED
+                0x00000114       0x2c .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
+                0x00000114                blinkLED
+ .text.testRPPUIO16
+                0x00000140       0xe4 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
+                0x00000140                testRPPUIO16
+ .text.setRasPiPin
+                0x00000224      0x168 .\ARM_GCC_541\Debug\RasPi_Pins.o
+                0x00000224                setRasPiPin
  .text.CYMEMZERO
-                0x00000110       0x1c .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x0000038c       0x1c .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.CYCONFIGCPY
-                0x0000012c       0x20 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000003a8       0x20 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.CYCONFIGCPYCODE
-                0x0000014c       0x20 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000003c8       0x20 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.CyClockStartupError
-                0x0000016c        0xc .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000003e8        0xc .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.cfg_write_bytes32
-                0x00000178       0x74 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000003f4       0x74 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.ClockSetup
-                0x000001ec       0xf0 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000468      0x118 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.AnalogSetDefault
-                0x000002dc       0x44 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000580       0x44 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.cyfitter_cfg
-                0x00000320      0x150 .\ARM_GCC_541\Debug\cyfitter_cfg.o
-                0x00000320                cyfitter_cfg
+                0x000005c4      0x150 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000005c4                cyfitter_cfg
  .text.IntDefaultHandler
-                0x00000470       0x14 .\ARM_GCC_541\Debug\Cm3Start.o
-                0x00000470                IntDefaultHandler
- .text.Start_c  0x00000484       0x98 .\ARM_GCC_541\Debug\Cm3Start.o
-                0x00000484                Start_c
+                0x00000714       0x14 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x00000714                IntDefaultHandler
+ .text.Start_c  0x00000728       0x98 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x00000728                Start_c
  .text.initialize_psoc
-                0x0000051c       0x90 .\ARM_GCC_541\Debug\Cm3Start.o
-                0x0000051c                initialize_psoc
+                0x000007c0       0x90 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x000007c0                initialize_psoc
  .text.USBUART_Start
-                0x000005ac       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x000005ac                USBUART_Start
+                0x00000850       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000850                USBUART_Start
  .text.USBUART_Init
-                0x000005e8      0x1a4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x000005e8                USBUART_Init
+                0x0000088c      0x1a4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x0000088c                USBUART_Init
  .text.USBUART_InitComponent
-                0x0000078c      0x120 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x0000078c                USBUART_InitComponent
+                0x00000a30      0x120 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000a30                USBUART_InitComponent
  .text.USBUART_ReInitComponent
-                0x000008ac       0x88 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x000008ac                USBUART_ReInitComponent
+                0x00000b50       0x88 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000b50                USBUART_ReInitComponent
  .text.USBUART_GetConfiguration
-                0x00000934       0x18 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x00000934                USBUART_GetConfiguration
+                0x00000bd8       0x18 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000bd8                USBUART_GetConfiguration
  .text.USBUART_IsConfigurationChanged
-                0x0000094c       0x30 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x0000094c                USBUART_IsConfigurationChanged
+                0x00000bf0       0x30 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000bf0                USBUART_IsConfigurationChanged
  .text.USBUART_GetEPState
-                0x0000097c       0x2c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x0000097c                USBUART_GetEPState
+                0x00000c20       0x2c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000c20                USBUART_GetEPState
  .text.USBUART_GetEPCount
-                0x000009a8       0x60 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x000009a8                USBUART_GetEPCount
+                0x00000c4c       0x60 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000c4c                USBUART_GetEPCount
  .text.USBUART_LoadInEP
-                0x00000a08      0x108 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x00000a08                USBUART_LoadInEP
+                0x00000cac      0x108 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000cac                USBUART_LoadInEP
  .text.USBUART_ReadOutEP
-                0x00000b10       0x8c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x00000b10                USBUART_ReadOutEP
+                0x00000db4       0x8c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000db4                USBUART_ReadOutEP
  .text.USBUART_EnableOutEP
-                0x00000b9c       0x5c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                0x00000b9c                USBUART_EnableOutEP
+                0x00000e40       0x5c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x00000e40                USBUART_EnableOutEP
  .text.USBUART_DispatchCDCClassRqst
-                0x00000bf8       0xe4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000bf8                USBUART_DispatchCDCClassRqst
+                0x00000e9c       0xe4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x00000e9c                USBUART_DispatchCDCClassRqst
  .text.USBUART_GetInterfaceComPort
-                0x00000cdc       0x60 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000cdc                USBUART_GetInterfaceComPort
+                0x00000f80       0x60 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x00000f80                USBUART_GetInterfaceComPort
  .text.USBUART_CDC_Init
-                0x00000d3c       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000d3c                USBUART_CDC_Init
+                0x00000fe0       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x00000fe0                USBUART_CDC_Init
  .text.USBUART_PutData
-                0x00000de4       0x6c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000de4                USBUART_PutData
+                0x00001088       0x6c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x00001088                USBUART_PutData
  .text.USBUART_DataIsReady
-                0x00000e50       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000e50                USBUART_DataIsReady
+                0x000010f4       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x000010f4                USBUART_DataIsReady
  .text.USBUART_CDCIsReady
-                0x00000e74       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000e74                USBUART_CDCIsReady
+                0x00001118       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x00001118                USBUART_CDCIsReady
  .text.USBUART_GetAll
-                0x00000e98       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000e98                USBUART_GetAll
+                0x0000113c       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x0000113c                USBUART_GetAll
  .text.USBUART_Cdc_EpInit
-                0x00000ee4       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                0x00000ee4                USBUART_Cdc_EpInit
+                0x00001188       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x00001188                USBUART_Cdc_EpInit
  .text.USBUART_EP_0_ISR
-                0x00000f74       0xf8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00000f74                USBUART_EP_0_ISR
+                0x00001218       0xf8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00001218                USBUART_EP_0_ISR
  .text.USBUART_HandleSetup
-                0x0000106c       0x88 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x0000106c                USBUART_HandleSetup
+                0x00001310       0x88 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00001310                USBUART_HandleSetup
  .text.USBUART_HandleIN
-                0x000010f4       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x000010f4                USBUART_HandleIN
+                0x00001398       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00001398                USBUART_HandleIN
  .text.USBUART_HandleOUT
-                0x00001140       0x58 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001140                USBUART_HandleOUT
+                0x000013e4       0x58 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x000013e4                USBUART_HandleOUT
  .text.USBUART_LoadEP0
-                0x00001198       0xd0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001198                USBUART_LoadEP0
+                0x0000143c       0xd0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x0000143c                USBUART_LoadEP0
  .text.USBUART_InitControlRead
-                0x00001268       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001268                USBUART_InitControlRead
+                0x0000150c       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x0000150c                USBUART_InitControlRead
  .text.USBUART_InitZeroLengthControlTransfer
-                0x000012d8       0x40 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x000012d8                USBUART_InitZeroLengthControlTransfer
+                0x0000157c       0x40 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x0000157c                USBUART_InitZeroLengthControlTransfer
  .text.USBUART_ControlReadDataStage
-                0x00001318        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001318                USBUART_ControlReadDataStage
+                0x000015bc        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x000015bc                USBUART_ControlReadDataStage
  .text.USBUART_ControlReadStatusStage
-                0x00001324       0x40 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001324                USBUART_ControlReadStatusStage
+                0x000015c8       0x40 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x000015c8                USBUART_ControlReadStatusStage
  .text.USBUART_InitControlWrite
-                0x00001364       0x64 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001364                USBUART_InitControlWrite
+                0x00001608       0x64 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00001608                USBUART_InitControlWrite
  .text.USBUART_ControlWriteDataStage
-                0x000013c8       0xb4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x000013c8                USBUART_ControlWriteDataStage
+                0x0000166c       0xb4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x0000166c                USBUART_ControlWriteDataStage
  .text.USBUART_ControlWriteStatusStage
-                0x0000147c       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x0000147c                USBUART_ControlWriteStatusStage
+                0x00001720       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00001720                USBUART_ControlWriteStatusStage
  .text.USBUART_InitNoDataControlTransfer
-                0x000014a0       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x000014a0                USBUART_InitNoDataControlTransfer
+                0x00001744       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00001744                USBUART_InitNoDataControlTransfer
  .text.USBUART_NoDataControlStatusStage
-                0x000014d8       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x000014d8                USBUART_NoDataControlStatusStage
+                0x0000177c       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x0000177c                USBUART_NoDataControlStatusStage
  .text.USBUART_UpdateStatusBlock
-                0x00001524       0x40 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001524                USBUART_UpdateStatusBlock
+                0x000017c8       0x40 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x000017c8                USBUART_UpdateStatusBlock
  .text.USBUART_InitializeStatusBlock
-                0x00001564       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                0x00001564                USBUART_InitializeStatusBlock
+                0x00001808       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00001808                USBUART_InitializeStatusBlock
  .text.USBUART_EP_1_ISR
-                0x00001598       0x48 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
-                0x00001598                USBUART_EP_1_ISR
+                0x0000183c       0x48 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+                0x0000183c                USBUART_EP_1_ISR
  .text.USBUART_EP_2_ISR
-                0x000015e0       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
-                0x000015e0                USBUART_EP_2_ISR
+                0x00001884       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+                0x00001884                USBUART_EP_2_ISR
  .text.USBUART_EP_3_ISR
-                0x0000162c       0x54 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
-                0x0000162c                USBUART_EP_3_ISR
+                0x000018d0       0x54 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+                0x000018d0                USBUART_EP_3_ISR
  .text.USBUART_SOF_ISR
-                0x00001680        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
-                0x00001680                USBUART_SOF_ISR
+                0x00001924        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+                0x00001924                USBUART_SOF_ISR
  .text.USBUART_BUS_RESET_ISR
-                0x0000168c        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
-                0x0000168c                USBUART_BUS_RESET_ISR
+                0x00001930        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+                0x00001930                USBUART_BUS_RESET_ISR
  .text.USBUART_DispatchHIDClassRqst
-                0x00001698      0x1e4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
-                0x00001698                USBUART_DispatchHIDClassRqst
+                0x0000193c      0x1e4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+                0x0000193c                USBUART_DispatchHIDClassRqst
  .text.USBUART_FindHidClassDecriptor
-                0x0000187c       0x7c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
-                0x0000187c                USBUART_FindHidClassDecriptor
+                0x00001b20       0x7c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+                0x00001b20                USBUART_FindHidClassDecriptor
  .text.USBUART_FindReportDescriptor
-                0x000018f8       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
-                0x000018f8                USBUART_FindReportDescriptor
+                0x00001b9c       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+                0x00001b9c                USBUART_FindReportDescriptor
  .text.USBUART_FindReport
-                0x00001988       0xcc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
-                0x00001988                USBUART_FindReport
+                0x00001c2c       0xcc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+                0x00001c2c                USBUART_FindReport
  .text.USBUART_DP_ISR
-                0x00001a54        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
-                0x00001a54                USBUART_DP_ISR
+                0x00001cf8        0xc .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
+                0x00001cf8                USBUART_DP_ISR
  .text.USBUART_HandleStandardRqst
-                0x00001a60      0x4a4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00001a60                USBUART_HandleStandardRqst
+                0x00001d04      0x4a4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x00001d04                USBUART_HandleStandardRqst
  .text.USBUART_ReadDieID
-                0x00001f04       0xd8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00001f04                USBUART_ReadDieID
+                0x000021a8       0xd8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x000021a8                USBUART_ReadDieID
  .text.USBUART_ConfigReg
-                0x00001fdc      0x138 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00001fdc                USBUART_ConfigReg
+                0x00002280      0x138 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x00002280                USBUART_ConfigReg
  .text.USBUART_Config
-                0x00002114      0x3a4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00002114                USBUART_Config
+                0x000023b8      0x3a4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x000023b8                USBUART_Config
  .text.USBUART_ConfigAltChanged
-                0x000024b8      0x25c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x000024b8                USBUART_ConfigAltChanged
+                0x0000275c      0x25c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x0000275c                USBUART_ConfigAltChanged
  .text.USBUART_GetConfigTablePtr
-                0x00002714       0x50 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00002714                USBUART_GetConfigTablePtr
+                0x000029b8       0x50 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x000029b8                USBUART_GetConfigTablePtr
  .text.USBUART_GetDeviceTablePtr
-                0x00002764       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00002764                USBUART_GetDeviceTablePtr
+                0x00002a08       0x24 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x00002a08                USBUART_GetDeviceTablePtr
  .text.USBUART_GetInterfaceClassTablePtr
-                0x00002788       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00002788                USBUART_GetInterfaceClassTablePtr
+                0x00002a2c       0x4c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x00002a2c                USBUART_GetInterfaceClassTablePtr
  .text.USBUART_SetEndpointHalt
-                0x000027d4       0xe8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x000027d4                USBUART_SetEndpointHalt
+                0x00002a78       0xe8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x00002a78                USBUART_SetEndpointHalt
  .text.USBUART_ClearEndpointHalt
-                0x000028bc      0x158 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x000028bc                USBUART_ClearEndpointHalt
+                0x00002b60      0x158 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x00002b60                USBUART_ClearEndpointHalt
  .text.USBUART_ValidateAlternateSetting
-                0x00002a14       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                0x00002a14                USBUART_ValidateAlternateSetting
+                0x00002cb8       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x00002cb8                USBUART_ValidateAlternateSetting
  .text.USBUART_HandleVendorRqst
-                0x00002a84       0x54 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
-                0x00002a84                USBUART_HandleVendorRqst
+                0x00002d28       0x54 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
+                0x00002d28                USBUART_HandleVendorRqst
  .text.USBUART_Dp_ClearInterrupt
-                0x00002ad8       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
-                0x00002ad8                USBUART_Dp_ClearInterrupt
- .text.CyHalt   0x00002af8       0x18 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
-                0x00002af8                CyHalt
+                0x00002d7c       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
+                0x00002d7c                USBUART_Dp_ClearInterrupt
+ .text.CyHalt   0x00002d9c       0x18 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                0x00002d9c                CyHalt
+ .text.CyDelay  0x00002db4       0x44 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                0x00002db4                CyDelay
  .text.CyDelayUs
-                0x00002b10       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
-                0x00002b10                CyDelayUs
+                0x00002df8       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                0x00002df8                CyDelayUs
  .text.CyIntSetVector
-                0x00002b38       0x50 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
-                0x00002b38                CyIntSetVector
+                0x00002e20       0x50 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                0x00002e20                CyIntSetVector
  .text.CyIntSetPriority
-                0x00002b88       0x48 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
-                0x00002b88                CyIntSetPriority
+                0x00002e70       0x48 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                0x00002e70                CyIntSetPriority
  .text.CyGetUniqueId
-                0x00002bd0       0xc4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
-                0x00002bd0                CyGetUniqueId
- *fill*         0x00002c94        0x4 
- .text          0x00002c98       0x54 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
-                0x00002c98                CyDelayCycles
-                0x00002cd6                CyEnterCriticalSection
-                0x00002cde                CyExitCriticalSection
+                0x00002eb8       0xc4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                0x00002eb8                CyGetUniqueId
+ .text.IO_3_Write
+                0x00002f7c       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
+                0x00002f7c                IO_3_Write
+ .text.IO_12_Write
+                0x00002fb4       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
+                0x00002fb4                IO_12_Write
+ .text.IO_13_Write
+                0x00002ff0       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
+                0x00002ff0                IO_13_Write
+ .text.IO_6_Write
+                0x0000302c       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
+                0x0000302c                IO_6_Write
+ .text.IO_16_Write
+                0x00003060       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
+                0x00003060                IO_16_Write
+ .text.IO_2_Write
+                0x0000309c       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
+                0x0000309c                IO_2_Write
+ .text.IO_2_SetDriveMode
+                0x000030d8       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
+                0x000030d8                IO_2_SetDriveMode
+ .text.IO_14_Write
+                0x00003114       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
+                0x00003114                IO_14_Write
+ .text.IO_5_Write
+                0x00003150       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
+                0x00003150                IO_5_Write
+ .text.IO_19_Write
+                0x0000318c       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
+                0x0000318c                IO_19_Write
+ .text.IO_20_Write
+                0x000031c8       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
+                0x000031c8                IO_20_Write
+ .text.IO_26_Write
+                0x00003204       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
+                0x00003204                IO_26_Write
+ .text.IO_21_Write
+                0x00003240       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
+                0x00003240                IO_21_Write
+ .text.IO_17_Write
+                0x00003278       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
+                0x00003278                IO_17_Write
+ .text.IO_18_Write
+                0x000032ac       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
+                0x000032ac                IO_18_Write
+ .text.IO_27_Write
+                0x000032e8       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
+                0x000032e8                IO_27_Write
+ .text.IO_22_Write
+                0x00003324       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
+                0x00003324                IO_22_Write
+ .text.IO_23_Write
+                0x00003360       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
+                0x00003360                IO_23_Write
+ .text.IO_24_Write
+                0x0000339c       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
+                0x0000339c                IO_24_Write
+ .text.IO_7_Write
+                0x000033d8       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
+                0x000033d8                IO_7_Write
+ .text.IO_15_Write
+                0x0000340c       0x34 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
+                0x0000340c                IO_15_Write
+ .text.IO_4_Write
+                0x00003440       0x3c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
+                0x00003440                IO_4_Write
+ *fill*         0x0000347c        0x4 
+ .text          0x00003480       0x54 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
+                0x00003480                CyDelayCycles
+                0x000034be                CyEnterCriticalSection
+                0x000034c6                CyExitCriticalSection
  .text.USBUART_DispatchClassRqst
-                0x00002cec       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
-                0x00002cec                USBUART_DispatchClassRqst
- .text.__errno  0x00002d80        0xc c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
-                0x00002d80                __errno
+                0x000034d4       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+                0x000034d4                USBUART_DispatchClassRqst
+ .text.__errno  0x00003568        0xc c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+                0x00003568                __errno
  .text.__libc_init_array
-                0x00002d8c       0x4c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
-                0x00002d8c                __libc_init_array
- .text.memcpy   0x00002dd8       0x16 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
-                0x00002dd8                memcpy
- .text.memset   0x00002dee       0x10 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
-                0x00002dee                memset
+                0x00003574       0x4c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                0x00003574                __libc_init_array
+ .text.memcpy   0x000035c0       0x16 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x000035c0                memcpy
+ .text.memset   0x000035d6       0x10 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                0x000035d6                memset
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x00002dfe        0x0 linker stubs
+ .glue_7t       0x000035e6        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x00002dfe        0x0 linker stubs
+ .glue_7        0x000035e6        0x0 linker stubs
  *(.vfp11_veneer)
- .vfp11_veneer  0x00002dfe        0x0 linker stubs
+ .vfp11_veneer  0x000035e6        0x0 linker stubs
  *(.bootloader)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x00002e00        0x0
- .v4_bx         0x00002e00        0x0 linker stubs
+.v4_bx          0x000035e8        0x0
+ .v4_bx         0x000035e8        0x0 linker stubs
 
-.iplt           0x00002e00        0x0
- .iplt          0x00002e00        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+.iplt           0x000035e8        0x0
+ .iplt          0x000035e8        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00002e00        0x4
+.eh_frame       0x000035e8        0x4
  *(.eh_frame)
- .eh_frame      0x00002e00        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
- .eh_frame      0x00002e00        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ .eh_frame      0x000035e8        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .eh_frame      0x000035e8        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
                 [!provide]                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00002e04                __exidx_end = .
+                0x000035ec                __exidx_end = .
 
-.rodata         0x00002e04      0x38c
+.rodata         0x000035ec      0x39c
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x00002e04      0x168 .\ARM_GCC_541\Debug\cyfitter_cfg.o
- .rodata        0x00002f6c       0x11 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
- *fill*         0x00002f7d        0x3 
- .rodata        0x00002f80      0x1d4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
-                0x00002f80                USBUART_DEVICE0_DESCR
-                0x00002f94                USBUART_DEVICE0_CONFIGURATION0_DESCR
-                0x00002fd8                USBUART_STRING_DESCRIPTORS
-                0x00003078                USBUART_SN_STRING_DESCRIPTOR
-                0x0000307c                USBUART_HIDREPORT_DESCRIPTOR1
-                0x000030b4                USBUART_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
-                0x000030cc                USBUART_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
-                0x000030d0                USBUART_DEVICE0_CONFIGURATION0_TABLE
-                0x000030f8                USBUART_DEVICE0_TABLE
-                0x00003110                USBUART_TABLE
-                0x00003118                USBUART_MSOS_DESCRIPTOR
-                0x0000312c                USBUART_MSOS_CONFIGURATION_DESCR
+ .rodata        0x000035ec      0x17c .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .rodata        0x00003768       0x11 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+ *fill*         0x00003779        0x3 
+ .rodata        0x0000377c      0x1d4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
+                0x0000377c                USBUART_DEVICE0_DESCR
+                0x00003790                USBUART_DEVICE0_CONFIGURATION0_DESCR
+                0x000037d4                USBUART_STRING_DESCRIPTORS
+                0x00003874                USBUART_SN_STRING_DESCRIPTOR
+                0x00003878                USBUART_HIDREPORT_DESCRIPTOR1
+                0x000038b0                USBUART_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+                0x000038c8                USBUART_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+                0x000038cc                USBUART_DEVICE0_CONFIGURATION0_TABLE
+                0x000038f4                USBUART_DEVICE0_TABLE
+                0x0000390c                USBUART_TABLE
+                0x00003914                USBUART_MSOS_DESCRIPTOR
+                0x00003928                USBUART_MSOS_CONFIGURATION_DESCR
  .rodata.str1.1
-                0x00003154        0x2 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
-                0x00003158                . = ALIGN (0x4)
- *fill*         0x00003156        0x2 
+                0x00003950        0x2 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x00003954                . = ALIGN (0x4)
+ *fill*         0x00003952        0x2 
  *(.init)
- .init          0x00003158        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
-                0x00003158                _init
- .init          0x0000315c        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
-                0x00003164                . = ALIGN (0x4)
-                0x00003164                __preinit_array_start = .
+ .init          0x00003954        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+                0x00003954                _init
+ .init          0x00003958        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x00003960                . = ALIGN (0x4)
+                0x00003960                __preinit_array_start = .
  *(.preinit_array)
-                0x00003164                __preinit_array_end = .
-                0x00003164                . = ALIGN (0x4)
-                0x00003164                __init_array_start = .
+                0x00003960                __preinit_array_end = .
+                0x00003960                . = ALIGN (0x4)
+                0x00003960                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x00003164        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
- .init_array    0x00003168        0x4 .\ARM_GCC_541\Debug\Cm3Start.o
-                0x0000316c                __init_array_end = .
-                0x0000316c                . = ALIGN (0x4)
+ .init_array    0x00003960        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .init_array    0x00003964        0x4 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x00003968                __init_array_end = .
+                0x00003968                . = ALIGN (0x4)
  *(.fini)
- .fini          0x0000316c        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
-                0x0000316c                _fini
- .fini          0x00003170        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
-                0x00003178                . = ALIGN (0x4)
-                0x00003178                __fini_array_start = .
+ .fini          0x00003968        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+                0x00003968                _fini
+ .fini          0x0000396c        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x00003974                . = ALIGN (0x4)
+                0x00003974                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x00003178        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .fini_array    0x00003974        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x0000317c                __fini_array_end = .
-                0x0000317c                . = ALIGN (0x4)
+                0x00003978                __fini_array_end = .
+                0x00003978                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x0000317c                . = ALIGN (0x4)
+                0x00003978                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x0000317c                . = ALIGN (0x4)
-                0x0000317c                __cy_regions = .
-                0x0000317c        0x4 LONG 0x3190 __cy_region_init_ram
-                0x00003180        0x4 LONG 0x1fffc0c8 __cy_region_start_data
-                0x00003184        0x4 LONG 0x98 __cy_region_init_size_ram
-                0x00003188        0x4 LONG 0x108 __cy_region_zero_size_ram
-                0x0000318c                __cy_regions_end = .
-                0x00003190                . = ALIGN (0x8)
- *fill*         0x0000318c        0x4 
-                0x00003190                _etext = .
+                0x00003978                . = ALIGN (0x4)
+                0x00003978                __cy_regions = .
+                0x00003978        0x4 LONG 0x3988 __cy_region_init_ram
+                0x0000397c        0x4 LONG 0x1fffc0c8 __cy_region_start_data
+                0x00003980        0x4 LONG 0x98 __cy_region_init_size_ram
+                0x00003984        0x4 LONG 0x108 __cy_region_zero_size_ram
+                0x00003988                __cy_regions_end = .
+                0x00003988                . = ALIGN (0x8)
+                0x00003988                _etext = .
 
 .cy_checksum_exclude
-                0x00003190        0x0
+                0x00003988        0x0
  *(.cy_checksum_exclude)
 
 .ramvectors     0x1fffc000       0xc0
@@ -1343,7 +1307,7 @@ END GROUP
  .noinit        0x1fffc0c4        0x1 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
                 0x1fffc0c4                CyResetStatus
 
-.data           0x1fffc0c8       0x98 load address 0x00003190
+.data           0x1fffc0c8       0x98 load address 0x00003988
                 0x1fffc0c8                __cy_region_start_data = .
  *(.jcr)
  .jcr           0x1fffc0c8        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
@@ -1370,10 +1334,10 @@ END GROUP
  *(.ram)
                 0x1fffc160                _edata = .
 
-.igot.plt       0x1fffc160        0x0 load address 0x00003228
+.igot.plt       0x1fffc160        0x0 load address 0x00003a20
  .igot.plt      0x1fffc160        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
 
-.bss            0x1fffc160      0x108 load address 0x00003228
+.bss            0x1fffc160      0x108 load address 0x00003a20
                 0x1fffc160                PROVIDE (__bss_start__, .)
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
@@ -1426,11 +1390,11 @@ END GROUP
                 0x1fffc268                __end = .
                 0x1fffc268                PROVIDE (end, .)
                 0x1fffc268                PROVIDE (__bss_end__, .)
-                0x00003190                __cy_region_init_ram = LOADADDR (.data)
+                0x00003988                __cy_region_init_ram = LOADADDR (.data)
                 0x00000098                __cy_region_init_size_ram = (_edata - ADDR (.data))
                 0x00000108                __cy_region_zero_size_ram = (_end - _edata)
 
-.heap           0x1fffc268       0x80 load address 0x00003228
+.heap           0x1fffc268       0x80 load address 0x00003a20
                 0x1fffc268                . = _end
                 0x1fffc2e8                . = (. + 0x80)
  *fill*         0x1fffc268       0x80 
@@ -1481,8 +1445,8 @@ END GROUP
  .cymeta        0x90500000        0xc .\ARM_GCC_541\Debug\cymetadata.o
                 0x90500000                cy_metadata
 
-.rel.dyn        0x00003228        0x0 load address 0x9050000c
- .rel.iplt      0x00003228        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+.rel.dyn        0x00003a20        0x0 load address 0x9050000c
+ .rel.iplt      0x00003a20        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
 
 .stab
  *(.stab)
@@ -1502,7 +1466,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0xff8
+.debug_aranges  0x00000000      0xee0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 .\ARM_GCC_541\Debug\main.o
@@ -1581,190 +1545,166 @@ END GROUP
  .debug_aranges
                 0x00000cc0       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
  .debug_aranges
-                0x00000cf8       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
+                0x00000cf8       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
  .debug_aranges
-                0x00000d30       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
+                0x00000d18       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
  .debug_aranges
-                0x00000d68       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
+                0x00000d98       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
  .debug_aranges
-                0x00000da0       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
+                0x00000db8       0x18 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
  .debug_aranges
-                0x00000dd8       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
+                0x00000dd0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
  .debug_aranges
-                0x00000e10       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
- .debug_aranges
-                0x00000e30       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
- .debug_aranges
-                0x00000eb0       0x20 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
- .debug_aranges
-                0x00000ed0       0x18 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
- .debug_aranges
-                0x00000ee8       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
- .debug_aranges
-                0x00000f78       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+                0x00000e60       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x78c5
+.debug_info     0x00000000     0x7342
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x115 .\ARM_GCC_541\Debug\main.o
- .debug_info    0x00000115      0x1a4 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
- .debug_info    0x000002b9      0x1a1 .\ARM_GCC_541\Debug\RasPi_Pins.o
- .debug_info    0x0000045a      0x4c1 .\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_info    0x0000091b      0x134 .\ARM_GCC_541\Debug\cymetadata.o
- .debug_info    0x00000a4f      0x32b .\ARM_GCC_541\Debug\Cm3Start.o
- .debug_info    0x00000d7a      0x747 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
- .debug_info    0x000014c1      0x924 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
- .debug_info    0x00001de5      0x52d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
- .debug_info    0x00002312      0x23b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
- .debug_info    0x0000254d      0x37b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
- .debug_info    0x000028c8      0x18d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
- .debug_info    0x00002a55      0x961 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
- .debug_info    0x000033b6      0x1a9 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
- .debug_info    0x0000355f      0x171 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
- .debug_info    0x000036d0      0xe88 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
- .debug_info    0x00004558      0x57a .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
- .debug_info    0x00004ad2      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
- .debug_info    0x00004bf0      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
- .debug_info    0x00004d0e      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
- .debug_info    0x00004e2c      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
- .debug_info    0x00004f4a      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
- .debug_info    0x00005068      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
- .debug_info    0x00005186      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
- .debug_info    0x000052a4      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
- .debug_info    0x000053c2      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
- .debug_info    0x000054e0      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
- .debug_info    0x000055fe      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
- .debug_info    0x0000571c      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
- .debug_info    0x0000583a      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
- .debug_info    0x00005958      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
- .debug_info    0x00005a76      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
- .debug_info    0x00005b94      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
- .debug_info    0x00005cb2      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
- .debug_info    0x00005dd0      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
- .debug_info    0x00005eee      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
- .debug_info    0x0000600c      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
- .debug_info    0x0000612a      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .debug_info    0x00006248      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .debug_info    0x00006366      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .debug_info    0x00006484      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .debug_info    0x000065a2      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .debug_info    0x000066c0      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .debug_info    0x000067de       0xab .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
- .debug_info    0x00006889      0x299 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
- .debug_info    0x00006b22      0x1c8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
- .debug_info    0x00006cea      0x30b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
- .debug_info    0x00006ff5      0x410 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
- .debug_info    0x00007405      0x4c0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+ .debug_info    0x00000000      0x12c .\ARM_GCC_541\Debug\main.o
+ .debug_info    0x0000012c      0x1a4 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
+ .debug_info    0x000002d0      0x1a1 .\ARM_GCC_541\Debug\RasPi_Pins.o
+ .debug_info    0x00000471      0x4c1 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_info    0x00000932      0x134 .\ARM_GCC_541\Debug\cymetadata.o
+ .debug_info    0x00000a66      0x32b .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_info    0x00000d91      0x747 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+ .debug_info    0x000014d8      0x924 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+ .debug_info    0x00001dfc      0x52d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+ .debug_info    0x00002329      0x23b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+ .debug_info    0x00002564      0x37b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+ .debug_info    0x000028df      0x18d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
+ .debug_info    0x00002a6c      0x961 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+ .debug_info    0x000033cd      0x1a9 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
+ .debug_info    0x00003576      0x171 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
+ .debug_info    0x000036e7      0xe88 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+ .debug_info    0x0000456f      0x57a .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
+ .debug_info    0x00004ae9      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
+ .debug_info    0x00004c07      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
+ .debug_info    0x00004d25      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
+ .debug_info    0x00004e43      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
+ .debug_info    0x00004f61      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
+ .debug_info    0x0000507f      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
+ .debug_info    0x0000519d      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
+ .debug_info    0x000052bb      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
+ .debug_info    0x000053d9      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
+ .debug_info    0x000054f7      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
+ .debug_info    0x00005615      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
+ .debug_info    0x00005733      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
+ .debug_info    0x00005851      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
+ .debug_info    0x0000596f      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
+ .debug_info    0x00005a8d      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
+ .debug_info    0x00005bab      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
+ .debug_info    0x00005cc9      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
+ .debug_info    0x00005de7      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
+ .debug_info    0x00005f05      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
+ .debug_info    0x00006023      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
+ .debug_info    0x00006141      0x11e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
+ .debug_info    0x0000625f       0xa7 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
+ .debug_info    0x00006306      0x299 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
+ .debug_info    0x0000659f      0x1c8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+ .debug_info    0x00006767      0x30b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
+ .debug_info    0x00006a72      0x410 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
+ .debug_info    0x00006e82      0x4c0 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
 
-.debug_abbrev   0x00000000     0x2902
+.debug_abbrev   0x00000000     0x2651
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0x97 .\ARM_GCC_541\Debug\main.o
- .debug_abbrev  0x00000097       0xb7 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
- .debug_abbrev  0x0000014e       0x9f .\ARM_GCC_541\Debug\RasPi_Pins.o
- .debug_abbrev  0x000001ed      0x19f .\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_abbrev  0x0000038c       0x5d .\ARM_GCC_541\Debug\cymetadata.o
- .debug_abbrev  0x000003e9      0x1d6 .\ARM_GCC_541\Debug\Cm3Start.o
- .debug_abbrev  0x000005bf      0x1f3 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
- .debug_abbrev  0x000007b2      0x233 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
- .debug_abbrev  0x000009e5      0x161 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
- .debug_abbrev  0x00000b46       0xfd .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
- .debug_abbrev  0x00000c43      0x15e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
- .debug_abbrev  0x00000da1       0xd1 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
- .debug_abbrev  0x00000e72      0x1c2 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
- .debug_abbrev  0x00001034       0xc5 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
- .debug_abbrev  0x000010f9       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
- .debug_abbrev  0x00001189      0x217 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
- .debug_abbrev  0x000013a0      0x161 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
- .debug_abbrev  0x00001501       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
- .debug_abbrev  0x00001591       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
- .debug_abbrev  0x00001621       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
- .debug_abbrev  0x000016b1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
- .debug_abbrev  0x00001741       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
- .debug_abbrev  0x000017d1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
- .debug_abbrev  0x00001861       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
- .debug_abbrev  0x000018f1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
- .debug_abbrev  0x00001981       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
- .debug_abbrev  0x00001a11       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
- .debug_abbrev  0x00001aa1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
- .debug_abbrev  0x00001b31       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
- .debug_abbrev  0x00001bc1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
- .debug_abbrev  0x00001c51       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
- .debug_abbrev  0x00001ce1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
- .debug_abbrev  0x00001d71       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
- .debug_abbrev  0x00001e01       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
- .debug_abbrev  0x00001e91       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
- .debug_abbrev  0x00001f21       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
- .debug_abbrev  0x00001fb1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
- .debug_abbrev  0x00002041       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .debug_abbrev  0x000020d1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .debug_abbrev  0x00002161       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .debug_abbrev  0x000021f1       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .debug_abbrev  0x00002281       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .debug_abbrev  0x00002311       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .debug_abbrev  0x000023a1       0x14 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
- .debug_abbrev  0x000023b5      0x11d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
- .debug_abbrev  0x000024d2       0xc5 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
- .debug_abbrev  0x00002597       0xb4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
- .debug_abbrev  0x0000264b      0x14b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
- .debug_abbrev  0x00002796      0x16c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+ .debug_abbrev  0x00000000       0xb6 .\ARM_GCC_541\Debug\main.o
+ .debug_abbrev  0x000000b6       0xb7 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
+ .debug_abbrev  0x0000016d       0x9f .\ARM_GCC_541\Debug\RasPi_Pins.o
+ .debug_abbrev  0x0000020c      0x19f .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_abbrev  0x000003ab       0x5d .\ARM_GCC_541\Debug\cymetadata.o
+ .debug_abbrev  0x00000408      0x1d6 .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_abbrev  0x000005de      0x1f3 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+ .debug_abbrev  0x000007d1      0x233 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+ .debug_abbrev  0x00000a04      0x161 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+ .debug_abbrev  0x00000b65       0xfd .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+ .debug_abbrev  0x00000c62      0x15e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+ .debug_abbrev  0x00000dc0       0xd1 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
+ .debug_abbrev  0x00000e91      0x1c2 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+ .debug_abbrev  0x00001053       0xc5 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
+ .debug_abbrev  0x00001118       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
+ .debug_abbrev  0x000011a8      0x217 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+ .debug_abbrev  0x000013bf      0x161 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
+ .debug_abbrev  0x00001520       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
+ .debug_abbrev  0x000015b0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
+ .debug_abbrev  0x00001640       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
+ .debug_abbrev  0x000016d0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
+ .debug_abbrev  0x00001760       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
+ .debug_abbrev  0x000017f0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
+ .debug_abbrev  0x00001880       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
+ .debug_abbrev  0x00001910       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
+ .debug_abbrev  0x000019a0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
+ .debug_abbrev  0x00001a30       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
+ .debug_abbrev  0x00001ac0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
+ .debug_abbrev  0x00001b50       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
+ .debug_abbrev  0x00001be0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
+ .debug_abbrev  0x00001c70       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
+ .debug_abbrev  0x00001d00       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
+ .debug_abbrev  0x00001d90       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
+ .debug_abbrev  0x00001e20       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
+ .debug_abbrev  0x00001eb0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
+ .debug_abbrev  0x00001f40       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
+ .debug_abbrev  0x00001fd0       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
+ .debug_abbrev  0x00002060       0x90 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
+ .debug_abbrev  0x000020f0       0x14 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00002104      0x11d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
+ .debug_abbrev  0x00002221       0xc5 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+ .debug_abbrev  0x000022e6       0xb4 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
+ .debug_abbrev  0x0000239a      0x14b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
+ .debug_abbrev  0x000024e5      0x16c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
 
-.debug_line     0x00000000     0x3f0d
+.debug_line     0x00000000     0x3bad
  *(.debug_line)
- .debug_line    0x00000000      0x182 .\ARM_GCC_541\Debug\main.o
- .debug_line    0x00000182        0x0 .\ARM_GCC_541\Debug\testCards.o
- .debug_line    0x00000182        0x0 .\ARM_GCC_541\Debug\program_RPI_EEPROM.o
- .debug_line    0x00000182      0x234 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
- .debug_line    0x000003b6      0x1b3 .\ARM_GCC_541\Debug\RasPi_Pins.o
- .debug_line    0x00000569      0x1f2 .\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_line    0x0000075b      0x141 .\ARM_GCC_541\Debug\cymetadata.o
- .debug_line    0x0000089c      0x1dc .\ARM_GCC_541\Debug\Cm3Start.o
- .debug_line    0x00000a78      0x327 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
- .debug_line    0x00000d9f      0x30c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
- .debug_line    0x000010ab      0x21f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
- .debug_line    0x000012ca       0xf2 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
- .debug_line    0x000013bc      0x179 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
- .debug_line    0x00001535       0xe6 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
- .debug_line    0x0000161b      0x470 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
- .debug_line    0x00001a8b       0x8f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
- .debug_line    0x00001b1a       0xbf .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
- .debug_line    0x00001bd9      0x8b5 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
- .debug_line    0x0000248e      0x38e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
- .debug_line    0x0000281c       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
- .debug_line    0x000028b0       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
- .debug_line    0x00002945       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
- .debug_line    0x000029da       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
- .debug_line    0x00002a6e       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
- .debug_line    0x00002b03       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
- .debug_line    0x00002b97       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
- .debug_line    0x00002c2c       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
- .debug_line    0x00002cc0       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
- .debug_line    0x00002d55       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
- .debug_line    0x00002dea       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
- .debug_line    0x00002e7f       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
- .debug_line    0x00002f14       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
- .debug_line    0x00002fa9       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
- .debug_line    0x0000303e       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
- .debug_line    0x000030d3       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
- .debug_line    0x00003168       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
- .debug_line    0x000031fd       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
- .debug_line    0x00003292       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
- .debug_line    0x00003326       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
- .debug_line    0x000033bb       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .debug_line    0x0000344f       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .debug_line    0x000034e4       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .debug_line    0x00003578       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .debug_line    0x0000360d       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .debug_line    0x000036a1       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .debug_line    0x00003736       0x7d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
- .debug_line    0x000037b3      0x1cf .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
- .debug_line    0x00003982       0x97 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
- .debug_line    0x00003a19       0x61 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
- .debug_line    0x00003a7a      0x242 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
- .debug_line    0x00003cbc      0x251 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+ .debug_line    0x00000000      0x183 .\ARM_GCC_541\Debug\main.o
+ .debug_line    0x00000183        0x0 .\ARM_GCC_541\Debug\testCards.o
+ .debug_line    0x00000183        0x0 .\ARM_GCC_541\Debug\program_RPI_EEPROM.o
+ .debug_line    0x00000183      0x1c0 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
+ .debug_line    0x00000343      0x1aa .\ARM_GCC_541\Debug\RasPi_Pins.o
+ .debug_line    0x000004ed        0x0 .\ARM_GCC_541\Debug\Z80_SIO_emul.o
+ .debug_line    0x000004ed      0x1f5 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_line    0x000006e2      0x141 .\ARM_GCC_541\Debug\cymetadata.o
+ .debug_line    0x00000823      0x1dc .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_line    0x000009ff      0x327 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+ .debug_line    0x00000d26      0x30c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+ .debug_line    0x00001032      0x21f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+ .debug_line    0x00001251       0xf2 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+ .debug_line    0x00001343      0x179 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+ .debug_line    0x000014bc       0xe6 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
+ .debug_line    0x000015a2      0x470 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+ .debug_line    0x00001a12       0x8f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
+ .debug_line    0x00001aa1       0xbf .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
+ .debug_line    0x00001b60      0x8b5 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+ .debug_line    0x00002415      0x38e .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
+ .debug_line    0x000027a3       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
+ .debug_line    0x00002837       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
+ .debug_line    0x000028cc       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
+ .debug_line    0x00002961       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
+ .debug_line    0x000029f5       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
+ .debug_line    0x00002a8a       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
+ .debug_line    0x00002b1e       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
+ .debug_line    0x00002bb3       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
+ .debug_line    0x00002c47       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
+ .debug_line    0x00002cdc       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
+ .debug_line    0x00002d71       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
+ .debug_line    0x00002e06       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
+ .debug_line    0x00002e9b       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
+ .debug_line    0x00002f30       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
+ .debug_line    0x00002fc5       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
+ .debug_line    0x0000305a       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
+ .debug_line    0x000030ef       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
+ .debug_line    0x00003184       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
+ .debug_line    0x00003219       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
+ .debug_line    0x000032ad       0x95 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
+ .debug_line    0x00003342       0x94 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
+ .debug_line    0x000033d6       0x7d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
+ .debug_line    0x00003453      0x1cf .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
+ .debug_line    0x00003622       0x97 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+ .debug_line    0x000036b9       0x61 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
+ .debug_line    0x0000371a      0x242 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
+ .debug_line    0x0000395c      0x251 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
 
-.debug_frame    0x00000000     0x3964
+.debug_frame    0x00000000     0x361c
  *(.debug_frame)
  .debug_frame   0x00000000       0x30 .\ARM_GCC_541\Debug\main.o
  .debug_frame   0x00000030       0x54 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
@@ -1803,123 +1743,110 @@ END GROUP
  .debug_frame   0x00002ca8       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .debug_frame   0x00002d50       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .debug_frame   0x00002df8       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .debug_frame   0x00002ea0       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .debug_frame   0x00002f48       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .debug_frame   0x00002ff0       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .debug_frame   0x00003098       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .debug_frame   0x00003140       0xa8 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .debug_frame   0x000031e8      0x200 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
- .debug_frame   0x000033e8       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
- .debug_frame   0x00003420      0x260 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
- .debug_frame   0x00003680      0x228 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
- .debug_frame   0x000038a8       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x000038c8       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
- .debug_frame   0x000038f0       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
- .debug_frame   0x0000391c       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x00003944       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x00002ea0      0x200 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
+ .debug_frame   0x000030a0       0x38 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+ .debug_frame   0x000030d8      0x260 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
+ .debug_frame   0x00003338      0x228 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+ .debug_frame   0x00003560       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00003580       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x000035a8       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x000035d4       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000035fc       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
 
-.debug_str      0x00000000     0x327d
+.debug_str      0x00000000     0x30cb
  *(.debug_str)
- .debug_str     0x00000000      0x193 .\ARM_GCC_541\Debug\main.o
-                                0x1db (size before relaxing)
- .debug_str     0x00000193        0xc .\ARM_GCC_541\Debug\testCards.o
-                                 0xf7 (size before relaxing)
- .debug_str     0x0000019f       0x15 .\ARM_GCC_541\Debug\program_RPI_EEPROM.o
-                                0x100 (size before relaxing)
- .debug_str     0x000001b4       0xcd .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
-                                0x288 (size before relaxing)
- .debug_str     0x00000281       0x29 .\ARM_GCC_541\Debug\RasPi_Pins.o
-                                0x281 (size before relaxing)
- .debug_str     0x000002aa      0x1f6 .\ARM_GCC_541\Debug\cyfitter_cfg.o
-                                0x3c8 (size before relaxing)
- .debug_str     0x000004a0       0x7f .\ARM_GCC_541\Debug\cymetadata.o
-                                0x1ff (size before relaxing)
- .debug_str     0x0000051f      0x123 .\ARM_GCC_541\Debug\Cm3Start.o
-                                0x2f2 (size before relaxing)
- .debug_str     0x00000642      0x448 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
-                                0x61a (size before relaxing)
- .debug_str     0x00000a8a      0x4df .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
-                                0x735 (size before relaxing)
- .debug_str     0x00000f69      0x296 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
-                                0x615 (size before relaxing)
- .debug_str     0x000011ff       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
-                                0x2e2 (size before relaxing)
- .debug_str     0x0000127f      0x120 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
-                                0x3b0 (size before relaxing)
- .debug_str     0x0000139f       0xac .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
-                                0x286 (size before relaxing)
- .debug_str     0x0000144b      0x29a .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
-                                0x775 (size before relaxing)
- .debug_str     0x000016e5       0x5f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
-                                0x292 (size before relaxing)
- .debug_str     0x00001744       0xbe .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
-                                0x25c (size before relaxing)
- .debug_str     0x00001802      0x81c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
-                                0xa29 (size before relaxing)
- .debug_str     0x0000201e      0x371 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
-                                0x55e (size before relaxing)
- .debug_str     0x0000238f       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x000023e5       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002440       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x0000249b       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x000024f1       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x0000254c       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x000025a2       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x000025fd       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x00002653       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x000026ae       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002709       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002764       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x000027bf       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x0000281a       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002875       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x000028d0       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x0000292b       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002986       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x000029e1       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x00002a37       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002a92       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x00002ae8       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002b43       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x00002b99       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002bf4       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
-                                0x1f8 (size before relaxing)
- .debug_str     0x00002c4a       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
-                                0x1fd (size before relaxing)
- .debug_str     0x00002ca5      0x1e3 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
-                                0x38a (size before relaxing)
- .debug_str     0x00002e88       0x3f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
-                                0x2aa (size before relaxing)
- .debug_str     0x00002ec7      0x122 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
-                                0x3cb (size before relaxing)
- .debug_str     0x00002fe9      0x167 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
-                                0x33a (size before relaxing)
- .debug_str     0x00003150      0x12d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
-                                0x31c (size before relaxing)
+ .debug_str     0x00000000      0x19c .\ARM_GCC_541\Debug\main.o
+                                0x1e4 (size before relaxing)
+ .debug_str     0x0000019c        0xc .\ARM_GCC_541\Debug\testCards.o
+                                 0xf3 (size before relaxing)
+ .debug_str     0x000001a8       0x15 .\ARM_GCC_541\Debug\program_RPI_EEPROM.o
+                                 0xfc (size before relaxing)
+ .debug_str     0x000001bd       0xc0 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
+                                0x284 (size before relaxing)
+ .debug_str     0x0000027d       0x29 .\ARM_GCC_541\Debug\RasPi_Pins.o
+                                0x27d (size before relaxing)
+ .debug_str     0x000002a6        0xf .\ARM_GCC_541\Debug\Z80_SIO_emul.o
+                                 0xf6 (size before relaxing)
+ .debug_str     0x000002b5      0x1f6 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                                0x3c4 (size before relaxing)
+ .debug_str     0x000004ab       0x7f .\ARM_GCC_541\Debug\cymetadata.o
+                                0x1fb (size before relaxing)
+ .debug_str     0x0000052a      0x123 .\ARM_GCC_541\Debug\Cm3Start.o
+                                0x2ee (size before relaxing)
+ .debug_str     0x0000064d      0x448 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                                0x616 (size before relaxing)
+ .debug_str     0x00000a95      0x4df .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                                0x731 (size before relaxing)
+ .debug_str     0x00000f74      0x296 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                                0x611 (size before relaxing)
+ .debug_str     0x0000120a       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+                                0x2de (size before relaxing)
+ .debug_str     0x0000128a      0x120 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+                                0x3ac (size before relaxing)
+ .debug_str     0x000013aa       0xac .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
+                                0x282 (size before relaxing)
+ .debug_str     0x00001456      0x29a .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                                0x771 (size before relaxing)
+ .debug_str     0x000016f0       0x5f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
+                                0x28e (size before relaxing)
+ .debug_str     0x0000174f       0xbe .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
+                                0x258 (size before relaxing)
+ .debug_str     0x0000180d      0x81c .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                                0xa25 (size before relaxing)
+ .debug_str     0x00002029      0x371 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
+                                0x55a (size before relaxing)
+ .debug_str     0x0000239a       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
+                                0x1f4 (size before relaxing)
+ .debug_str     0x000023f0       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x0000244b       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x000024a6       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
+                                0x1f4 (size before relaxing)
+ .debug_str     0x000024fc       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002557       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
+                                0x1f4 (size before relaxing)
+ .debug_str     0x000025ad       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002608       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
+                                0x1f4 (size before relaxing)
+ .debug_str     0x0000265e       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x000026b9       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002714       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x0000276f       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x000027ca       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002825       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002880       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x000028db       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002936       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002991       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x000029ec       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
+                                0x1f4 (size before relaxing)
+ .debug_str     0x00002a42       0x5b .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002a9d       0x56 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
+                                0x1f4 (size before relaxing)
+ .debug_str     0x00002af3      0x1e3 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
+                                0x386 (size before relaxing)
+ .debug_str     0x00002cd6       0x3f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+                                0x2a6 (size before relaxing)
+ .debug_str     0x00002d15      0x122 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
+                                0x3c7 (size before relaxing)
+ .debug_str     0x00002e37      0x167 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
+                                0x336 (size before relaxing)
+ .debug_str     0x00002f9e      0x12d .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+                                0x318 (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
@@ -1927,7 +1854,7 @@ END GROUP
 .debug_macinfo
  *(.debug_macinfo)
 
-.debug_ranges   0x00000000      0xcc8
+.debug_ranges   0x00000000      0xc00
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 .\ARM_GCC_541\Debug\main.o
  .debug_ranges  0x00000010       0x18 .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
@@ -1966,15 +1893,10 @@ END GROUP
  .debug_ranges  0x00000a18       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .debug_ranges  0x00000a40       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .debug_ranges  0x00000a68       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .debug_ranges  0x00000a90       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .debug_ranges  0x00000ab8       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .debug_ranges  0x00000ae0       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .debug_ranges  0x00000b08       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .debug_ranges  0x00000b30       0x28 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
- .debug_ranges  0x00000b58       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
- .debug_ranges  0x00000bc8       0x10 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
- .debug_ranges  0x00000bd8       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
- .debug_ranges  0x00000c58       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+ .debug_ranges  0x00000a90       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
+ .debug_ranges  0x00000b00       0x10 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+ .debug_ranges  0x00000b10       0x80 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
+ .debug_ranges  0x00000b90       0x70 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e .\ARM_GCC_541\Debug\main.o
@@ -1983,6 +1905,7 @@ END GROUP
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\program_RPI_EEPROM.o
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RasPi_Pins.o
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\Z80_SIO_emul.o
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\cymetadata.o
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\Cm3Start.o
@@ -2018,11 +1941,6 @@ END GROUP
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
- .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
- .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
- .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
- .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
- .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
  .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
@@ -2064,114 +1982,106 @@ END GROUP
  .ARM.attributes
                 0x00000131       0x33 .\ARM_GCC_541\Debug\RasPi_Pins.o
  .ARM.attributes
-                0x00000164       0x33 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000164       0x33 .\ARM_GCC_541\Debug\Z80_SIO_emul.o
  .ARM.attributes
-                0x00000197       0x33 .\ARM_GCC_541\Debug\cymetadata.o
+                0x00000197       0x33 .\ARM_GCC_541\Debug\cyfitter_cfg.o
  .ARM.attributes
-                0x000001ca       0x33 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x000001ca       0x33 .\ARM_GCC_541\Debug\cymetadata.o
  .ARM.attributes
-                0x000001fd       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
+                0x000001fd       0x33 .\ARM_GCC_541\Debug\Cm3Start.o
  .ARM.attributes
-                0x00000230       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
+                0x00000230       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART.o)
  .ARM.attributes
-                0x00000263       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
+                0x00000263       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cdc.o)
  .ARM.attributes
-                0x00000296       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
+                0x00000296       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_drv.o)
  .ARM.attributes
-                0x000002c9       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
+                0x000002c9       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_episr.o)
  .ARM.attributes
-                0x000002fc       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
+                0x000002fc       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_hid.o)
  .ARM.attributes
-                0x0000032f       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
+                0x0000032f       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_pm.o)
  .ARM.attributes
-                0x00000362       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
+                0x00000362       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_std.o)
  .ARM.attributes
-                0x00000395       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
+                0x00000395       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_vnd.o)
  .ARM.attributes
-                0x000003c8       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
+                0x000003c8       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_Dp.o)
  .ARM.attributes
-                0x000003fb       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
+                0x000003fb       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyLib.o)
  .ARM.attributes
-                0x0000042e       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
+                0x0000042e       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(cyPm.o)
  .ARM.attributes
-                0x00000461       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
+                0x00000461       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_3.o)
  .ARM.attributes
-                0x00000494       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
+                0x00000494       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_12.o)
  .ARM.attributes
-                0x000004c7       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
+                0x000004c7       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_13.o)
  .ARM.attributes
-                0x000004fa       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
+                0x000004fa       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_6.o)
  .ARM.attributes
-                0x0000052d       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
+                0x0000052d       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_16.o)
  .ARM.attributes
-                0x00000560       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
+                0x00000560       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_2.o)
  .ARM.attributes
-                0x00000593       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
+                0x00000593       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_14.o)
  .ARM.attributes
-                0x000005c6       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
+                0x000005c6       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_5.o)
  .ARM.attributes
-                0x000005f9       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
+                0x000005f9       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_19.o)
  .ARM.attributes
-                0x0000062c       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
+                0x0000062c       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_20.o)
  .ARM.attributes
-                0x0000065f       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
+                0x0000065f       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_26.o)
  .ARM.attributes
-                0x00000692       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
+                0x00000692       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_21.o)
  .ARM.attributes
-                0x000006c5       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
+                0x000006c5       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_17.o)
  .ARM.attributes
-                0x000006f8       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
+                0x000006f8       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_18.o)
  .ARM.attributes
-                0x0000072b       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
+                0x0000072b       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_27.o)
  .ARM.attributes
-                0x0000075e       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
+                0x0000075e       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_22.o)
  .ARM.attributes
-                0x00000791       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
+                0x00000791       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_23.o)
  .ARM.attributes
-                0x000007c4       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
+                0x000007c4       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_24.o)
  .ARM.attributes
-                0x000007f7       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
+                0x000007f7       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_7.o)
  .ARM.attributes
-                0x0000082a       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
+                0x0000082a       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_15.o)
  .ARM.attributes
-                0x0000085d       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_25.o)
+                0x0000085d       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_4.o)
  .ARM.attributes
-                0x00000890       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_9.o)
+                0x00000890       0x21 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
  .ARM.attributes
-                0x000008c3       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_10.o)
+                0x000008b1       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
  .ARM.attributes
-                0x000008f6       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_8.o)
+                0x000008e4       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
  .ARM.attributes
-                0x00000929       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(IO_11.o)
+                0x00000917       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
  .ARM.attributes
-                0x0000095c       0x21 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyBootAsmGnu.o)
+                0x0000094a       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
  .ARM.attributes
-                0x0000097d       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyScBoostClk.o)
+                0x0000097d       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
  .ARM.attributes
-                0x000009b0       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_cls.o)
+                0x000009b0       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
  .ARM.attributes
-                0x000009e3       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(USBUART_descr.o)
+                0x000009dd       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
  .ARM.attributes
-                0x00000a16       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CyFlash.o)
+                0x00000a0a       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
  .ARM.attributes
-                0x00000a49       0x33 .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a(CySpc.o)
+                0x00000a37       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
  .ARM.attributes
-                0x00000a7c       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+                0x00000a64       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
  .ARM.attributes
-                0x00000aa9       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+                0x00000a91       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
  .ARM.attributes
-                0x00000ad6       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x00000abe       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
  .ARM.attributes
-                0x00000b03       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
- .ARM.attributes
-                0x00000b30       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
- .ARM.attributes
-                0x00000b5d       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
- .ARM.attributes
-                0x00000b8a       0x2d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
- .ARM.attributes
-                0x00000bb7       0x1d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x00000aeb       0x1d c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
 
 /DISCARD/
  *(.note.GNU-stack)
-OUTPUT(C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf elf32-littlearm)
+OUTPUT(C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf elf32-littlearm)

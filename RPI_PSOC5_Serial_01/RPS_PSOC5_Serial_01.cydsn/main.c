@@ -119,6 +119,7 @@ int main()
                 }
             }
         }
+        testRPPUIO16();
     }
 }
 

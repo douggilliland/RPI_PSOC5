@@ -380,22 +380,22 @@ library (timing) {
                 timing_sense : negative_unate;
                 timing_type : three_state_disable;
                 related_pin : "oe";
-                intrinsic_rise : 17.161;
-                intrinsic_fall : 17.161;
+                intrinsic_rise : 17.203;
+                intrinsic_fall : 17.203;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : three_state_enable;
                 related_pin : "oe";
-                intrinsic_rise : 17.161;
-                intrinsic_fall : 17.161;
+                intrinsic_rise : 17.203;
+                intrinsic_fall : 17.203;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pin_input";
-                intrinsic_rise : 15.251;
-                intrinsic_fall : 15.251;
+                intrinsic_rise : 14.604;
+                intrinsic_fall : 14.604;
             }
         }
         pin (fb) {
@@ -404,8 +404,8 @@ library (timing) {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pad_in";
-                intrinsic_rise : 7.922;
-                intrinsic_fall : 7.922;
+                intrinsic_rise : 7.655;
+                intrinsic_fall : 7.655;
             }
         }
     }
@@ -448,22 +448,22 @@ library (timing) {
                 timing_sense : negative_unate;
                 timing_type : three_state_disable;
                 related_pin : "oe";
-                intrinsic_rise : 17.428;
-                intrinsic_fall : 17.428;
+                intrinsic_rise : 16.505;
+                intrinsic_fall : 16.505;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : three_state_enable;
                 related_pin : "oe";
-                intrinsic_rise : 17.428;
-                intrinsic_fall : 17.428;
+                intrinsic_rise : 16.505;
+                intrinsic_fall : 16.505;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pin_input";
-                intrinsic_rise : 15.459;
-                intrinsic_fall : 15.459;
+                intrinsic_rise : 15.726;
+                intrinsic_fall : 15.726;
             }
         }
         pin (fb) {
@@ -472,8 +472,8 @@ library (timing) {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pad_in";
-                intrinsic_rise : 7.950;
-                intrinsic_fall : 7.950;
+                intrinsic_rise : 7.144;
+                intrinsic_fall : 7.144;
             }
         }
     }
@@ -516,22 +516,22 @@ library (timing) {
                 timing_sense : negative_unate;
                 timing_type : three_state_disable;
                 related_pin : "oe";
-                intrinsic_rise : 17.610;
-                intrinsic_fall : 17.610;
+                intrinsic_rise : 16.657;
+                intrinsic_fall : 16.657;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : three_state_enable;
                 related_pin : "oe";
-                intrinsic_rise : 17.610;
-                intrinsic_fall : 17.610;
+                intrinsic_rise : 16.657;
+                intrinsic_fall : 16.657;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pin_input";
-                intrinsic_rise : 15.744;
-                intrinsic_fall : 15.744;
+                intrinsic_rise : 14.510;
+                intrinsic_fall : 14.510;
             }
         }
         pin (fb) {
@@ -540,8 +540,8 @@ library (timing) {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pad_in";
-                intrinsic_rise : 7.958;
-                intrinsic_fall : 7.958;
+                intrinsic_rise : 7.751;
+                intrinsic_fall : 7.751;
             }
         }
     }
@@ -584,22 +584,22 @@ library (timing) {
                 timing_sense : negative_unate;
                 timing_type : three_state_disable;
                 related_pin : "oe";
-                intrinsic_rise : 17.434;
-                intrinsic_fall : 17.434;
+                intrinsic_rise : 17.294;
+                intrinsic_fall : 17.294;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : three_state_enable;
                 related_pin : "oe";
-                intrinsic_rise : 17.434;
-                intrinsic_fall : 17.434;
+                intrinsic_rise : 17.294;
+                intrinsic_fall : 17.294;
             }
             timing () {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pin_input";
-                intrinsic_rise : 15.802;
-                intrinsic_fall : 15.802;
+                intrinsic_rise : 15.656;
+                intrinsic_fall : 15.656;
             }
         }
         pin (fb) {
@@ -608,8 +608,8 @@ library (timing) {
                 timing_sense : positive_unate;
                 timing_type : combinational;
                 related_pin : "pad_in";
-                intrinsic_rise : 7.962;
-                intrinsic_fall : 7.962;
+                intrinsic_rise : 7.673;
+                intrinsic_fall : 7.673;
             }
         }
     }
@@ -2038,6 +2038,74 @@ library (timing) {
                 related_pin : "pad_in";
                 intrinsic_rise : 6.830;
                 intrinsic_fall : 6.830;
+            }
+        }
+    }
+    cell (iocell31) {
+        pin (in_clock) {
+            direction : input;
+            clock : true;
+        }
+        pin (in_clock_en) {
+            direction : input;
+        }
+        pin (in_reset) {
+            direction : input;
+        }
+        pin (out_clock) {
+            direction : input;
+            clock : true;
+        }
+        pin (out_clock_en) {
+            direction : input;
+        }
+        pin (out_reset) {
+            direction : input;
+        }
+        pin (pin_input) {
+            direction : input;
+        }
+        pin (pa_out) {
+            direction : output;
+        }
+        pin (oe) {
+            direction : input;
+        }
+        pin (pad_in) {
+            direction : input;
+        }
+        pin (pad_out) {
+            direction : output;
+            timing () {
+                timing_sense : negative_unate;
+                timing_type : three_state_disable;
+                related_pin : "oe";
+                intrinsic_rise : 17.622;
+                intrinsic_fall : 17.622;
+            }
+            timing () {
+                timing_sense : positive_unate;
+                timing_type : three_state_enable;
+                related_pin : "oe";
+                intrinsic_rise : 17.622;
+                intrinsic_fall : 17.622;
+            }
+            timing () {
+                timing_sense : positive_unate;
+                timing_type : combinational;
+                related_pin : "pin_input";
+                intrinsic_rise : 14.886;
+                intrinsic_fall : 14.886;
+            }
+        }
+        pin (fb) {
+            direction : output;
+            timing () {
+                timing_sense : positive_unate;
+                timing_type : combinational;
+                related_pin : "pad_in";
+                intrinsic_rise : 7.731;
+                intrinsic_fall : 7.731;
             }
         }
     }

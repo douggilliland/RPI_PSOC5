@@ -17,6 +17,7 @@ void setRasPiPin(uint8 bcmPinNum, uint8 value)
     switch (bcmPinNum)
     {
         case IO_2:
+            IO_2_SetDriveMode(PIN_DM_STRONG);
             IO_2_Write(value);
             break;
         case IO_3:
@@ -48,21 +49,6 @@ void setRasPiPin(uint8 bcmPinNum, uint8 value)
             break;
         case IO_24:
             IO_24_Write(value);
-            break;
-        case IO_10:
-            IO_10_Write(value);
-            break;
-        case IO_9:
-            IO_9_Write(value);
-            break;
-        case IO_25:
-            IO_25_Write(value);
-            break;
-        case IO_11:
-            IO_11_Write(value);
-            break;
-        case IO_8:
-            IO_8_Write(value);
             break;
         case IO_7:
             IO_7_Write(value);

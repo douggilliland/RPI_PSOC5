@@ -16,7 +16,9 @@
 ##################################################################### 
                     1::Clock Frequency Summary
 ===================================================================== 
-Number of clocks: 7
+Number of clocks: 9
+Clock: Clock_1                    | N/A  | Target: 0.00 MHz   | 
+Clock: Clock_1(routed)            | N/A  | Target: 0.00 MHz   | 
 Clock: CyBUS_CLK                  | N/A  | Target: 64.00 MHz  | 
 Clock: CyBUS_CLK(fixed-function)  | N/A  | Target: 64.00 MHz  | 
 Clock: CyILO                      | N/A  | Target: 0.10 MHz   | 
@@ -59,6 +61,8 @@ Port Name  Setup to Clk  Clock Name:Phase
 
 Port Name        Clock to Out  Clock Name:Phase             
 ---------------  ------------  ---------------------------  
+LED(0)_PAD       23424         Clock_1(routed):R            
+LED(0)_PAD       23424         Clock_1(routed):F            
 SCL0(0)_PAD:out  21217         CyBUS_CLK(fixed-function):R  
 SDA0(0)_PAD:out  20640         CyBUS_CLK(fixed-function):R  
 
