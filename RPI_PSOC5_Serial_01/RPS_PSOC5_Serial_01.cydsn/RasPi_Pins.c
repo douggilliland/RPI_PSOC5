@@ -28,6 +28,22 @@ void setRasPiPin(uint8 bcmPinNum, uint8 value)
             IO_4_SetDriveMode(PIN_DM_STRONG);
             IO_4_Write(value);
             break;
+        case IO_8:
+            IO_8_SetDriveMode(PIN_DM_STRONG);
+            IO_8_Write(value);
+            break;
+        case IO_9:
+            IO_9_SetDriveMode(PIN_DM_STRONG);
+            IO_9_Write(value);
+            break;
+        case IO_10:
+            IO_10_SetDriveMode(PIN_DM_STRONG);
+            IO_10_Write(value);
+            break;
+        case IO_11:
+            IO_11_SetDriveMode(PIN_DM_STRONG);
+            IO_11_Write(value);
+            break;
         case IO_14:
             IO_14_SetDriveMode(PIN_DM_STRONG);
             IO_14_Write(value);
@@ -59,6 +75,10 @@ void setRasPiPin(uint8 bcmPinNum, uint8 value)
         case IO_24:
             IO_24_SetDriveMode(PIN_DM_STRONG);
             IO_24_Write(value);
+            break;
+        case IO_25:
+            IO_25_SetDriveMode(PIN_DM_STRONG);
+            IO_25_Write(value);
             break;
         case IO_7:
             IO_7_SetDriveMode(PIN_DM_STRONG);
