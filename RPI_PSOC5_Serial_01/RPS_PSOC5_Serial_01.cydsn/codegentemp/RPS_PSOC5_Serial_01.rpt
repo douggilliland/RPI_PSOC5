@@ -1,17 +1,13 @@
-Loading plugins phase: Elapsed time ==> 0s.162ms
+Loading plugins phase: Elapsed time ==> 0s.175ms
 <CYPRESSTAG name="CyDsfit arguments...">
-cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -d CY8C5267AXI-LP051 -s C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -d CY8C5267AXI-LP051 -s C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 </CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
-ADD: fit.M0032: warning: Clock Warning: (Clock_1's accuracy range '1.526  Hz -55% +100%, (0.687  Hz - 3.052  Hz)' is not within the specified tolerance range '1  Hz +/- 5%, (0.95  Hz - 1.05  Hz)'.).
- * C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cydwr (Clock_1)
- * C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch (Instance:Clock_1)
-
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 2s.023ms
+Elaboration phase: Elapsed time ==> 2s.110ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.082ms
+HDL generation phase: Elapsed time ==> 0s.056ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -29,23 +25,23 @@ HDL generation phase: Elapsed time ==> 0s.082ms
 ======================================================================
 Compiling:  RPS_PSOC5_Serial_01.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\bin\warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 RPS_PSOC5_Serial_01.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 RPS_PSOC5_Serial_01.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  RPS_PSOC5_Serial_01.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\bin\warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 RPS_PSOC5_Serial_01.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 RPS_PSOC5_Serial_01.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  RPS_PSOC5_Serial_01.v
 Program  :   vlogfe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 -verilog RPS_PSOC5_Serial_01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 -verilog RPS_PSOC5_Serial_01.v
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Wed Oct 16 06:06:10 2019
+Wed Oct 16 16:12:41 2019
 
 
 ======================================================================
@@ -55,7 +51,7 @@ Options  :    -yv2 -q10 RPS_PSOC5_Serial_01.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Wed Oct 16 06:06:10 2019
+Wed Oct 16 16:12:42 2019
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'
@@ -84,11 +80,11 @@ vlogfe:  No errors.
 ======================================================================
 Compiling:  RPS_PSOC5_Serial_01.v
 Program  :   tovif
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 -verilog RPS_PSOC5_Serial_01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 -verilog RPS_PSOC5_Serial_01.v
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Wed Oct 16 06:06:10 2019
+Wed Oct 16 16:12:42 2019
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -99,9 +95,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.ctl'.
+Linking 'C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
-Linking 'C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.v'.
+Linking 'C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\OneTerminal\OneTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
@@ -112,11 +108,11 @@ tovif:  No errors.
 ======================================================================
 Compiling:  RPS_PSOC5_Serial_01.v
 Program  :   topld
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 -verilog RPS_PSOC5_Serial_01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 -verilog RPS_PSOC5_Serial_01.v
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Wed Oct 16 06:06:10 2019
+Wed Oct 16 16:12:42 2019
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -127,9 +123,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.ctl'.
+Linking 'C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
-Linking 'C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.v'.
+Linking 'C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\codegentemp\RPS_PSOC5_Serial_01.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\OneTerminal\OneTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
@@ -245,7 +241,7 @@ Removing Lhs of wire tmpOE__IO_15_net_0[239] = one[9]
 Removing Lhs of wire tmpOE__IO_4_net_0[245] = one[9]
 Removing Lhs of wire tmpOE__IO_25_net_0[251] = one[9]
 Removing Lhs of wire tmpOE__IO_3_net_0[257] = one[9]
-Removing Lhs of wire tmpOE__LED_net_0[263] = one[9]
+Removing Lhs of wire tmpOE__LED_net_0[265] = one[9]
 
 ------------------------------------------------------
 Aliased 0 equations, 40 wires.
@@ -270,16 +266,16 @@ topld:  No errors.
 
 CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\bin\warp.exe
-Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 RPS_PSOC5_Serial_01.v -verilog
+Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -dcpsoc3 RPS_PSOC5_Serial_01.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 0s.620ms
+Warp synthesis phase: Elapsed time ==> 0s.757ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Wednesday, 16 October 2019 06:06:11
-Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -d CY8C5267AXI-LP051 RPS_PSOC5_Serial_01.v -verilog
+cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Wednesday, 16 October 2019 16:12:42
+Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -d CY8C5267AXI-LP051 RPS_PSOC5_Serial_01.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.012ms
+Design parsing phase: Elapsed time ==> 0s.013ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -474,12 +470,12 @@ Design Equations
     Pin : Name = IO_12(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -513,12 +509,12 @@ Design Equations
     Pin : Name = IO_10(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -552,12 +548,12 @@ Design Equations
     Pin : Name = IO_9(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -591,12 +587,12 @@ Design Equations
     Pin : Name = IO_11(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -630,12 +626,12 @@ Design Equations
     Pin : Name = IO_8(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -669,12 +665,12 @@ Design Equations
     Pin : Name = IO_13(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -708,12 +704,12 @@ Design Equations
     Pin : Name = IO_6(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -747,12 +743,12 @@ Design Equations
     Pin : Name = IO_16(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -825,12 +821,12 @@ Design Equations
     Pin : Name = IO_14(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -864,12 +860,12 @@ Design Equations
     Pin : Name = IO_5(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -903,12 +899,12 @@ Design Equations
     Pin : Name = IO_19(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -942,12 +938,12 @@ Design Equations
     Pin : Name = IO_20(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -981,12 +977,12 @@ Design Equations
     Pin : Name = IO_26(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1020,12 +1016,12 @@ Design Equations
     Pin : Name = IO_21(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1059,12 +1055,12 @@ Design Equations
     Pin : Name = IO_17(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1098,12 +1094,12 @@ Design Equations
     Pin : Name = IO_18(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1137,12 +1133,12 @@ Design Equations
     Pin : Name = IO_27(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1176,12 +1172,12 @@ Design Equations
     Pin : Name = IO_22(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1215,12 +1211,12 @@ Design Equations
     Pin : Name = IO_23(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1254,12 +1250,12 @@ Design Equations
     Pin : Name = IO_24(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1293,12 +1289,12 @@ Design Equations
     Pin : Name = IO_7(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1332,12 +1328,12 @@ Design Equations
     Pin : Name = IO_15(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1371,12 +1367,12 @@ Design Equations
     Pin : Name = IO_4(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1410,12 +1406,12 @@ Design Equations
     Pin : Name = IO_25(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1449,12 +1445,12 @@ Design Equations
     Pin : Name = IO_3(0)
         Attributes:
             In Group/Port: True
-            In Sync Option: NOSYNC
-            Out Sync Option: AUTO
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
             Interrupt generated: False
             Interrupt mode: NONE
-            Drive mode: HI_Z_DIGITAL
-            VTrip: CMOS
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
             Slew: FAST
             Input Sync needed: False
             Output Sync needed: False
@@ -1691,8 +1687,8 @@ SAR ADC                       :    0 :    1 :    1 :  0.00 %
 DAC                           :      :      :      :        
   VIDAC                       :    0 :    1 :    1 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.081ms
-Tech Mapping phase: Elapsed time ==> 0s.152ms
+Technology Mapping: Elapsed time ==> 0s.078ms
+Tech Mapping phase: Elapsed time ==> 0s.171ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 Initial Analog Placement Results:
@@ -1700,8 +1696,8 @@ IO_7@[IOP=(6)][IoId=(7)] : IO_10(0) (fixed)
 IO_5@[IOP=(6)][IoId=(5)] : IO_11(0) (fixed)
 IO_6@[IOP=(2)][IoId=(6)] : IO_12(0) (fixed)
 IO_5@[IOP=(2)][IoId=(5)] : IO_13(0) (fixed)
-IO_6@[IOP=(12)][IoId=(6)] : IO_14(0) (fixed)
-IO_7@[IOP=(12)][IoId=(7)] : IO_15(0) (fixed)
+IO_7@[IOP=(12)][IoId=(7)] : IO_14(0) (fixed)
+IO_6@[IOP=(12)][IoId=(6)] : IO_15(0) (fixed)
 IO_4@[IOP=(2)][IoId=(4)] : IO_16(0) (fixed)
 IO_7@[IOP=(1)][IoId=(7)] : IO_17(0) (fixed)
 IO_6@[IOP=(1)][IoId=(6)] : IO_18(0) (fixed)
@@ -1728,7 +1724,7 @@ IO_5@[IOP=(12)][IoId=(5)] : SDA0(0) (fixed)
 IO_7@[IOP=(15)][IoId=(7)] : \USBUART:Dm(0)\ (fixed)
 IO_6@[IOP=(15)][IoId=(6)] : \USBUART:Dp(0)\ (fixed)
 USB[0]@[FFB(USB,0)] : \USBUART:USB\
-Analog Placement phase: Elapsed time ==> 0s.041ms
+Analog Placement phase: Elapsed time ==> 0s.016ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 Analog Routing phase: Elapsed time ==> 0s.000ms
@@ -1746,7 +1742,7 @@ Dump of CyP35AnalogRoutingResultsDB
 IsVddaHalfUsedForComp = False
 IsVddaHalfUsedForSar0 = False
 IsVddaHalfUsedForSar1 = False
-Analog Code Generation phase: Elapsed time ==> 0s.351ms
+Analog Code Generation phase: Elapsed time ==> 0s.349ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
@@ -1765,7 +1761,7 @@ PLD Packing: Elapsed time ==> 0s.000ms
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.045ms
+Partitioning: Elapsed time ==> 0s.036ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -1926,12 +1922,12 @@ Port 1 contains the following IO cells:
 Pin : Name = IO_24(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -1966,12 +1962,12 @@ Pin : Name = IO_24(0)
 Pin : Name = IO_23(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2006,12 +2002,12 @@ Pin : Name = IO_23(0)
 Pin : Name = IO_22(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2046,12 +2042,12 @@ Pin : Name = IO_22(0)
 Pin : Name = IO_27(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2086,12 +2082,12 @@ Pin : Name = IO_27(0)
 Pin : Name = IO_18(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2126,12 +2122,12 @@ Pin : Name = IO_18(0)
 Pin : Name = IO_17(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2167,12 +2163,12 @@ Port 2 contains the following IO cells:
 Pin : Name = IO_21(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2207,12 +2203,12 @@ Pin : Name = IO_21(0)
 Pin : Name = IO_26(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2247,12 +2243,12 @@ Pin : Name = IO_26(0)
 Pin : Name = IO_20(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2287,12 +2283,12 @@ Pin : Name = IO_20(0)
 Pin : Name = IO_19(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2327,12 +2323,12 @@ Pin : Name = IO_19(0)
 Pin : Name = IO_16(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2367,12 +2363,12 @@ Pin : Name = IO_16(0)
 Pin : Name = IO_13(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2407,12 +2403,12 @@ Pin : Name = IO_13(0)
 Pin : Name = IO_12(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2447,12 +2443,12 @@ Pin : Name = IO_12(0)
 Pin : Name = IO_6(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2490,12 +2486,12 @@ Port 5 contains the following IO cells:
 Pin : Name = IO_25(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2571,12 +2567,12 @@ Pin : Name = LED(0)
 Pin : Name = IO_4(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2611,12 +2607,12 @@ Pin : Name = IO_4(0)
 Pin : Name = IO_5(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2651,12 +2647,12 @@ Pin : Name = IO_5(0)
 Pin : Name = IO_7(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2692,12 +2688,12 @@ Port 6 contains the following IO cells:
 Pin : Name = IO_8(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2732,12 +2728,12 @@ Pin : Name = IO_8(0)
 Pin : Name = IO_11(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2772,12 +2768,12 @@ Pin : Name = IO_11(0)
 Pin : Name = IO_9(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2812,12 +2808,12 @@ Pin : Name = IO_9(0)
 Pin : Name = IO_10(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -2853,12 +2849,12 @@ Port 12 contains the following IO cells:
 Pin : Name = IO_3(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -3014,55 +3010,15 @@ Pin : Name = SDA0(0)
     }
 
 [IoId=6]: 
-Pin : Name = IO_14(0)
-    Attributes:
-        In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
-        Interrupt generated: False
-        Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
-        Slew: FAST
-        Input Sync needed: False
-        Output Sync needed: False
-        SC shield enabled: False
-        POR State: ANY
-        LCD Mode: COMMON
-        Register Mode: RegComb
-        CaSense Mode: NEITHER
-        Treat as pin: True
-        Is OE Registered: False
-        Uses Analog: False
-        Can contain Digital: True
-        Is SIO: False
-        SIO Output Buf: NONREGULATED
-        SIO Input Buf: SINGLE_ENDED
-        SIO HiFreq: LOW
-        SIO Hyst: DISABLED
-        SIO Vtrip: MULTIPLIER_0_5
-        SIO Multiplier Index: 0
-        SIO RefSel: VCC_IO
-        Required Capabilities: DIGITAL
-        Initial Value: 0
-        IO Voltage: 0
-    PORT MAP (
-        pa_out => IO_14(0)__PA ,
-        pad => IO_14(0)_PAD );
-    Properties:
-    {
-    }
-
-[IoId=7]: 
 Pin : Name = IO_15(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: NOSYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: HI_Z_DIGITAL
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
         Input Sync needed: False
         Output Sync needed: False
@@ -3089,6 +3045,46 @@ Pin : Name = IO_15(0)
     PORT MAP (
         pa_out => IO_15(0)__PA ,
         pad => IO_15(0)_PAD );
+    Properties:
+    {
+    }
+
+[IoId=7]: 
+Pin : Name = IO_14(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => IO_14(0)__PA ,
+        pad => IO_14(0)_PAD );
     Properties:
     {
     }
@@ -3345,39 +3341,39 @@ Port Configuration report
      |     |       | Interrupt |                  |                 | 
 Port | Pin | Fixed |      Type |       Drive Mode |            Name | Connections
 -----+-----+-------+-----------+------------------+-----------------+---------------------------------------------------------
-   1 |   2 |     * |      NONE |     HI_Z_DIGITAL |        IO_24(0) | 
-     |   3 |     * |      NONE |     HI_Z_DIGITAL |        IO_23(0) | 
-     |   4 |     * |      NONE |     HI_Z_DIGITAL |        IO_22(0) | 
-     |   5 |     * |      NONE |     HI_Z_DIGITAL |        IO_27(0) | 
-     |   6 |     * |      NONE |     HI_Z_DIGITAL |        IO_18(0) | 
-     |   7 |     * |      NONE |     HI_Z_DIGITAL |        IO_17(0) | 
+   1 |   2 |     * |      NONE |         CMOS_OUT |        IO_24(0) | 
+     |   3 |     * |      NONE |         CMOS_OUT |        IO_23(0) | 
+     |   4 |     * |      NONE |         CMOS_OUT |        IO_22(0) | 
+     |   5 |     * |      NONE |         CMOS_OUT |        IO_27(0) | 
+     |   6 |     * |      NONE |         CMOS_OUT |        IO_18(0) | 
+     |   7 |     * |      NONE |         CMOS_OUT |        IO_17(0) | 
 -----+-----+-------+-----------+------------------+-----------------+---------------------------------------------------------
-   2 |   0 |     * |      NONE |     HI_Z_DIGITAL |        IO_21(0) | 
-     |   1 |     * |      NONE |     HI_Z_DIGITAL |        IO_26(0) | 
-     |   2 |     * |      NONE |     HI_Z_DIGITAL |        IO_20(0) | 
-     |   3 |     * |      NONE |     HI_Z_DIGITAL |        IO_19(0) | 
-     |   4 |     * |      NONE |     HI_Z_DIGITAL |        IO_16(0) | 
-     |   5 |     * |      NONE |     HI_Z_DIGITAL |        IO_13(0) | 
-     |   6 |     * |      NONE |     HI_Z_DIGITAL |        IO_12(0) | 
-     |   7 |     * |      NONE |     HI_Z_DIGITAL |         IO_6(0) | 
+   2 |   0 |     * |      NONE |         CMOS_OUT |        IO_21(0) | 
+     |   1 |     * |      NONE |         CMOS_OUT |        IO_26(0) | 
+     |   2 |     * |      NONE |         CMOS_OUT |        IO_20(0) | 
+     |   3 |     * |      NONE |         CMOS_OUT |        IO_19(0) | 
+     |   4 |     * |      NONE |         CMOS_OUT |        IO_16(0) | 
+     |   5 |     * |      NONE |         CMOS_OUT |        IO_13(0) | 
+     |   6 |     * |      NONE |         CMOS_OUT |        IO_12(0) | 
+     |   7 |     * |      NONE |         CMOS_OUT |         IO_6(0) | 
 -----+-----+-------+-----------+------------------+-----------------+---------------------------------------------------------
-   5 |   0 |     * |      NONE |     HI_Z_DIGITAL |        IO_25(0) | 
+   5 |   0 |     * |      NONE |         CMOS_OUT |        IO_25(0) | 
      |   4 |     * |      NONE |         CMOS_OUT |          LED(0) | In(Net_1266_local)
-     |   5 |     * |      NONE |     HI_Z_DIGITAL |         IO_4(0) | 
-     |   6 |     * |      NONE |     HI_Z_DIGITAL |         IO_5(0) | 
-     |   7 |     * |      NONE |     HI_Z_DIGITAL |         IO_7(0) | 
+     |   5 |     * |      NONE |         CMOS_OUT |         IO_4(0) | 
+     |   6 |     * |      NONE |         CMOS_OUT |         IO_5(0) | 
+     |   7 |     * |      NONE |         CMOS_OUT |         IO_7(0) | 
 -----+-----+-------+-----------+------------------+-----------------+---------------------------------------------------------
-   6 |   4 |     * |      NONE |     HI_Z_DIGITAL |         IO_8(0) | 
-     |   5 |     * |      NONE |     HI_Z_DIGITAL |        IO_11(0) | 
-     |   6 |     * |      NONE |     HI_Z_DIGITAL |         IO_9(0) | 
-     |   7 |     * |      NONE |     HI_Z_DIGITAL |        IO_10(0) | 
+   6 |   4 |     * |      NONE |         CMOS_OUT |         IO_8(0) | 
+     |   5 |     * |      NONE |         CMOS_OUT |        IO_11(0) | 
+     |   6 |     * |      NONE |         CMOS_OUT |         IO_9(0) | 
+     |   7 |     * |      NONE |         CMOS_OUT |        IO_10(0) | 
 -----+-----+-------+-----------+------------------+-----------------+---------------------------------------------------------
-  12 |   0 |     * |      NONE |     HI_Z_DIGITAL |         IO_3(0) | 
+  12 |   0 |     * |      NONE |         CMOS_OUT |         IO_3(0) | 
      |   1 |     * |      NONE |         CMOS_OUT |         IO_2(0) | 
      |   4 |     * |      NONE |    OPEN_DRAIN_LO |         SCL0(0) | FB(\I2C_EEPROM:Net_1109_0\), In(\I2C_EEPROM:Net_643_0\)
      |   5 |     * |      NONE |    OPEN_DRAIN_LO |         SDA0(0) | FB(\I2C_EEPROM:Net_1109_1\), In(\I2C_EEPROM:sda_x_wire\)
-     |   6 |     * |      NONE |     HI_Z_DIGITAL |        IO_14(0) | 
-     |   7 |     * |      NONE |     HI_Z_DIGITAL |        IO_15(0) | 
+     |   6 |     * |      NONE |         CMOS_OUT |        IO_15(0) | 
+     |   7 |     * |      NONE |         CMOS_OUT |        IO_14(0) | 
 -----+-----+-------+-----------+------------------+-----------------+---------------------------------------------------------
   15 |   6 |     * |   FALLING |      HI_Z_ANALOG | \USBUART:Dp(0)\ | Analog(\USBUART:Net_1000\)
      |   7 |     * |      NONE |      HI_Z_ANALOG | \USBUART:Dm(0)\ | Analog(\USBUART:Net_597\)
@@ -3385,33 +3381,33 @@ Port | Pin | Fixed |      Type |       Drive Mode |            Name | Connection
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 0s.048ms
-Digital Placement phase: Elapsed time ==> 0s.971ms
+Digital component placer commit/Report: Elapsed time ==> 0s.059ms
+Digital Placement phase: Elapsed time ==> 1s.037ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata" --vh2-path "RPS_PSOC5_Serial_01_r.vh2" --pcf-path "RPS_PSOC5_Serial_01.pco" --des-name "RPS_PSOC5_Serial_01" --dsf-path "RPS_PSOC5_Serial_01.dsf" --sdc-path "RPS_PSOC5_Serial_01.sdc" --lib-path "RPS_PSOC5_Serial_01_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 1s.478ms
+Digital Routing phase: Elapsed time ==> 1s.316ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 0s.229ms
+Bitstream Generation phase: Elapsed time ==> 0s.155ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
-Bitstream Verification phase: Elapsed time ==> 0s.035ms
+Bitstream Verification phase: Elapsed time ==> 0s.034ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in RPS_PSOC5_Serial_01_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.339ms
+Static timing analysis phase: Elapsed time ==> 0s.270ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.215ms
+Design database save phase: Elapsed time ==> 0s.212ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 3s.879ms
+cydsfit: Elapsed time ==> 3s.598ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 3s.880ms
-API generation phase: Elapsed time ==> 2s.592ms
-Dependency generation phase: Elapsed time ==> 0s.027ms
+Fitter phase: Elapsed time ==> 3s.598ms
+API generation phase: Elapsed time ==> 2s.325ms
+Dependency generation phase: Elapsed time ==> 0s.014ms
 Cleanup phase: Elapsed time ==> 0s.000ms

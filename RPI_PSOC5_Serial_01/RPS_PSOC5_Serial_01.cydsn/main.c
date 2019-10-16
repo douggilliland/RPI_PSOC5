@@ -25,6 +25,8 @@
 
 #include <project.h>
 #include "stdio.h"
+#include "Test_RPP-UIO_16.h"
+
 
 #if defined (__GNUC__)
     /* Add an explicit reference to the floating point printf library */

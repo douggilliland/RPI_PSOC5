@@ -16,6 +16,7 @@
 
 #include <project.h>
 #include "RasPi_Pins.h"
+#include "Test_RPP-UIO_16.h"
 
 void blinkLED(uint8 RPI_Pin)
 {
@@ -58,8 +59,8 @@ void testRPPUIO16(void)
 // Blink all of the LEDs one at a time forever
 // CTRL-C to exit which is not a particularly elegant exit strategy, but this is a demo program
 
-    while (1)
-    {
+//    while (1)
+//    {
 //    	blinkLED(IO_2);
 //    	blinkLED(IO_3);
     	blinkLED(IO_4);
@@ -86,6 +87,6 @@ void testRPPUIO16(void)
 //    	blinkLED(IO_26);
 //    	blinkLED(IO_20);
 //    	blinkLED(IO_21);
-    }
+//    }
 }
 /* [] END OF FILE */

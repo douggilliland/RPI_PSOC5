@@ -9,8 +9,8 @@
   <block name="IO_18" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_17" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="LED" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="IO_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />

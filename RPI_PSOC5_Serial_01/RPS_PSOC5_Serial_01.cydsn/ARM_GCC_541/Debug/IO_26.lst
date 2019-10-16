@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
   28:Generated_Source\PSoC5/IO_26.c **** *
   29:Generated_Source\PSoC5/IO_26.c **** * \brief Writes the value to the physical port (data output register), masking
   30:Generated_Source\PSoC5/IO_26.c **** *  and shifting the bits appropriately. 
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 2
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 2
 
 
   31:Generated_Source\PSoC5/IO_26.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
   52 001c DBB2     		uxtb	r3, r3
   53 001e 03F00203 		and	r3, r3, #2
   54 0022 DAB2     		uxtb	r2, r3
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 3
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 3
 
 
   55 0024 FB7B     		ldrb	r3, [r7, #15]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
   85:Generated_Source\PSoC5/IO_26.c **** *  APIs (primary method) or disable interrupts around this function.
   86:Generated_Source\PSoC5/IO_26.c **** *
   87:Generated_Source\PSoC5/IO_26.c **** * \funcusage
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 4
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 4
 
 
   88:Generated_Source\PSoC5/IO_26.c **** *  \snippet IO_26_SUT.c usage_IO_26_SetDriveMode
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  133              		.align	2
  134              		.global	IO_26_Read
  135              		.thumb
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 5
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 5
 
 
  136              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  167 001a 00BF     		.align	2
  168              	.L9:
  169 001c 21510040 		.word	1073762593
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 6
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 6
 
 
  170              		.cfi_endproc
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  197 0010 DBB2     		uxtb	r3, r3
  144:Generated_Source\PSoC5/IO_26.c **** }
  198              		.loc 1 144 0
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 7
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 7
 
 
  199 0012 1846     		mov	r0, r3
@@ -389,45 +389,45 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  224 000c 1F000000 		.4byte	.LASF20
  225 0010 0C       		.byte	0xc
  226 0011 00000000 		.4byte	.LASF21
- 227 0015 49010000 		.4byte	.LASF22
+ 227 0015 C9000000 		.4byte	.LASF22
  228 0019 00000000 		.4byte	.Ldebug_ranges0+0
  229 001d 00000000 		.4byte	0
  230 0021 00000000 		.4byte	.Ldebug_line0
  231 0025 02       		.uleb128 0x2
  232 0026 01       		.byte	0x1
  233 0027 06       		.byte	0x6
- 234 0028 CE010000 		.4byte	.LASF0
+ 234 0028 D2010000 		.4byte	.LASF0
  235 002c 02       		.uleb128 0x2
  236 002d 01       		.byte	0x1
  237 002e 08       		.byte	0x8
- 238 002f CF000000 		.4byte	.LASF1
+ 238 002f 2C010000 		.4byte	.LASF1
  239 0033 02       		.uleb128 0x2
  240 0034 02       		.byte	0x2
  241 0035 05       		.byte	0x5
- 242 0036 B5010000 		.4byte	.LASF2
+ 242 0036 B9010000 		.4byte	.LASF2
  243 003a 02       		.uleb128 0x2
  244 003b 02       		.byte	0x2
  245 003c 07       		.byte	0x7
- 246 003d F4000000 		.4byte	.LASF3
+ 246 003d 51010000 		.4byte	.LASF3
  247 0041 02       		.uleb128 0x2
  248 0042 04       		.byte	0x4
  249 0043 05       		.byte	0x5
- 250 0044 C5010000 		.4byte	.LASF4
+ 250 0044 C9010000 		.4byte	.LASF4
  251 0048 02       		.uleb128 0x2
  252 0049 04       		.byte	0x4
  253 004a 07       		.byte	0x7
- 254 004b E2000000 		.4byte	.LASF5
+ 254 004b 3F010000 		.4byte	.LASF5
  255 004f 02       		.uleb128 0x2
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 8
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 8
 
 
  256 0050 08       		.byte	0x8
  257 0051 05       		.byte	0x5
- 258 0052 A2010000 		.4byte	.LASF6
+ 258 0052 A6010000 		.4byte	.LASF6
  259 0056 02       		.uleb128 0x2
  260 0057 08       		.byte	0x8
  261 0058 07       		.byte	0x7
- 262 0059 2D010000 		.4byte	.LASF7
+ 262 0059 8A010000 		.4byte	.LASF7
  263 005d 03       		.uleb128 0x3
  264 005e 04       		.byte	0x4
  265 005f 05       		.byte	0x5
@@ -435,33 +435,33 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  267 0064 02       		.uleb128 0x2
  268 0065 04       		.byte	0x4
  269 0066 07       		.byte	0x7
- 270 0067 20010000 		.4byte	.LASF8
+ 270 0067 7D010000 		.4byte	.LASF8
  271 006b 04       		.uleb128 0x4
- 272 006c BF010000 		.4byte	.LASF12
+ 272 006c C3010000 		.4byte	.LASF12
  273 0070 02       		.byte	0x2
  274 0071 E401     		.2byte	0x1e4
  275 0073 2C000000 		.4byte	0x2c
  276 0077 02       		.uleb128 0x2
  277 0078 04       		.byte	0x4
  278 0079 04       		.byte	0x4
- 279 007a C9000000 		.4byte	.LASF9
+ 279 007a 26010000 		.4byte	.LASF9
  280 007e 02       		.uleb128 0x2
  281 007f 08       		.byte	0x8
  282 0080 04       		.byte	0x4
- 283 0081 19010000 		.4byte	.LASF10
+ 283 0081 76010000 		.4byte	.LASF10
  284 0085 02       		.uleb128 0x2
  285 0086 01       		.byte	0x1
  286 0087 08       		.byte	0x8
- 287 0088 B0010000 		.4byte	.LASF11
+ 287 0088 B4010000 		.4byte	.LASF11
  288 008c 04       		.uleb128 0x4
- 289 008d DD000000 		.4byte	.LASF13
+ 289 008d 3A010000 		.4byte	.LASF13
  290 0091 02       		.byte	0x2
  291 0092 8E02     		.2byte	0x28e
  292 0094 98000000 		.4byte	0x98
  293 0098 05       		.uleb128 0x5
  294 0099 6B000000 		.4byte	0x6b
  295 009d 06       		.uleb128 0x6
- 296 009e ED010000 		.4byte	.LASF14
+ 296 009e F1010000 		.4byte	.LASF14
  297 00a2 01       		.byte	0x1
  298 00a3 39       		.byte	0x39
  299 00a4 00000000 		.4byte	.LFB0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  310 00be 91       		.byte	0x91
  311 00bf 6F       		.sleb128 -17
  312 00c0 08       		.uleb128 0x8
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 9
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 9
 
 
  313 00c1 B3000000 		.4byte	.LASF23
@@ -490,7 +490,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  319 00cd 77       		.sleb128 -9
  320 00ce 00       		.byte	0
  321 00cf 06       		.uleb128 0x6
- 322 00d0 DA010000 		.4byte	.LASF15
+ 322 00d0 DE010000 		.4byte	.LASF15
  323 00d4 01       		.byte	0x1
  324 00d5 5A       		.byte	0x5a
  325 00d6 00000000 		.4byte	.LFB1
@@ -499,7 +499,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  328 00df 9C       		.byte	0x9c
  329 00e0 F3000000 		.4byte	0xf3
  330 00e4 07       		.uleb128 0x7
- 331 00e5 44010000 		.4byte	.LASF17
+ 331 00e5 A1010000 		.4byte	.LASF17
  332 00e9 01       		.byte	0x1
  333 00ea 5A       		.byte	0x5a
  334 00eb 6B000000 		.4byte	0x6b
@@ -517,7 +517,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  346 0106 01       		.uleb128 0x1
  347 0107 9C       		.byte	0x9c
  348 0108 09       		.uleb128 0x9
- 349 0109 07010000 		.4byte	.LASF19
+ 349 0109 64010000 		.4byte	.LASF19
  350 010d 01       		.byte	0x1
  351 010e 8D       		.byte	0x8d
  352 010f 6B000000 		.4byte	0x6b
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  367 0007 03       		.uleb128 0x3
  368 0008 0E       		.uleb128 0xe
  369 0009 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 10
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 10
 
 
  370 000a 0E       		.uleb128 0xe
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  424 0040 3F       		.uleb128 0x3f
  425 0041 19       		.uleb128 0x19
  426 0042 03       		.uleb128 0x3
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 11
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 11
 
 
  427 0043 0E       		.uleb128 0xe
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  481 007a 03       		.uleb128 0x3
  482 007b 0E       		.uleb128 0xe
  483 007c 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 12
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 12
 
 
  484 007d 0B       		.uleb128 0xb
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  534      01010101 
  535              	.LASF21:
  536 0000 47656E65 		.ascii	"Generated_Source\\PSoC5\\IO_26.c\000"
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 13
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 13
 
 
  536      72617465 
@@ -752,100 +752,100 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 1
  546 00be 494F5F32 		.ascii	"IO_26_Read\000"
  546      365F5265 
  546      616400
- 547              	.LASF9:
- 548 00c9 666C6F61 		.ascii	"float\000"
- 548      7400
- 549              	.LASF1:
- 550 00cf 756E7369 		.ascii	"unsigned char\000"
- 550      676E6564 
- 550      20636861 
- 550      7200
- 551              	.LASF13:
- 552 00dd 72656738 		.ascii	"reg8\000"
- 552      00
- 553              	.LASF5:
- 554 00e2 6C6F6E67 		.ascii	"long unsigned int\000"
- 554      20756E73 
- 554      69676E65 
- 554      6420696E 
- 554      7400
- 555              	.LASF3:
- 556 00f4 73686F72 		.ascii	"short unsigned int\000"
- 556      7420756E 
- 556      7369676E 
- 556      65642069 
- 556      6E7400
- 557              	.LASF19:
- 558 0107 494F5F32 		.ascii	"IO_26_ReadDataReg\000"
- 558      365F5265 
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 14
+ 547              	.LASF22:
+ 548 00c9 433A5C55 		.ascii	"C:\\Users\\dgilliland\\Documents\\GitHub\\RPI_PSOC5"
+ 548      73657273 
+ 548      5C646769 
+ 548      6C6C696C 
+ 548      616E645C 
+ 549 00f7 5C525049 		.ascii	"\\RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial_01.cydsn\000"
+ 549      5F50534F 
+ 549      43355F53 
+ 549      65726961 
+ 549      6C5F3031 
+ 550              	.LASF9:
+ 551 0126 666C6F61 		.ascii	"float\000"
+ 551      7400
+ 552              	.LASF1:
+ 553 012c 756E7369 		.ascii	"unsigned char\000"
+ 553      676E6564 
+ 553      20636861 
+ 553      7200
+ 554              	.LASF13:
+ 555 013a 72656738 		.ascii	"reg8\000"
+ 555      00
+ 556              	.LASF5:
+ 557 013f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 557      20756E73 
+ 557      69676E65 
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 14
 
 
- 558      61644461 
- 558      74615265 
- 558      6700
- 559              	.LASF10:
- 560 0119 646F7562 		.ascii	"double\000"
- 560      6C6500
- 561              	.LASF8:
- 562 0120 756E7369 		.ascii	"unsigned int\000"
- 562      676E6564 
- 562      20696E74 
- 562      00
- 563              	.LASF7:
- 564 012d 6C6F6E67 		.ascii	"long long unsigned int\000"
- 564      206C6F6E 
- 564      6720756E 
- 564      7369676E 
- 564      65642069 
- 565              	.LASF17:
- 566 0144 6D6F6465 		.ascii	"mode\000"
- 566      00
- 567              	.LASF22:
- 568 0149 433A5C55 		.ascii	"C:\\Users\\HPz420\\Documents\\GitHub\\RPI_PSOC5\\RP"
- 568      73657273 
- 568      5C48507A 
- 568      3432305C 
- 568      446F6375 
- 569 0176 495F5053 		.ascii	"I_PSOC5_Serial_01\\RPS_PSOC5_Serial_01.cydsn\000"
- 569      4F43355F 
- 569      53657269 
- 569      616C5F30 
- 569      315C5250 
+ 557      6420696E 
+ 557      7400
+ 558              	.LASF3:
+ 559 0151 73686F72 		.ascii	"short unsigned int\000"
+ 559      7420756E 
+ 559      7369676E 
+ 559      65642069 
+ 559      6E7400
+ 560              	.LASF19:
+ 561 0164 494F5F32 		.ascii	"IO_26_ReadDataReg\000"
+ 561      365F5265 
+ 561      61644461 
+ 561      74615265 
+ 561      6700
+ 562              	.LASF10:
+ 563 0176 646F7562 		.ascii	"double\000"
+ 563      6C6500
+ 564              	.LASF8:
+ 565 017d 756E7369 		.ascii	"unsigned int\000"
+ 565      676E6564 
+ 565      20696E74 
+ 565      00
+ 566              	.LASF7:
+ 567 018a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 567      206C6F6E 
+ 567      6720756E 
+ 567      7369676E 
+ 567      65642069 
+ 568              	.LASF17:
+ 569 01a1 6D6F6465 		.ascii	"mode\000"
+ 569      00
  570              	.LASF6:
- 571 01a2 6C6F6E67 		.ascii	"long long int\000"
+ 571 01a6 6C6F6E67 		.ascii	"long long int\000"
  571      206C6F6E 
  571      6720696E 
  571      7400
  572              	.LASF11:
- 573 01b0 63686172 		.ascii	"char\000"
+ 573 01b4 63686172 		.ascii	"char\000"
  573      00
  574              	.LASF2:
- 575 01b5 73686F72 		.ascii	"short int\000"
+ 575 01b9 73686F72 		.ascii	"short int\000"
  575      7420696E 
  575      7400
  576              	.LASF12:
- 577 01bf 75696E74 		.ascii	"uint8\000"
+ 577 01c3 75696E74 		.ascii	"uint8\000"
  577      3800
  578              	.LASF4:
- 579 01c5 6C6F6E67 		.ascii	"long int\000"
+ 579 01c9 6C6F6E67 		.ascii	"long int\000"
  579      20696E74 
  579      00
  580              	.LASF0:
- 581 01ce 7369676E 		.ascii	"signed char\000"
+ 581 01d2 7369676E 		.ascii	"signed char\000"
  581      65642063 
  581      68617200 
  582              	.LASF15:
- 583 01da 494F5F32 		.ascii	"IO_26_SetDriveMode\000"
+ 583 01de 494F5F32 		.ascii	"IO_26_SetDriveMode\000"
  583      365F5365 
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccvrvZSi.s 			page 15
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cca0TX9L.s 			page 15
 
 
  583      74447269 
  583      76654D6F 
  583      646500
  584              	.LASF14:
- 585 01ed 494F5F32 		.ascii	"IO_26_Write\000"
+ 585 01f1 494F5F32 		.ascii	"IO_26_Write\000"
  585      365F5772 
  585      69746500 
  586              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
