@@ -28,6 +28,8 @@ void blinkLED(uint8 RPI_Pin)
 void testRPPUIO16(void)
 {
 // Set all of the RPI pins to outputs
+    setRasPiPin(IO_21,0);
+
     setRasPiPin(IO_2,0);
     setRasPiPin(IO_3,0);
     setRasPiPin(IO_4,0);
@@ -53,40 +55,41 @@ void testRPPUIO16(void)
     setRasPiPin(IO_16,0);
     setRasPiPin(IO_26,0);
     setRasPiPin(IO_20,0);
-    setRasPiPin(IO_21,0);
     
 
 // Blink all of the LEDs one at a time forever
 // CTRL-C to exit which is not a particularly elegant exit strategy, but this is a demo program
 
 //    while (1)
-//    {
-//    	blinkLED(IO_2);
-//    	blinkLED(IO_3);
+    {
+    	blinkLED(IO_21);
+    	blinkLED(IO_7);     // SPICE1
+        blinkLED(IO_10);    // SPIMOSI
+        blinkLED(IO_9);     // SPIMISO
+        blinkLED(IO_11);    // SPISCK
+       	blinkLED(IO_8);     // SPICE0
+    	blinkLED(IO_2);     // SDA1
+    	blinkLED(IO_3);     // SCL1
+    	blinkLED(IO_14);    // TXD0
+    	blinkLED(IO_15);    // RXD0
+        
     	blinkLED(IO_4);
-    	blinkLED(IO_14);
-//    	blinkLED(IO_15);
-//    	blinkLED(IO_17);
-//    	blinkLED(IO_18);
-//    	blinkLED(IO_27);
-//    	blinkLED(IO_22);
-//    	blinkLED(IO_23);
-//    	blinkLED(IO_24);
-//    	blinkLED(IO_10);
-//    	blinkLED(IO_9);
-//    	blinkLED(IO_25);
-//    	blinkLED(IO_11);
-//    	blinkLED(IO_8);
-//    	blinkLED(IO_7);
-//    	blinkLED(IO_5);
-//    	blinkLED(IO_6);
-//    	blinkLED(IO_12);
-//    	blinkLED(IO_13);
-//    	blinkLED(IO_19);
-//    	blinkLED(IO_16);
-//    	blinkLED(IO_26);
-//    	blinkLED(IO_20);
-//    	blinkLED(IO_21);
-//    }
+    	blinkLED(IO_18);
+    	blinkLED(IO_17);
+    	blinkLED(IO_27);
+    	blinkLED(IO_23);
+    	blinkLED(IO_22);
+    	blinkLED(IO_24);
+    	blinkLED(IO_25);
+        
+    	blinkLED(IO_5);
+    	blinkLED(IO_6);
+    	blinkLED(IO_12);
+    	blinkLED(IO_13);
+    	blinkLED(IO_19);
+    	blinkLED(IO_16);
+        blinkLED(IO_26);
+    	blinkLED(IO_20);
+    }
 }
 /* [] END OF FILE */

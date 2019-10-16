@@ -1,5 +1,5 @@
 # RPS_PSOC5_Serial_01
-# 2019-10-16 20:12:43Z
+# 2019-10-16 21:49:23Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
