@@ -1,11 +1,11 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
+ * Copyright LAND BOARDS, LLC, 2019
  * All Rights Reserved
  * UNPUBLISHED, LICENSED SOFTWARE.
  *
  * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * WHICH IS THE PROPERTY OF Land Boards.
  *
  * ========================================
 */
@@ -29,7 +29,6 @@ void testRPPUIO16(void)
 {
 // Set all of the RPI pins to outputs
     setRasPiPin(IO_21,0);
-
     setRasPiPin(IO_2,0);
     setRasPiPin(IO_3,0);
     setRasPiPin(IO_4,0);
@@ -56,13 +55,11 @@ void testRPPUIO16(void)
     setRasPiPin(IO_26,0);
     setRasPiPin(IO_20,0);
     
-
 // Blink all of the LEDs one at a time forever
 // CTRL-C to exit which is not a particularly elegant exit strategy, but this is a demo program
 
 //    while (1)
     {
-    	blinkLED(IO_21);
     	blinkLED(IO_7);     // SPICE1
         blinkLED(IO_10);    // SPIMOSI
         blinkLED(IO_9);     // SPIMISO
@@ -90,6 +87,8 @@ void testRPPUIO16(void)
     	blinkLED(IO_16);
         blinkLED(IO_26);
     	blinkLED(IO_20);
+        
+    	blinkLED(IO_21);
     }
 }
 /* [] END OF FILE */
