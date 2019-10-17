@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="RPS_PSOC5_Serial_01">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\main.c">
 <ExpandedNodeIds>
 <v>RPS_PSOC5_Serial_01</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01</v>
@@ -29,6 +29,8 @@
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydwr\Flash Security</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydwr\EEPROM</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files</v>
+<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\ExtEEPROM.c</v>
+<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\ExtEEPROM.h</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\main.c</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\program_RPI_EEPROM.c</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\RasPi_Pins.c</v>
@@ -58,6 +60,8 @@
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydwr\Flash Security</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydwr\EEPROM</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files</v>
+<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\ExtEEPROM.c</v>
+<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\ExtEEPROM.h</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\main.c</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\program_RPI_EEPROM.c</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\RasPi_Pins.c</v>
@@ -86,8 +90,6 @@
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Generated_Source\PSoC5\IO_19</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Generated_Source\PSoC5\IO_2</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Generated_Source\PSoC5\IO_2\IO_2.c</v>
-<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Generated_Source\PSoC5\IO_2\IO_2.h</v>
-<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Generated_Source\PSoC5\IO_2\IO_2_aliases.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -143,6 +145,7 @@
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyScBoostClk.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\ExtEEPROM.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_EEPROM.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_EEPROM_BOOT.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_EEPROM_INT.lst</v>
@@ -227,6 +230,7 @@
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyScBoostClk.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\ExtEEPROM.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_EEPROM.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_EEPROM_BOOT.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_EEPROM_INT.lst</v>
@@ -251,7 +255,6 @@
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\IO_24.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\IO_25.lst</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\IO_26.lst</v>
-<v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\CortexM3\ARM_GCC_541\Debug\Listing Files\IO_27.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -301,16 +304,16 @@
 <OpenDocs>
 <name v=".\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cydwr" />
+<name v=".\RPS_PSOC5_Serial_01.cydsn\main.c" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\Test_RPP-UIO_16.c" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\Test_RPP-UIO_16.h" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\RasPi_Pins.c" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\RasPi_Pins.h" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\main.c" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\testCards.c" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\IO_2.c" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\IO_4.c" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\CyLib.c" />
+<name v=".\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.c" />
+<name v=".\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.h" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\CyBootAsmGnu.s" />
+<name v=".\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\USBUART.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -318,7 +321,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="771, 634" SelectedTabbedMdiWindow="5d142e14-be79-4d29-b3e2-1415a9558c1e"><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch" Guid="5d142e14-be79-4d29-b3e2-1415a9558c1e" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cydwr" Guid="46ff37a3-8ae0-4302-8911-04c02efd2a5d" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Test_RPP-UIO_16.c" Guid="949efd93-25e3-4778-8e74-3237e31fe74a" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Test_RPP-UIO_16.h" Guid="0b5af6c7-8b30-4132-ac63-50982a21d155" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RasPi_Pins.c" Guid="bde088b8-5b72-4b02-a79d-b15a7f214573" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RasPi_Pins.h" Guid="e5a97587-34a9-4faf-be35-bd63fc1d3d0c" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\main.c" Guid="252a6b6c-3a70-476a-9a42-7596c8357920" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\testCards.c" Guid="3f500e73-3add-4ebe-809c-41fdcb9cfb16" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\IO_2.c" Guid="7cd39a7f-ab37-405b-ba05-c51dfd45728c" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\IO_4.c" Guid="dc6de19b-55f5-4c99-980e-e6016a4c67f8" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\CyLib.c" Guid="c90179fe-35ba-400e-9df4-1a9342ea845a" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\CyBootAsmGnu.s" Guid="d57858a6-ba38-49fb-bf28-339903c90ee9" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1143, 634" SelectedTabbedMdiWindow="1777f64e-cf9a-43d5-b059-f2adb2451302"><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch" Guid="5d142e14-be79-4d29-b3e2-1415a9558c1e" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cydwr" Guid="46ff37a3-8ae0-4302-8911-04c02efd2a5d" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\main.c" Guid="252a6b6c-3a70-476a-9a42-7596c8357920" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Test_RPP-UIO_16.c" Guid="949efd93-25e3-4778-8e74-3237e31fe74a" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Test_RPP-UIO_16.h" Guid="0b5af6c7-8b30-4132-ac63-50982a21d155" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RasPi_Pins.c" Guid="bde088b8-5b72-4b02-a79d-b15a7f214573" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RasPi_Pins.h" Guid="e5a97587-34a9-4faf-be35-bd63fc1d3d0c" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\testCards.c" Guid="3f500e73-3add-4ebe-809c-41fdcb9cfb16" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.c" Guid="1777f64e-cf9a-43d5-b059-f2adb2451302" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.h" Guid="e68c4ad7-eeae-4677-859c-a0a504871e3e" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\CyBootAsmGnu.s" Guid="18aaa627-d484-4590-a9c9-7778d448edc0" /><DocumentWindow Key="C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\USBUART.c" Guid="e23de179-8900-4eca-b891-b554ef078d25" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

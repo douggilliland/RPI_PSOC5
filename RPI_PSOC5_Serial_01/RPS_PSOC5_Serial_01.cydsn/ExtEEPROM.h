@@ -10,4 +10,9 @@
  * ========================================
 */
 
+#include <project.h>
+
+void readEEPROM(char *eepromBuffer);
+void dumpEEPROM(char * eepromBuffer);
+
 /* [] END OF FILE */

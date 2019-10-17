@@ -37,10 +37,10 @@
 
 #define USBFS_DEVICE    (0u)
 
-/* The buffer size is equal to the maximum packet size of the IN and OUT bulk
+/* The inBuffer size is equal to the maximum packet size of the IN and OUT bulk
 * endpoints.
 */
-#define USBUART_BUFFER_SIZE (64u)
+#define USBUART_Buffer_SIZE (64u)
 
 /*******************************************************************************
 * Function Name: main
@@ -62,8 +62,11 @@
 *******************************************************************************/
 int main()
 {
-    uint16 count;
-    uint8 buffer[USBUART_BUFFER_SIZE];
+    uint16 inCount;
+    uint16 outCount;
+    uint8 inBuffer[USBUART_Buffer_SIZE];
+    char outBuffer[USBUART_Buffer_SIZE];
+    char eepromBuffer[256];
         
     CyGlobalIntEnable;
 
@@ -91,24 +94,48 @@ int main()
             if (0u != USBUART_DataIsReady())
             {
                 /* Read received data and re-enable OUT endpoint. */
-                count = USBUART_GetAll(buffer);
+                inCount = USBUART_GetAll(inBuffer);
 
-                if (0u != count)
+                if (0u != inCount)
                 {
                     /* Wait until component is ready to send data to host. */
-                    while (0u == USBUART_CDCIsReady())
+                    while (0u == USBUART_CDCIsReady());
+                    if ((inBuffer[0] == 'r') || (inBuffer[0] == 'R'))
                     {
+                        strcpy(outBuffer,"Read from the EEPROM\n\r");
+                        outCount = strlen(outBuffer);
+                        USBUART_PutData(outBuffer, outCount);
+                        while (0u == USBUART_CDCIsReady());
+                        readEEPROM(eepromBuffer);
+                        dumpEEPROM(eepromBuffer);
                     }
-
-                    /* Send data back to host. */
-                    USBUART_PutData(buffer, count);
-
+                    else if ((inBuffer[0] == 'w') || (inBuffer[0] == 'W'))
+                    {
+                        strcpy(outBuffer,"Write to the EEPROM\n\r");
+                        outCount = strlen(outBuffer);
+                        USBUART_PutData(outBuffer, outCount);
+                    }
+                    else if ((inBuffer[0] == 'b') || (inBuffer[0] == 'B'))
+                    {
+                        strcpy(outBuffer,"Blinking the LEDs on the RPP-UIO-16 card, please wait\n\r");
+                        outCount = strlen(outBuffer);
+                        USBUART_PutData(outBuffer, outCount);
+                        testRPPUIO16();
+                        strcpy(outBuffer,"Completed blinking the LEDs on the RPP-UIO-16 card\n\r");
+                        USBUART_PutData(outBuffer, outCount);
+                    }
+                    else
+                    {
+                        strcpy(outBuffer,"Not a valid command, legal values are r, w, b\n\r");
+                        outCount = strlen(outBuffer);
+                        USBUART_PutData(outBuffer, outCount);
+                    }
                     /* If the last sent packet is exactly the maximum packet 
                     *  size, it is followed by a zero-length packet to assure
                     *  that the end of the segment is properly identified by 
                     *  the terminal.
                     */
-                    if (USBUART_BUFFER_SIZE == count)
+                    if (USBUART_Buffer_SIZE == inCount)
                     {
                         /* Wait until component is ready to send data to PC. */
                         while (0u == USBUART_CDCIsReady())
@@ -121,7 +148,6 @@ int main()
                 }
             }
         }
-        testRPPUIO16();
     }
 }
 
