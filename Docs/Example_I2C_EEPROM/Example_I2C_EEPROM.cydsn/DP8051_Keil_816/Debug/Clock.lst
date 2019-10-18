@@ -1,0 +1,335 @@
+C51 COMPILER V8.16   CLOCK                                                                 12/13/2010 22:57:34 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE CLOCK
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/Clock.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\Clock.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects/
+                    -PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/Clock.lst) DB NOIP OT(0) INCDIR(Gener
+                    -ated_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/E
+                    -xample_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/Clock.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: Clock.c
+   3          * Version 1.0
+   4          *
+   5          *  Description:
+   6          *    API for controlling a clock.
+   7          *
+   8          *    A clock has an input source and a divider.  These are assigned 
+   9          *    by CyDesigner.  Durring code generation, CyDesigner creates
+  10          *    the necessary defines for manipulating the registers associated
+  11          *    with the assigned clock.  This API uses those register definitions
+  12          *    to control the clock.  
+  13          *
+  14          *   Note:
+  15          *
+  16          *
+  17          ********************************************************************************
+  18          * Copyright 2008-2009, Cypress Semiconductor Corporation.  All rights reserved.
+  19          * You may use this file only in accordance with the license, terms, conditions, 
+  20          * disclaimers, and limitations in the end user license agreement accompanying 
+  21          * the software package with which this file was provided.
+  22          ********************************************************************************/
+  23          
+  24          
+  25          #include <CYDEVICE.H>
+  26          #include "Clock.H"
+  27          
+  28          
+  29          
+  30          
+  31          
+  32          
+  33          
+  34          /* Clock Distribution registers. */
+  35          #define CLK_DIST_CR                  ((reg8 *) CYDEV_CLKDIST_CR)
+  36          #define CLK_DIST_LD                  ((reg8 *) CYDEV_CLKDIST_LD)
+  37          
+  38          #define CLK_DIST_BCFG0               ((reg8 *) CYDEV_CLKDIST_BCFG0)
+  39          #define CLK_DIST_BCFG1               ((reg8 *) CYDEV_CLKDIST_BCFG1)
+  40          #define CLK_DIST_BCFG2               ((reg8 *) CYDEV_CLKDIST_BCFG2)
+  41          
+  42          #define BCFG2_SHADOW_MASK            (0x80)
+  43          
+  44          #define CLK_DIST_WRK0                ((reg8 *) CYDEV_CLKDIST_WRK0)
+  45          #define CLK_DIST_WRK1                ((reg8 *) CYDEV_CLKDIST_WRK1)
+  46          
+  47          #define CLK_DIST_DMASK               ((reg8 *) CYDEV_CLKDIST_DMASK)
+  48          #define CLK_DIST_AMASK               ((reg8 *) CYDEV_CLKDIST_AMASK)
+  49          
+  50          
+C51 COMPILER V8.16   CLOCK                                                                 12/13/2010 22:57:34 PAGE 2   
+
+  51          /*******************************************************************************
+  52          * Function Name: Clock_Start
+  53          ********************************************************************************
+  54          * Summary:
+  55          *   Enables the clock by setting the enable bit in the 'Active Power Mode
+  56          *   Configuration Register' corresponding to this clock.
+  57          *
+  58          *
+  59          * Parameters:
+  60          *   void.
+  61          *
+  62          * Return:
+  63          *   void.
+  64          *   
+  65          *
+  66          *******************************************************************************/
+  67          void Clock_Start(void)
+  68          {
+  69   1          /* Set the bit to enable the clock. */
+  70   1          *Clock_CLKEN |= Clock_CLKEN_MASK;
+  71   1      }
+  72          
+  73          
+  74          /*******************************************************************************
+  75          * Function Name: Clock_Stop
+  76          ********************************************************************************
+  77          * Summary:
+  78          *   Disables the clock by clearing the enable bit in the 'Active Power Mode
+  79          *   Configuration Register' corresponding to this clock.
+  80          *
+  81          *   if the clock is disabled, the output will be held at logic 0 when the
+  82          *   signal transitions to a logic 0.
+  83          *
+  84          * Parameters:
+  85          *   void.
+  86          *
+  87          *
+  88          * Return:
+  89          *   void.
+  90          *   
+  91          *
+  92          *******************************************************************************/
+  93          void Clock_Stop(void)
+  94          {
+  95   1          /* Clear the bit to enable the clock. */
+  96   1          *Clock_CLKEN &= ~Clock_CLKEN_MASK;
+  97   1      }
+  98          
+  99          
+ 100          /*******************************************************************************
+ 101          * Function Name: Clock_StandbyPower
+ 102          ********************************************************************************
+ 103          * Summary:
+ 104          *   Selects the power state for this clock when in standby power mode.
+ 105          *
+ 106          * Parameters:
+ 107          *   state:
+ 108          *       state of this clock during standby power mode. 1 is active, 0 inactive.
+ 109          *
+ 110          *   
+ 111          * Return:
+ 112          *   void.
+C51 COMPILER V8.16   CLOCK                                                                 12/13/2010 22:57:34 PAGE 3   
+
+ 113          *
+ 114          *
+ 115          *******************************************************************************/
+ 116          void Clock_StandbyPower(uint8 state)
+ 117          {
+ 118   1          if(state == 0)
+ 119   1          {
+ 120   2              *Clock_CLKSTBY &= ~Clock_CLKSTBY_MASK;
+ 121   2          }
+ 122   1          else
+ 123   1          {
+ 124   2              *Clock_CLKSTBY |= Clock_CLKSTBY_MASK;
+ 125   2          }
+ 126   1      }
+ 127          
+ 128          
+ 129          /*******************************************************************************
+ 130          * Function Name: Clock_SetDivider
+ 131          ********************************************************************************
+ 132          * Summary:
+ 133          *   Sets the divider of the clock.
+ 134          *
+ 135          *
+ 136          * Parameters:
+ 137          * clkDivider:
+ 138          *   Value to device the input clock by.
+ 139          *
+ 140          *
+ 141          * Return:
+ 142          *   void.
+ 143          *   
+ 144          *
+ 145          * Theory:
+ 146          *   Any value other than zero is acceptable.
+ 147          *
+ 148          *
+ 149          *******************************************************************************/
+ 150          void Clock_SetDivider(uint16 clkDivider)
+ 151          {
+ 152   1          // Clear all the mask bits except ours.
+ 153   1      #if defined(Clock__CFG3)
+                  *CLK_DIST_AMASK = Clock_CLKEN_MASK;
+                  *CLK_DIST_DMASK = 0;
+              #else
+ 157   1          *CLK_DIST_DMASK = Clock_CLKEN_MASK;
+ 158   1          *CLK_DIST_AMASK = 0;
+ 159   1      #endif
+ 160   1      
+ 161   1          /* Set the mask bit to enable shadow loads. */
+ 162   1          *CLK_DIST_BCFG2 |= BCFG2_SHADOW_MASK;
+ 163   1      
+ 164   1          *CLK_DIST_WRK0 = LO8(clkDivider);
+ 165   1          *CLK_DIST_WRK1 = HI8(clkDivider);
+ 166   1      
+ 167   1          /* Load mask and restart together. */
+ 168   1          *CLK_DIST_LD = 3;
+ 169   1      }
+ 170          
+ 171          
+ 172          /*******************************************************************************
+ 173          * Function Name: Clock_SetMode
+ 174          ********************************************************************************
+C51 COMPILER V8.16   CLOCK                                                                 12/13/2010 22:57:34 PAGE 4   
+
+ 175          * Summary:
+ 176          *   Sets the operating mode of the clock.
+ 177          *
+ 178          *
+ 179          * Parameters:
+ 180          * clkMode: The following optional bits or'ed together.
+ 181          *
+ 182          *   CYCLK_PIPE 
+ 183          *   CYCLK_SSS  
+ 184          *   CYCLK_EARLY
+ 185          *   CYCLK_DUTY 
+ 186          *   CYCLK_SYNC 
+ 187          *
+ 188          * Return:
+ 189          *   void.
+ 190          *   
+ 191          *
+ 192          *******************************************************************************/
+ 193          void Clock_SetMode(uint8 clkMode)
+ 194          {
+ 195   1          uint8 value;
+ 196   1      
+ 197   1      
+ 198   1          /* Get the mode and source for the clock. */
+ 199   1          value = *Clock_MOD_SRC;
+ 200   1      
+ 201   1          /* Clear out the mode. */
+ 202   1          value &= 0x07u;
+ 203   1      
+ 204   1          /* Write the new mode. */
+ 205   1          value |= clkMode;
+ 206   1      
+ 207   1          /* Set the new mode of the clock. */
+ 208   1          *Clock_MOD_SRC = value;
+ 209   1      }
+ 210          
+ 211          
+ 212          /*******************************************************************************
+ 213          * Function Name: Clock_SetSource
+ 214          ********************************************************************************
+ 215          * Summary:
+ 216          *   Sets the input source of the clock.
+ 217          *
+ 218          * Parameters:
+ 219          * clkSource:
+ 220          *   One of the following input sources.
+ 221          *
+ 222          *   CYCLK_SRC_SEL_SYNC_DIG
+ 223          *   CYCLK_SRC_SEL_IMO  
+ 224          *   CYCLK_SRC_SEL_XTALM
+ 225          *   CYCLK_SRC_SEL_ILO  
+ 226          *   CYCLK_SRC_SEL_PLL  
+ 227          *   CYCLK_SRC_SEL_XTALK
+ 228          *   CYCLK_SRC_SEL_DSI_G
+ 229          *   CYCLK_SRC_SEL_DSI_D
+ 230          *
+ 231          * Return:
+ 232          *   void.
+ 233          *   
+ 234          *
+ 235          *******************************************************************************/
+ 236          void Clock_SetSource(uint8 clkSource)
+C51 COMPILER V8.16   CLOCK                                                                 12/13/2010 22:57:34 PAGE 5   
+
+ 237          {
+ 238   1          uint8 value;
+ 239   1      
+ 240   1      
+ 241   1          /* Get the mode and source for the clock. */
+ 242   1          value = *Clock_MOD_SRC;
+ 243   1      
+ 244   1          /* Clear out the source. */
+ 245   1          value &= 0xF8u;
+ 246   1      
+ 247   1          /* Write the new source. */
+ 248   1          value |= clkSource;
+ 249   1      
+ 250   1          /* Set the new mode of the clock. */
+ 251   1          *Clock_MOD_SRC = value;
+ 252   1      }
+ 253          
+ 254          
+ 255          #if defined(Clock__CFG3)
+              
+              /*******************************************************************************
+              * Function Name: Clock_SetPhase
+              ********************************************************************************
+              * Summary:
+              *   Sets the phase delay of the analog clock.
+              *
+              *   0x01      2.5ns delay
+              *   0x02      3.5ns delay
+              *
+              *   ...
+              *
+              *   0x0a      11.5ns delay
+              *   0x0b      12.5ns delay
+              *
+              *
+              * Parameters:
+              * clkPhase: Amount to delay the phase of the clock, in 1.0 ns increments
+              *           up to 0x0B (12.5ns).
+              *
+              * Return:
+              *   void.
+              *   
+              *
+              *******************************************************************************/
+              void Clock_SetPhase(uint8 clkPhase)
+              {
+              
+                  *Clock_PHASE = 0x0Fu & clkPhase;
+              
+              }
+              
+              #endif
+ 289          
+ 290          
+ 291          
+ 292          
+ 293          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    244    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V8.16   CLOCK                                                                 12/13/2010 22:57:34 PAGE 6   
+
+   XDATA SIZE       =      7    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,226 @@
+C51 COMPILER V8.16   MAIN                                                                  12/14/2010 04:18:13 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/main.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\main
+                    -.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example
+                    -_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/main.lst) DB NOIP OT(0) INCDIR(Generated_Source/PSoC3) OJ(C:/
+                    -Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/D
+                    -P8051_Keil_816/Debug/main.OBJ)
+
+line level    source
+
+   1          //--------------------------------------------------------------------------
+   2          //
+   3          // Copyright 2008, Cypress Semiconductor Corporation.
+   4          //
+   5          // This software is owned by Cypress Semiconductor Corporation (Cypress)
+   6          // and is protected by and subject to worldwide patent protection (United
+   7          // States and foreign), United States copyright laws and international
+   8          // treaty provisions. Cypress hereby grants to licensee a personal,
+   9          // non-exclusive, non-transferable license to copy, use, modify, create
+  10          // derivative works of, and compile the Cypress Source Code and derivative
+  11          // works for the sole purpose of creating custom software in support of
+  12          // licensee product to be used only in conjunction with a Cypress integrated
+  13          // circuit as specified in the applicable agreement. Any reproduction,
+  14          // modification, translation, compilation, or representation of this
+  15          // software except as specified above is prohibited without the express
+  16          // written permission of Cypress.
+  17          //
+  18          // Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND,EXPRESS OR IMPLIED,
+  19          // WITH REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  20          // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  21          // Cypress reserves the right to make changes without further notice to the
+  22          // materials described herein. Cypress does not assume any liability arising
+  23          // out of the application or use of any product or circuit described herein.
+  24          // Cypress does not authorize its products for use as critical components in
+  25          // life-support systems where a malfunction or failure may reasonably be
+  26          // expected to result in significant injury to the user. The inclusion of
+  27          // Cypress' product in a life-support systems application implies that the
+  28          // manufacturer assumes all risk of such use and in doing so indemnifies
+  29          // Cypress against all charges.
+  30          //
+  31          // Use may be limited by and subject to the applicable Cypress software
+  32          // license agreement.
+  33          //
+  34          //
+  35          //--------------------------------------------------------------------------
+  36          //*****************************************************************************
+  37          //*****************************************************************************
+  38          //  FILENAME: main.c
+  39          //   Version: 1.0, Updated on 24 November 2009
+  40          //
+  41          //  DESCRIPTION: Main file of the Example_I2C_EEPROM Project.
+  42          //
+  43          //-----------------------------------------------------------------------------
+  44          //  Copyright (c) Cypress MicroSystems 2000-2003. All Rights Reserved.
+  45          //*****************************************************************************
+  46          //*****************************************************************************
+  47          //*****************************************************************************
+  48          // 
+  49          //The project can be tested using a serial EEPROM 24C04.
+  50          // 
+C51 COMPILER V8.16   MAIN                                                                  12/14/2010 04:18:13 PAGE 2   
+
+  51          //CY8CKIT-001 Board Project
+  52          //
+  53          //Project Objective
+  54          //          To demonstrate the interfacing of serial EEPROM with PSoC.
+  55          //
+  56          //Overview
+  57          //      This project is designed to demonstrate the interfacing of serial EEPROM with PSoC.
+  58          //      In this I2C protocol is used to control the transfer between the EEPROM and PSoC.
+  59          //
+  60          //      The following changes were made to the default settings in the Device Editor:
+  61          // 
+  62          //      Select User Modules
+  63          //          o Place I2C Component 
+  64          //          o In this example, this Component is renamed as I2C
+  65          //              o Place Character LCD Component
+  66          //                      o Rename it as LCD
+  67          //              Configure these Components as explained in documentation.
+  68          //
+  69          // Operation
+  70          //      Upon program execution all hardware settings from the device configuration are loaded 
+  71          //      into the device and main.c is executed. Data Stored in the RAM (RAMBuffer) is transmitted
+  72          //      out of PSoC to be stored at address 0 of external EEPROM using I2C protocol.  Next the
+  73          //      internal subaddress of EEPROM is reset to 0 and data is read back
+  74          //
+  75          // Circuit Connections
+  76          //      This example can be tested using the CCY8CKIT-001 board.  The following connections
+  77          //      are to be made.  
+  78          // 
+  79          //      PSoC
+  80          //      --------
+  81          //              P4[5] - SDA                     (Externally pull up to Vcc using 2.2K resistor)
+  82          //              P4[4] - SCL                     (Externally pull up to Vcc using 2.2K resistor)
+  83          //      
+  84          //      24C04 (8 Pin PDIP) - EEPROM             
+  85          //      ---------------------------
+  86          //              Pin 1,2,3       - Ground    (to make the 7 bit address as 1010 000)
+  87          //              Pin 4           - Ground
+  88          //              Pin 5           - SDA           Connect to P4[5] of PSoC
+  89          //              Pin 6           - SCL           Connect to P4[4] of PSoC
+  90          //              Pin 7           - Ground
+  91          //              Pin 8           - Vcc.  
+  92          //
+  93          //----------------------------------------------------------------------------
+  94          
+  95          
+  96          #include <device.h> 
+  97          
+  98          //Word address
+  99          #define ADDR 0x00 
+ 100          
+ 101          //Slave address
+ 102          #define SLAVE_ADDR 0x50 
+ 103          
+ 104          //Message is the data which has to be written to EEPROM. 
+ 105          //First data in this array is Word address
+ 106          uint8 cMessage[] = {ADDR, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+ 107          
+ 108          // buffer to save read back data
+ 109          uint8 cRx_Buffer[15]; 
+ 110          
+ 111          // Length of data to be written including word address
+ 112          uint8 cLength = 0x11; 
+C51 COMPILER V8.16   MAIN                                                                  12/14/2010 04:18:13 PAGE 3   
+
+ 113          
+ 114          uint8 cStatus,cIndex,cPosn;
+ 115          
+ 116          //Main routine starts from here
+ 117          void main()
+ 118          {
+ 119   1              // enable global interrupts
+ 120   1              CYGlobalIntEnable;  
+ 121   1              
+ 122   1              // enable I2C interrupts
+ 123   1              I2C_EnableInt();  
+ 124   1              
+ 125   1              //Start LCD
+ 126   1              LCD_Start(); 
+ 127   1              
+ 128   1              //Start I2C
+ 129   1              I2C_Start(); 
+ 130   1              
+ 131   1          for(;;)
+ 132   1          {
+ 133   2                      I2C_MasterClearStatus(); /* Clear any previous status */
+ 134   2                                              
+ 135   2                      //Following API writes the data from PSoC3 RAM buffer to EEPROM
+ 136   2                      //SLAVE_ADDR is the slave address in this API
+ 137   2                      //cMessage is the pointer to array which contains the data to be written to EEPROM.
+ 138   2                      //cLength is the number of bytes which have to be written to EEPROM
+ 139   2                      //I2C_MODE_COMPLETE_XFER, is to send data completly before sending stop command.
+ 140   2                      
+ 141   2                      I2C_MasterWriteBuf(SLAVE_ADDR, cMessage, cLength, I2C_MODE_COMPLETE_XFER);
+ 142   2                      
+ 143   2                      //wait until Transfer is complete
+ 144   2                      while((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT )==0); 
+ 145   2                      
+ 146   2                      // delay to complete the write operation(twr)
+ 147   2                      CyDelay(10);
+ 148   2                      
+ 149   2                      //write a dummy byte to initialize the address word counter of 
+ 150   2                      //eeprom to start address for read back operation. First location 
+ 151   2                      //of cMessage array has word address.
+ 152   2                      
+ 153   2                      I2C_MasterWriteBuf(SLAVE_ADDR, cMessage, 1, I2C_MODE_COMPLETE_XFER);
+ 154   2                      
+ 155   2                      //wait until Transfer is complete
+ 156   2                      while((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT )==0);
+ 157   2                      
+ 158   2                      //Delay for setting address in EEPROM
+ 159   2                      CyDelayUs(1);
+ 160   2                      
+ 161   2                      //Read the 16 bytes from slave, staring from word address specified by iMessage
+ 162   2                      //SLAVE_ADDR is the slave address in this API
+ 163   2                      //cRx_Buffer is the pointer to array where data has to be stored after reading from EEPROM.
+ 164   2                      //cLength-1 is the number of bytes which have to be read from EEPROM
+ 165   2                      //I2C_MODE_COMPLETE_XFER, is to read data completly before sending stop command.
+ 166   2                      
+ 167   2                      I2C_MasterReadBuf(SLAVE_ADDR, cRx_Buffer,cLength-1, I2C_MODE_COMPLETE_XFER );
+ 168   2                                      
+ 169   2                      //wait until Transfer is complete
+ 170   2                      while((I2C_MasterStatus() & I2C_MSTAT_RD_CMPLT )==0); 
+ 171   2                      
+ 172   2                      //Display the data LCD. First 8 bytes in row 0          
+ 173   2                      for (cIndex=0,cPosn=0;cIndex<8;cIndex++,cPosn+=2)
+ 174   2                      {
+C51 COMPILER V8.16   MAIN                                                                  12/14/2010 04:18:13 PAGE 4   
+
+ 175   3                              LCD_Position(0,cPosn);
+ 176   3                              LCD_PrintInt8(cRx_Buffer[cIndex]);
+ 177   3                      }
+ 178   2                      
+ 179   2                      //Display next 8 bytes in row 1         
+ 180   2                      for (cIndex=8,cPosn=0;cIndex<cLength-1;cIndex++,cPosn+=2)
+ 181   2                      {
+ 182   3                              LCD_Position(1,cPosn);
+ 183   3                              LCD_PrintInt8(cRx_Buffer[cIndex]);
+ 184   3                      }
+ 185   2              }
+ 186   1      }
+ 187          
+ 188          /* [] END OF FILE */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    283    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     36    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

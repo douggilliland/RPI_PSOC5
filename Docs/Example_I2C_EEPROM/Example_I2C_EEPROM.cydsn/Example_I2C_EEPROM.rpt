@@ -1,0 +1,2456 @@
+Loading plugins phase: Elapsed time ==> 0s.906ms
+Initializing data phase: Elapsed time ==> 9s.704ms
+<CYPRESSTAG name="CyDsfit arguments...">
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj -d CY8C3866AXI-040 -s C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Generated_Source\PSoC3 -w 0 -- -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2</CYPRESSTAG>
+<CYPRESSTAG name="Design elaboration results...">
+</CYPRESSTAG>
+Elaboration phase: Elapsed time ==> 3s.859ms
+<CYPRESSTAG name="HDL generation results...">
+</CYPRESSTAG>
+HDL generation phase: Elapsed time ==> 0s.093ms
+<CYPRESSTAG name="Synthesis results...">
+
+     | | | | | | |
+   _________________
+  -|               |-
+  -|               |-
+  -|               |-
+  -|    CYPRESS    |-
+  -|               |-
+  -|               |-   Warp Verilog Synthesis Compiler: Version 6.3 IR 41
+  -|               |-   Copyright (C) 1991-2001 Cypress Semiconductor
+   |_______________|
+     | | | | | | |
+
+======================================================================
+Compiling:  Example_I2C_EEPROM.v
+Program  :   C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\bin/warp.exe
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2 -ya -.fftprj=C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj -dcpsoc3 Example_I2C_EEPROM.v -verilog
+======================================================================
+
+======================================================================
+Compiling:  Example_I2C_EEPROM.v
+Program  :   C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\bin/warp.exe
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2 -ya -.fftprj=C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj -dcpsoc3 Example_I2C_EEPROM.v -verilog
+======================================================================
+
+======================================================================
+Compiling:  Example_I2C_EEPROM.v
+Program  :   vlogfe
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2 -ya -.fftprj=C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj -dcpsoc3 -verilog Example_I2C_EEPROM.v
+======================================================================
+
+vlogfe V6.3 IR 41:  Verilog parser
+Tue Dec 14 04:17:54 2010
+
+
+======================================================================
+Compiling:  Example_I2C_EEPROM.v
+Program  :   vpp
+Options  :    -yv2 -q10 Example_I2C_EEPROM.v
+======================================================================
+
+vpp V6.3 IR 41:  Verilog Pre-Processor
+Tue Dec 14 04:17:54 2010
+
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\..\psoc\content\cyprimitives\CyPrimitives.cylib\OneTerminal\OneTerminal.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\..\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\..\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\..\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\bI2C_v2_0\bI2C_v2_0.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cypress.v'
+Flattening file 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'
+
+vpp:  No errors.
+
+Library 'work' => directory 'lcpsoc3'
+General_symbol_table
+General_symbol_table
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\std.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cypress.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\work\cypress.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\ieee\work\stdlogic.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\lpmpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
+Using control file 'Example_I2C_EEPROM.ctl'.
+C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\..\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\bI2C_v2_0\bI2C_v2_0.v (line 1002, col 97):  Note: Substituting module 'cmp_vv_vv' for '/='.
+C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\..\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\bI2C_v2_0\bI2C_v2_0.v (line 1081, col 55):  Note: Substituting module 'cmp_vv_vv' for '='.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3pkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif'.
+
+vlogfe:  No errors.
+
+
+======================================================================
+Compiling:  Example_I2C_EEPROM.v
+Program  :   tovif
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2 -ya -.fftprj=C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj -dcpsoc3 -verilog Example_I2C_EEPROM.v
+======================================================================
+
+tovif V6.3 IR 41:  High-level synthesis
+Tue Dec 14 04:17:54 2010
+
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\std.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cypress.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\work\cypress.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\ieee\work\stdlogic.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\lpmpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
+Linking 'C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\codegentemp\Example_I2C_EEPROM.ctl'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\OneTerminal\OneTerminal.v'.
+Linking 'C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\codegentemp\Example_I2C_EEPROM.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\bI2C_v2_0\bI2C_v2_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cypress.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3pkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mcompare.vif'.
+
+tovif:  No errors.
+
+
+======================================================================
+Compiling:  Example_I2C_EEPROM.v
+Program  :   topld
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2 -ya -.fftprj=C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj -dcpsoc3 -verilog Example_I2C_EEPROM.v
+======================================================================
+
+topld V6.3 IR 41:  Synthesis and optimization
+Tue Dec 14 04:17:55 2010
+
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\std.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cypress.vhd'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\work\cypress.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\ieee\work\stdlogic.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\lpmpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
+Linking 'C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\codegentemp\Example_I2C_EEPROM.ctl'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\OneTerminal\OneTerminal.v'.
+Linking 'C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\codegentemp\Example_I2C_EEPROM.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\bI2C_v2_0\bI2C_v2_0.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cypress.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3pkg.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\common\stdlogic\mcompare.vif'.
+Linking 'C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\lib\lcpsoc3\stdlogic\cpsoc3.vif'.
+
+----------------------------------------------------------
+Detecting unused logic.
+----------------------------------------------------------
+    User names
+	\I2C:Net_78\
+	\I2C:bI2C_UDB:ctrl_any_address\
+	\I2C:bI2C_UDB:sda_negedge_detect\
+	\I2C:bI2C_UDB:sda_posedge_detect\
+	\I2C:bI2C_UDB:scl_negedge_detect\
+	\I2C:bI2C_UDB:scl_posedge_detect\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:albi_1\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:agbi_1\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:lt_0\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:gt_0\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:lti_0\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:gti_0\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:albi_0\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:agbi_0\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xeq\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xlt\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xlte\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xgt\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xgte\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:lt\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:eq\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:gt\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:gte\
+	\I2C:bI2C_UDB:genblk6:MODULE_1:lte\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:albi_1\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:agbi_1\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:lt_0\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:gt_0\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:lti_0\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:gti_0\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:albi_0\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:agbi_0\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xneq\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xlt\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xlte\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xgt\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xgte\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:lt\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:gt\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:gte\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:lte\
+	\I2C:bI2C_UDB:genblk7:MODULE_2:neq\
+
+
+Deleted 42 User equations/components.
+Deleted 0 Synthesized equations/components.
+
+------------------------------------------------------
+Alias Detection
+------------------------------------------------------
+Aliasing \I2C:Net_80\ to \I2C:Net_79\
+Aliasing \I2C:bI2C_UDB:status_6\ to zero
+Aliasing \I2C:bI2C_UDB:status_3\ to zero
+Aliasing \I2C:bI2C_UDB:status_2\ to zero
+Aliasing \I2C:bI2C_UDB:cs_addr_shifter_2\ to zero
+Aliasing \I2C:bI2C_UDB:cs_addr_clkgen_2\ to zero
+Aliasing \I2C:bI2C_UDB:stop_detect\ to zero
+Aliasing \I2C:bI2C_UDB:start_detect\ to zero
+Aliasing \I2C:bI2C_UDB:clkgen_tc1\\R\ to zero
+Aliasing \I2C:bI2C_UDB:clkgen_tc2\\R\ to zero
+Aliasing \I2C:bI2C_UDB:clkgen_tc2\\S\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:Net_643_3\\R\ to zero
+Aliasing \I2C:Net_643_3\\S\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:Net_643_4\\R\ to zero
+Aliasing \I2C:Net_643_4\\S\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:lost_arb\ to zero
+Aliasing \I2C:bI2C_UDB:state_4\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:state_4\\S\ to zero
+Aliasing \I2C:bI2C_UDB:state_3\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:state_3\\S\ to zero
+Aliasing \I2C:bI2C_UDB:state_2\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:state_2\\S\ to zero
+Aliasing \I2C:bI2C_UDB:state_1\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:state_1\\S\ to zero
+Aliasing \I2C:bI2C_UDB:state_0\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:state_0\\S\ to zero
+Aliasing \I2C:bI2C_UDB:byte_complete\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:byte_complete\\S\ to zero
+Aliasing \I2C:bI2C_UDB:lrb\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:lrb\\S\ to zero
+Aliasing \I2C:bI2C_UDB:contention1\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:contention1\\S\ to zero
+Aliasing \I2C:bI2C_UDB:bus_busy\\R\ to \I2C:bI2C_UDB:clkgen_tc1\\S\
+Aliasing \I2C:bI2C_UDB:bus_busy\\S\ to zero
+Aliasing Net_36 to zero
+Aliasing \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:newb_0\ to \I2C:Net_418\
+Aliasing \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:aeqb_0\ to \I2C:Net_79\
+Aliasing \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:newa_0\ to \I2C:Net_412\
+Aliasing \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:aeqb_0\ to \I2C:Net_79\
+Aliasing \LCD:tmpOE__LCDPort_net_6\ to \I2C:Net_79\
+Aliasing \LCD:tmpOE__LCDPort_net_5\ to \I2C:Net_79\
+Aliasing \LCD:tmpOE__LCDPort_net_4\ to \I2C:Net_79\
+Aliasing \LCD:tmpOE__LCDPort_net_3\ to \I2C:Net_79\
+Aliasing \LCD:tmpOE__LCDPort_net_2\ to \I2C:Net_79\
+Aliasing \LCD:tmpOE__LCDPort_net_1\ to \I2C:Net_79\
+Aliasing \LCD:tmpOE__LCDPort_net_0\ to zero
+Aliasing tmpOE__SDA_net_0 to zero
+Aliasing tmpOE__SCL_net_0 to zero
+Aliasing \I2C:bI2C_UDB:sda_in_dly\\D\ to \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:newa_0\
+Aliasing \I2C:bI2C_UDB:scl_in_dly\\D\ to \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:newb_0\
+Aliasing \I2C:bI2C_UDB:clkgen_tc1\\D\ to \I2C:bI2C_UDB:cs_addr_clkgen_1\
+Removing Rhs of wire \I2C:Net_418\[1] = \I2C:Net_643_4\[15]
+Removing Rhs of wire \I2C:Net_412\[7] = \I2C:Net_643_3\[16]
+Removing Lhs of wire \I2C:Net_80\[11] = \I2C:Net_79\[5]
+Removing Rhs of wire \I2C:Net_44\[13] = \I2C:Net_643_5\[14]
+Removing Lhs of wire \I2C:bI2C_UDB:status_6\[33] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:status_5\[34] = zero[23]
+Removing Rhs of wire \I2C:bI2C_UDB:status_4\[35] = \I2C:bI2C_UDB:bus_busy\[120]
+Removing Lhs of wire \I2C:bI2C_UDB:status_3\[36] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:status_2\[37] = zero[23]
+Removing Rhs of wire \I2C:bI2C_UDB:status_1\[38] = \I2C:bI2C_UDB:lrb\[121]
+Removing Rhs of wire \I2C:bI2C_UDB:status_0\[39] = \I2C:bI2C_UDB:byte_complete\[122]
+Removing Lhs of wire \I2C:bI2C_UDB:cs_addr_shifter_2\[41] = zero[23]
+Removing Rhs of wire \I2C:bI2C_UDB:cs_addr_shifter_1\[42] = \I2C:bI2C_UDB:load_dummy\[160]
+Removing Rhs of wire \I2C:bI2C_UDB:cs_addr_shifter_0\[43] = \I2C:bI2C_UDB:shift_enable\[204]
+Removing Lhs of wire \I2C:bI2C_UDB:cs_addr_clkgen_2\[77] = zero[23]
+Removing Rhs of wire \I2C:bI2C_UDB:cs_addr_clkgen_1\[78] = \I2C:bI2C_UDB:clkgen_tc\[82]
+Removing Rhs of wire \I2C:bI2C_UDB:cs_addr_clkgen_0\[79] = \I2C:bI2C_UDB:enable_clkgen\[205]
+Removing Lhs of wire \I2C:bI2C_UDB:ctrl_stop_gen\[112] = \I2C:bI2C_UDB:control_6\[25]
+Removing Lhs of wire \I2C:bI2C_UDB:ctrl_restart_gen\[113] = \I2C:bI2C_UDB:control_5\[26]
+Removing Lhs of wire \I2C:bI2C_UDB:ctrl_nack\[114] = \I2C:bI2C_UDB:control_4\[27]
+Removing Lhs of wire \I2C:bI2C_UDB:ctrl_transmit\[116] = \I2C:bI2C_UDB:control_2\[29]
+Removing Lhs of wire \I2C:bI2C_UDB:ctrl_en_master\[117] = \I2C:bI2C_UDB:control_1\[30]
+Removing Lhs of wire \I2C:bI2C_UDB:ctrl_en_slave\[118] = \I2C:bI2C_UDB:control_0\[31]
+Removing Lhs of wire \I2C:bI2C_UDB:stop_detect\[119] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:start_detect\[129] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:clkgen_tc1\\R\[131] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:clkgen_tc1\\S\[133] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:clkgen_tc2\\R\[135] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:clkgen_tc2\\S\[136] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:Net_643_3\\R\[143] = zero[23]
+Removing Lhs of wire \I2C:Net_643_3\\S\[144] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:Net_643_4\\R\[146] = zero[23]
+Removing Lhs of wire \I2C:Net_643_4\\S\[147] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:lost_arb\[148] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:state_4\\R\[150] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:state_4\\S\[151] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:state_3\\R\[152] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:state_3\\S\[153] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:state_2\\R\[154] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:state_2\\S\[155] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:state_1\\R\[156] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:state_1\\S\[157] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:state_0\\R\[158] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:state_0\\S\[159] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:byte_complete\\R\[161] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:byte_complete\\S\[162] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:lrb\\R\[163] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:lrb\\S\[164] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:contention1\\R\[167] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:contention1\\S\[168] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:bus_busy\\R\[169] = \I2C:bI2C_UDB:i2c_reset\[132]
+Removing Lhs of wire \I2C:bI2C_UDB:bus_busy\\S\[170] = zero[23]
+Removing Lhs of wire Net_36[171] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:cmp_vv_vv_MODGEN_1\[172] = \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xneq\[194]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:newa_0\[174] = \I2C:Net_681\[4]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:newb_0\[175] = \I2C:Net_418\[1]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:dataa_0\[176] = \I2C:Net_681\[4]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:datab_0\[177] = \I2C:Net_418\[1]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:a_0\[178] = \I2C:Net_681\[4]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:b_0\[179] = \I2C:Net_418\[1]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:aeqb_0\[181] = \I2C:Net_79\[5]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:eq_0\[182] = \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:xnor_array_0\[180]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:eqi_0\[183] = \I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:xnor_array_0\[180]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:cmp_vv_vv_MODGEN_2\[206] = \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xeq\[226]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:newa_0\[207] = \I2C:Net_412\[7]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:newb_0\[208] = \I2C:Net_682\[10]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:dataa_0\[209] = \I2C:Net_412\[7]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:datab_0\[210] = \I2C:Net_682\[10]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:a_0\[211] = \I2C:Net_412\[7]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:b_0\[212] = \I2C:Net_682\[10]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:aeqb_0\[214] = \I2C:Net_79\[5]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:eq_0\[215] = \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:xnor_array_0\[213]
+Removing Lhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:eqi_0\[216] = \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:xnor_array_0\[213]
+Removing Rhs of wire \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xeq\[226] = \I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:aeqb_1\[217]
+Removing Lhs of wire \LCD:tmpOE__LCDPort_net_6\[238] = \I2C:Net_79\[5]
+Removing Lhs of wire \LCD:tmpOE__LCDPort_net_5\[239] = \I2C:Net_79\[5]
+Removing Lhs of wire \LCD:tmpOE__LCDPort_net_4\[240] = \I2C:Net_79\[5]
+Removing Lhs of wire \LCD:tmpOE__LCDPort_net_3\[241] = \I2C:Net_79\[5]
+Removing Lhs of wire \LCD:tmpOE__LCDPort_net_2\[242] = \I2C:Net_79\[5]
+Removing Lhs of wire \LCD:tmpOE__LCDPort_net_1\[243] = \I2C:Net_79\[5]
+Removing Lhs of wire \LCD:tmpOE__LCDPort_net_0\[244] = zero[23]
+Removing Lhs of wire tmpOE__SDA_net_0[263] = zero[23]
+Removing Lhs of wire tmpOE__SCL_net_0[268] = zero[23]
+Removing Lhs of wire \I2C:bI2C_UDB:sda_in_dly\\D\[277] = \I2C:Net_681\[4]
+Removing Lhs of wire \I2C:bI2C_UDB:scl_in_dly\\D\[278] = \I2C:Net_682\[10]
+Removing Lhs of wire \I2C:bI2C_UDB:clkgen_tc1\\D\[279] = \I2C:bI2C_UDB:cs_addr_clkgen_1\[78]
+Removing Lhs of wire \I2C:bI2C_UDB:clkgen_tc2\\D\[280] = \I2C:bI2C_UDB:clkgen_tc1\[130]
+Removing Lhs of wire \I2C:bI2C_UDB:contention1\\D\[286] = \I2C:bI2C_UDB:contention\[166]
+
+------------------------------------------------------
+Aliased 0 equations, 88 wires.
+------------------------------------------------------
+
+----------------------------------------------------------
+Circuit simplification
+----------------------------------------------------------
+
+Substituting virtuals - pass 1:
+
+Note:  Expanding virtual equation for '\I2C:Net_79\' (cost = 0):
+\I2C:Net_79\ <=  ('1') ;
+
+Note:  Expanding virtual equation for 'zero' (cost = 0):
+zero <=  ('0') ;
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:cs_addr_shifter_1\' (cost = 4):
+\I2C:bI2C_UDB:cs_addr_shifter_1\ <= ((not \I2C:bI2C_UDB:tx_reg_empty\ and \I2C:bI2C_UDB:clkgen_tc1\));
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:txdata\' (cost = 48):
+\I2C:bI2C_UDB:txdata\ <= ((not \I2C:bI2C_UDB:state_4\ and \I2C:bI2C_UDB:state_3\));
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:rxdata\' (cost = 1):
+\I2C:bI2C_UDB:rxdata\ <= ((not \I2C:bI2C_UDB:state_3\ and \I2C:bI2C_UDB:state_4\));
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:stalled\' (cost = 16):
+\I2C:bI2C_UDB:stalled\ <= ((not \I2C:bI2C_UDB:state_4\ and not \I2C:bI2C_UDB:state_3\ and \I2C:bI2C_UDB:state_2\ and \I2C:bI2C_UDB:state_1\));
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:busy\' (cost = 1):
+\I2C:bI2C_UDB:busy\ <= (\I2C:bI2C_UDB:state_0\
+	OR \I2C:bI2C_UDB:state_1\
+	OR \I2C:bI2C_UDB:state_2\
+	OR \I2C:bI2C_UDB:state_3\
+	OR \I2C:bI2C_UDB:state_4\);
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:xnor_array_0\' (cost = 2):
+\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:xnor_array_0\ <= ((not \I2C:Net_418\ and not \I2C:Net_681\)
+	OR (\I2C:Net_418\ and \I2C:Net_681\));
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:aeqb_1\' (cost = 2):
+\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:gx:u0:aeqb_1\ <= ((not \I2C:Net_418\ and not \I2C:Net_681\)
+	OR (\I2C:Net_418\ and \I2C:Net_681\));
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:xnor_array_0\' (cost = 2):
+\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:gx:u0:xnor_array_0\ <= ((not \I2C:Net_412\ and not \I2C:Net_682\)
+	OR (\I2C:Net_412\ and \I2C:Net_682\));
+
+
+Substituting virtuals - pass 2:
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xeq\' (cost = 12):
+\I2C:bI2C_UDB:genblk7:MODULE_2:g1:a0:xeq\ <= ((not \I2C:Net_412\ and not \I2C:Net_682\)
+	OR (\I2C:Net_412\ and \I2C:Net_682\));
+
+Note:  Expanding virtual equation for '\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xneq\' (cost = 4):
+\I2C:bI2C_UDB:genblk6:MODULE_1:g1:a0:xneq\ <= ((not \I2C:Net_681\ and \I2C:Net_418\)
+	OR (not \I2C:Net_418\ and \I2C:Net_681\));
+
+
+Substituting virtuals - pass 3:
+
+
+----------------------------------------------------------
+Circuit simplification results:
+
+	Expanded 12 signals.
+	Turned 0 signals into soft nodes.
+	Maximum default expansion cost was set at 3.
+----------------------------------------------------------
+
+------------------------------------------------------
+Alias Detection
+------------------------------------------------------
+Aliasing \I2C:tmpOE__Bufoe_SCL_net_0\ to \I2C:tmpOE__Bufoe_SDA_net_0\
+Aliasing zero to \I2C:tmpOE__Bufoe_SDA_net_0\
+Removing Lhs of wire \I2C:tmpOE__Bufoe_SCL_net_0\[8] = \I2C:tmpOE__Bufoe_SDA_net_0\[2]
+Removing Rhs of wire zero[23] = \I2C:tmpOE__Bufoe_SDA_net_0\[2]
+Removing Lhs of wire \I2C:bI2C_UDB:bus_busy\\D\[274] = \I2C:bI2C_UDB:status_4\[35]
+
+------------------------------------------------------
+Aliased 0 equations, 3 wires.
+------------------------------------------------------
+
+----------------------------------------------------------
+Circuit simplification
+----------------------------------------------------------
+
+Eliminating unused logic - pass 1:
+
+
+Eliminating unused logic - pass 2:
+
+
+Substituting virtuals - pass 1:
+
+
+----------------------------------------------------------
+Circuit simplification results:
+
+	Expanded 0 signals.
+	Turned 0 signals into soft nodes.
+	Maximum default expansion cost was set at 3.
+----------------------------------------------------------
+
+topld:  No errors.
+
+CYPRESS_DIR    : C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp
+Warp Program   : C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\warp\bin/warp.exe
+Warp Arguments : -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2 -ya "-.fftprj=C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj" -dcpsoc3 Example_I2C_EEPROM.v -verilog
+</CYPRESSTAG>
+Warp synthesis phase: Elapsed time ==> 2s.937ms
+Setting sirev to ES2
+<CYPRESSTAG name="Fitter results...">
+<CYPRESSTAG name="Fitter startup details...">
+cyp3fit: V1.0.0.7006, Family: PSoC3, Started at: Tuesday, 14 December 2010 04:17:57
+Options: -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=BE -.fftp3sirev=ES2 -ya -.fftprj=C:\Documents and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Example_I2C_EEPROM.cyprj -dCY8C3866AXI-040 Example_I2C_EEPROM.v -verilog
+</CYPRESSTAG>
+<CYPRESSTAG name="Design parsing">
+Design parsing phase: Elapsed time ==> 0s.218ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Tech mapping">
+<CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
+
+Removing unused cells resulting from optimization
+    Removed unused cell/equation '\I2C:bI2C_UDB:contention1\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:scl_in_dly\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:sda_in_dly\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:contention\:macrocell'
+Done removing unused cells.
+<CYPRESSTAG name="Global Clock Selection" icon="FILE_RPT_TECHM">
+    Digital Clock 0: Automatic-assigning  clock 'Clock'. Fanout=1, Signal=Net_42
+</CYPRESSTAG>
+
+Removing unused cells resulting from optimization
+    Removed unused cell/equation '\I2C:Net_643_3\\D\:macrocell'
+    Removed unused cell/equation '\I2C:Net_643_4\\D\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:byte_complete\\D\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:i2c_reset\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:lrb\\D\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:state_0\\D\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:state_1\\D\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:state_2\\D\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:state_3\\D\:macrocell'
+    Removed unused cell/equation '\I2C:bI2C_UDB:state_4\\D\:macrocell'
+    Removed unused cell/equation '__ZERO__:macrocell'
+Done removing unused cells.
+<CYPRESSTAG name="Duplicate Macrocell detection">
+</CYPRESSTAG>
+</CYPRESSTAG>
+<CYPRESSTAG name="Duplicate Macrocell detection">
+</CYPRESSTAG>
+<CYPRESSTAG name="Design Equations" icon="FILE_RPT_EQUATION">
+
+------------------------------------------------------------
+Design Equations
+------------------------------------------------------------
+    <CYPRESSTAG name="IO cell listing" icon="FILE_RPT_EQUATION">
+
+    ------------------------------------------------------------
+    IO cell listing
+    ------------------------------------------------------------
+
+    iocell: Name = SCL(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: SYNC
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: OPEN_DRAIN_LO
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: True
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            fb => \I2C:Net_682\ ,
+            input => \I2C:Net_412\ ,
+            pad => SCL(0)_PAD );
+        Properties:
+        {
+        }
+
+    iocell: Name = SDA(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: SYNC
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: OPEN_DRAIN_LO
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: True
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            fb => \I2C:Net_681\ ,
+            input => \I2C:Net_418\ ,
+            pad => SDA(0)_PAD );
+        Properties:
+        {
+        }
+
+    iocell: Name = \LCD:LCDPort(0)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pad => \LCD:LCDPort(0)_PAD\ );
+        Properties:
+        {
+        }
+
+    iocell: Name = \LCD:LCDPort(1)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pad => \LCD:LCDPort(1)_PAD\ );
+        Properties:
+        {
+        }
+
+    iocell: Name = \LCD:LCDPort(2)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pad => \LCD:LCDPort(2)_PAD\ );
+        Properties:
+        {
+        }
+
+    iocell: Name = \LCD:LCDPort(3)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pad => \LCD:LCDPort(3)_PAD\ );
+        Properties:
+        {
+        }
+
+    iocell: Name = \LCD:LCDPort(4)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pad => \LCD:LCDPort(4)_PAD\ );
+        Properties:
+        {
+        }
+
+    iocell: Name = \LCD:LCDPort(5)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pad => \LCD:LCDPort(5)_PAD\ );
+        Properties:
+        {
+        }
+
+    iocell: Name = \LCD:LCDPort(6)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: False
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: 1
+            Initial Value: 0
+            IO Voltage: 0
+        PORT MAP (
+            pad => \LCD:LCDPort(6)_PAD\ );
+        Properties:
+        {
+        }
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Macrocell listing" icon="FILE_RPT_EQUATION">
+
+    ------------------------------------------------------------
+    Macrocell listing
+    ------------------------------------------------------------
+
+    MacroCell: Name=\I2C:Net_412\, Mode=(D-Register)
+        Total # of inputs        : 7
+        Total # of product terms : 6
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 6 pterms
+        !(
+              !\I2C:bI2C_UDB:clkgen_cl1\ * !\I2C:bI2C_UDB:clkgen_tc1\ * 
+              \I2C:bI2C_UDB:state_2\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * \I2C:bI2C_UDB:state_4\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * \I2C:bI2C_UDB:state_3\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * !\I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+        );
+        Output = \I2C:Net_412\ (fanout=2)
+
+    MacroCell: Name=\I2C:Net_418\, Mode=(D-Register)
+        Total # of inputs        : 9
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 5 pterms
+        !(
+              !\I2C:Net_418\ * !\I2C:bI2C_UDB:clkgen_tc2\
+            + !\I2C:bI2C_UDB:control_4\ * \I2C:bI2C_UDB:clkgen_tc2\ * 
+              \I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:shift_data_out\ * \I2C:bI2C_UDB:clkgen_tc2\ * 
+              !\I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\
+            + \I2C:bI2C_UDB:clkgen_tc2\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc2\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:Net_418\ (fanout=2)
+
+    MacroCell: Name=\I2C:bI2C_UDB:clkgen_tc1\, Mode=(D-Register)
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 1 pterm
+        (
+              \I2C:bI2C_UDB:cs_addr_clkgen_1\
+        );
+        Output = \I2C:bI2C_UDB:clkgen_tc1\ (fanout=10)
+
+    MacroCell: Name=\I2C:bI2C_UDB:clkgen_tc2\, Mode=(D-Register)
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 1 pterm
+        (
+              \I2C:bI2C_UDB:clkgen_tc1\
+        );
+        Output = \I2C:bI2C_UDB:clkgen_tc2\ (fanout=1)
+
+    MacroCell: Name=\I2C:bI2C_UDB:cs_addr_clkgen_0\, Mode=(Combinatorial)
+        Total # of inputs        : 8
+        Total # of product terms : 3
+        Main Equation            : 3 pterms
+        !(
+              !\I2C:Net_412\ * \I2C:Net_682\
+            + \I2C:Net_412\ * !\I2C:Net_682\
+            + \I2C:bI2C_UDB:tx_reg_empty\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:cs_addr_clkgen_0\ (fanout=1)
+
+    MacroCell: Name=\I2C:bI2C_UDB:cs_addr_shifter_0\, Mode=(Combinatorial)
+        Total # of inputs        : 3
+        Total # of product terms : 2
+        Main Equation            : 2 pterms
+        (
+              \I2C:bI2C_UDB:cs_addr_clkgen_1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\
+            + \I2C:bI2C_UDB:cs_addr_clkgen_1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\
+        );
+        Output = \I2C:bI2C_UDB:cs_addr_shifter_0\ (fanout=1)
+
+    MacroCell: Name=\I2C:bI2C_UDB:cs_addr_shifter_1\, Mode=(Combinatorial)
+        Total # of inputs        : 2
+        Total # of product terms : 1
+        Main Equation            : 1 pterm
+        (
+              !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\
+        );
+        Output = \I2C:bI2C_UDB:cs_addr_shifter_1\ (fanout=1)
+
+    MacroCell: Name=\I2C:bI2C_UDB:i2c_enable\, Mode=(Combinatorial)
+        Total # of inputs        : 2
+        Total # of product terms : 1
+        Main Equation            : 1 pterm
+        !(
+              !\I2C:bI2C_UDB:control_1\ * !\I2C:bI2C_UDB:control_0\
+        );
+        Output = \I2C:bI2C_UDB:i2c_enable\ (fanout=15)
+
+    MacroCell: Name=\I2C:bI2C_UDB:state_0\, Mode=(T-Register)
+        Total # of inputs        : 10
+        Total # of product terms : 7
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 7 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:control_5\ * \I2C:bI2C_UDB:control_4\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_2\ * !\I2C:bI2C_UDB:state_1\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_3\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+        );
+        Output = \I2C:bI2C_UDB:state_0\ (fanout=9)
+
+    MacroCell: Name=\I2C:bI2C_UDB:state_1\, Mode=(T-Register)
+        Total # of inputs        : 7
+        Total # of product terms : 8
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 8 pterms
+        (
+              !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              !\I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_3\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:state_1\ (fanout=10)
+
+    MacroCell: Name=\I2C:bI2C_UDB:state_2\, Mode=(T-Register)
+        Total # of inputs        : 10
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 5 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:control_5\ * 
+              !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:control_4\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              \I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:state_2\ (fanout=10)
+
+    MacroCell: Name=\I2C:bI2C_UDB:state_3\, Mode=(T-Register)
+        Total # of inputs        : 10
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 4 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:control_5\ * 
+              \I2C:bI2C_UDB:control_2\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\
+        );
+        Output = \I2C:bI2C_UDB:state_3\ (fanout=11)
+
+    MacroCell: Name=\I2C:bI2C_UDB:state_4\, Mode=(T-Register)
+        Total # of inputs        : 11
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 5 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:control_5\ * 
+              !\I2C:bI2C_UDB:control_2\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:control_4\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              \I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+            + !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:state_4\ (fanout=11)
+
+    MacroCell: Name=\I2C:bI2C_UDB:status_0\, Mode=(T-Register)
+        Total # of inputs        : 7
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 3 pterms
+        (
+              !\I2C:bI2C_UDB:status_0\ * \I2C:bI2C_UDB:tx_reg_empty\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+            + !\I2C:bI2C_UDB:status_0\ * !\I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+            + \I2C:bI2C_UDB:status_0\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\
+        );
+        Output = \I2C:bI2C_UDB:status_0\ (fanout=2)
+
+    MacroCell: Name=\I2C:bI2C_UDB:status_1\, Mode=(T-Register)
+        Total # of inputs        : 8
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 2 pterms
+        (
+              !\I2C:Net_681\ * \I2C:bI2C_UDB:status_1\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:Net_681\ * !\I2C:bI2C_UDB:status_1\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:status_1\ (fanout=2)
+
+    MacroCell: Name=\I2C:bI2C_UDB:status_4\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \I2C:bI2C_UDB:status_4\ (fanout=1)
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Datapath listing">
+
+    ------------------------------------------------------------
+    Datapath listing
+    ------------------------------------------------------------
+
+    datapathcell: Name =\I2C:bI2C_UDB:Master:ClkGen:u0\
+        PORT MAP (
+            clk => Net_42 ,
+            cs_addr_1 => \I2C:bI2C_UDB:cs_addr_clkgen_1\ ,
+            cs_addr_0 => \I2C:bI2C_UDB:cs_addr_clkgen_0\ ,
+            z0_comb => \I2C:bI2C_UDB:cs_addr_clkgen_1\ ,
+            cl1_comb => \I2C:bI2C_UDB:clkgen_cl1\ ,
+            clk_en => \I2C:bI2C_UDB:i2c_enable\ );
+        Properties:
+        {
+            a0_init = "00000000"
+            a1_init = "00000000"
+            ce0_sync = 1
+            ce1_sync = 1
+            cl0_sync = 1
+            cl1_sync = 1
+            cmsb_sync = 1
+            co_msb_sync = 1
+            cy_dpconfig = "0100100000000000010010000100000001001000000000000100100010000000000000000000000000000000000000000000000000000000000000000000000011111111000000001111111101111111101000000100001000000000011100000001000000001000"
+            d0_init = "00001111"
+            d1_init = "00001000"
+            f0_blk_sync = 1
+            f0_bus_sync = 1
+            f1_blk_sync = 1
+            f1_bus_sync = 1
+            ff0_sync = 1
+            ff1_sync = 1
+            ov_msb_sync = 1
+            so_sync = 1
+            z0_sync = 1
+            z1_sync = 1
+        }
+    Clock Polarity: Active High
+
+    datapathcell: Name =\I2C:bI2C_UDB:Shifter:u0\
+        PORT MAP (
+            clk => Net_42 ,
+            cs_addr_1 => \I2C:bI2C_UDB:cs_addr_shifter_1\ ,
+            cs_addr_0 => \I2C:bI2C_UDB:cs_addr_shifter_0\ ,
+            route_si => \I2C:Net_681\ ,
+            so_comb => \I2C:bI2C_UDB:shift_data_out\ ,
+            f1_blk_stat_comb => \I2C:bI2C_UDB:tx_reg_empty\ ,
+            clk_en => \I2C:bI2C_UDB:i2c_enable\ );
+        Properties:
+        {
+            a0_init = "00000000"
+            a1_init = "00000000"
+            ce0_sync = 1
+            ce1_sync = 1
+            cl0_sync = 1
+            cl1_sync = 1
+            cmsb_sync = 1
+            co_msb_sync = 1
+            cy_dpconfig = "0000100100000000000010010100000000001001001100000000000000000000000000000000000000000000000000000000000000000000000000000000000011111111000000001111111101111111101000000100001000000000011100000001000000001000"
+            d0_init = "00000100"
+            d1_init = "00000000"
+            f0_blk_sync = 1
+            f0_bus_sync = 1
+            f1_blk_sync = 1
+            f1_bus_sync = 1
+            ff0_sync = 1
+            ff1_sync = 1
+            ov_msb_sync = 1
+            so_sync = 1
+            z0_sync = 1
+            z1_sync = 1
+        }
+    Clock Polarity: Active High
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Status register listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="StatusI register listing">
+
+    ------------------------------------------------------------
+    StatusI register listing
+    ------------------------------------------------------------
+
+    statusicell: Name =\I2C:bI2C_UDB:StsReg\
+        PORT MAP (
+            clock => Net_42 ,
+            status_4 => \I2C:bI2C_UDB:status_4\ ,
+            status_1 => \I2C:bI2C_UDB:status_1\ ,
+            status_0 => \I2C:bI2C_UDB:status_0\ ,
+            interrupt => \I2C:Net_44\ ,
+            clk_en => \I2C:bI2C_UDB:i2c_enable\ );
+        Properties:
+        {
+            cy_force_order = 1
+            cy_int_mask = "0000000"
+            cy_md_select = "1100000"
+        }
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Sync listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Control register listing">
+
+    ------------------------------------------------------------
+    Control register listing
+    ------------------------------------------------------------
+
+    controlcell: Name =\I2C:bI2C_UDB:AsyncCtl:CtrlReg\
+        PORT MAP (
+            control_7 => \I2C:bI2C_UDB:control_7\ ,
+            control_6 => \I2C:bI2C_UDB:control_6\ ,
+            control_5 => \I2C:bI2C_UDB:control_5\ ,
+            control_4 => \I2C:bI2C_UDB:control_4\ ,
+            control_3 => \I2C:bI2C_UDB:control_3\ ,
+            control_2 => \I2C:bI2C_UDB:control_2\ ,
+            control_1 => \I2C:bI2C_UDB:control_1\ ,
+            control_0 => \I2C:bI2C_UDB:control_0\ );
+        Properties:
+        {
+            cy_ctrl_mode_0 = "00000000"
+            cy_ctrl_mode_1 = "00000000"
+            cy_ext_reset = 0
+            cy_force_order = 1
+            cy_init_value = "00000000"
+        }
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Count7 listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="DRQ listing">
+    </CYPRESSTAG>
+    <CYPRESSTAG name="Interrupt listing">
+
+    ------------------------------------------------------------
+    Interrupt listing
+    ------------------------------------------------------------
+
+    interrupt: Name =\I2C:I2C_IRQ\
+        PORT MAP (
+            interrupt => \I2C:Net_44\ );
+        Properties:
+        {
+            int_type = "00"
+        }
+    </CYPRESSTAG>
+</CYPRESSTAG>
+<CYPRESSTAG name="Technology mapping summary" expanded>
+
+------------------------------------------------------------
+Technology mapping summary
+------------------------------------------------------------
+
+                Resource Type : Used : Free :  Max :  % Used
+============================================================
+Digital domain clock dividers :    1 :    7 :    8 :  12.50%
+ Analog domain clock dividers :    0 :    4 :    4 :   0.00%
+                   Macrocells :   16 :  176 :  192 :   8.33%
+                Unique Pterms :   53 :  331 :  384 :  13.80%
+                 Total Pterms :   54 :  330 :  384 :  14.06%
+                     IO Cells :   12 :   60 :   72 :  16.67%
+               Datapath Cells :    2 :   22 :   24 :   8.33%
+                Control Cells :    1 :   23 :   24 :   4.17%
+                         Drqs :    0 :   24 :   24 :   0.00%
+                   Interrupts :    1 :   31 :   32 :   3.13%
+             DSM Fixed Blocks :    0 :    1 :    1 :   0.00%
+           VIDAC Fixed Blocks :    0 :    4 :    4 :   0.00%
+              SC Fixed Blocks :    0 :    4 :    4 :   0.00%
+      Comparator Fixed Blocks :    0 :    4 :    4 :   0.00%
+           Opamp Fixed Blocks :    0 :    4 :    4 :   0.00%
+             CapSense Buffers :    0 :    2 :    2 :   0.00%
+             CAN Fixed Blocks :    0 :    1 :    1 :   0.00%
+       Decimator Fixed Blocks :    0 :    1 :    1 :   0.00%
+             I2C Fixed Blocks :    0 :    1 :    1 :   0.00%
+           Timer Fixed Blocks :    0 :    4 :    4 :   0.00%
+             DFB Fixed Blocks :    0 :    1 :    1 :   0.00%
+             USB Fixed Blocks :    0 :    1 :    1 :   0.00%
+             LCD Fixed Blocks :    0 :    1 :    1 :   0.00%
+            EMIF Fixed Blocks :    0 :    1 :    1 :   0.00%
+             LPF Fixed Blocks :    0 :    2 :    2 :   0.00%
+                 Status Cells :    1 :   23 :   24 :   4.17%
+                 Count7 Cells :    0 :   23 :   23 :   0.00%
+                   Sync Cells :    0 :   92 :   92 :   0.00%
+</CYPRESSTAG>
+Technology Mapping: Elapsed time ==> 0s.968ms
+Tech mapping phase: Elapsed time ==> 2s.218ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Analog Placement">
+Initial Analog Placement Results:
+IO_4@[Chip=0][IOP=(4)][IoId=(4)]: SCL(0) (fixed)
+IO_5@[Chip=0][IOP=(4)][IoId=(5)]: SDA(0) (fixed)
+IO_0@[Chip=0][IOP=(2)][IoId=(0)]: \LCD:LCDPort(0)\ (fixed)
+IO_1@[Chip=0][IOP=(2)][IoId=(1)]: \LCD:LCDPort(1)\ (fixed)
+IO_2@[Chip=0][IOP=(2)][IoId=(2)]: \LCD:LCDPort(2)\ (fixed)
+IO_3@[Chip=0][IOP=(2)][IoId=(3)]: \LCD:LCDPort(3)\ (fixed)
+IO_4@[Chip=0][IOP=(2)][IoId=(4)]: \LCD:LCDPort(4)\ (fixed)
+IO_5@[Chip=0][IOP=(2)][IoId=(5)]: \LCD:LCDPort(5)\ (fixed)
+IO_6@[Chip=0][IOP=(2)][IoId=(6)]: \LCD:LCDPort(6)\ (fixed)
+Analog Placement phase: Elapsed time ==> 0s.140ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Analog Routing">
+============ VeraRouter Final Answer Routes ============
+Analog Routing phase: Elapsed time ==> 1s.187ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Digital Placement">
+<CYPRESSTAG name="PLD Packing">
+<CYPRESSTAG name="PLD Packing Summary" expanded>
+
+------------------------------------------------------------
+PLD Packing Summary
+------------------------------------------------------------
+            Resource Type : Used : Free :  Max :  % Used
+    ====================================================
+                     PLDs :    7 :   41 :   48 :  14.58%
+
+<CYPRESSTAG name="PLD Statistics">
+
+        PLD Resource Type :     Average/LAB
+    =======================================
+                   Inputs :           10.14
+                   Pterms :            7.57
+               Macrocells :            2.29
+</CYPRESSTAG>
+<CYPRESSTAG name="Packed PLD Contents">
+Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
+</CYPRESSTAG>
+PLD Packing: Elapsed time ==> 0s.062ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Partitioning">
+<CYPRESSTAG name="Initial Partitioning Summary">
+Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
+<CYPRESSTAG name="Final Partitioning Summary">
+Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
+Partitioning: Elapsed time ==> 0s.265ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Simulated Annealing">
+Annealing: Elapsed time ==> 0s.468ms
+<CYPRESSTAG name="Simulated Annealing Results">
+The seed used for moves was 114161200.
+Inital cost was 206, final cost is 143 (30.58% improvement).</CYPRESSTAG>
+</CYPRESSTAG>
+<CYPRESSTAG name="Final Placement Summary">
+
+------------------------------------------------------------
+Final Placement Summary
+------------------------------------------------------------
+
+       Resource Type :      Count : Avg Inputs : Avg Outputs
+    ========================================================
+                 UDB :          4 :      11.75 :       4.00
+<CYPRESSTAG name="Final Placement Details">
+<CYPRESSTAG name="Component Details">
+
+------------------------------------------------------------
+Component Placement Details
+------------------------------------------------------------
+UDB [Chip=0][UDB=(0,0)] is empty.
+UDB [Chip=0][UDB=(0,1)] is empty.
+UDB [Chip=0][UDB=(0,2)] is empty.
+UDB [Chip=0][UDB=(0,3)] is empty.
+UDB [Chip=0][UDB=(0,4)] contents:
+LAB@[Chip=0][UDB=(0,4)][LB=1] #macrocells=2, #inputs=8, #pterms=7
+{
+    [McSlotId=0]:     MacroCell: Name=\I2C:Net_412\, Mode=(D-Register)
+        Total # of inputs        : 7
+        Total # of product terms : 6
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 6 pterms
+        !(
+              !\I2C:bI2C_UDB:clkgen_cl1\ * !\I2C:bI2C_UDB:clkgen_tc1\ * 
+              \I2C:bI2C_UDB:state_2\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * \I2C:bI2C_UDB:state_4\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * \I2C:bI2C_UDB:state_3\
+            + !\I2C:bI2C_UDB:clkgen_cl1\ * !\I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+        );
+        Output = \I2C:Net_412\ (fanout=2)
+
+    [McSlotId=1]:     MacroCell: Name=\I2C:bI2C_UDB:clkgen_tc1\, Mode=(D-Register)
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 1 pterm
+        (
+              \I2C:bI2C_UDB:cs_addr_clkgen_1\
+        );
+        Output = \I2C:bI2C_UDB:clkgen_tc1\ (fanout=10)
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+UDB [Chip=0][UDB=(0,5)] is empty.
+UDB [Chip=0][UDB=(1,0)] is empty.
+UDB [Chip=0][UDB=(1,1)] is empty.
+UDB [Chip=0][UDB=(1,2)] contents:
+LAB@[Chip=0][UDB=(1,2)][LB=0] #macrocells=2, #inputs=11, #pterms=8
+{
+    [McSlotId=0]:     MacroCell: Name=\I2C:bI2C_UDB:state_4\, Mode=(T-Register)
+        Total # of inputs        : 11
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 5 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:control_5\ * 
+              !\I2C:bI2C_UDB:control_2\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:control_4\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              \I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+            + !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:state_4\ (fanout=11)
+
+    [McSlotId=1]:     MacroCell: Name=\I2C:bI2C_UDB:state_3\, Mode=(T-Register)
+        Total # of inputs        : 10
+        Total # of product terms : 4
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 4 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:control_5\ * 
+              \I2C:bI2C_UDB:control_2\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\
+        );
+        Output = \I2C:bI2C_UDB:state_3\ (fanout=11)
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[Chip=0][UDB=(1,2)][LB=1] #macrocells=2, #inputs=11, #pterms=8
+{
+    [McSlotId=0]:     MacroCell: Name=\I2C:bI2C_UDB:state_2\, Mode=(T-Register)
+        Total # of inputs        : 10
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 5 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:control_5\ * 
+              !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:control_4\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              \I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:state_2\ (fanout=10)
+
+    [McSlotId=1]:     MacroCell: Name=\I2C:bI2C_UDB:status_0\, Mode=(T-Register)
+        Total # of inputs        : 7
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 3 pterms
+        (
+              !\I2C:bI2C_UDB:status_0\ * \I2C:bI2C_UDB:tx_reg_empty\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+            + !\I2C:bI2C_UDB:status_0\ * !\I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+            + \I2C:bI2C_UDB:status_0\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\
+        );
+        Output = \I2C:bI2C_UDB:status_0\ (fanout=2)
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+controlcell: Name =\I2C:bI2C_UDB:AsyncCtl:CtrlReg\
+    PORT MAP (
+        control_7 => \I2C:bI2C_UDB:control_7\ ,
+        control_6 => \I2C:bI2C_UDB:control_6\ ,
+        control_5 => \I2C:bI2C_UDB:control_5\ ,
+        control_4 => \I2C:bI2C_UDB:control_4\ ,
+        control_3 => \I2C:bI2C_UDB:control_3\ ,
+        control_2 => \I2C:bI2C_UDB:control_2\ ,
+        control_1 => \I2C:bI2C_UDB:control_1\ ,
+        control_0 => \I2C:bI2C_UDB:control_0\ );
+    Properties:
+    {
+        cy_ctrl_mode_0 = "00000000"
+        cy_ctrl_mode_1 = "00000000"
+        cy_ext_reset = 0
+        cy_force_order = 1
+        cy_init_value = "00000000"
+    }
+
+UDB [Chip=0][UDB=(1,3)] contents:
+LAB@[Chip=0][UDB=(1,3)][LB=0] #macrocells=2, #inputs=12, #pterms=7
+{
+    [McSlotId=0]:     MacroCell: Name=\I2C:Net_418\, Mode=(D-Register)
+        Total # of inputs        : 9
+        Total # of product terms : 5
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 5 pterms
+        !(
+              !\I2C:Net_418\ * !\I2C:bI2C_UDB:clkgen_tc2\
+            + !\I2C:bI2C_UDB:control_4\ * \I2C:bI2C_UDB:clkgen_tc2\ * 
+              \I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:shift_data_out\ * \I2C:bI2C_UDB:clkgen_tc2\ * 
+              !\I2C:bI2C_UDB:state_4\ * \I2C:bI2C_UDB:state_3\
+            + \I2C:bI2C_UDB:clkgen_tc2\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc2\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:Net_418\ (fanout=2)
+
+    [McSlotId=1]:     MacroCell: Name=\I2C:bI2C_UDB:status_1\, Mode=(T-Register)
+        Total # of inputs        : 8
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 2 pterms
+        (
+              !\I2C:Net_681\ * \I2C:bI2C_UDB:status_1\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:Net_681\ * !\I2C:bI2C_UDB:status_1\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:status_1\ (fanout=2)
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[Chip=0][UDB=(1,3)][LB=1] #macrocells=3, #inputs=10, #pterms=8
+{
+    [McSlotId=0]:     MacroCell: Name=\I2C:bI2C_UDB:state_0\, Mode=(T-Register)
+        Total # of inputs        : 10
+        Total # of product terms : 7
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 7 pterms
+        (
+              !\I2C:bI2C_UDB:control_6\ * !\I2C:bI2C_UDB:tx_reg_empty\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:control_5\ * \I2C:bI2C_UDB:control_4\ * 
+              \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_2\ * !\I2C:bI2C_UDB:state_1\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_3\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\
+        );
+        Output = \I2C:bI2C_UDB:state_0\ (fanout=9)
+
+    [McSlotId=1]:     MacroCell: Name=\I2C:bI2C_UDB:clkgen_tc2\, Mode=(D-Register)
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Preset = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 1 pterm
+        (
+              \I2C:bI2C_UDB:clkgen_tc1\
+        );
+        Output = \I2C:bI2C_UDB:clkgen_tc2\ (fanout=1)
+
+    [McSlotId=2]:     MacroCell: Name=\I2C:bI2C_UDB:status_4\, Mode=(T-Register)
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \I2C:bI2C_UDB:status_4\ (fanout=1)
+
+    [McSlotId=3]: (empty)
+}
+
+datapathcell: Name =\I2C:bI2C_UDB:Shifter:u0\
+    PORT MAP (
+        clk => Net_42 ,
+        cs_addr_1 => \I2C:bI2C_UDB:cs_addr_shifter_1\ ,
+        cs_addr_0 => \I2C:bI2C_UDB:cs_addr_shifter_0\ ,
+        route_si => \I2C:Net_681\ ,
+        so_comb => \I2C:bI2C_UDB:shift_data_out\ ,
+        f1_blk_stat_comb => \I2C:bI2C_UDB:tx_reg_empty\ ,
+        clk_en => \I2C:bI2C_UDB:i2c_enable\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000100100000000000010010100000000001001001100000000000000000000000000000000000000000000000000000000000000000000000000000000000011111111000000001111111101111111101000000100001000000000011100000001000000001000"
+        d0_init = "00000100"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+Clock Polarity: Active High
+
+statusicell: Name =\I2C:bI2C_UDB:StsReg\
+    PORT MAP (
+        clock => Net_42 ,
+        status_4 => \I2C:bI2C_UDB:status_4\ ,
+        status_1 => \I2C:bI2C_UDB:status_1\ ,
+        status_0 => \I2C:bI2C_UDB:status_0\ ,
+        interrupt => \I2C:Net_44\ ,
+        clk_en => \I2C:bI2C_UDB:i2c_enable\ );
+    Properties:
+    {
+        cy_force_order = 1
+        cy_int_mask = "0000000"
+        cy_md_select = "1100000"
+    }
+
+UDB [Chip=0][UDB=(1,4)] contents:
+LAB@[Chip=0][UDB=(1,4)][LB=0] #macrocells=4, #inputs=12, #pterms=7
+{
+    [McSlotId=0]:     MacroCell: Name=\I2C:bI2C_UDB:cs_addr_clkgen_0\, Mode=(Combinatorial)
+        Total # of inputs        : 8
+        Total # of product terms : 3
+        Main Equation            : 3 pterms
+        !(
+              !\I2C:Net_412\ * \I2C:Net_682\
+            + \I2C:Net_412\ * !\I2C:Net_682\
+            + \I2C:bI2C_UDB:tx_reg_empty\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:cs_addr_clkgen_0\ (fanout=1)
+
+    [McSlotId=1]:     MacroCell: Name=\I2C:bI2C_UDB:cs_addr_shifter_0\, Mode=(Combinatorial)
+        Total # of inputs        : 3
+        Total # of product terms : 2
+        Main Equation            : 2 pterms
+        (
+              \I2C:bI2C_UDB:cs_addr_clkgen_1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\
+            + \I2C:bI2C_UDB:cs_addr_clkgen_1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\
+        );
+        Output = \I2C:bI2C_UDB:cs_addr_shifter_0\ (fanout=1)
+
+    [McSlotId=2]:     MacroCell: Name=\I2C:bI2C_UDB:cs_addr_shifter_1\, Mode=(Combinatorial)
+        Total # of inputs        : 2
+        Total # of product terms : 1
+        Main Equation            : 1 pterm
+        (
+              !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\
+        );
+        Output = \I2C:bI2C_UDB:cs_addr_shifter_1\ (fanout=1)
+
+    [McSlotId=3]:     MacroCell: Name=\I2C:bI2C_UDB:i2c_enable\, Mode=(Combinatorial)
+        Total # of inputs        : 2
+        Total # of product terms : 1
+        Main Equation            : 1 pterm
+        !(
+              !\I2C:bI2C_UDB:control_1\ * !\I2C:bI2C_UDB:control_0\
+        );
+        Output = \I2C:bI2C_UDB:i2c_enable\ (fanout=15)
+}
+
+LAB@[Chip=0][UDB=(1,4)][LB=1] #macrocells=1, #inputs=7, #pterms=8
+{
+    [McSlotId=0]:     MacroCell: Name=\I2C:bI2C_UDB:state_1\, Mode=(T-Register)
+        Total # of inputs        : 7
+        Total # of product terms : 8
+        List of special equations: 
+            Clock  = (Net_42) => Global
+            Reset  = !(\I2C:bI2C_UDB:control_1\)
+        Main Equation            : 8 pterms
+        (
+              !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              !\I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+            + !\I2C:bI2C_UDB:tx_reg_empty\ * \I2C:bI2C_UDB:clkgen_tc1\ * 
+              !\I2C:bI2C_UDB:state_4\ * !\I2C:bI2C_UDB:state_3\ * 
+              \I2C:bI2C_UDB:state_1\ * \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              !\I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              !\I2C:bI2C_UDB:state_3\ * !\I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * \I2C:bI2C_UDB:state_4\ * 
+              \I2C:bI2C_UDB:state_3\ * \I2C:bI2C_UDB:state_2\ * 
+              \I2C:bI2C_UDB:state_1\ * !\I2C:bI2C_UDB:state_0\
+            + \I2C:bI2C_UDB:clkgen_tc1\ * !\I2C:bI2C_UDB:state_3\ * 
+              !\I2C:bI2C_UDB:state_2\ * \I2C:bI2C_UDB:state_1\ * 
+              \I2C:bI2C_UDB:state_0\
+        );
+        Output = \I2C:bI2C_UDB:state_1\ (fanout=10)
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+datapathcell: Name =\I2C:bI2C_UDB:Master:ClkGen:u0\
+    PORT MAP (
+        clk => Net_42 ,
+        cs_addr_1 => \I2C:bI2C_UDB:cs_addr_clkgen_1\ ,
+        cs_addr_0 => \I2C:bI2C_UDB:cs_addr_clkgen_0\ ,
+        z0_comb => \I2C:bI2C_UDB:cs_addr_clkgen_1\ ,
+        cl1_comb => \I2C:bI2C_UDB:clkgen_cl1\ ,
+        clk_en => \I2C:bI2C_UDB:i2c_enable\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0100100000000000010010000100000001001000000000000100100010000000000000000000000000000000000000000000000000000000000000000000000011111111000000001111111101111111101000000100001000000000011100000001000000001000"
+        d0_init = "00001111"
+        d1_init = "00001000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+Clock Polarity: Active High
+
+UDB [Chip=0][UDB=(1,5)] is empty.
+UDB [Chip=0][UDB=(2,0)] is empty.
+UDB [Chip=0][UDB=(2,1)] is empty.
+UDB [Chip=0][UDB=(2,2)] is empty.
+UDB [Chip=0][UDB=(2,3)] is empty.
+UDB [Chip=0][UDB=(2,4)] is empty.
+UDB [Chip=0][UDB=(2,5)] is empty.
+UDB [Chip=0][UDB=(3,0)] is empty.
+UDB [Chip=0][UDB=(3,1)] is empty.
+UDB [Chip=0][UDB=(3,2)] is empty.
+UDB [Chip=0][UDB=(3,3)] is empty.
+UDB [Chip=0][UDB=(3,4)] is empty.
+UDB [Chip=0][UDB=(3,5)] is empty.
+Intr hod @ [Chip=0][IntrHod=(0)]: 
+  Intr@ [Chip=0][IntrHod=(0)][IntrId=(13)] 
+    interrupt: Name =\I2C:I2C_IRQ\
+        PORT MAP (
+            interrupt => \I2C:Net_44\ );
+        Properties:
+        {
+            int_type = "00"
+        }
+Drq hod @ [Chip=0][DrqHod=(0)]: empty
+IO Port 0 is empty
+IO Port 1 is empty
+IO Port 2 contains the following IO cells:
+[IoId=0]: 
+iocell: Name = \LCD:LCDPort(0)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pad => \LCD:LCDPort(0)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=1]: 
+iocell: Name = \LCD:LCDPort(1)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pad => \LCD:LCDPort(1)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=2]: 
+iocell: Name = \LCD:LCDPort(2)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pad => \LCD:LCDPort(2)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=3]: 
+iocell: Name = \LCD:LCDPort(3)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pad => \LCD:LCDPort(3)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=4]: 
+iocell: Name = \LCD:LCDPort(4)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pad => \LCD:LCDPort(4)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=5]: 
+iocell: Name = \LCD:LCDPort(5)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pad => \LCD:LCDPort(5)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=6]: 
+iocell: Name = \LCD:LCDPort(6)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: False
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        pad => \LCD:LCDPort(6)_PAD\ );
+    Properties:
+    {
+    }
+
+IO Port 3 is empty
+IO Port 4 contains the following IO cells:
+[IoId=4]: 
+iocell: Name = SCL(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: SYNC
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: OPEN_DRAIN_LO
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: True
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        fb => \I2C:Net_682\ ,
+        input => \I2C:Net_412\ ,
+        pad => SCL(0)_PAD );
+    Properties:
+    {
+    }
+
+[IoId=5]: 
+iocell: Name = SDA(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: SYNC
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: OPEN_DRAIN_LO
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: True
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: 1
+        Initial Value: 0
+        IO Voltage: 0
+    PORT MAP (
+        fb => \I2C:Net_681\ ,
+        input => \I2C:Net_418\ ,
+        pad => SDA(0)_PAD );
+    Properties:
+    {
+    }
+
+IO Port 5 is empty
+IO Port 6 is empty
+IO Port 12 is empty
+IO Port 15 is empty
+Fixed Function block hod @ [Chip=0][FFB(CAN,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(Cache,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(CapSense,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(Clock,0)]: 
+    Clock Block @ [Chip=0][FFB(Clock,0)]: 
+    clockblockcell: Name =ClockBlock
+        PORT MAP (
+            clk_bus => ClockBlock_BUS_CLK ,
+            clk_sync => ClockBlock_MASTER_CLK ,
+            clk_32k_xtal => ClockBlock_XTAL 32kHz ,
+            xtal => ClockBlock_XTAL ,
+            ilo => ClockBlock_ILO ,
+            clk_100k => ClockBlock_100k ,
+            clk_1k => ClockBlock_1k ,
+            clk_32k => ClockBlock_32k ,
+            pllout => ClockBlock_PLL_OUT ,
+            imo => ClockBlock_IMO ,
+            dclk_glb_0 => Net_42 ,
+            dclk_0 => Net_42_local );
+Fixed Function block hod @ [Chip=0][FFB(Comparator,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(DFB,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(DSM,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(Decimator,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(EMIF,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(I2C,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(LCD,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(LVD,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(PM,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(SC,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(SPC,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(Timer,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(USB,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(VIDAC,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(Abuf,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(CsAbuf,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(Vref,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(LPF,0)]: empty
+Fixed Function block hod @ [Chip=0][FFB(TimingFault,0)]: empty
+</CYPRESSTAG>
+<CYPRESSTAG name="Port Configuration Details">
+
+------------------------------------------------------------
+Port Configuration report
+------------------------------------------------------------
+     |     |       | Interrupt |                  |                  | 
+Port | Pin | Fixed |      Type |       Drive Mode |             Name | Connections
+-----+-----+-------+-----------+------------------+------------------+-------------------------------------
+   2 |   0 |     * |      NONE |         CMOS_OUT | \LCD:LCDPort(0)\ | 
+     |   1 |     * |      NONE |         CMOS_OUT | \LCD:LCDPort(1)\ | 
+     |   2 |     * |      NONE |         CMOS_OUT | \LCD:LCDPort(2)\ | 
+     |   3 |     * |      NONE |         CMOS_OUT | \LCD:LCDPort(3)\ | 
+     |   4 |     * |      NONE |         CMOS_OUT | \LCD:LCDPort(4)\ | 
+     |   5 |     * |      NONE |         CMOS_OUT | \LCD:LCDPort(5)\ | 
+     |   6 |     * |      NONE |         CMOS_OUT | \LCD:LCDPort(6)\ | 
+-----+-----+-------+-----------+------------------+------------------+-------------------------------------
+   4 |   4 |     * |      NONE |    OPEN_DRAIN_LO |           SCL(0) | FB(\I2C:Net_682\), In(\I2C:Net_412\)
+     |   5 |     * |      NONE |    OPEN_DRAIN_LO |           SDA(0) | FB(\I2C:Net_681\), In(\I2C:Net_418\)
+-----------------------------------------------------------------------------------------------------------
+</CYPRESSTAG>
+</CYPRESSTAG>
+</CYPRESSTAG>
+Digital component placer commit/Report: Elapsed time ==> 0s.031ms
+Digital Placement phase: Elapsed time ==> 0s.890ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Digital Routing">
+Would route: (Signal \I2C:Net_412\)
+right@[Chip=0][UDB=(0,4)][LB=1] IO_4@[Chip=0][IOP=(4)][IoId=(4)] left@[Chip=0][UDB=(1,4)][LB=0] 
+Would route: (Signal \I2C:Net_682\)
+IO_4@[Chip=0][IOP=(4)][IoId=(4)] left@[Chip=0][UDB=(1,4)][LB=0] 
+Would route: (Signal \I2C:Net_418\)
+left@[Chip=0][UDB=(1,3)][LB=0] IO_5@[Chip=0][IOP=(4)][IoId=(5)] left@[Chip=0][UDB=(1,3)][LB=0] 
+Would route: (Signal \I2C:Net_681\)
+IO_5@[Chip=0][IOP=(4)][IoId=(5)] dpu@[Chip=0][UDB=(1,3)] left@[Chip=0][UDB=(1,3)][LB=0] 
+Would route: (Signal \I2C:bI2C_UDB:control_1\)
+'outcontrol_1' on control@[Chip=0][UDB=(1,2)] @ JackIdx=1 cr@[Chip=0][UDB=(0,4)] cr@[Chip=0][UDB=(1,2)] cr@[Chip=0][UDB=(1,3)] cr@[Chip=0][UDB=(1,4)] left@[Chip=0][UDB=(1,4)][LB=0] 
+Would route: (Signal \I2C:bI2C_UDB:i2c_enable\)
+left@[Chip=0][UDB=(1,4)][LB=0] cr@[Chip=0][UDB=(0,4)] cr@[Chip=0][UDB=(1,2)] cr@[Chip=0][UDB=(1,3)] cr@[Chip=0][UDB=(1,4)] 
+Would route: (Signal \I2C:bI2C_UDB:cs_addr_clkgen_1\)
+dpu@[Chip=0][UDB=(1,4)] right@[Chip=0][UDB=(0,4)][LB=1] dpu@[Chip=0][UDB=(1,4)] left@[Chip=0][UDB=(1,4)][LB=0] 
+Would route: (Signal \I2C:bI2C_UDB:clkgen_cl1\)
+dpu@[Chip=0][UDB=(1,4)] right@[Chip=0][UDB=(0,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:clkgen_tc1\)
+right@[Chip=0][UDB=(0,4)][LB=1] right@[Chip=0][UDB=(0,4)][LB=1] left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,4)][LB=0] right@[Chip=0][UDB=(1,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:state_4\)
+left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(0,4)][LB=1] left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,4)][LB=0] right@[Chip=0][UDB=(1,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:state_3\)
+left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(0,4)][LB=1] left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,4)][LB=0] right@[Chip=0][UDB=(1,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:state_2\)
+right@[Chip=0][UDB=(1,2)][LB=1] right@[Chip=0][UDB=(0,4)][LB=1] left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,4)][LB=0] right@[Chip=0][UDB=(1,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:state_1\)
+right@[Chip=0][UDB=(1,4)][LB=1] right@[Chip=0][UDB=(0,4)][LB=1] left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,4)][LB=0] right@[Chip=0][UDB=(1,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:state_0\)
+right@[Chip=0][UDB=(1,3)][LB=1] right@[Chip=0][UDB=(0,4)][LB=1] left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,4)][LB=0] right@[Chip=0][UDB=(1,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:control_6\)
+'outcontrol_6' on control@[Chip=0][UDB=(1,2)] @ JackIdx=6 left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] right@[Chip=0][UDB=(1,3)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:control_5\)
+'outcontrol_5' on control@[Chip=0][UDB=(1,2)] @ JackIdx=5 left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] right@[Chip=0][UDB=(1,3)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:control_4\)
+'outcontrol_4' on control@[Chip=0][UDB=(1,2)] @ JackIdx=4 left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] right@[Chip=0][UDB=(1,3)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:control_2\)
+'outcontrol_2' on control@[Chip=0][UDB=(1,2)] @ JackIdx=2 left@[Chip=0][UDB=(1,2)][LB=0] 
+Would route: (Signal \I2C:bI2C_UDB:tx_reg_empty\)
+dpu@[Chip=0][UDB=(1,3)] left@[Chip=0][UDB=(1,2)][LB=0] right@[Chip=0][UDB=(1,2)][LB=1] right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,4)][LB=0] right@[Chip=0][UDB=(1,4)][LB=1] 
+Would route: (Signal \I2C:bI2C_UDB:status_0\)
+right@[Chip=0][UDB=(1,2)][LB=1] right@[Chip=0][UDB=(1,2)][LB=1] 'instatus_0' on status@[Chip=0][UDB=(1,3)] @ JackIdx=0 
+Would route: (Signal \I2C:bI2C_UDB:cs_addr_shifter_1\)
+left@[Chip=0][UDB=(1,4)][LB=0] dpu@[Chip=0][UDB=(1,3)] 
+Would route: (Signal \I2C:bI2C_UDB:cs_addr_shifter_0\)
+left@[Chip=0][UDB=(1,4)][LB=0] dpu@[Chip=0][UDB=(1,3)] 
+Would route: (Signal \I2C:bI2C_UDB:shift_data_out\)
+dpu@[Chip=0][UDB=(1,3)] left@[Chip=0][UDB=(1,3)][LB=0] 
+Would route: (Signal \I2C:bI2C_UDB:status_1\)
+left@[Chip=0][UDB=(1,3)][LB=0] left@[Chip=0][UDB=(1,3)][LB=0] 'instatus_1' on status@[Chip=0][UDB=(1,3)] @ JackIdx=1 
+Would route: (Signal \I2C:bI2C_UDB:clkgen_tc2\)
+right@[Chip=0][UDB=(1,3)][LB=1] left@[Chip=0][UDB=(1,3)][LB=0] 
+Would route: (Signal \I2C:bI2C_UDB:status_4\)
+right@[Chip=0][UDB=(1,3)][LB=1] 'inoutstatus_4' on status@[Chip=0][UDB=(1,3)] @ JackIdx=4 
+Would route: (Signal \I2C:bI2C_UDB:cs_addr_clkgen_0\)
+left@[Chip=0][UDB=(1,4)][LB=0] dpu@[Chip=0][UDB=(1,4)] 
+Would route: (Signal \I2C:bI2C_UDB:control_0\)
+'outcontrol_0' on control@[Chip=0][UDB=(1,2)] @ JackIdx=0 left@[Chip=0][UDB=(1,4)][LB=0] 
+Would route: (Signal \I2C:Net_44\)
+'inoutstatus_7' on status@[Chip=0][UDB=(1,3)] @ JackIdx=7 'input_1' on interrupt13@[Chip=0][IntrHod=(0)][IntrId=(13)] @ JackIdx=0 
+
+Routed Successfully
+Routing Results:
+\I2C:Net_412\: Jack[14]@right@[Chip=0][UDB=(0,4)][LB=1] udb_bus[17(0)] Jack[210]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[82(4)] udb_bus[2(0)] Jack[2]@left@[Chip=0][UDB=(1,4)][LB=0] Jack[15]@right@[Chip=0][UDB=(0,4)][LB=1] udb_bus[16(0)] Jack[204]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[76(4)] Jack[92]@hvswitch@[Chip=0][UDB=(1,3)][side=right] vchan_3[21(1)] Jack[3]@vchan_3@[Chip=0]_SegSwitch@[Chip=0][SegId=(21)] vchan_3[21(0)] Jack[20]@hvswitch@[Chip=0][UDB=(0,3)][side=right] hchan_0[4(4)] Jack[132]@dsiswitch_top@[Chip=0][DSI=(0,4)][side=top] dsi@[Chip=0][DSI=(0,4)]_dsi_bus[45(0)] Jack[4]@O_4_4_to_1_output_mux@[Chip=0][IOP=(4)][IoId=(4)][MuxId=(0)] ioport_4@[Chip=0][IOP=(4)]_port_bus[4(0)] Jack[0]@IO_4@[Chip=0][IOP=(4)][IoId=(4)] 
+\I2C:Net_412\: 10
+\I2C:Net_682\: Jack[1]@IO_4@[Chip=0][IOP=(4)][IoId=(4)] Jack[1]@IO_4@[Chip=0][IOP=(4)][IoId=(4)] dsi@[Chip=0][DSI=(0,4)]_dsi_bus[4(0)] Jack[212]@dsiswitch_top@[Chip=0][DSI=(0,4)][side=top] hchan_0[84(4)] Jack[100]@hvswitch@[Chip=0][UDB=(0,3)][side=right] vchan_3[19(0)] Jack[2]@vchan_3@[Chip=0]_SegSwitch@[Chip=0][SegId=(19)] vchan_3[19(1)] Jack[21]@hvswitch@[Chip=0][UDB=(1,3)][side=right] hchan_1[5(4)] Jack[133]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[4(0)] Jack[4]@left@[Chip=0][UDB=(1,4)][LB=0] 
+\I2C:Net_682\: 6
+\I2C:Net_418\: Jack[12]@left@[Chip=0][UDB=(1,3)][LB=0] udb_bus[12(0)] Jack[194]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[66(3)] udb_bus[4(0)] Jack[4]@left@[Chip=0][UDB=(1,3)][LB=0] Jack[148]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[20(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(308)] hchan_1[20(4)] Jack[36]@hvswitch@[Chip=0][UDB=(1,4)][side=left] vchan_4[14(1)] Jack[3]@vchan_4@[Chip=0]_SegSwitch@[Chip=0][SegId=(14)] vchan_4[14(0)] Jack[17]@hvswitch@[Chip=0][UDB=(0,4)][side=left] hchan_0[1(4)] Jack[129]@dsiswitch_top@[Chip=0][DSI=(0,4)][side=top] dsi@[Chip=0][DSI=(0,4)]_dsi_bus[44(0)] Jack[4]@O_5_4_to_1_output_mux@[Chip=0][IOP=(4)][IoId=(5)][MuxId=(0)] ioport_4@[Chip=0][IOP=(4)]_port_bus[5(0)] Jack[0]@IO_5@[Chip=0][IOP=(4)][IoId=(5)] 
+\I2C:Net_418\: 10
+\I2C:Net_681\: Jack[1]@IO_5@[Chip=0][IOP=(4)][IoId=(5)] Jack[1]@IO_5@[Chip=0][IOP=(4)][IoId=(5)] Jack[1]@IO_5@[Chip=0][IOP=(4)][IoId=(5)] dsi@[Chip=0][DSI=(0,4)]_dsi_bus[5(0)] Jack[188]@dsiswitch_top@[Chip=0][DSI=(0,4)][side=top] hchan_0[60(4)] Jack[3]@hchan_0@[Chip=0]_SegSwitch@[Chip=0][SegId=(348)] hchan_0[60(3)] Jack[76]@hvswitch@[Chip=0][UDB=(0,2)][side=right] vchan_2[31(0)] Jack[2]@vchan_2@[Chip=0]_SegSwitch@[Chip=0][SegId=(31)] vchan_2[31(1)] Jack[86]@hvswitch@[Chip=0][UDB=(1,2)][side=right] hchan_1[70(3)] Jack[198]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[0(0)] Jack[0]@left@[Chip=0][UDB=(1,3)][LB=0] Jack[190]@dsiswitch_top@[Chip=0][DSI=(0,4)][side=top] hchan_0[62(4)] Jack[78]@hvswitch@[Chip=0][UDB=(0,4)][side=left] vchan_4[7(0)] Jack[2]@vchan_4@[Chip=0]_SegSwitch@[Chip=0][SegId=(7)] vchan_4[7(1)] Jack[73]@hvswitch@[Chip=0][UDB=(1,4)][side=left] hchan_1[57(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(345)] hchan_1[57(3)] Jack[185]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[37(0)] Jack[5]@dpu@[Chip=0][UDB=(1,3)] 
+\I2C:Net_681\: 13
+\I2C:bI2C_UDB:control_1\: Jack[1]@control@[Chip=0][UDB=(1,2)] Jack[1]@control@[Chip=0][UDB=(1,2)] udb_bus[53(0)] Jack[211]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[83(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(275)] hchan_1[83(3)] Jack[211]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[61(0)] Jack[1]@cr@[Chip=0][UDB=(1,3)] Jack[99]@hvswitch@[Chip=0][UDB=(1,1)][side=right] vchan_1[26(1)] Jack[67]@hvswitch@[Chip=0][UDB=(1,1)][side=right] hchan_1[51(2)] Jack[179]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[60(0)] Jack[0]@cr@[Chip=0][UDB=(1,2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(371)] hchan_1[83(4)] Jack[211]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[61(0)] Jack[1]@cr@[Chip=0][UDB=(0,4)] udb_bus[61(0)] Jack[1]@cr@[Chip=0][UDB=(1,4)] Jack[137]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[9(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(201)] hchan_1[9(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(297)] hchan_1[9(4)] Jack[137]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[1(0)] Jack[1]@left@[Chip=0][UDB=(1,4)][LB=0] 
+\I2C:bI2C_UDB:control_1\: 14
+\I2C:bI2C_UDB:i2c_enable\: Jack[15]@left@[Chip=0][UDB=(1,4)][LB=0] udb_bus[15(0)] Jack[221]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[93(4)] udb_bus[63(0)] Jack[3]@cr@[Chip=0][UDB=(1,4)] Jack[223]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[95(4)] udb_bus[63(0)] Jack[3]@cr@[Chip=0][UDB=(0,4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(381)] hchan_1[93(3)] Jack[221]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[63(0)] Jack[3]@cr@[Chip=0][UDB=(1,3)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(285)] hchan_1[93(2)] Jack[221]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[63(0)] Jack[3]@cr@[Chip=0][UDB=(1,2)] 
+\I2C:bI2C_UDB:i2c_enable\: 9
+\I2C:bI2C_UDB:cs_addr_clkgen_1\: Jack[8]@dpu@[Chip=0][UDB=(1,4)] udb_bus[40(0)] Jack[172]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[44(4)] udb_bus[32(0)] Jack[0]@dpu@[Chip=0][UDB=(1,4)] Jack[9]@dpu@[Chip=0][UDB=(1,4)] udb_bus[41(0)] Jack[189]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[61(4)] udb_bus[21(0)] Jack[10]@right@[Chip=0][UDB=(0,4)][LB=1] Jack[175]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[47(4)] udb_bus[7(0)] Jack[7]@left@[Chip=0][UDB=(1,4)][LB=0] 
+\I2C:bI2C_UDB:cs_addr_clkgen_1\: 8
+\I2C:bI2C_UDB:clkgen_cl1\: Jack[10]@dpu@[Chip=0][UDB=(1,4)] udb_bus[42(0)] Jack[186]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[58(4)] udb_bus[30(0)] Jack[1]@right@[Chip=0][UDB=(0,4)][LB=1] 
+\I2C:bI2C_UDB:clkgen_cl1\: 3
+\I2C:bI2C_UDB:clkgen_tc1\: Jack[13]@right@[Chip=0][UDB=(0,4)][LB=1] udb_bus[18(0)] Jack[142]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[14(4)] udb_bus[29(0)] Jack[2]@right@[Chip=0][UDB=(1,4)][LB=1] Jack[12]@right@[Chip=0][UDB=(0,4)][LB=1] udb_bus[19(0)] Jack[181]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[53(4)] udb_bus[27(0)] Jack[4]@right@[Chip=0][UDB=(0,4)][LB=1] Jack[212]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[84(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(372)] hchan_1[84(3)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(276)] hchan_1[84(2)] Jack[212]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[37(0)] Jack[184]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[56(2)] udb_bus[26(0)] Jack[5]@right@[Chip=0][UDB=(1,2)][LB=1] Jack[155]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[27(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(315)] hchan_1[27(3)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(219)] hchan_1[27(2)] Jack[155]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[4(0)] Jack[4]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[140]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[12(4)] udb_bus[45(0)] Jack[164]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[36(4)] udb_bus[10(0)] Jack[10]@left@[Chip=0][UDB=(1,4)][LB=0] Jack[161]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[33(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(321)] hchan_1[33(3)] Jack[161]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[9(0)] Jack[9]@left@[Chip=0][UDB=(1,3)][LB=0] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(302)] hchan_1[14(3)] Jack[142]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[29(0)] Jack[2]@right@[Chip=0][UDB=(1,3)][LB=1] 
+\I2C:bI2C_UDB:clkgen_tc1\: 25
+\I2C:bI2C_UDB:state_4\: Jack[12]@left@[Chip=0][UDB=(1,2)][LB=0] udb_bus[12(0)] Jack[153]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[25(2)] udb_bus[0(0)] Jack[0]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(217)] hchan_1[25(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(313)] hchan_1[25(4)] Jack[153]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[23(0)] Jack[8]@right@[Chip=0][UDB=(0,4)][LB=1] Jack[13]@left@[Chip=0][UDB=(1,2)][LB=0] udb_bus[13(0)] Jack[209]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[81(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(273)] hchan_1[81(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(369)] hchan_1[81(4)] Jack[209]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[21(0)] Jack[10]@right@[Chip=0][UDB=(1,4)][LB=1] Jack[140]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[12(2)] udb_bus[29(0)] Jack[2]@right@[Chip=0][UDB=(1,2)][LB=1] Jack[205]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[77(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(269)] hchan_1[77(3)] Jack[205]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[20(0)] Jack[11]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[47(0)] Jack[132]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[4(4)] udb_bus[48(0)] Jack[200]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[72(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(360)] hchan_1[72(3)] Jack[200]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[7(0)] Jack[7]@left@[Chip=0][UDB=(1,3)][LB=0] udb_bus[8(0)] Jack[195]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[67(4)] udb_bus[8(0)] Jack[8]@left@[Chip=0][UDB=(1,4)][LB=0] 
+\I2C:bI2C_UDB:state_4\: 25
+\I2C:bI2C_UDB:state_3\: Jack[14]@left@[Chip=0][UDB=(1,2)][LB=0] udb_bus[14(0)] Jack[182]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[54(2)] udb_bus[30(0)] Jack[1]@right@[Chip=0][UDB=(1,2)][LB=1] Jack[15]@left@[Chip=0][UDB=(1,2)][LB=0] udb_bus[15(0)] Jack[171]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[43(2)] udb_bus[3(0)] Jack[3]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[136]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[8(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(200)] hchan_1[8(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(296)] hchan_1[8(4)] Jack[136]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[1(0)] Jack[217]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[89(4)] udb_bus[25(0)] Jack[6]@right@[Chip=0][UDB=(0,4)][LB=1] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(473)] hchan_1[89(5)] Jack[105]@hvswitch@[Chip=0][UDB=(1,5)][side=left] vchan_5[8(1)] Jack[35]@hvswitch@[Chip=0][UDB=(1,5)][side=left] hchan_1[19(5)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(403)] hchan_1[19(4)] Jack[147]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[23(0)] Jack[8]@right@[Chip=0][UDB=(1,4)][LB=1] Jack[90]@hvswitch@[Chip=0][UDB=(1,5)][side=left] hchan_1[74(5)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(458)] hchan_1[74(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(362)] hchan_1[74(3)] Jack[202]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[31(0)] Jack[0]@right@[Chip=0][UDB=(1,3)][LB=1] Jack[26]@hvswitch@[Chip=0][UDB=(1,5)][side=left] hchan_1[10(5)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(394)] hchan_1[10(4)] Jack[138]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[49(0)] Jack[192]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[64(4)] udb_bus[9(0)] Jack[9]@left@[Chip=0][UDB=(1,4)][LB=0] udb_bus[49(0)] Jack[208]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[80(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(368)] hchan_1[80(3)] Jack[208]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[6(0)] Jack[6]@left@[Chip=0][UDB=(1,3)][LB=0] 
+\I2C:bI2C_UDB:state_3\: 30
+\I2C:bI2C_UDB:state_2\: Jack[13]@right@[Chip=0][UDB=(1,2)][LB=1] udb_bus[18(0)] Jack[160]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[32(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(224)] hchan_1[32(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(320)] hchan_1[32(4)] Jack[160]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[30(0)] Jack[1]@right@[Chip=0][UDB=(1,4)][LB=1] Jack[14]@right@[Chip=0][UDB=(1,2)][LB=1] udb_bus[17(0)] Jack[190]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[62(2)] udb_bus[25(0)] Jack[6]@right@[Chip=0][UDB=(1,2)][LB=1] Jack[163]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[35(2)] Jack[51]@hvswitch@[Chip=0][UDB=(1,1)][side=right] vchan_1[30(1)] Jack[17]@hvswitch@[Chip=0][UDB=(1,1)][side=right] hchan_1[1(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(193)] hchan_1[1(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(289)] hchan_1[1(4)] Jack[129]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[20(0)] Jack[11]@right@[Chip=0][UDB=(0,4)][LB=1] Jack[160]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[30(0)] Jack[1]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[5(0)] Jack[5]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[213]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[85(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(277)] hchan_1[85(3)] Jack[213]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[1(0)] Jack[1]@left@[Chip=0][UDB=(1,3)][LB=0] Jack[166]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[38(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(230)] hchan_1[38(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(326)] hchan_1[38(4)] Jack[166]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[10(0)] Jack[135]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[7(4)] udb_bus[5(0)] Jack[5]@left@[Chip=0][UDB=(1,4)][LB=0] 
+\I2C:bI2C_UDB:state_2\: 25
+\I2C:bI2C_UDB:state_1\: Jack[12]@right@[Chip=0][UDB=(1,4)][LB=1] udb_bus[19(0)] Jack[146]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[18(4)] udb_bus[28(0)] Jack[3]@right@[Chip=0][UDB=(1,4)][LB=1] Jack[15]@right@[Chip=0][UDB=(1,4)][LB=1] udb_bus[16(0)] Jack[199]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[71(4)] udb_bus[24(0)] Jack[7]@right@[Chip=0][UDB=(0,4)][LB=1] Jack[14]@right@[Chip=0][UDB=(1,4)][LB=1] udb_bus[17(0)] Jack[190]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[62(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(350)] hchan_1[62(3)] Jack[190]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[25(0)] Jack[6]@right@[Chip=0][UDB=(1,3)][LB=1] Jack[178]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[50(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(338)] hchan_1[50(3)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(242)] hchan_1[50(2)] Jack[178]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[7(0)] Jack[7]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[219]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[91(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(379)] hchan_1[91(3)] Jack[219]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[11(0)] Jack[11]@left@[Chip=0][UDB=(1,3)][LB=0] udb_bus[11(0)] Jack[11]@left@[Chip=0][UDB=(1,4)][LB=0] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(283)] hchan_1[91(2)] Jack[219]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[24(0)] Jack[7]@right@[Chip=0][UDB=(1,2)][LB=1] 
+\I2C:bI2C_UDB:state_1\: 20
+\I2C:bI2C_UDB:state_0\: Jack[12]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[19(0)] Jack[181]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[53(3)] udb_bus[27(0)] Jack[4]@right@[Chip=0][UDB=(1,3)][LB=1] Jack[13]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[18(0)] Jack[143]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[15(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(303)] hchan_1[15(4)] Jack[143]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[29(0)] Jack[2]@right@[Chip=0][UDB=(0,4)][LB=1] Jack[216]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[88(3)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(280)] hchan_1[88(2)] Jack[216]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[10(0)] Jack[10]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[215]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[87(4)] udb_bus[22(0)] Jack[9]@right@[Chip=0][UDB=(1,4)][LB=1] Jack[167]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[39(4)] udb_bus[6(0)] Jack[6]@left@[Chip=0][UDB=(1,4)][LB=0] udb_bus[51(0)] Jack[150]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[22(3)] udb_bus[8(0)] Jack[8]@left@[Chip=0][UDB=(1,3)][LB=0] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(245)] hchan_1[53(2)] Jack[181]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[27(0)] Jack[4]@right@[Chip=0][UDB=(1,2)][LB=1] 
+\I2C:bI2C_UDB:state_0\: 19
+\I2C:bI2C_UDB:control_6\: Jack[6]@control@[Chip=0][UDB=(1,2)] Jack[6]@control@[Chip=0][UDB=(1,2)] Jack[6]@control@[Chip=0][UDB=(1,2)] udb_bus[58(0)] Jack[139]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[11(2)] udb_bus[21(0)] Jack[10]@right@[Chip=0][UDB=(1,2)][LB=1] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(203)] hchan_1[11(3)] Jack[139]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[21(0)] Jack[10]@right@[Chip=0][UDB=(1,3)][LB=1] Jack[162]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[34(2)] udb_bus[1(0)] Jack[1]@left@[Chip=0][UDB=(1,2)][LB=0] 
+\I2C:bI2C_UDB:control_6\: 7
+\I2C:bI2C_UDB:control_5\: Jack[5]@control@[Chip=0][UDB=(1,2)] Jack[5]@control@[Chip=0][UDB=(1,2)] Jack[5]@control@[Chip=0][UDB=(1,2)] udb_bus[57(0)] Jack[145]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[17(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(209)] hchan_1[17(3)] Jack[145]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[22(0)] Jack[9]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[6(0)] Jack[6]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[186]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[58(2)] udb_bus[22(0)] Jack[9]@right@[Chip=0][UDB=(1,2)][LB=1] 
+\I2C:bI2C_UDB:control_5\: 7
+\I2C:bI2C_UDB:control_4\: Jack[4]@control@[Chip=0][UDB=(1,2)] Jack[4]@control@[Chip=0][UDB=(1,2)] Jack[4]@control@[Chip=0][UDB=(1,2)] udb_bus[56(0)] Jack[204]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[76(2)] udb_bus[8(0)] Jack[8]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(268)] hchan_1[76(3)] Jack[204]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[3(0)] Jack[3]@left@[Chip=0][UDB=(1,3)][LB=0] Jack[151]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[23(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(215)] hchan_1[23(3)] Jack[151]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[23(0)] Jack[8]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[23(0)] Jack[8]@right@[Chip=0][UDB=(1,2)][LB=1] 
+\I2C:bI2C_UDB:control_4\: 9
+\I2C:bI2C_UDB:control_2\: Jack[2]@control@[Chip=0][UDB=(1,2)] Jack[2]@control@[Chip=0][UDB=(1,2)] udb_bus[54(0)] Jack[143]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[15(2)] udb_bus[2(0)] Jack[2]@left@[Chip=0][UDB=(1,2)][LB=0] 
+\I2C:bI2C_UDB:control_2\: 3
+\I2C:bI2C_UDB:tx_reg_empty\: Jack[7]@dpu@[Chip=0][UDB=(1,3)] udb_bus[39(0)] Jack[156]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[28(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(316)] hchan_1[28(4)] Jack[156]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[27(0)] Jack[4]@right@[Chip=0][UDB=(1,4)][LB=1] Jack[11]@dpu@[Chip=0][UDB=(1,3)] udb_bus[43(0)] Jack[180]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[52(3)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(244)] hchan_1[52(2)] Jack[180]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[11(0)] Jack[11]@left@[Chip=0][UDB=(1,2)][LB=0] Jack[177]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[49(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(337)] hchan_1[49(4)] Jack[177]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[3(0)] Jack[3]@left@[Chip=0][UDB=(1,4)][LB=0] Jack[152]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[24(3)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(216)] hchan_1[24(2)] Jack[152]@udbswitch@[Chip=0][UDB=(0,2)][side=top] udb_bus[31(0)] Jack[0]@right@[Chip=0][UDB=(1,2)][LB=1] Jack[8]@dpu@[Chip=0][UDB=(1,3)] udb_bus[40(0)] Jack[220]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[92(3)] udb_bus[28(0)] Jack[3]@right@[Chip=0][UDB=(1,3)][LB=1] 
+\I2C:bI2C_UDB:tx_reg_empty\: 17
+\I2C:bI2C_UDB:status_0\: Jack[12]@right@[Chip=0][UDB=(1,2)][LB=1] udb_bus[19(0)] Jack[146]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[18(2)] udb_bus[28(0)] Jack[3]@right@[Chip=0][UDB=(1,2)][LB=1] Jack[15]@right@[Chip=0][UDB=(1,2)][LB=1] udb_bus[16(0)] Jack[196]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[68(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(260)] hchan_1[68(3)] Jack[196]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[44(0)] Jack[0]@status@[Chip=0][UDB=(1,3)] 
+\I2C:bI2C_UDB:status_0\: 7
+\I2C:bI2C_UDB:cs_addr_shifter_1\: Jack[14]@left@[Chip=0][UDB=(1,4)][LB=0] udb_bus[14(0)] Jack[169]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[41(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(329)] hchan_1[41(3)] Jack[169]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[33(0)] Jack[1]@dpu@[Chip=0][UDB=(1,3)] 
+\I2C:bI2C_UDB:cs_addr_shifter_1\: 4
+\I2C:bI2C_UDB:cs_addr_shifter_0\: Jack[12]@left@[Chip=0][UDB=(1,4)][LB=0] udb_bus[12(0)] Jack[157]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[29(4)] Jack[3]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(317)] hchan_1[29(3)] Jack[157]@udbswitch@[Chip=0][UDB=(0,3)][side=top] udb_bus[35(0)] Jack[3]@dpu@[Chip=0][UDB=(1,3)] 
+\I2C:bI2C_UDB:cs_addr_shifter_0\: 4
+\I2C:bI2C_UDB:shift_data_out\: Jack[10]@dpu@[Chip=0][UDB=(1,3)] udb_bus[42(0)] Jack[186]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[58(3)] udb_bus[10(0)] Jack[10]@left@[Chip=0][UDB=(1,3)][LB=0] 
+\I2C:bI2C_UDB:shift_data_out\: 3
+\I2C:bI2C_UDB:status_1\: Jack[13]@left@[Chip=0][UDB=(1,3)][LB=0] udb_bus[13(0)] Jack[140]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[12(3)] udb_bus[45(0)] Jack[1]@status@[Chip=0][UDB=(1,3)] udb_bus[50(0)] Jack[214]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[86(3)] udb_bus[5(0)] Jack[5]@left@[Chip=0][UDB=(1,3)][LB=0] 
+\I2C:bI2C_UDB:status_1\: 6
+\I2C:bI2C_UDB:clkgen_tc2\: Jack[14]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[17(0)] Jack[210]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[82(3)] udb_bus[2(0)] Jack[2]@left@[Chip=0][UDB=(1,3)][LB=0] 
+\I2C:bI2C_UDB:clkgen_tc2\: 3
+\I2C:bI2C_UDB:status_4\: Jack[15]@right@[Chip=0][UDB=(1,3)][LB=1] udb_bus[16(0)] Jack[175]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[47(3)] udb_bus[48(0)] Jack[195]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[67(3)] udb_bus[48(0)] Jack[4]@status@[Chip=0][UDB=(1,3)] 
+\I2C:bI2C_UDB:status_4\: 5
+\I2C:bI2C_UDB:cs_addr_clkgen_0\: Jack[13]@left@[Chip=0][UDB=(1,4)][LB=0] udb_bus[13(0)] Jack[163]@udbswitch@[Chip=0][UDB=(0,4)][side=top] hchan_1[35(4)] udb_bus[34(0)] Jack[2]@dpu@[Chip=0][UDB=(1,4)] 
+\I2C:bI2C_UDB:cs_addr_clkgen_0\: 3
+\I2C:bI2C_UDB:control_0\: Jack[0]@control@[Chip=0][UDB=(1,2)] Jack[0]@control@[Chip=0][UDB=(1,2)] udb_bus[52(0)] Jack[131]@udbswitch@[Chip=0][UDB=(0,2)][side=top] hchan_1[3(2)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(195)] hchan_1[3(3)] Jack[2]@hchan_1@[Chip=0]_SegSwitch@[Chip=0][SegId=(291)] hchan_1[3(4)] Jack[131]@udbswitch@[Chip=0][UDB=(0,4)][side=top] udb_bus[0(0)] Jack[0]@left@[Chip=0][UDB=(1,4)][LB=0] 
+\I2C:bI2C_UDB:control_0\: 5
+\I2C:Net_44\: Jack[7]@status@[Chip=0][UDB=(1,3)] Jack[7]@status@[Chip=0][UDB=(1,3)] udb_bus[51(0)] Jack[147]@udbswitch@[Chip=0][UDB=(0,3)][side=top] hchan_1[19(3)] Jack[35]@hvswitch@[Chip=0][UDB=(1,3)][side=left] vchan_3[8(1)] Jack[2]@vchan_3@[Chip=0]_SegSwitch@[Chip=0][SegId=(40)] vchan_3[8(2)] Jack[2]@vchan_3@[Chip=0]_SegSwitch@[Chip=0][SegId=(72)] vchan_3[8(3)] Jack[44]@hvswitch@[Chip=0][UDB=(3,3)][side=left] hchan_3[28(3)] Jack[156]@dsiswitch_top@[Chip=0][DSI=(1,3)][side=top] dsi@[Chip=0][DSI=(1,3)]_dsi_bus[27(0)] Jack[3]@irq_13_3_to_1_mux@[Chip=0][IntrHod=(0)][IntrId=(13)][MuxId=(0)] intc_0@[Chip=0][IntrHod=(0)]_irq_bus[13(0)] Jack[0]@interrupt13@[Chip=0][IntrHod=(0)][IntrId=(13)] 
+\I2C:Net_44\: 8
+Routed 29 signals
+Routing took 5.62554 second(s)
+Digital Routing phase: Elapsed time ==> 6s.313ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Bitstream and API generation">
+Bitstream and API generation phase: Elapsed time ==> 0s.828ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Bitstream verification">
+Bitstream verification phase: Elapsed time ==> 0s.250ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Static timing analysis">
+Static timing analysis is disabled.
+Static timing analysis phase: Elapsed time ==> 0s.015ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Data reporting">
+Data reporting phase: Elapsed time ==> 0s.000ms
+</CYPRESSTAG>
+<CYPRESSTAG name="Database update...">
+Design database save phase: Elapsed time ==> 0s.484ms
+</CYPRESSTAG>
+cydsfit: Elapsed time ==> 12s.657ms
+</CYPRESSTAG>
+Fitter phase: Elapsed time ==> 12s.813ms
+API generation phase: Elapsed time ==> 1s.968ms
+Dependency generation phase: Elapsed time ==> 0s.031ms
+Cleanup phase: Elapsed time ==> 0s.000ms

@@ -1,0 +1,1317 @@
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 18, 4
+  12              		.thumb
+  13              		.file	"Clock.c"
+  14              		.section	.debug_abbrev,"",%progbits
+  15              	.Ldebug_abbrev0:
+  16              		.section	.debug_info,"",%progbits
+  17              	.Ldebug_info0:
+  18              		.section	.debug_line,"",%progbits
+  19              	.Ldebug_line0:
+  20 0000 C3000000 		.text
+  20      02004400 
+  20      00000201 
+  20      FB0E0D00 
+  20      01010101 
+  21              	.Ltext0:
+  22              		.cfi_sections	.debug_frame
+  23              		.section	.text.Clock_Start,"ax",%progbits
+  24              		.align	2
+  25              		.global	Clock_Start
+  26              		.thumb
+  27              		.thumb_func
+  28              		.type	Clock_Start, %function
+  29              	Clock_Start:
+  30              	.LFB0:
+  31              		.file 1 "./Generated_Source/PSoC5/Clock.c"
+   1:./Generated_Source/PSoC5/Clock.c **** /*******************************************************************************
+   2:./Generated_Source/PSoC5/Clock.c **** * File Name: Clock.c
+   3:./Generated_Source/PSoC5/Clock.c **** * Version 1.0
+   4:./Generated_Source/PSoC5/Clock.c **** *
+   5:./Generated_Source/PSoC5/Clock.c **** *  Description:
+   6:./Generated_Source/PSoC5/Clock.c **** *    API for controlling a clock.
+   7:./Generated_Source/PSoC5/Clock.c **** *
+   8:./Generated_Source/PSoC5/Clock.c **** *    A clock has an input source and a divider.  These are assigned 
+   9:./Generated_Source/PSoC5/Clock.c **** *    by CyDesigner.  Durring code generation, CyDesigner creates
+  10:./Generated_Source/PSoC5/Clock.c **** *    the necessary defines for manipulating the registers associated
+  11:./Generated_Source/PSoC5/Clock.c **** *    with the assigned clock.  This API uses those register definitions
+  12:./Generated_Source/PSoC5/Clock.c **** *    to control the clock.  
+  13:./Generated_Source/PSoC5/Clock.c **** *
+  14:./Generated_Source/PSoC5/Clock.c **** *   Note:
+  15:./Generated_Source/PSoC5/Clock.c **** *
+  16:./Generated_Source/PSoC5/Clock.c **** *
+  17:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************
+  18:./Generated_Source/PSoC5/Clock.c **** * Copyright 2008-2009, Cypress Semiconductor Corporation.  All rights reserved.
+  19:./Generated_Source/PSoC5/Clock.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  20:./Generated_Source/PSoC5/Clock.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  21:./Generated_Source/PSoC5/Clock.c **** * the software package with which this file was provided.
+  22:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************/
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 2
+
+
+  23:./Generated_Source/PSoC5/Clock.c **** 
+  24:./Generated_Source/PSoC5/Clock.c **** 
+  25:./Generated_Source/PSoC5/Clock.c **** #include <CYDEVICE.H>
+  26:./Generated_Source/PSoC5/Clock.c **** #include "Clock.H"
+  27:./Generated_Source/PSoC5/Clock.c **** 
+  28:./Generated_Source/PSoC5/Clock.c **** 
+  29:./Generated_Source/PSoC5/Clock.c **** 
+  30:./Generated_Source/PSoC5/Clock.c **** 
+  31:./Generated_Source/PSoC5/Clock.c **** 
+  32:./Generated_Source/PSoC5/Clock.c **** 
+  33:./Generated_Source/PSoC5/Clock.c **** 
+  34:./Generated_Source/PSoC5/Clock.c **** /* Clock Distribution registers. */
+  35:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_CR                  ((reg8 *) CYDEV_CLKDIST_CR)
+  36:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_LD                  ((reg8 *) CYDEV_CLKDIST_LD)
+  37:./Generated_Source/PSoC5/Clock.c **** 
+  38:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_BCFG0               ((reg8 *) CYDEV_CLKDIST_BCFG0)
+  39:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_BCFG1               ((reg8 *) CYDEV_CLKDIST_BCFG1)
+  40:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_BCFG2               ((reg8 *) CYDEV_CLKDIST_BCFG2)
+  41:./Generated_Source/PSoC5/Clock.c **** 
+  42:./Generated_Source/PSoC5/Clock.c **** #define BCFG2_SHADOW_MASK            (0x80)
+  43:./Generated_Source/PSoC5/Clock.c **** 
+  44:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_WRK0                ((reg8 *) CYDEV_CLKDIST_WRK0)
+  45:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_WRK1                ((reg8 *) CYDEV_CLKDIST_WRK1)
+  46:./Generated_Source/PSoC5/Clock.c **** 
+  47:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_DMASK               ((reg8 *) CYDEV_CLKDIST_DMASK)
+  48:./Generated_Source/PSoC5/Clock.c **** #define CLK_DIST_AMASK               ((reg8 *) CYDEV_CLKDIST_AMASK)
+  49:./Generated_Source/PSoC5/Clock.c **** 
+  50:./Generated_Source/PSoC5/Clock.c **** 
+  51:./Generated_Source/PSoC5/Clock.c **** /*******************************************************************************
+  52:./Generated_Source/PSoC5/Clock.c **** * Function Name: Clock_Start
+  53:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************
+  54:./Generated_Source/PSoC5/Clock.c **** * Summary:
+  55:./Generated_Source/PSoC5/Clock.c **** *   Enables the clock by setting the enable bit in the 'Active Power Mode
+  56:./Generated_Source/PSoC5/Clock.c **** *   Configuration Register' corresponding to this clock.
+  57:./Generated_Source/PSoC5/Clock.c **** *
+  58:./Generated_Source/PSoC5/Clock.c **** *
+  59:./Generated_Source/PSoC5/Clock.c **** * Parameters:
+  60:./Generated_Source/PSoC5/Clock.c **** *   void.
+  61:./Generated_Source/PSoC5/Clock.c **** *
+  62:./Generated_Source/PSoC5/Clock.c **** * Return:
+  63:./Generated_Source/PSoC5/Clock.c **** *   void.
+  64:./Generated_Source/PSoC5/Clock.c **** *   
+  65:./Generated_Source/PSoC5/Clock.c **** *
+  66:./Generated_Source/PSoC5/Clock.c **** *******************************************************************************/
+  67:./Generated_Source/PSoC5/Clock.c **** void Clock_Start(void)
+  68:./Generated_Source/PSoC5/Clock.c **** {
+  32              		.loc 1 68 0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 0
+  35              		@ frame_needed = 1, uses_anonymous_args = 0
+  36              		@ link register save eliminated.
+  37 0000 80B4     		push	{r7}
+  38              	.LCFI0:
+  39              		.cfi_def_cfa_offset 4
+  40 0002 00AF     		add	r7, sp, #0
+  41              		.cfi_offset 7, -4
+  42              	.LCFI1:
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 3
+
+
+  43              		.cfi_def_cfa_register 7
+  69:./Generated_Source/PSoC5/Clock.c ****     /* Set the bit to enable the clock. */
+  70:./Generated_Source/PSoC5/Clock.c ****     *Clock_CLKEN |= Clock_CLKEN_MASK;
+  44              		.loc 1 70 0
+  45 0004 44F2A233 		movw	r3, #:lower16:1073759138
+  46 0008 C4F20003 		movt	r3, #:upper16:1073759138
+  47 000c 44F2A232 		movw	r2, #:lower16:1073759138
+  48 0010 C4F20002 		movt	r2, #:upper16:1073759138
+  49 0014 1278     		ldrb	r2, [r2, #0]
+  50 0016 D2B2     		uxtb	r2, r2
+  51 0018 42F00102 		orr	r2, r2, #1
+  52 001c D2B2     		uxtb	r2, r2
+  53 001e 1A70     		strb	r2, [r3, #0]
+  71:./Generated_Source/PSoC5/Clock.c **** }
+  54              		.loc 1 71 0
+  55 0020 BD46     		mov	sp, r7
+  56 0022 80BC     		pop	{r7}
+  57 0024 7047     		bx	lr
+  58              		.cfi_endproc
+  59              	.LFE0:
+  60              		.size	Clock_Start, .-Clock_Start
+  61 0026 00BF     		.section	.text.Clock_Stop,"ax",%progbits
+  62              		.align	2
+  63              		.global	Clock_Stop
+  64              		.thumb
+  65              		.thumb_func
+  66              		.type	Clock_Stop, %function
+  67              	Clock_Stop:
+  68              	.LFB1:
+  72:./Generated_Source/PSoC5/Clock.c **** 
+  73:./Generated_Source/PSoC5/Clock.c **** 
+  74:./Generated_Source/PSoC5/Clock.c **** /*******************************************************************************
+  75:./Generated_Source/PSoC5/Clock.c **** * Function Name: Clock_Stop
+  76:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************
+  77:./Generated_Source/PSoC5/Clock.c **** * Summary:
+  78:./Generated_Source/PSoC5/Clock.c **** *   Disables the clock by clearing the enable bit in the 'Active Power Mode
+  79:./Generated_Source/PSoC5/Clock.c **** *   Configuration Register' corresponding to this clock.
+  80:./Generated_Source/PSoC5/Clock.c **** *
+  81:./Generated_Source/PSoC5/Clock.c **** *   if the clock is disabled, the output will be held at logic 0 when the
+  82:./Generated_Source/PSoC5/Clock.c **** *   signal transitions to a logic 0.
+  83:./Generated_Source/PSoC5/Clock.c **** *
+  84:./Generated_Source/PSoC5/Clock.c **** * Parameters:
+  85:./Generated_Source/PSoC5/Clock.c **** *   void.
+  86:./Generated_Source/PSoC5/Clock.c **** *
+  87:./Generated_Source/PSoC5/Clock.c **** *
+  88:./Generated_Source/PSoC5/Clock.c **** * Return:
+  89:./Generated_Source/PSoC5/Clock.c **** *   void.
+  90:./Generated_Source/PSoC5/Clock.c **** *   
+  91:./Generated_Source/PSoC5/Clock.c **** *
+  92:./Generated_Source/PSoC5/Clock.c **** *******************************************************************************/
+  93:./Generated_Source/PSoC5/Clock.c **** void Clock_Stop(void)
+  94:./Generated_Source/PSoC5/Clock.c **** {
+  69              		.loc 1 94 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73              		@ link register save eliminated.
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 4
+
+
+  74 0000 80B4     		push	{r7}
+  75              	.LCFI2:
+  76              		.cfi_def_cfa_offset 4
+  77 0002 00AF     		add	r7, sp, #0
+  78              		.cfi_offset 7, -4
+  79              	.LCFI3:
+  80              		.cfi_def_cfa_register 7
+  95:./Generated_Source/PSoC5/Clock.c ****     /* Clear the bit to enable the clock. */
+  96:./Generated_Source/PSoC5/Clock.c ****     *Clock_CLKEN &= ~Clock_CLKEN_MASK;
+  81              		.loc 1 96 0
+  82 0004 44F2A233 		movw	r3, #:lower16:1073759138
+  83 0008 C4F20003 		movt	r3, #:upper16:1073759138
+  84 000c 44F2A232 		movw	r2, #:lower16:1073759138
+  85 0010 C4F20002 		movt	r2, #:upper16:1073759138
+  86 0014 1278     		ldrb	r2, [r2, #0]
+  87 0016 D2B2     		uxtb	r2, r2
+  88 0018 02F0FE02 		and	r2, r2, #254
+  89 001c 1A70     		strb	r2, [r3, #0]
+  97:./Generated_Source/PSoC5/Clock.c **** }
+  90              		.loc 1 97 0
+  91 001e BD46     		mov	sp, r7
+  92 0020 80BC     		pop	{r7}
+  93 0022 7047     		bx	lr
+  94              		.cfi_endproc
+  95              	.LFE1:
+  96              		.size	Clock_Stop, .-Clock_Stop
+  97              		.section	.text.Clock_StandbyPower,"ax",%progbits
+  98              		.align	2
+  99              		.global	Clock_StandbyPower
+ 100              		.thumb
+ 101              		.thumb_func
+ 102              		.type	Clock_StandbyPower, %function
+ 103              	Clock_StandbyPower:
+ 104              	.LFB2:
+  98:./Generated_Source/PSoC5/Clock.c **** 
+  99:./Generated_Source/PSoC5/Clock.c **** 
+ 100:./Generated_Source/PSoC5/Clock.c **** /*******************************************************************************
+ 101:./Generated_Source/PSoC5/Clock.c **** * Function Name: Clock_StandbyPower
+ 102:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************
+ 103:./Generated_Source/PSoC5/Clock.c **** * Summary:
+ 104:./Generated_Source/PSoC5/Clock.c **** *   Selects the power state for this clock when in standby power mode.
+ 105:./Generated_Source/PSoC5/Clock.c **** *
+ 106:./Generated_Source/PSoC5/Clock.c **** * Parameters:
+ 107:./Generated_Source/PSoC5/Clock.c **** *   state:
+ 108:./Generated_Source/PSoC5/Clock.c **** *       state of this clock during standby power mode. 1 is active, 0 inactive.
+ 109:./Generated_Source/PSoC5/Clock.c **** *
+ 110:./Generated_Source/PSoC5/Clock.c **** *   
+ 111:./Generated_Source/PSoC5/Clock.c **** * Return:
+ 112:./Generated_Source/PSoC5/Clock.c **** *   void.
+ 113:./Generated_Source/PSoC5/Clock.c **** *
+ 114:./Generated_Source/PSoC5/Clock.c **** *
+ 115:./Generated_Source/PSoC5/Clock.c **** *******************************************************************************/
+ 116:./Generated_Source/PSoC5/Clock.c **** void Clock_StandbyPower(uint8 state)
+ 117:./Generated_Source/PSoC5/Clock.c **** {
+ 105              		.loc 1 117 0
+ 106              		.cfi_startproc
+ 107              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 5
+
+
+ 108              		@ frame_needed = 1, uses_anonymous_args = 0
+ 109              		@ link register save eliminated.
+ 110 0000 80B4     		push	{r7}
+ 111              	.LCFI4:
+ 112              		.cfi_def_cfa_offset 4
+ 113 0002 83B0     		sub	sp, sp, #12
+ 114              	.LCFI5:
+ 115              		.cfi_def_cfa_offset 16
+ 116 0004 00AF     		add	r7, sp, #0
+ 117              		.cfi_offset 7, -4
+ 118              	.LCFI6:
+ 119              		.cfi_def_cfa_register 7
+ 120 0006 0346     		mov	r3, r0
+ 121 0008 FB71     		strb	r3, [r7, #7]
+ 118:./Generated_Source/PSoC5/Clock.c ****     if(state == 0)
+ 122              		.loc 1 118 0
+ 123 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 124 000c 002B     		cmp	r3, #0
+ 125 000e 0DD1     		bne	.L6
+ 119:./Generated_Source/PSoC5/Clock.c ****     {
+ 120:./Generated_Source/PSoC5/Clock.c ****         *Clock_CLKSTBY &= ~Clock_CLKSTBY_MASK;
+ 126              		.loc 1 120 0
+ 127 0010 44F2B233 		movw	r3, #:lower16:1073759154
+ 128 0014 C4F20003 		movt	r3, #:upper16:1073759154
+ 129 0018 44F2B232 		movw	r2, #:lower16:1073759154
+ 130 001c C4F20002 		movt	r2, #:upper16:1073759154
+ 131 0020 1278     		ldrb	r2, [r2, #0]
+ 132 0022 D2B2     		uxtb	r2, r2
+ 133 0024 02F0FE02 		and	r2, r2, #254
+ 134 0028 1A70     		strb	r2, [r3, #0]
+ 135 002a 0DE0     		b	.L8
+ 136              	.L6:
+ 121:./Generated_Source/PSoC5/Clock.c ****     }
+ 122:./Generated_Source/PSoC5/Clock.c ****     else
+ 123:./Generated_Source/PSoC5/Clock.c ****     {
+ 124:./Generated_Source/PSoC5/Clock.c ****         *Clock_CLKSTBY |= Clock_CLKSTBY_MASK;
+ 137              		.loc 1 124 0
+ 138 002c 44F2B233 		movw	r3, #:lower16:1073759154
+ 139 0030 C4F20003 		movt	r3, #:upper16:1073759154
+ 140 0034 44F2B232 		movw	r2, #:lower16:1073759154
+ 141 0038 C4F20002 		movt	r2, #:upper16:1073759154
+ 142 003c 1278     		ldrb	r2, [r2, #0]
+ 143 003e D2B2     		uxtb	r2, r2
+ 144 0040 42F00102 		orr	r2, r2, #1
+ 145 0044 D2B2     		uxtb	r2, r2
+ 146 0046 1A70     		strb	r2, [r3, #0]
+ 147              	.L8:
+ 125:./Generated_Source/PSoC5/Clock.c ****     }
+ 126:./Generated_Source/PSoC5/Clock.c **** }
+ 148              		.loc 1 126 0
+ 149 0048 07F10C07 		add	r7, r7, #12
+ 150 004c BD46     		mov	sp, r7
+ 151 004e 80BC     		pop	{r7}
+ 152 0050 7047     		bx	lr
+ 153              		.cfi_endproc
+ 154              	.LFE2:
+ 155              		.size	Clock_StandbyPower, .-Clock_StandbyPower
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 6
+
+
+ 156 0052 00BF     		.section	.text.Clock_SetDivider,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	Clock_SetDivider
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	Clock_SetDivider, %function
+ 162              	Clock_SetDivider:
+ 163              	.LFB3:
+ 127:./Generated_Source/PSoC5/Clock.c **** 
+ 128:./Generated_Source/PSoC5/Clock.c **** 
+ 129:./Generated_Source/PSoC5/Clock.c **** /*******************************************************************************
+ 130:./Generated_Source/PSoC5/Clock.c **** * Function Name: Clock_SetDivider
+ 131:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************
+ 132:./Generated_Source/PSoC5/Clock.c **** * Summary:
+ 133:./Generated_Source/PSoC5/Clock.c **** *   Sets the divider of the clock.
+ 134:./Generated_Source/PSoC5/Clock.c **** *
+ 135:./Generated_Source/PSoC5/Clock.c **** *
+ 136:./Generated_Source/PSoC5/Clock.c **** * Parameters:
+ 137:./Generated_Source/PSoC5/Clock.c **** * clkDivider:
+ 138:./Generated_Source/PSoC5/Clock.c **** *   Value to device the input clock by.
+ 139:./Generated_Source/PSoC5/Clock.c **** *
+ 140:./Generated_Source/PSoC5/Clock.c **** *
+ 141:./Generated_Source/PSoC5/Clock.c **** * Return:
+ 142:./Generated_Source/PSoC5/Clock.c **** *   void.
+ 143:./Generated_Source/PSoC5/Clock.c **** *   
+ 144:./Generated_Source/PSoC5/Clock.c **** *
+ 145:./Generated_Source/PSoC5/Clock.c **** * Theory:
+ 146:./Generated_Source/PSoC5/Clock.c **** *   Any value other than zero is acceptable.
+ 147:./Generated_Source/PSoC5/Clock.c **** *
+ 148:./Generated_Source/PSoC5/Clock.c **** *
+ 149:./Generated_Source/PSoC5/Clock.c **** *******************************************************************************/
+ 150:./Generated_Source/PSoC5/Clock.c **** void Clock_SetDivider(uint16 clkDivider)
+ 151:./Generated_Source/PSoC5/Clock.c **** {
+ 164              		.loc 1 151 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 8
+ 167              		@ frame_needed = 1, uses_anonymous_args = 0
+ 168              		@ link register save eliminated.
+ 169 0000 80B4     		push	{r7}
+ 170              	.LCFI7:
+ 171              		.cfi_def_cfa_offset 4
+ 172 0002 83B0     		sub	sp, sp, #12
+ 173              	.LCFI8:
+ 174              		.cfi_def_cfa_offset 16
+ 175 0004 00AF     		add	r7, sp, #0
+ 176              		.cfi_offset 7, -4
+ 177              	.LCFI9:
+ 178              		.cfi_def_cfa_register 7
+ 179 0006 0346     		mov	r3, r0
+ 180 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 152:./Generated_Source/PSoC5/Clock.c ****     // Clear all the mask bits except ours.
+ 153:./Generated_Source/PSoC5/Clock.c **** #if defined(Clock__CFG3)
+ 154:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_AMASK = Clock_CLKEN_MASK;
+ 155:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_DMASK = 0;
+ 156:./Generated_Source/PSoC5/Clock.c **** #else
+ 157:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_DMASK = Clock_CLKEN_MASK;
+ 181              		.loc 1 157 0
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 7
+
+
+ 182 000a 44F21003 		movw	r3, #:lower16:1073758224
+ 183 000e C4F20003 		movt	r3, #:upper16:1073758224
+ 184 0012 4FF00102 		mov	r2, #1
+ 185 0016 1A70     		strb	r2, [r3, #0]
+ 158:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_AMASK = 0;
+ 186              		.loc 1 158 0
+ 187 0018 44F21403 		movw	r3, #:lower16:1073758228
+ 188 001c C4F20003 		movt	r3, #:upper16:1073758228
+ 189 0020 4FF00002 		mov	r2, #0
+ 190 0024 1A70     		strb	r2, [r3, #0]
+ 159:./Generated_Source/PSoC5/Clock.c **** #endif
+ 160:./Generated_Source/PSoC5/Clock.c **** 
+ 161:./Generated_Source/PSoC5/Clock.c ****     /* Set the mask bit to enable shadow loads. */
+ 162:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_BCFG2 |= BCFG2_SHADOW_MASK;
+ 191              		.loc 1 162 0
+ 192 0026 44F20803 		movw	r3, #:lower16:1073758216
+ 193 002a C4F20003 		movt	r3, #:upper16:1073758216
+ 194 002e 44F20802 		movw	r2, #:lower16:1073758216
+ 195 0032 C4F20002 		movt	r2, #:upper16:1073758216
+ 196 0036 1278     		ldrb	r2, [r2, #0]
+ 197 0038 D2B2     		uxtb	r2, r2
+ 198 003a 6FEA4262 		mvn	r2, r2, lsl #25
+ 199 003e 6FEA5262 		mvn	r2, r2, lsr #25
+ 200 0042 D2B2     		uxtb	r2, r2
+ 201 0044 1A70     		strb	r2, [r3, #0]
+ 163:./Generated_Source/PSoC5/Clock.c **** 
+ 164:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_WRK0 = LO8(clkDivider);
+ 202              		.loc 1 164 0
+ 203 0046 44F20203 		movw	r3, #:lower16:1073758210
+ 204 004a C4F20003 		movt	r3, #:upper16:1073758210
+ 205 004e FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 206 0050 D2B2     		uxtb	r2, r2
+ 207 0052 1A70     		strb	r2, [r3, #0]
+ 165:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_WRK1 = HI8(clkDivider);
+ 208              		.loc 1 165 0
+ 209 0054 44F20303 		movw	r3, #:lower16:1073758211
+ 210 0058 C4F20003 		movt	r3, #:upper16:1073758211
+ 211 005c FA88     		ldrh	r2, [r7, #6]
+ 212 005e 4FEA1222 		lsr	r2, r2, #8
+ 213 0062 92B2     		uxth	r2, r2
+ 214 0064 D2B2     		uxtb	r2, r2
+ 215 0066 1A70     		strb	r2, [r3, #0]
+ 166:./Generated_Source/PSoC5/Clock.c **** 
+ 167:./Generated_Source/PSoC5/Clock.c ****     /* Load mask and restart together. */
+ 168:./Generated_Source/PSoC5/Clock.c ****     *CLK_DIST_LD = 3;
+ 216              		.loc 1 168 0
+ 217 0068 44F20103 		movw	r3, #:lower16:1073758209
+ 218 006c C4F20003 		movt	r3, #:upper16:1073758209
+ 219 0070 4FF00302 		mov	r2, #3
+ 220 0074 1A70     		strb	r2, [r3, #0]
+ 169:./Generated_Source/PSoC5/Clock.c **** }
+ 221              		.loc 1 169 0
+ 222 0076 07F10C07 		add	r7, r7, #12
+ 223 007a BD46     		mov	sp, r7
+ 224 007c 80BC     		pop	{r7}
+ 225 007e 7047     		bx	lr
+ 226              		.cfi_endproc
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 8
+
+
+ 227              	.LFE3:
+ 228              		.size	Clock_SetDivider, .-Clock_SetDivider
+ 229              		.section	.text.Clock_SetMode,"ax",%progbits
+ 230              		.align	2
+ 231              		.global	Clock_SetMode
+ 232              		.thumb
+ 233              		.thumb_func
+ 234              		.type	Clock_SetMode, %function
+ 235              	Clock_SetMode:
+ 236              	.LFB4:
+ 170:./Generated_Source/PSoC5/Clock.c **** 
+ 171:./Generated_Source/PSoC5/Clock.c **** 
+ 172:./Generated_Source/PSoC5/Clock.c **** /*******************************************************************************
+ 173:./Generated_Source/PSoC5/Clock.c **** * Function Name: Clock_SetMode
+ 174:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************
+ 175:./Generated_Source/PSoC5/Clock.c **** * Summary:
+ 176:./Generated_Source/PSoC5/Clock.c **** *   Sets the operating mode of the clock.
+ 177:./Generated_Source/PSoC5/Clock.c **** *
+ 178:./Generated_Source/PSoC5/Clock.c **** *
+ 179:./Generated_Source/PSoC5/Clock.c **** * Parameters:
+ 180:./Generated_Source/PSoC5/Clock.c **** * clkMode: The following optional bits or'ed together.
+ 181:./Generated_Source/PSoC5/Clock.c **** *
+ 182:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_PIPE 
+ 183:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SSS  
+ 184:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_EARLY
+ 185:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_DUTY 
+ 186:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SYNC 
+ 187:./Generated_Source/PSoC5/Clock.c **** *
+ 188:./Generated_Source/PSoC5/Clock.c **** * Return:
+ 189:./Generated_Source/PSoC5/Clock.c **** *   void.
+ 190:./Generated_Source/PSoC5/Clock.c **** *   
+ 191:./Generated_Source/PSoC5/Clock.c **** *
+ 192:./Generated_Source/PSoC5/Clock.c **** *******************************************************************************/
+ 193:./Generated_Source/PSoC5/Clock.c **** void Clock_SetMode(uint8 clkMode)
+ 194:./Generated_Source/PSoC5/Clock.c **** {
+ 237              		.loc 1 194 0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 16
+ 240              		@ frame_needed = 1, uses_anonymous_args = 0
+ 241              		@ link register save eliminated.
+ 242 0000 80B4     		push	{r7}
+ 243              	.LCFI10:
+ 244              		.cfi_def_cfa_offset 4
+ 245 0002 85B0     		sub	sp, sp, #20
+ 246              	.LCFI11:
+ 247              		.cfi_def_cfa_offset 24
+ 248 0004 00AF     		add	r7, sp, #0
+ 249              		.cfi_offset 7, -4
+ 250              	.LCFI12:
+ 251              		.cfi_def_cfa_register 7
+ 252 0006 0346     		mov	r3, r0
+ 253 0008 FB71     		strb	r3, [r7, #7]
+ 195:./Generated_Source/PSoC5/Clock.c ****     uint8 value;
+ 196:./Generated_Source/PSoC5/Clock.c **** 
+ 197:./Generated_Source/PSoC5/Clock.c **** 
+ 198:./Generated_Source/PSoC5/Clock.c ****     /* Get the mode and source for the clock. */
+ 199:./Generated_Source/PSoC5/Clock.c ****     value = *Clock_MOD_SRC;
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 9
+
+
+ 254              		.loc 1 199 0
+ 255 000a 44F28203 		movw	r3, #:lower16:1073758338
+ 256 000e C4F20003 		movt	r3, #:upper16:1073758338
+ 257 0012 1B78     		ldrb	r3, [r3, #0]
+ 258 0014 FB73     		strb	r3, [r7, #15]
+ 200:./Generated_Source/PSoC5/Clock.c **** 
+ 201:./Generated_Source/PSoC5/Clock.c ****     /* Clear out the mode. */
+ 202:./Generated_Source/PSoC5/Clock.c ****     value &= 0x07u;
+ 259              		.loc 1 202 0
+ 260 0016 FB7B     		ldrb	r3, [r7, #15]
+ 261 0018 03F00703 		and	r3, r3, #7
+ 262 001c FB73     		strb	r3, [r7, #15]
+ 203:./Generated_Source/PSoC5/Clock.c **** 
+ 204:./Generated_Source/PSoC5/Clock.c ****     /* Write the new mode. */
+ 205:./Generated_Source/PSoC5/Clock.c ****     value |= clkMode;
+ 263              		.loc 1 205 0
+ 264 001e FA7B     		ldrb	r2, [r7, #15]
+ 265 0020 FB79     		ldrb	r3, [r7, #7]
+ 266 0022 42EA0303 		orr	r3, r2, r3
+ 267 0026 FB73     		strb	r3, [r7, #15]
+ 206:./Generated_Source/PSoC5/Clock.c **** 
+ 207:./Generated_Source/PSoC5/Clock.c ****     /* Set the new mode of the clock. */
+ 208:./Generated_Source/PSoC5/Clock.c ****     *Clock_MOD_SRC = value;
+ 268              		.loc 1 208 0
+ 269 0028 44F28203 		movw	r3, #:lower16:1073758338
+ 270 002c C4F20003 		movt	r3, #:upper16:1073758338
+ 271 0030 FA7B     		ldrb	r2, [r7, #15]
+ 272 0032 1A70     		strb	r2, [r3, #0]
+ 209:./Generated_Source/PSoC5/Clock.c **** }
+ 273              		.loc 1 209 0
+ 274 0034 07F11407 		add	r7, r7, #20
+ 275 0038 BD46     		mov	sp, r7
+ 276 003a 80BC     		pop	{r7}
+ 277 003c 7047     		bx	lr
+ 278              		.cfi_endproc
+ 279              	.LFE4:
+ 280              		.size	Clock_SetMode, .-Clock_SetMode
+ 281 003e 00BF     		.section	.text.Clock_SetSource,"ax",%progbits
+ 282              		.align	2
+ 283              		.global	Clock_SetSource
+ 284              		.thumb
+ 285              		.thumb_func
+ 286              		.type	Clock_SetSource, %function
+ 287              	Clock_SetSource:
+ 288              	.LFB5:
+ 210:./Generated_Source/PSoC5/Clock.c **** 
+ 211:./Generated_Source/PSoC5/Clock.c **** 
+ 212:./Generated_Source/PSoC5/Clock.c **** /*******************************************************************************
+ 213:./Generated_Source/PSoC5/Clock.c **** * Function Name: Clock_SetSource
+ 214:./Generated_Source/PSoC5/Clock.c **** ********************************************************************************
+ 215:./Generated_Source/PSoC5/Clock.c **** * Summary:
+ 216:./Generated_Source/PSoC5/Clock.c **** *   Sets the input source of the clock.
+ 217:./Generated_Source/PSoC5/Clock.c **** *
+ 218:./Generated_Source/PSoC5/Clock.c **** * Parameters:
+ 219:./Generated_Source/PSoC5/Clock.c **** * clkSource:
+ 220:./Generated_Source/PSoC5/Clock.c **** *   One of the following input sources.
+ 221:./Generated_Source/PSoC5/Clock.c **** *
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 10
+
+
+ 222:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_SYNC_DIG
+ 223:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_IMO  
+ 224:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_XTALM
+ 225:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_ILO  
+ 226:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_PLL  
+ 227:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_XTALK
+ 228:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_DSI_G
+ 229:./Generated_Source/PSoC5/Clock.c **** *   CYCLK_SRC_SEL_DSI_D
+ 230:./Generated_Source/PSoC5/Clock.c **** *
+ 231:./Generated_Source/PSoC5/Clock.c **** * Return:
+ 232:./Generated_Source/PSoC5/Clock.c **** *   void.
+ 233:./Generated_Source/PSoC5/Clock.c **** *   
+ 234:./Generated_Source/PSoC5/Clock.c **** *
+ 235:./Generated_Source/PSoC5/Clock.c **** *******************************************************************************/
+ 236:./Generated_Source/PSoC5/Clock.c **** void Clock_SetSource(uint8 clkSource)
+ 237:./Generated_Source/PSoC5/Clock.c **** {
+ 289              		.loc 1 237 0
+ 290              		.cfi_startproc
+ 291              		@ args = 0, pretend = 0, frame = 16
+ 292              		@ frame_needed = 1, uses_anonymous_args = 0
+ 293              		@ link register save eliminated.
+ 294 0000 80B4     		push	{r7}
+ 295              	.LCFI13:
+ 296              		.cfi_def_cfa_offset 4
+ 297 0002 85B0     		sub	sp, sp, #20
+ 298              	.LCFI14:
+ 299              		.cfi_def_cfa_offset 24
+ 300 0004 00AF     		add	r7, sp, #0
+ 301              		.cfi_offset 7, -4
+ 302              	.LCFI15:
+ 303              		.cfi_def_cfa_register 7
+ 304 0006 0346     		mov	r3, r0
+ 305 0008 FB71     		strb	r3, [r7, #7]
+ 238:./Generated_Source/PSoC5/Clock.c ****     uint8 value;
+ 239:./Generated_Source/PSoC5/Clock.c **** 
+ 240:./Generated_Source/PSoC5/Clock.c **** 
+ 241:./Generated_Source/PSoC5/Clock.c ****     /* Get the mode and source for the clock. */
+ 242:./Generated_Source/PSoC5/Clock.c ****     value = *Clock_MOD_SRC;
+ 306              		.loc 1 242 0
+ 307 000a 44F28203 		movw	r3, #:lower16:1073758338
+ 308 000e C4F20003 		movt	r3, #:upper16:1073758338
+ 309 0012 1B78     		ldrb	r3, [r3, #0]
+ 310 0014 FB73     		strb	r3, [r7, #15]
+ 243:./Generated_Source/PSoC5/Clock.c **** 
+ 244:./Generated_Source/PSoC5/Clock.c ****     /* Clear out the source. */
+ 245:./Generated_Source/PSoC5/Clock.c ****     value &= 0xF8u;
+ 311              		.loc 1 245 0
+ 312 0016 FB7B     		ldrb	r3, [r7, #15]
+ 313 0018 23F00703 		bic	r3, r3, #7
+ 314 001c FB73     		strb	r3, [r7, #15]
+ 246:./Generated_Source/PSoC5/Clock.c **** 
+ 247:./Generated_Source/PSoC5/Clock.c ****     /* Write the new source. */
+ 248:./Generated_Source/PSoC5/Clock.c ****     value |= clkSource;
+ 315              		.loc 1 248 0
+ 316 001e FA7B     		ldrb	r2, [r7, #15]
+ 317 0020 FB79     		ldrb	r3, [r7, #7]
+ 318 0022 42EA0303 		orr	r3, r2, r3
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 11
+
+
+ 319 0026 FB73     		strb	r3, [r7, #15]
+ 249:./Generated_Source/PSoC5/Clock.c **** 
+ 250:./Generated_Source/PSoC5/Clock.c ****     /* Set the new mode of the clock. */
+ 251:./Generated_Source/PSoC5/Clock.c ****     *Clock_MOD_SRC = value;
+ 320              		.loc 1 251 0
+ 321 0028 44F28203 		movw	r3, #:lower16:1073758338
+ 322 002c C4F20003 		movt	r3, #:upper16:1073758338
+ 323 0030 FA7B     		ldrb	r2, [r7, #15]
+ 324 0032 1A70     		strb	r2, [r3, #0]
+ 252:./Generated_Source/PSoC5/Clock.c **** }
+ 325              		.loc 1 252 0
+ 326 0034 07F11407 		add	r7, r7, #20
+ 327 0038 BD46     		mov	sp, r7
+ 328 003a 80BC     		pop	{r7}
+ 329 003c 7047     		bx	lr
+ 330              		.cfi_endproc
+ 331              	.LFE5:
+ 332              		.size	Clock_SetSource, .-Clock_SetSource
+ 333 003e 00BF     		.text
+ 334              	.Letext0:
+ 335              		.section	.debug_loc,"",%progbits
+ 336              	.Ldebug_loc0:
+ 337              	.LLST0:
+ 338 0000 00000000 		.4byte	.LFB0
+ 339 0004 02000000 		.4byte	.LCFI0
+ 340 0008 0100     		.2byte	0x1
+ 341 000a 5D       		.byte	0x5d
+ 342 000b 02000000 		.4byte	.LCFI0
+ 343 000f 04000000 		.4byte	.LCFI1
+ 344 0013 0200     		.2byte	0x2
+ 345 0015 7D       		.byte	0x7d
+ 346 0016 04       		.sleb128 4
+ 347 0017 04000000 		.4byte	.LCFI1
+ 348 001b 26000000 		.4byte	.LFE0
+ 349 001f 0200     		.2byte	0x2
+ 350 0021 77       		.byte	0x77
+ 351 0022 04       		.sleb128 4
+ 352 0023 00000000 		.4byte	0x0
+ 353 0027 00000000 		.4byte	0x0
+ 354              	.LLST1:
+ 355 002b 00000000 		.4byte	.LFB1
+ 356 002f 02000000 		.4byte	.LCFI2
+ 357 0033 0100     		.2byte	0x1
+ 358 0035 5D       		.byte	0x5d
+ 359 0036 02000000 		.4byte	.LCFI2
+ 360 003a 04000000 		.4byte	.LCFI3
+ 361 003e 0200     		.2byte	0x2
+ 362 0040 7D       		.byte	0x7d
+ 363 0041 04       		.sleb128 4
+ 364 0042 04000000 		.4byte	.LCFI3
+ 365 0046 24000000 		.4byte	.LFE1
+ 366 004a 0200     		.2byte	0x2
+ 367 004c 77       		.byte	0x77
+ 368 004d 04       		.sleb128 4
+ 369 004e 00000000 		.4byte	0x0
+ 370 0052 00000000 		.4byte	0x0
+ 371              	.LLST2:
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 12
+
+
+ 372 0056 00000000 		.4byte	.LFB2
+ 373 005a 02000000 		.4byte	.LCFI4
+ 374 005e 0100     		.2byte	0x1
+ 375 0060 5D       		.byte	0x5d
+ 376 0061 02000000 		.4byte	.LCFI4
+ 377 0065 04000000 		.4byte	.LCFI5
+ 378 0069 0200     		.2byte	0x2
+ 379 006b 7D       		.byte	0x7d
+ 380 006c 04       		.sleb128 4
+ 381 006d 04000000 		.4byte	.LCFI5
+ 382 0071 06000000 		.4byte	.LCFI6
+ 383 0075 0200     		.2byte	0x2
+ 384 0077 7D       		.byte	0x7d
+ 385 0078 10       		.sleb128 16
+ 386 0079 06000000 		.4byte	.LCFI6
+ 387 007d 52000000 		.4byte	.LFE2
+ 388 0081 0200     		.2byte	0x2
+ 389 0083 77       		.byte	0x77
+ 390 0084 10       		.sleb128 16
+ 391 0085 00000000 		.4byte	0x0
+ 392 0089 00000000 		.4byte	0x0
+ 393              	.LLST3:
+ 394 008d 00000000 		.4byte	.LFB3
+ 395 0091 02000000 		.4byte	.LCFI7
+ 396 0095 0100     		.2byte	0x1
+ 397 0097 5D       		.byte	0x5d
+ 398 0098 02000000 		.4byte	.LCFI7
+ 399 009c 04000000 		.4byte	.LCFI8
+ 400 00a0 0200     		.2byte	0x2
+ 401 00a2 7D       		.byte	0x7d
+ 402 00a3 04       		.sleb128 4
+ 403 00a4 04000000 		.4byte	.LCFI8
+ 404 00a8 06000000 		.4byte	.LCFI9
+ 405 00ac 0200     		.2byte	0x2
+ 406 00ae 7D       		.byte	0x7d
+ 407 00af 10       		.sleb128 16
+ 408 00b0 06000000 		.4byte	.LCFI9
+ 409 00b4 80000000 		.4byte	.LFE3
+ 410 00b8 0200     		.2byte	0x2
+ 411 00ba 77       		.byte	0x77
+ 412 00bb 10       		.sleb128 16
+ 413 00bc 00000000 		.4byte	0x0
+ 414 00c0 00000000 		.4byte	0x0
+ 415              	.LLST4:
+ 416 00c4 00000000 		.4byte	.LFB4
+ 417 00c8 02000000 		.4byte	.LCFI10
+ 418 00cc 0100     		.2byte	0x1
+ 419 00ce 5D       		.byte	0x5d
+ 420 00cf 02000000 		.4byte	.LCFI10
+ 421 00d3 04000000 		.4byte	.LCFI11
+ 422 00d7 0200     		.2byte	0x2
+ 423 00d9 7D       		.byte	0x7d
+ 424 00da 04       		.sleb128 4
+ 425 00db 04000000 		.4byte	.LCFI11
+ 426 00df 06000000 		.4byte	.LCFI12
+ 427 00e3 0200     		.2byte	0x2
+ 428 00e5 7D       		.byte	0x7d
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 13
+
+
+ 429 00e6 18       		.sleb128 24
+ 430 00e7 06000000 		.4byte	.LCFI12
+ 431 00eb 3E000000 		.4byte	.LFE4
+ 432 00ef 0200     		.2byte	0x2
+ 433 00f1 77       		.byte	0x77
+ 434 00f2 18       		.sleb128 24
+ 435 00f3 00000000 		.4byte	0x0
+ 436 00f7 00000000 		.4byte	0x0
+ 437              	.LLST5:
+ 438 00fb 00000000 		.4byte	.LFB5
+ 439 00ff 02000000 		.4byte	.LCFI13
+ 440 0103 0100     		.2byte	0x1
+ 441 0105 5D       		.byte	0x5d
+ 442 0106 02000000 		.4byte	.LCFI13
+ 443 010a 04000000 		.4byte	.LCFI14
+ 444 010e 0200     		.2byte	0x2
+ 445 0110 7D       		.byte	0x7d
+ 446 0111 04       		.sleb128 4
+ 447 0112 04000000 		.4byte	.LCFI14
+ 448 0116 06000000 		.4byte	.LCFI15
+ 449 011a 0200     		.2byte	0x2
+ 450 011c 7D       		.byte	0x7d
+ 451 011d 18       		.sleb128 24
+ 452 011e 06000000 		.4byte	.LCFI15
+ 453 0122 3E000000 		.4byte	.LFE5
+ 454 0126 0200     		.2byte	0x2
+ 455 0128 77       		.byte	0x77
+ 456 0129 18       		.sleb128 24
+ 457 012a 00000000 		.4byte	0x0
+ 458 012e 00000000 		.4byte	0x0
+ 459              		.file 2 "./Generated_Source/PSoC5/cytypes.h"
+ 460              		.section	.debug_info
+ 461 0000 6B010000 		.4byte	0x16b
+ 462 0004 0200     		.2byte	0x2
+ 463 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 464 000a 04       		.byte	0x4
+ 465 000b 01       		.uleb128 0x1
+ 466 000c 73010000 		.4byte	.LASF22
+ 467 0010 01       		.byte	0x1
+ 468 0011 1E010000 		.4byte	.LASF23
+ 469 0015 32000000 		.4byte	.LASF24
+ 470 0019 00000000 		.4byte	0x0
+ 471 001d 00000000 		.4byte	0x0
+ 472 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 473 0025 00000000 		.4byte	.Ldebug_line0
+ 474 0029 02       		.uleb128 0x2
+ 475 002a 01       		.byte	0x1
+ 476 002b 06       		.byte	0x6
+ 477 002c B3010000 		.4byte	.LASF0
+ 478 0030 02       		.uleb128 0x2
+ 479 0031 01       		.byte	0x1
+ 480 0032 08       		.byte	0x8
+ 481 0033 D1000000 		.4byte	.LASF1
+ 482 0037 02       		.uleb128 0x2
+ 483 0038 02       		.byte	0x2
+ 484 0039 05       		.byte	0x5
+ 485 003a 84010000 		.4byte	.LASF2
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 14
+
+
+ 486 003e 02       		.uleb128 0x2
+ 487 003f 02       		.byte	0x2
+ 488 0040 07       		.byte	0x7
+ 489 0041 F1000000 		.4byte	.LASF3
+ 490 0045 02       		.uleb128 0x2
+ 491 0046 04       		.byte	0x4
+ 492 0047 05       		.byte	0x5
+ 493 0048 A0010000 		.4byte	.LASF4
+ 494 004c 02       		.uleb128 0x2
+ 495 004d 04       		.byte	0x4
+ 496 004e 07       		.byte	0x7
+ 497 004f DF000000 		.4byte	.LASF5
+ 498 0053 02       		.uleb128 0x2
+ 499 0054 08       		.byte	0x8
+ 500 0055 05       		.byte	0x5
+ 501 0056 00000000 		.4byte	.LASF6
+ 502 005a 02       		.uleb128 0x2
+ 503 005b 08       		.byte	0x8
+ 504 005c 07       		.byte	0x7
+ 505 005d 4C010000 		.4byte	.LASF7
+ 506 0061 03       		.uleb128 0x3
+ 507 0062 04       		.byte	0x4
+ 508 0063 05       		.byte	0x5
+ 509 0064 696E7400 		.ascii	"int\000"
+ 510 0068 02       		.uleb128 0x2
+ 511 0069 04       		.byte	0x4
+ 512 006a 07       		.byte	0x7
+ 513 006b 3F010000 		.4byte	.LASF8
+ 514 006f 02       		.uleb128 0x2
+ 515 0070 01       		.byte	0x1
+ 516 0071 08       		.byte	0x8
+ 517 0072 7F010000 		.4byte	.LASF9
+ 518 0076 04       		.uleb128 0x4
+ 519 0077 8E010000 		.4byte	.LASF10
+ 520 007b 02       		.byte	0x2
+ 521 007c 2A       		.byte	0x2a
+ 522 007d 30000000 		.4byte	0x30
+ 523 0081 04       		.uleb128 0x4
+ 524 0082 0F010000 		.4byte	.LASF11
+ 525 0086 02       		.byte	0x2
+ 526 0087 2B       		.byte	0x2b
+ 527 0088 3E000000 		.4byte	0x3e
+ 528 008c 05       		.uleb128 0x5
+ 529 008d 01       		.byte	0x1
+ 530 008e 94010000 		.4byte	.LASF12
+ 531 0092 01       		.byte	0x1
+ 532 0093 43       		.byte	0x43
+ 533 0094 01       		.byte	0x1
+ 534 0095 00000000 		.4byte	.LFB0
+ 535 0099 26000000 		.4byte	.LFE0
+ 536 009d 00000000 		.4byte	.LLST0
+ 537 00a1 05       		.uleb128 0x5
+ 538 00a2 01       		.byte	0x1
+ 539 00a3 21000000 		.4byte	.LASF13
+ 540 00a7 01       		.byte	0x1
+ 541 00a8 5D       		.byte	0x5d
+ 542 00a9 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 15
+
+
+ 543 00aa 00000000 		.4byte	.LFB1
+ 544 00ae 24000000 		.4byte	.LFE1
+ 545 00b2 2B000000 		.4byte	.LLST1
+ 546 00b6 06       		.uleb128 0x6
+ 547 00b7 01       		.byte	0x1
+ 548 00b8 0E000000 		.4byte	.LASF14
+ 549 00bc 01       		.byte	0x1
+ 550 00bd 74       		.byte	0x74
+ 551 00be 01       		.byte	0x1
+ 552 00bf 00000000 		.4byte	.LFB2
+ 553 00c3 52000000 		.4byte	.LFE2
+ 554 00c7 56000000 		.4byte	.LLST2
+ 555 00cb DE000000 		.4byte	0xde
+ 556 00cf 07       		.uleb128 0x7
+ 557 00d0 2C000000 		.4byte	.LASF16
+ 558 00d4 01       		.byte	0x1
+ 559 00d5 74       		.byte	0x74
+ 560 00d6 76000000 		.4byte	0x76
+ 561 00da 02       		.byte	0x2
+ 562 00db 91       		.byte	0x91
+ 563 00dc 77       		.sleb128 -9
+ 564 00dd 00       		.byte	0x0
+ 565 00de 06       		.uleb128 0x6
+ 566 00df 01       		.byte	0x1
+ 567 00e0 C0000000 		.4byte	.LASF15
+ 568 00e4 01       		.byte	0x1
+ 569 00e5 96       		.byte	0x96
+ 570 00e6 01       		.byte	0x1
+ 571 00e7 00000000 		.4byte	.LFB3
+ 572 00eb 80000000 		.4byte	.LFE3
+ 573 00ef 8D000000 		.4byte	.LLST3
+ 574 00f3 06010000 		.4byte	0x106
+ 575 00f7 07       		.uleb128 0x7
+ 576 00f8 04010000 		.4byte	.LASF17
+ 577 00fc 01       		.byte	0x1
+ 578 00fd 96       		.byte	0x96
+ 579 00fe 81000000 		.4byte	0x81
+ 580 0102 02       		.byte	0x2
+ 581 0103 91       		.byte	0x91
+ 582 0104 76       		.sleb128 -10
+ 583 0105 00       		.byte	0x0
+ 584 0106 06       		.uleb128 0x6
+ 585 0107 01       		.byte	0x1
+ 586 0108 B2000000 		.4byte	.LASF18
+ 587 010c 01       		.byte	0x1
+ 588 010d C1       		.byte	0xc1
+ 589 010e 01       		.byte	0x1
+ 590 010f 00000000 		.4byte	.LFB4
+ 591 0113 3E000000 		.4byte	.LFE4
+ 592 0117 C4000000 		.4byte	.LLST4
+ 593 011b 3C010000 		.4byte	0x13c
+ 594 011f 07       		.uleb128 0x7
+ 595 0120 16010000 		.4byte	.LASF19
+ 596 0124 01       		.byte	0x1
+ 597 0125 C1       		.byte	0xc1
+ 598 0126 76000000 		.4byte	0x76
+ 599 012a 02       		.byte	0x2
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 16
+
+
+ 600 012b 91       		.byte	0x91
+ 601 012c 6F       		.sleb128 -17
+ 602 012d 08       		.uleb128 0x8
+ 603 012e AC000000 		.4byte	.LASF21
+ 604 0132 01       		.byte	0x1
+ 605 0133 C3       		.byte	0xc3
+ 606 0134 76000000 		.4byte	0x76
+ 607 0138 02       		.byte	0x2
+ 608 0139 91       		.byte	0x91
+ 609 013a 77       		.sleb128 -9
+ 610 013b 00       		.byte	0x0
+ 611 013c 09       		.uleb128 0x9
+ 612 013d 01       		.byte	0x1
+ 613 013e 63010000 		.4byte	.LASF25
+ 614 0142 01       		.byte	0x1
+ 615 0143 EC       		.byte	0xec
+ 616 0144 01       		.byte	0x1
+ 617 0145 00000000 		.4byte	.LFB5
+ 618 0149 3E000000 		.4byte	.LFE5
+ 619 014d FB000000 		.4byte	.LLST5
+ 620 0151 07       		.uleb128 0x7
+ 621 0152 A9010000 		.4byte	.LASF20
+ 622 0156 01       		.byte	0x1
+ 623 0157 EC       		.byte	0xec
+ 624 0158 76000000 		.4byte	0x76
+ 625 015c 02       		.byte	0x2
+ 626 015d 91       		.byte	0x91
+ 627 015e 6F       		.sleb128 -17
+ 628 015f 08       		.uleb128 0x8
+ 629 0160 AC000000 		.4byte	.LASF21
+ 630 0164 01       		.byte	0x1
+ 631 0165 EE       		.byte	0xee
+ 632 0166 76000000 		.4byte	0x76
+ 633 016a 02       		.byte	0x2
+ 634 016b 91       		.byte	0x91
+ 635 016c 77       		.sleb128 -9
+ 636 016d 00       		.byte	0x0
+ 637 016e 00       		.byte	0x0
+ 638              		.section	.debug_abbrev
+ 639 0000 01       		.uleb128 0x1
+ 640 0001 11       		.uleb128 0x11
+ 641 0002 01       		.byte	0x1
+ 642 0003 25       		.uleb128 0x25
+ 643 0004 0E       		.uleb128 0xe
+ 644 0005 13       		.uleb128 0x13
+ 645 0006 0B       		.uleb128 0xb
+ 646 0007 03       		.uleb128 0x3
+ 647 0008 0E       		.uleb128 0xe
+ 648 0009 1B       		.uleb128 0x1b
+ 649 000a 0E       		.uleb128 0xe
+ 650 000b 11       		.uleb128 0x11
+ 651 000c 01       		.uleb128 0x1
+ 652 000d 52       		.uleb128 0x52
+ 653 000e 01       		.uleb128 0x1
+ 654 000f 55       		.uleb128 0x55
+ 655 0010 06       		.uleb128 0x6
+ 656 0011 10       		.uleb128 0x10
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 17
+
+
+ 657 0012 06       		.uleb128 0x6
+ 658 0013 00       		.byte	0x0
+ 659 0014 00       		.byte	0x0
+ 660 0015 02       		.uleb128 0x2
+ 661 0016 24       		.uleb128 0x24
+ 662 0017 00       		.byte	0x0
+ 663 0018 0B       		.uleb128 0xb
+ 664 0019 0B       		.uleb128 0xb
+ 665 001a 3E       		.uleb128 0x3e
+ 666 001b 0B       		.uleb128 0xb
+ 667 001c 03       		.uleb128 0x3
+ 668 001d 0E       		.uleb128 0xe
+ 669 001e 00       		.byte	0x0
+ 670 001f 00       		.byte	0x0
+ 671 0020 03       		.uleb128 0x3
+ 672 0021 24       		.uleb128 0x24
+ 673 0022 00       		.byte	0x0
+ 674 0023 0B       		.uleb128 0xb
+ 675 0024 0B       		.uleb128 0xb
+ 676 0025 3E       		.uleb128 0x3e
+ 677 0026 0B       		.uleb128 0xb
+ 678 0027 03       		.uleb128 0x3
+ 679 0028 08       		.uleb128 0x8
+ 680 0029 00       		.byte	0x0
+ 681 002a 00       		.byte	0x0
+ 682 002b 04       		.uleb128 0x4
+ 683 002c 16       		.uleb128 0x16
+ 684 002d 00       		.byte	0x0
+ 685 002e 03       		.uleb128 0x3
+ 686 002f 0E       		.uleb128 0xe
+ 687 0030 3A       		.uleb128 0x3a
+ 688 0031 0B       		.uleb128 0xb
+ 689 0032 3B       		.uleb128 0x3b
+ 690 0033 0B       		.uleb128 0xb
+ 691 0034 49       		.uleb128 0x49
+ 692 0035 13       		.uleb128 0x13
+ 693 0036 00       		.byte	0x0
+ 694 0037 00       		.byte	0x0
+ 695 0038 05       		.uleb128 0x5
+ 696 0039 2E       		.uleb128 0x2e
+ 697 003a 00       		.byte	0x0
+ 698 003b 3F       		.uleb128 0x3f
+ 699 003c 0C       		.uleb128 0xc
+ 700 003d 03       		.uleb128 0x3
+ 701 003e 0E       		.uleb128 0xe
+ 702 003f 3A       		.uleb128 0x3a
+ 703 0040 0B       		.uleb128 0xb
+ 704 0041 3B       		.uleb128 0x3b
+ 705 0042 0B       		.uleb128 0xb
+ 706 0043 27       		.uleb128 0x27
+ 707 0044 0C       		.uleb128 0xc
+ 708 0045 11       		.uleb128 0x11
+ 709 0046 01       		.uleb128 0x1
+ 710 0047 12       		.uleb128 0x12
+ 711 0048 01       		.uleb128 0x1
+ 712 0049 40       		.uleb128 0x40
+ 713 004a 06       		.uleb128 0x6
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 18
+
+
+ 714 004b 00       		.byte	0x0
+ 715 004c 00       		.byte	0x0
+ 716 004d 06       		.uleb128 0x6
+ 717 004e 2E       		.uleb128 0x2e
+ 718 004f 01       		.byte	0x1
+ 719 0050 3F       		.uleb128 0x3f
+ 720 0051 0C       		.uleb128 0xc
+ 721 0052 03       		.uleb128 0x3
+ 722 0053 0E       		.uleb128 0xe
+ 723 0054 3A       		.uleb128 0x3a
+ 724 0055 0B       		.uleb128 0xb
+ 725 0056 3B       		.uleb128 0x3b
+ 726 0057 0B       		.uleb128 0xb
+ 727 0058 27       		.uleb128 0x27
+ 728 0059 0C       		.uleb128 0xc
+ 729 005a 11       		.uleb128 0x11
+ 730 005b 01       		.uleb128 0x1
+ 731 005c 12       		.uleb128 0x12
+ 732 005d 01       		.uleb128 0x1
+ 733 005e 40       		.uleb128 0x40
+ 734 005f 06       		.uleb128 0x6
+ 735 0060 01       		.uleb128 0x1
+ 736 0061 13       		.uleb128 0x13
+ 737 0062 00       		.byte	0x0
+ 738 0063 00       		.byte	0x0
+ 739 0064 07       		.uleb128 0x7
+ 740 0065 05       		.uleb128 0x5
+ 741 0066 00       		.byte	0x0
+ 742 0067 03       		.uleb128 0x3
+ 743 0068 0E       		.uleb128 0xe
+ 744 0069 3A       		.uleb128 0x3a
+ 745 006a 0B       		.uleb128 0xb
+ 746 006b 3B       		.uleb128 0x3b
+ 747 006c 0B       		.uleb128 0xb
+ 748 006d 49       		.uleb128 0x49
+ 749 006e 13       		.uleb128 0x13
+ 750 006f 02       		.uleb128 0x2
+ 751 0070 0A       		.uleb128 0xa
+ 752 0071 00       		.byte	0x0
+ 753 0072 00       		.byte	0x0
+ 754 0073 08       		.uleb128 0x8
+ 755 0074 34       		.uleb128 0x34
+ 756 0075 00       		.byte	0x0
+ 757 0076 03       		.uleb128 0x3
+ 758 0077 0E       		.uleb128 0xe
+ 759 0078 3A       		.uleb128 0x3a
+ 760 0079 0B       		.uleb128 0xb
+ 761 007a 3B       		.uleb128 0x3b
+ 762 007b 0B       		.uleb128 0xb
+ 763 007c 49       		.uleb128 0x49
+ 764 007d 13       		.uleb128 0x13
+ 765 007e 02       		.uleb128 0x2
+ 766 007f 0A       		.uleb128 0xa
+ 767 0080 00       		.byte	0x0
+ 768 0081 00       		.byte	0x0
+ 769 0082 09       		.uleb128 0x9
+ 770 0083 2E       		.uleb128 0x2e
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 19
+
+
+ 771 0084 01       		.byte	0x1
+ 772 0085 3F       		.uleb128 0x3f
+ 773 0086 0C       		.uleb128 0xc
+ 774 0087 03       		.uleb128 0x3
+ 775 0088 0E       		.uleb128 0xe
+ 776 0089 3A       		.uleb128 0x3a
+ 777 008a 0B       		.uleb128 0xb
+ 778 008b 3B       		.uleb128 0x3b
+ 779 008c 0B       		.uleb128 0xb
+ 780 008d 27       		.uleb128 0x27
+ 781 008e 0C       		.uleb128 0xc
+ 782 008f 11       		.uleb128 0x11
+ 783 0090 01       		.uleb128 0x1
+ 784 0091 12       		.uleb128 0x12
+ 785 0092 01       		.uleb128 0x1
+ 786 0093 40       		.uleb128 0x40
+ 787 0094 06       		.uleb128 0x6
+ 788 0095 00       		.byte	0x0
+ 789 0096 00       		.byte	0x0
+ 790 0097 00       		.byte	0x0
+ 791              		.section	.debug_pubnames,"",%progbits
+ 792 0000 7F000000 		.4byte	0x7f
+ 793 0004 0200     		.2byte	0x2
+ 794 0006 00000000 		.4byte	.Ldebug_info0
+ 795 000a 6F010000 		.4byte	0x16f
+ 796 000e 8C000000 		.4byte	0x8c
+ 797 0012 436C6F63 		.ascii	"Clock_Start\000"
+ 797      6B5F5374 
+ 797      61727400 
+ 798 001e A1000000 		.4byte	0xa1
+ 799 0022 436C6F63 		.ascii	"Clock_Stop\000"
+ 799      6B5F5374 
+ 799      6F7000
+ 800 002d B6000000 		.4byte	0xb6
+ 801 0031 436C6F63 		.ascii	"Clock_StandbyPower\000"
+ 801      6B5F5374 
+ 801      616E6462 
+ 801      79506F77 
+ 801      657200
+ 802 0044 DE000000 		.4byte	0xde
+ 803 0048 436C6F63 		.ascii	"Clock_SetDivider\000"
+ 803      6B5F5365 
+ 803      74446976 
+ 803      69646572 
+ 803      00
+ 804 0059 06010000 		.4byte	0x106
+ 805 005d 436C6F63 		.ascii	"Clock_SetMode\000"
+ 805      6B5F5365 
+ 805      744D6F64 
+ 805      6500
+ 806 006b 3C010000 		.4byte	0x13c
+ 807 006f 436C6F63 		.ascii	"Clock_SetSource\000"
+ 807      6B5F5365 
+ 807      74536F75 
+ 807      72636500 
+ 808 007f 00000000 		.4byte	0x0
+ 809              		.section	.debug_aranges,"",%progbits
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 20
+
+
+ 810 0000 44000000 		.4byte	0x44
+ 811 0004 0200     		.2byte	0x2
+ 812 0006 00000000 		.4byte	.Ldebug_info0
+ 813 000a 04       		.byte	0x4
+ 814 000b 00       		.byte	0x0
+ 815 000c 0000     		.2byte	0x0
+ 816 000e 0000     		.2byte	0x0
+ 817 0010 00000000 		.4byte	.LFB0
+ 818 0014 26000000 		.4byte	.LFE0-.LFB0
+ 819 0018 00000000 		.4byte	.LFB1
+ 820 001c 24000000 		.4byte	.LFE1-.LFB1
+ 821 0020 00000000 		.4byte	.LFB2
+ 822 0024 52000000 		.4byte	.LFE2-.LFB2
+ 823 0028 00000000 		.4byte	.LFB3
+ 824 002c 80000000 		.4byte	.LFE3-.LFB3
+ 825 0030 00000000 		.4byte	.LFB4
+ 826 0034 3E000000 		.4byte	.LFE4-.LFB4
+ 827 0038 00000000 		.4byte	.LFB5
+ 828 003c 3E000000 		.4byte	.LFE5-.LFB5
+ 829 0040 00000000 		.4byte	0x0
+ 830 0044 00000000 		.4byte	0x0
+ 831              		.section	.debug_ranges,"",%progbits
+ 832              	.Ldebug_ranges0:
+ 833 0000 00000000 		.4byte	.Ltext0
+ 834 0004 00000000 		.4byte	.Letext0
+ 835 0008 00000000 		.4byte	.LFB0
+ 836 000c 26000000 		.4byte	.LFE0
+ 837 0010 00000000 		.4byte	.LFB1
+ 838 0014 24000000 		.4byte	.LFE1
+ 839 0018 00000000 		.4byte	.LFB2
+ 840 001c 52000000 		.4byte	.LFE2
+ 841 0020 00000000 		.4byte	.LFB3
+ 842 0024 80000000 		.4byte	.LFE3
+ 843 0028 00000000 		.4byte	.LFB4
+ 844 002c 3E000000 		.4byte	.LFE4
+ 845 0030 00000000 		.4byte	.LFB5
+ 846 0034 3E000000 		.4byte	.LFE5
+ 847 0038 00000000 		.4byte	0x0
+ 848 003c 00000000 		.4byte	0x0
+ 849              		.section	.debug_str,"MS",%progbits,1
+ 850              	.LASF6:
+ 851 0000 6C6F6E67 		.ascii	"long long int\000"
+ 851      206C6F6E 
+ 851      6720696E 
+ 851      7400
+ 852              	.LASF14:
+ 853 000e 436C6F63 		.ascii	"Clock_StandbyPower\000"
+ 853      6B5F5374 
+ 853      616E6462 
+ 853      79506F77 
+ 853      657200
+ 854              	.LASF13:
+ 855 0021 436C6F63 		.ascii	"Clock_Stop\000"
+ 855      6B5F5374 
+ 855      6F7000
+ 856              	.LASF16:
+ 857 002c 73746174 		.ascii	"state\000"
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 21
+
+
+ 857      6500
+ 858              	.LASF24:
+ 859 0032 433A5C44 		.ascii	"C:\\Documents and Settings\\akay\\My Documents\\Exa"
+ 859      6F63756D 
+ 859      656E7473 
+ 859      20616E64 
+ 859      20536574 
+ 860 0061 6D706C65 		.ascii	"mple Projects\\PSoC3 I2C EEPROM\\Example_I2C_EEPROM"
+ 860      2050726F 
+ 860      6A656374 
+ 860      735C5053 
+ 860      6F433320 
+ 861 0092 5C457861 		.ascii	"\\Example_I2C_EEPROM.cydsn\000"
+ 861      6D706C65 
+ 861      5F493243 
+ 861      5F454550 
+ 861      524F4D2E 
+ 862              	.LASF21:
+ 863 00ac 76616C75 		.ascii	"value\000"
+ 863      6500
+ 864              	.LASF18:
+ 865 00b2 436C6F63 		.ascii	"Clock_SetMode\000"
+ 865      6B5F5365 
+ 865      744D6F64 
+ 865      6500
+ 866              	.LASF15:
+ 867 00c0 436C6F63 		.ascii	"Clock_SetDivider\000"
+ 867      6B5F5365 
+ 867      74446976 
+ 867      69646572 
+ 867      00
+ 868              	.LASF1:
+ 869 00d1 756E7369 		.ascii	"unsigned char\000"
+ 869      676E6564 
+ 869      20636861 
+ 869      7200
+ 870              	.LASF5:
+ 871 00df 6C6F6E67 		.ascii	"long unsigned int\000"
+ 871      20756E73 
+ 871      69676E65 
+ 871      6420696E 
+ 871      7400
+ 872              	.LASF3:
+ 873 00f1 73686F72 		.ascii	"short unsigned int\000"
+ 873      7420756E 
+ 873      7369676E 
+ 873      65642069 
+ 873      6E7400
+ 874              	.LASF17:
+ 875 0104 636C6B44 		.ascii	"clkDivider\000"
+ 875      69766964 
+ 875      657200
+ 876              	.LASF11:
+ 877 010f 75696E74 		.ascii	"uint16\000"
+ 877      313600
+ 878              	.LASF19:
+ 879 0116 636C6B4D 		.ascii	"clkMode\000"
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\cckS0rBX.s 			page 22
+
+
+ 879      6F646500 
+ 880              	.LASF23:
+ 881 011e 2E2F4765 		.ascii	"./Generated_Source/PSoC5/Clock.c\000"
+ 881      6E657261 
+ 881      7465645F 
+ 881      536F7572 
+ 881      63652F50 
+ 882              	.LASF8:
+ 883 013f 756E7369 		.ascii	"unsigned int\000"
+ 883      676E6564 
+ 883      20696E74 
+ 883      00
+ 884              	.LASF7:
+ 885 014c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 885      206C6F6E 
+ 885      6720756E 
+ 885      7369676E 
+ 885      65642069 
+ 886              	.LASF25:
+ 887 0163 436C6F63 		.ascii	"Clock_SetSource\000"
+ 887      6B5F5365 
+ 887      74536F75 
+ 887      72636500 
+ 888              	.LASF22:
+ 889 0173 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 889      4320342E 
+ 889      342E3100 
+ 890              	.LASF9:
+ 891 017f 63686172 		.ascii	"char\000"
+ 891      00
+ 892              	.LASF2:
+ 893 0184 73686F72 		.ascii	"short int\000"
+ 893      7420696E 
+ 893      7400
+ 894              	.LASF10:
+ 895 018e 75696E74 		.ascii	"uint8\000"
+ 895      3800
+ 896              	.LASF12:
+ 897 0194 436C6F63 		.ascii	"Clock_Start\000"
+ 897      6B5F5374 
+ 897      61727400 
+ 898              	.LASF4:
+ 899 01a0 6C6F6E67 		.ascii	"long int\000"
+ 899      20696E74 
+ 899      00
+ 900              	.LASF20:
+ 901 01a9 636C6B53 		.ascii	"clkSource\000"
+ 901      6F757263 
+ 901      6500
+ 902              	.LASF0:
+ 903 01b3 7369676E 		.ascii	"signed char\000"
+ 903      65642063 
+ 903      68617200 
+ 904              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

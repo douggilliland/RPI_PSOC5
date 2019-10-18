@@ -1,0 +1,1134 @@
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE CYDMAC
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CyDmac.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\CyDmac.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects
+                    -/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CyDmac.lst) DB NOIP OT(0) INCDIR(Gen
+                    -erated_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM
+                    -/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CyDmac.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: CyDmac.c  
+   3          * Version 2.0
+   4          *
+   5          *  Description:
+   6          *   Provides an API for the DMAC component. The API includes functions
+   7          *   for the DMA controller, DMA channels and Transfer Descriptors.
+   8          *
+   9          *   This API is the library version not the auto generated code that gets
+  10          *   generated when the user places a DMA component on the schematic.
+  11          *   The auto generated code would use the APi's in this module.
+  12          *
+  13          *  Note:
+  14          *   This code is endian agnostic.
+  15          *
+  16          *   The Transfer Descriptor memory can be used as regular memory if the TD's
+  17          *   are not being used.
+  18          *
+  19          *   This code uses the first byte of each TD to manage
+  20          *   the free list of TD's. The user can over write this once the TD is
+  21          *   allocated.
+  22          *
+  23          *  Note: 
+  24          *   Documentation of the API's in this file is located in the
+  25          *   System Reference Guide provided with PSoC Creator.
+  26          * 
+  27          *
+  28          *******************************************************************************
+  29          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  30          * You may use this file only in accordance with the license, terms, conditions, 
+  31          * disclaimers, and limitations in the end user license agreement accompanying 
+  32          * the software package with which this file was provided.
+  33          ********************************************************************************/
+  34          
+  35          #include <CYDMAC.H>
+  36          
+  37          /* Current Number of free elements in the list. */
+  38          static uint8 CyDmaTdCurrentNumber;
+  39          
+  40          /* Index of the first available TD. */
+  41          static uint8 CyDmaTdFreeIndex;
+  42          
+  43          /* Bit map of DMA channel ownership. */
+  44          static uint32 CyDmaChannels = DMA_CHANNELS_USED__MASK0;
+  45          
+  46          /*Pointer type conversions are restricted to avoid conflicts with compiler 
+  47          optimizations. */
+  48          typedef union { volatile uint8 bytes[2]; uint16 word; } CONVERT_WORD;
+  49          
+  50          /*******************************************************************************
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 2   
+
+  51          * Function Name: CyDmacConfigure
+  52          ********************************************************************************
+  53          * Summary:
+  54          *   Sets the DMAC Configuration register with the default values.
+  55          *   Initializes the linked list of Transfer Descriptors.
+  56          *
+  57          * Parameters:
+  58          *   void.
+  59          *
+  60          *
+  61          * Return:
+  62          *   void.
+  63          *
+  64          *
+  65          *******************************************************************************/
+  66          void CyDmacConfigure(void)
+  67          {
+  68   1          uint8 index;
+  69   1      
+  70   1      
+  71   1          /* Set TD list variables. */
+  72   1          CyDmaTdFreeIndex = NUMBEROF_TDS - 1;
+  73   1          CyDmaTdCurrentNumber = NUMBEROF_TDS;
+  74   1      
+  75   1          /* Make TD free list. */
+  76   1          for(index = NUMBEROF_TDS - 1; index; index--)
+  77   1          {
+  78   2              DMAC_TDMEM[index].TD0[0] = index - 1;
+  79   2          }
+  80   1      
+  81   1          /* Make the last one point to zero. */
+  82   1          DMAC_TDMEM[index].TD0[0] = 0;
+  83   1      }
+  84          
+  85          
+  86          /*******************************************************************************
+  87          * Function Name: CyDmacError
+  88          ********************************************************************************
+  89          * Summary:
+  90          * Gets the error bits from the DMAC.
+  91          *
+  92          * Parameters:
+  93          *   void.
+  94          *
+  95          *
+  96          *
+  97          * Return:
+  98          *   Returns the 4 bits of error data from the DMAC error register.
+  99          *
+ 100          *   should each bit get described here?
+ 101          *
+ 102          *
+ 103          *******************************************************************************/
+ 104          uint8 CyDmacError(void) 
+ 105          {
+ 106   1          return (0x0Fu & *DMAC_ERR);
+ 107   1      }
+ 108          
+ 109          
+ 110          /*******************************************************************************
+ 111          * Function Name: CyDmacClearError
+ 112          ********************************************************************************
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 3   
+
+ 113          * Summary:
+ 114          *   Clears the error bits in the error register of the DMAC..
+ 115          *
+ 116          * Parameters:
+ 117          * error:
+ 118          *   Clears the error bits in the DMAC error register.
+ 119          *
+ 120          *
+ 121          *
+ 122          * Return:
+ 123          *   void.
+ 124          *
+ 125          * Theory:
+ 126          *   Once an error occurs the error bits are sticky and are only cleared
+ 127          *   by a write to the error register.
+ 128          *
+ 129          *******************************************************************************/
+ 130          void CyDmacClearError(uint8 error) 
+ 131          {
+ 132   1          *DMAC_ERR = 0x0Fu & error;
+ 133   1      }
+ 134          
+ 135          
+ 136          /*******************************************************************************
+ 137          * Function Name: CyDmacErrorAddress
+ 138          ********************************************************************************
+ 139          * Summary:
+ 140          *   when an BUS_TIMEOUT, UNPOP_ACC and PERIPH_ERR occurs the address
+ 141          *   of the error is written to the error address register and
+ 142          *   can be read with this function.
+ 143          *
+ 144          *   If there are multiple errors, only the address of the first is
+ 145          *   saved.
+ 146          *
+ 147          * Parameters:
+ 148          *   void.
+ 149          *
+ 150          *
+ 151          *
+ 152          * Return:
+ 153          *   The address that caused the error.
+ 154          *
+ 155          *
+ 156          *******************************************************************************/
+ 157          uint32 CyDmacErrorAddress(void) 
+ 158          {
+ 159   1          return CY_GET_REG32(DMAC_ERR_ADR);
+ 160   1      }
+ 161          
+ 162          
+ 163          /*******************************************************************************
+ 164          * Function Name: CyDmaChAlloc
+ 165          ********************************************************************************
+ 166          * Summary:
+ 167          *   Allocates a channel of the DMAC to be used by the caller.
+ 168          *
+ 169          * Parameters:
+ 170          *   void.
+ 171          *
+ 172          *
+ 173          *
+ 174          * Return:
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 4   
+
+ 175          *   The channel that can be used by the caller for DMA activity.
+ 176          *   DMA_INVALID_CHANNEL if there are no channels left. 
+ 177          *
+ 178          *
+ 179          *******************************************************************************/
+ 180          uint8 CyDmaChAlloc(void) 
+ 181          {
+ 182   1          uint8 interruptState;
+ 183   1          uint8 index;
+ 184   1          uint32 channel;
+ 185   1      
+ 186   1      
+ 187   1          /* Enter critical section! */
+ 188   1          interruptState = CyEnterCriticalSection();
+ 189   1      
+ 190   1          /* Look for a free channel. */
+ 191   1          for(index = 0, channel = 1; index < NUMBEROF_CHANNELS; index++, channel <<= 1)
+ 192   1          {
+ 193   2              if(!(CyDmaChannels & channel))
+ 194   2              {
+ 195   3                  /* Mark the channel as used. */
+ 196   3                  CyDmaChannels |= channel;
+ 197   3                  break;
+ 198   3              }
+ 199   2          }
+ 200   1      
+ 201   1          if(index >= NUMBEROF_CHANNELS)
+ 202   1          {
+ 203   2              index = DMA_INVALID_CHANNEL;    
+ 204   2          }
+ 205   1      
+ 206   1          /* Exit critical section! */
+ 207   1          CyExitCriticalSection(interruptState);
+ 208   1      
+ 209   1          return index;
+ 210   1      }
+ 211          
+ 212          
+ 213          /*******************************************************************************
+ 214          * Function Name: CyDmaChFree
+ 215          ********************************************************************************
+ 216          * Summary:
+ 217          * Frees a channel allocated by DmaChAlloc.
+ 218          *
+ 219          * Parameters:
+ 220          * chHandle:
+ 221          *   Handle to the DMA channel previously allocated by a call to DmaChAlloc.
+ 222          *
+ 223          *
+ 224          * Return:
+ 225          *   0 in successful or CYRET_BAD_PARAM.
+ 226          *
+ 227          *
+ 228          *******************************************************************************/
+ 229          cystatus CyDmaChFree(uint8 chHandle) 
+ 230          {
+ 231   1          cystatus status;
+ 232   1      
+ 233   1      
+ 234   1          if(chHandle < NUMBEROF_CHANNELS)
+ 235   1          {
+ 236   2              /* Enter critical section! */
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 5   
+
+ 237   2              uint8 interruptState = CyEnterCriticalSection();
+ 238   2      
+ 239   2              /* Clear the bit mask that keeps track of ownership. */
+ 240   2              CyDmaChannels &= ~(1 << chHandle);
+ 241   2      
+ 242   2              /* Exit critical section! */
+ 243   2              CyExitCriticalSection(interruptState);
+ 244   2              status = CYRET_SUCCESS;
+ 245   2          }
+ 246   1          else
+ 247   1          {
+ 248   2              status = CYRET_BAD_PARAM;
+ 249   2          }
+ 250   1      
+ 251   1          return status;
+ 252   1      }
+ 253          
+ 254          
+ 255          /*******************************************************************************
+ 256          * Function Name: CyDmaChEnable
+ 257          ********************************************************************************
+ 258          * Summary:
+ 259          * Enables the DMA channel for execution depending on how it was configured.
+ 260          *
+ 261          * Parameters:
+ 262          * chHandle:
+ 263          *   Handle to the dma channel to be enabled.
+ 264          *
+ 265          * preserveTds;
+ 266          *   0 if elements of TD should reflect current state of TD execuction.
+ 267          *   1 if the DMA controller should not change values of the TD.
+ 268          *
+ 269          * Return:
+ 270          *   0 in successful or CYRET_BAD_PARAM.
+ 271          *
+ 272          *
+ 273          *******************************************************************************/
+ 274          cystatus CyDmaChEnable(uint8 chHandle, uint8 preserveTds) 
+ 275          {
+ 276   1          cystatus status;
+ 277   1      
+ 278   1      
+ 279   1          if(chHandle < NUMBEROF_CHANNELS)
+ 280   1          {
+ 281   2              DMAC_CH[chHandle].basic_cfg[0] = (DMAC_CH[chHandle].basic_cfg[0] &  ~0x20u) | ((preserveTds) ? 0x2
+             -1u:0x01u);
+ 282   2              status = CYRET_SUCCESS;
+ 283   2          }
+ 284   1          else
+ 285   1          {
+ 286   2              status = CYRET_BAD_PARAM;
+ 287   2          }
+ 288   1      
+ 289   1          return status;
+ 290   1      }
+ 291          
+ 292          
+ 293          /*******************************************************************************
+ 294          * Function Name: CyDmaChDisable
+ 295          ********************************************************************************
+ 296          * Summary:
+ 297          *   Disables the DMA channel.
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 6   
+
+ 298          *
+ 299          * Parameters:
+ 300          * chHandle:
+ 301          *   Handle to the dma channel.
+ 302          *
+ 303          *
+ 304          * Return:
+ 305          *   0 in successful or CYRET_BAD_PARAM.
+ 306          *
+ 307          * Theory:
+ 308          *   Once this function has been called. DmaChStatus can be polled
+ 309          *   to determine when the Channel has been disabled and determine
+ 310          *   which TD was being executed.
+ 311          *
+ 312          *   If it is currently executing it will
+ 313          *   allow the current burst to finish naturally.
+ 314          *
+ 315          *******************************************************************************/
+ 316          cystatus CyDmaChDisable(uint8 chHandle) 
+ 317          {
+ 318   1          cystatus status;
+ 319   1      
+ 320   1      
+ 321   1          if(chHandle < NUMBEROF_CHANNELS)
+ 322   1          {
+ 323   2              DMAC_CH[chHandle].basic_cfg[0] &= ~0x21u;
+ 324   2              status = CYRET_SUCCESS;
+ 325   2          }
+ 326   1          else
+ 327   1          {
+ 328   2              status = CYRET_BAD_PARAM;
+ 329   2          }
+ 330   1      
+ 331   1          return status;
+ 332   1      }
+ 333          
+ 334          /*******************************************************************************
+ 335          * Function Name: CyDmaClearPendingDrq
+ 336          ********************************************************************************
+ 337          * Summary:
+ 338          *   Clears pending DMA data request.
+ 339          *
+ 340          * Parameters:
+ 341          * chHandle:
+ 342          *   Handle to the dma channel.
+ 343          *
+ 344          *
+ 345          * Return:
+ 346          *   0 in successful or CYRET_BAD_PARAM.
+ 347          *
+ 348          *******************************************************************************/
+ 349          cystatus CyDmaClearPendingDrq(uint8 chHandle) 
+ 350          {
+ 351   1              cystatus status;
+ 352   1              
+ 353   1              if(chHandle < NUMBEROF_CHANNELS)
+ 354   1              {
+ 355   2                      DMAC_CH[chHandle].action[0] |= CPU_TERM_CHAIN;
+ 356   2                      DMAC_CH[chHandle].basic_cfg[0] |= 0x01u;
+ 357   2                      status = CYRET_SUCCESS;
+ 358   2              }
+ 359   1              else
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 7   
+
+ 360   1              {
+ 361   2                      status = CYRET_BAD_PARAM;
+ 362   2              }
+ 363   1              
+ 364   1              return status;
+ 365   1      }
+ 366          
+ 367          
+ 368          /*******************************************************************************
+ 369          * Function Name: CyDmaChPriority
+ 370          ********************************************************************************
+ 371          * Summary:
+ 372          * Sets the priority of a DMA channel.
+ 373          *
+ 374          * Parameters:
+ 375          * chHandle:
+ 376          *   Handle to the dma channel.
+ 377          *
+ 378          * priority:
+ 379          *   Priority to set the channel to, 0 - 7.
+ 380          *
+ 381          *
+ 382          *
+ 383          * Return:
+ 384          *   0 in successful or CYRET_BAD_PARAM.
+ 385          *
+ 386          *
+ 387          *******************************************************************************/
+ 388          cystatus CyDmaChPriority(uint8 chHandle, uint8 priority) 
+ 389          {
+ 390   1          uint8 Value;
+ 391   1          cystatus status;
+ 392   1      
+ 393   1      
+ 394   1          if(chHandle < NUMBEROF_CHANNELS)
+ 395   1          {
+ 396   2              Value = DMAC_CH[chHandle].basic_cfg[0] & ~(0x0Eu);
+ 397   2              DMAC_CH[chHandle].basic_cfg[0] = Value | (priority << 0x01u);
+ 398   2              status = CYRET_SUCCESS;
+ 399   2          }
+ 400   1          else
+ 401   1          {
+ 402   2              status = CYRET_BAD_PARAM;
+ 403   2          }
+ 404   1      
+ 405   1          return status;
+ 406   1      }
+ 407          
+ 408          
+ 409          /*******************************************************************************
+ 410          * Function Name: CyDmaChSetExtendedAddress
+ 411          ********************************************************************************
+ 412          * Summary:
+ 413          *   Sets the high 16 bits of the source and destination addresses for
+ 414          *   the DMA channel (all TD's in the chain).
+ 415          *
+ 416          * Parameters:
+ 417          * chHandle:
+ 418          *   Handle to the dma channel.
+ 419          *
+ 420          * source:
+ 421          *   The source of the DMA transfer.
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 8   
+
+ 422          *
+ 423          * destination:
+ 424          *   The destination of the DMA transfer.
+ 425          *
+ 426          *
+ 427          *
+ 428          * Return:
+ 429          *   0 in successful or CYRET_BAD_PARAM.
+ 430          *
+ 431          *
+ 432          *******************************************************************************/
+ 433          cystatus CyDmaChSetExtendedAddress(uint8 chHandle, uint16 source, uint16 destination) 
+ 434          {
+ 435   1          cystatus status;
+ 436   1      
+ 437   1      #if CYDEV_CHIP_MEMBER_USED == CYDEV_CHIP_MEMBER_5A
+                  /* 0x1FFF8000-0x1FFFFFFF needs to use alias at 0x20008000-0x2000FFFF */
+                  if (source == 0x1FFF)
+                      source = 0x2000;
+                  if (destination == 0x1FFF)
+                      destination = 0x2000;
+              #endif
+ 444   1      
+ 445   1          if(chHandle < NUMBEROF_CHANNELS)
+ 446   1          {
+ 447   2              /* Set Source address. */
+ 448   2              CONVERT_WORD *convert = (CONVERT_WORD *)&DMAC_CFGMEM[chHandle].CFG1[0];
+ 449   2              CY_SET_REG16(&convert->word, source);
+ 450   2      
+ 451   2              /* Set Destination address. */
+ 452   2              CY_SET_REG16((reg16 *) &DMAC_CFGMEM[chHandle].CFG1[2], destination);
+ 453   2              status = CYRET_SUCCESS;
+ 454   2          }
+ 455   1          else
+ 456   1          {
+ 457   2              status = CYRET_BAD_PARAM;
+ 458   2          }
+ 459   1      
+ 460   1          return status;
+ 461   1      }
+ 462          
+ 463          
+ 464          /*******************************************************************************
+ 465          * Function Name: CyDmaChSetTd
+ 466          ********************************************************************************
+ 467          * Summary:
+ 468          * Set the initial TD for the channel.
+ 469          *
+ 470          * Parameters:
+ 471          * chHandle:
+ 472          *   Handle to the dma channel.
+ 473          *
+ 474          * startTd:
+ 475          *   Index of TD to set as the first TD associated with the Channel.
+ 476          *
+ 477          *
+ 478          * Return:
+ 479          *   0 in successful or CYRET_BAD_PARAM.
+ 480          *
+ 481          *
+ 482          *******************************************************************************/
+ 483          cystatus CyDmaChSetInitialTd(uint8 chHandle, uint8 startTd) 
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 9   
+
+ 484          {
+ 485   1          cystatus status;
+ 486   1      
+ 487   1      
+ 488   1          if(chHandle < NUMBEROF_CHANNELS)
+ 489   1          {
+ 490   2              DMAC_CH[chHandle].basic_status[1] = startTd;
+ 491   2              status = CYRET_SUCCESS;
+ 492   2          }
+ 493   1          else
+ 494   1          {
+ 495   2              status = CYRET_BAD_PARAM;
+ 496   2          }
+ 497   1      
+ 498   1          return status;
+ 499   1      }
+ 500          
+ 501          
+ 502          /*******************************************************************************
+ 503          * Function Name: CyDmaChSetRequest
+ 504          ********************************************************************************
+ 505          * Summary:
+ 506          *   Allows the caller to terminate a chain of TD's, terminate one TD or
+ 507          *   Create a direct request to start the DMA channel.
+ 508          *
+ 509          * Parameters:
+ 510          * chHandle:
+ 511          *   Handle to the dma channel.
+ 512          *
+ 513          * request:
+ 514          *   3 bit field describing the request.
+ 515          *
+ 516          *   CPU_REQ       
+ 517          *   CPU_TERM_TD   
+ 518          *   CPU_TERM_CHAIN
+ 519          *
+ 520          *
+ 521          * Return:
+ 522          *   0 in successful or CYRET_BAD_PARAM.
+ 523          *
+ 524          *
+ 525          *******************************************************************************/
+ 526          cystatus CyDmaChSetRequest(uint8 chHandle, uint8 request) 
+ 527          {
+ 528   1          cystatus status;
+ 529   1      
+ 530   1      
+ 531   1          if(chHandle < NUMBEROF_CHANNELS)
+ 532   1          {
+ 533   2              DMAC_CH[chHandle].action[0] |= request;
+ 534   2              status = CYRET_SUCCESS;
+ 535   2          }
+ 536   1          else
+ 537   1          {
+ 538   2              status = CYRET_BAD_PARAM;
+ 539   2          }
+ 540   1      
+ 541   1          return status;
+ 542   1      }
+ 543          
+ 544          
+ 545          /*******************************************************************************
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 10  
+
+ 546          * Function Name: CyDmaChGetRequest
+ 547          ********************************************************************************
+ 548          * Summary:
+ 549          *   Allows the caller of DmaChSetRequest to check if the request was
+ 550          *   satisfied.
+ 551          *
+ 552          * Parameters:
+ 553          * chHandle:
+ 554          *   Handle to the dma channel.
+ 555          *
+ 556          *
+ 557          *
+ 558          * Return:
+ 559          *   The state of the 3 bit field describing the requests previous
+ 560          *   request. If the bit is cleared the request has be satisfied.
+ 561          *
+ 562          *   DMA_INVALID_CHANNEL if the handle is invalid.
+ 563          *
+ 564          *
+ 565          *******************************************************************************/
+ 566          cystatus CyDmaChGetRequest(uint8 chHandle) 
+ 567          {
+ 568   1          cystatus status;
+ 569   1      
+ 570   1      
+ 571   1          if(chHandle < NUMBEROF_CHANNELS)
+ 572   1          {
+ 573   2              status = DMAC_CH[chHandle].action[0] & (CPU_REQ | CPU_TERM_TD | CPU_TERM_CHAIN);
+ 574   2          }
+ 575   1          else
+ 576   1          {
+ 577   2              status = DMA_INVALID_CHANNEL;
+ 578   2          }
+ 579   1      
+ 580   1          return status;
+ 581   1      }
+ 582          
+ 583          
+ 584          /*******************************************************************************
+ 585          * Function Name: CyDmaChStatus
+ 586          ********************************************************************************
+ 587          * Summary:
+ 588          *   Determines the status of the current Transfer descriptor.
+ 589          *
+ 590          * Parameters:
+ 591          * chHandle:
+ 592          *   Handle to the dma channel.
+ 593          *
+ 594          * currentTd:
+ 595          *   Address to store the Index of the current Transfer Descriptor.
+ 596          *   Can be NULL if the value is not needed.
+ 597          *
+ 598          * state:
+ 599          *   Address to store the State of the Channel.
+ 600          *   Can be NULL if the value is not needed.
+ 601          *
+ 602          *
+ 603          * Return:
+ 604          *   0 in successful or CYRET_BAD_PARAM.
+ 605          *   
+ 606          *
+ 607          * Theory:
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 11  
+
+ 608          *   The caller can check on the activity of the Current TD and the
+ 609          *   Chain.
+ 610          *
+ 611          *******************************************************************************/
+ 612          cystatus CyDmaChStatus(uint8 chHandle, uint8 * currentTd, uint8 * state) 
+ 613          {
+ 614   1          cystatus status;
+ 615   1      
+ 616   1      
+ 617   1          if(chHandle < NUMBEROF_CHANNELS)
+ 618   1          {
+ 619   2              if(currentTd)
+ 620   2              {
+ 621   3                  *currentTd = DMAC_CH[chHandle].basic_status[1] & 0x7Fu;
+ 622   3              }
+ 623   2      
+ 624   2              if(state)
+ 625   2              {
+ 626   3                  *state= DMAC_CH[chHandle].basic_status[0];
+ 627   3              }
+ 628   2      
+ 629   2              status = CYRET_SUCCESS;
+ 630   2          }
+ 631   1          else
+ 632   1          {
+ 633   2              status = CYRET_BAD_PARAM;
+ 634   2          }
+ 635   1      
+ 636   1          return status;
+ 637   1      }
+ 638          
+ 639          
+ 640          /*******************************************************************************
+ 641          * Function Name: CyDmaChSetConfiguration
+ 642          ********************************************************************************
+ 643          * Summary:
+ 644          * Sets Configuration information for the channel.
+ 645          *
+ 646          * Parameters:
+ 647          * chHandle:
+ 648          *   Handle to the dma channel.
+ 649          *
+ 650          * burstCount:
+ 651          *   Number of bytes in a burst.
+ 652          *
+ 653          * requestPerBurst:
+ 654          *   A DMA request is required per burst.
+ 655          *
+ 656          * tdDone0:
+ 657          *   Selects one of the TERMOUT0 interrupt lines to signal completion.
+ 658          *
+ 659          * tdDone1:
+ 660          *   Selects one of the TERMOUT1 interrupt lines to signal complete.
+ 661          *
+ 662          *
+ 663          * tdStop:
+ 664          *   Selects one of the TERMIN interrupt lines to signal to the DMAC
+ 665          *   that the TD should terminate.
+ 666          *
+ 667          * Return:
+ 668          *   0 in successful or CYRET_BAD_PARAM.
+ 669          *
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 12  
+
+ 670          *
+ 671          *******************************************************************************/
+ 672          cystatus CyDmaChSetConfiguration(uint8 chHandle, uint8 burstCount, uint8 requestPerBurst, uint8 tdDone0, u
+             -int8 tdDone1, uint8 tdStop) 
+ 673          {
+ 674   1          cystatus status;
+ 675   1      
+ 676   1      
+ 677   1          if(chHandle < NUMBEROF_CHANNELS)
+ 678   1          {
+ 679   2              DMAC_CFGMEM[chHandle].CFG0[0] = burstCount | (requestPerBurst << 7);
+ 680   2              DMAC_CFGMEM[chHandle].CFG0[1] = (tdDone1 << 4) | tdDone0;
+ 681   2              DMAC_CFGMEM[chHandle].CFG0[2] = 0x0Fu & tdStop;
+ 682   2              DMAC_CFGMEM[chHandle].CFG0[3] = 0; /* burstcount_remain. */
+ 683   2      
+ 684   2              status = CYRET_SUCCESS;
+ 685   2          }
+ 686   1          else
+ 687   1          {
+ 688   2              status = CYRET_BAD_PARAM;
+ 689   2          }
+ 690   1      
+ 691   1          return status;
+ 692   1      }
+ 693          
+ 694          
+ 695          /*******************************************************************************
+ 696          * Function Name: CyDmaTdAllocate
+ 697          ********************************************************************************
+ 698          * Summary:
+ 699          *   Removes a Transfer Descriptor from the free list for use by the
+ 700          *   caller.
+ 701          *
+ 702          * Parameters:
+ 703          *   void.
+ 704          *
+ 705          *
+ 706          * Return:
+ 707          *   Zero based index of the Transfer Descriptor to be used by the
+ 708          *   caller. Zero is a valid TD index. DMA_INVALID_TD implies
+ 709          *   there are no free TD's available.
+ 710          *
+ 711          *
+ 712          *******************************************************************************/
+ 713          uint8 CyDmaTdAllocate(void) 
+ 714          {
+ 715   1          uint8 interruptState;
+ 716   1          uint8 Element;
+ 717   1      
+ 718   1      
+ 719   1          /* Enter critical section! */
+ 720   1          interruptState = CyEnterCriticalSection();
+ 721   1      
+ 722   1          if(CyDmaTdCurrentNumber)
+ 723   1          {
+ 724   2              /* Get pointer to the Next available. */
+ 725   2              Element = CyDmaTdFreeIndex;
+ 726   2      
+ 727   2              /* Decrement the count. */
+ 728   2              CyDmaTdCurrentNumber--;
+ 729   2      
+ 730   2              /* Update the next available pointer. */
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 13  
+
+ 731   2              CyDmaTdFreeIndex = DMAC_TDMEM[Element].TD0[0];
+ 732   2          }
+ 733   1          else
+ 734   1          {
+ 735   2              Element = DMA_INVALID_TD;
+ 736   2          }
+ 737   1      
+ 738   1          /* Exit critical section! */
+ 739   1          CyExitCriticalSection(interruptState);
+ 740   1      
+ 741   1          return Element;
+ 742   1      }
+ 743          
+ 744          
+ 745          /*******************************************************************************
+ 746          * Function Name: CyDmaTdFree
+ 747          ********************************************************************************
+ 748          * Summary:
+ 749          *   Returns a Transfer Descriptor back to the free list.
+ 750          *
+ 751          * Parameters:
+ 752          * tdHandle:
+ 753          *   Zero based index of the Transfer Descriptor to be freed.
+ 754          *
+ 755          *
+ 756          * Return:
+ 757          *   void.
+ 758          *
+ 759          *
+ 760          *******************************************************************************/
+ 761          void CyDmaTdFree(uint8 tdHandle) 
+ 762          {
+ 763   1          if(tdHandle < NUMBEROF_TDS)
+ 764   1          {
+ 765   2              /* Enter critical section! */
+ 766   2              uint8 interruptState = CyEnterCriticalSection();
+ 767   2      
+ 768   2              /* Get pointer to the Next available. */
+ 769   2              DMAC_TDMEM[tdHandle].TD0[0] = CyDmaTdFreeIndex;
+ 770   2      
+ 771   2              /* Set new Next Available. */
+ 772   2              CyDmaTdFreeIndex = tdHandle;
+ 773   2      
+ 774   2              /* Keep track of how many left. */
+ 775   2              CyDmaTdCurrentNumber++;
+ 776   2      
+ 777   2              /* Exit critical section! */
+ 778   2              CyExitCriticalSection(interruptState);
+ 779   2          }
+ 780   1      }
+ 781          
+ 782          
+ 783          /*******************************************************************************
+ 784          * Function Name: CyDmaTdFreeCount
+ 785          ********************************************************************************
+ 786          * Summary:
+ 787          *   Returns the number of free Transfer Descriptors available to be
+ 788          *   allocated.
+ 789          *
+ 790          * Parameters:
+ 791          *   void.
+ 792          *
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 14  
+
+ 793          * Return:
+ 794          *   The number of free Transfer Descriptors.
+ 795          *
+ 796          *
+ 797          *******************************************************************************/
+ 798          uint8 CyDmaTdFreeCount(void) 
+ 799          {
+ 800   1          uint8 number;
+ 801   1      
+ 802   1      
+ 803   1          number = CyDmaTdCurrentNumber;
+ 804   1      
+ 805   1      
+ 806   1          return number;
+ 807   1      }
+ 808          
+ 809          
+ 810          /*******************************************************************************
+ 811          * Function Name: CyDmaTdSetConfiguration
+ 812          ********************************************************************************
+ 813          * Summary:
+ 814          * Configures the TD.
+ 815          *
+ 816          * Parameters:
+ 817          * tdHandle:
+ 818          *   Handle to the TD.
+ 819          *
+ 820          * transferCount:
+ 821          *   Size of the data transfer (in bytes) for this Transfer Descriptor.
+ 822          *
+ 823          * nextTd:
+ 824          *   Zero based index of the next Transfer Descriptor in the TD chain.
+ 825          *   Zero is a valid pointer to the next TD, 0xFF is end of chain.
+ 826          *
+ 827          * configuration:
+ 828          *   Bit field with the following meaning.   
+ 829          *   
+ 830          *   bit 7 swap_en 0
+ 831          *   bit 6 swap_size
+ 832          *   bit 5 auto_exec_next
+ 833          *   bit 4 termin_en
+ 834          *   bit 3 termout1_en
+ 835          *   bit 2 termout0_en
+ 836          *   bit 1 inc_dst_adr
+ 837          *   bit 0 inc_src_adr
+ 838          *   
+ 839          *   As defined in ??HeaderFile??
+ 840          *   
+ 841          *
+ 842          * Return:
+ 843          *   0 in successful or CYRET_BAD_PARAM.
+ 844          *
+ 845          *
+ 846          *******************************************************************************/
+ 847          cystatus CyDmaTdSetConfiguration(uint8 tdHandle, uint16 transferCount, uint8 nextTd, uint8 configuration) 
+ 848          {
+ 849   1          cystatus status;
+ 850   1      
+ 851   1      
+ 852   1          if(tdHandle < NUMBEROF_TDS && !(0xF000u & transferCount))
+ 853   1          {
+ 854   2              /* Set 12 bits transfer count. */
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 15  
+
+ 855   2              CONVERT_WORD *convert = (CONVERT_WORD *)&DMAC_TDMEM[tdHandle].TD0[0];
+ 856   2              CY_SET_REG16(&convert->word, transferCount);
+ 857   2      
+ 858   2              /* Set Next TD pointer. */
+ 859   2              DMAC_TDMEM[tdHandle].TD0[2] = nextTd;
+ 860   2      
+ 861   2              /* Configure the TD */
+ 862   2              DMAC_TDMEM[tdHandle].TD0[3] = configuration;
+ 863   2      
+ 864   2              status = CYRET_SUCCESS;
+ 865   2          }
+ 866   1          else
+ 867   1          {
+ 868   2              status = CYRET_BAD_PARAM;
+ 869   2          }
+ 870   1      
+ 871   1          return status;
+ 872   1      }
+ 873          
+ 874          
+ 875          /*******************************************************************************
+ 876          * Function Name: CyDmaTdGetConfiguration
+ 877          ********************************************************************************
+ 878          * Summary:
+ 879          * Gets the configuration for the Configures.
+ 880          *
+ 881          *   if NULL is passed for a pointer parameter, that value will be
+ 882          *   skipped. The user can requestion only the values they are
+ 883          *   interested in.
+ 884          *
+ 885          * Parameters:
+ 886          * tdHandle:
+ 887          *   Handle to the TD.
+ 888          *
+ 889          * transferCount:
+ 890          *   Address to store the Size of the data transfer (in bytes) for
+ 891          *   this Transfer Descriptor.
+ 892          *
+ 893          * nextTd:
+ 894          *   Address to store the Zero based index of the next Transfer
+ 895          *   Descriptor in the TD chain.
+ 896          *
+ 897          * configurattion:
+ 898          *   Address to store the Bit field of configuration bits.
+ 899          *   
+ 900          *   bit 7 swap_en 0
+ 901          *   bit 6 swap_size
+ 902          *   bit 5 auto_exec_next
+ 903          *   bit 4 termin_en
+ 904          *   bit 3 termout1_en
+ 905          *   bit 2 termout0_en
+ 906          *   bit 1 inc_dst_adr
+ 907          *   bit 0 inc_src_adr
+ 908          *   
+ 909          *   As defined in ??HeaderFile??
+ 910          *   
+ 911          *
+ 912          * Return:
+ 913          *   0 in successful or CYRET_BAD_PARAM.
+ 914          *
+ 915          *
+ 916          *******************************************************************************/
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 16  
+
+ 917          cystatus CyDmaTdGetConfiguration(uint8 tdHandle, uint16 * transferCount, uint8 * nextTd, uint8 * configura
+             -tion) 
+ 918          {
+ 919   1          cystatus status;
+ 920   1      
+ 921   1      
+ 922   1          if(tdHandle < NUMBEROF_TDS)
+ 923   1          {
+ 924   2              /* If we have a pointer. */
+ 925   2              if(transferCount)
+ 926   2              {
+ 927   3                  /* Get the 12 bitss of the transfer count. */
+ 928   3                  CONVERT_WORD *convert = (CONVERT_WORD *)&DMAC_TDMEM[tdHandle].TD0[0];
+ 929   3                  *transferCount = 0x0FFFu & CY_GET_REG16(&convert->word);
+ 930   3              }
+ 931   2      
+ 932   2              /* If we have a pointer. */
+ 933   2              if(nextTd)
+ 934   2              {
+ 935   3                  /* Get the Next TD pointer. */
+ 936   3                  *nextTd = DMAC_TDMEM[tdHandle].TD0[2];
+ 937   3              }
+ 938   2      
+ 939   2              /* If we have a pointer. */
+ 940   2              if(configuration)
+ 941   2              {
+ 942   3                  /* Get the configuration the TD */
+ 943   3                  *configuration = DMAC_TDMEM[tdHandle].TD0[3];
+ 944   3              }
+ 945   2      
+ 946   2              status = CYRET_SUCCESS;
+ 947   2          }
+ 948   1          else
+ 949   1          {
+ 950   2              status = CYRET_BAD_PARAM;
+ 951   2          }
+ 952   1      
+ 953   1          return status;
+ 954   1      }
+ 955          
+ 956          
+ 957          /*******************************************************************************
+ 958          * Function Name: CyDmaTdSetAddress
+ 959          ********************************************************************************
+ 960          * Summary:
+ 961          *   Sets the lower 16 bits of the source and destination addresses
+ 962          *   for this TD only.
+ 963          *
+ 964          * Parameters:
+ 965          * tdHandle:
+ 966          *   Handle to the TD.
+ 967          *
+ 968          * source:
+ 969          *   lower 16 address bits of the Source of the data transfer.
+ 970          *
+ 971          * destination:
+ 972          *   lower 16 address bits of the Destination of the data transfer.
+ 973          *
+ 974          *
+ 975          * Return:
+ 976          *   0 in successful or CYRET_BAD_PARAM.
+ 977          *
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 17  
+
+ 978          *
+ 979          *******************************************************************************/
+ 980          cystatus CyDmaTdSetAddress(uint8 tdHandle, uint16 source, uint16 destination) 
+ 981          {
+ 982   1          cystatus status;
+ 983   1      
+ 984   1      
+ 985   1          if(tdHandle < NUMBEROF_TDS)
+ 986   1          {
+ 987   2              /* Set Source address. */
+ 988   2              CONVERT_WORD *convert = (CONVERT_WORD *)&DMAC_TDMEM[tdHandle].TD1[0];
+ 989   2              CY_SET_REG16(&convert->word, source);
+ 990   2      
+ 991   2              /* Set Destination address. */
+ 992   2              CY_SET_REG16((reg16 *) &DMAC_TDMEM[tdHandle].TD1[2], destination);
+ 993   2      
+ 994   2              status = CYRET_SUCCESS;
+ 995   2          }
+ 996   1          else
+ 997   1          {
+ 998   2              status = CYRET_BAD_PARAM;
+ 999   2          }
+1000   1      
+1001   1          return status;
+1002   1      }
+1003          
+1004          
+1005          /*******************************************************************************
+1006          * Function Name: CyDmaTdGetAddress
+1007          ********************************************************************************
+1008          * Summary:
+1009          *   Gets the lower 16 bits of the source and/or destination addresses
+1010          *   for this TD only.
+1011          *
+1012          *   if NULL is passed for a pointer parameter, that value will be
+1013          *   skipped. The user can requestion only the values they are
+1014          *   interested in.
+1015          *
+1016          * Parameters:
+1017          * tdHandle:
+1018          *   Handle to the TD.
+1019          *
+1020          * source:
+1021          *   Address to store the lower 16 address bits of the Source of the
+1022          *   data transfer.
+1023          *
+1024          * destination:
+1025          *   Address to store the lower 16 address bits of the Destination of
+1026          *   the data transfer.
+1027          *
+1028          *
+1029          * Return:
+1030          *   0 in successful or CYRET_BAD_PARAM.
+1031          *
+1032          *
+1033          *******************************************************************************/
+1034          cystatus CyDmaTdGetAddress(uint8 tdHandle, uint16 * source, uint16 * destination) 
+1035          {
+1036   1          cystatus status;
+1037   1      
+1038   1      
+1039   1          if(tdHandle < NUMBEROF_TDS)
+C51 COMPILER V8.16   CYDMAC                                                                12/13/2010 22:57:34 PAGE 18  
+
+1040   1          {
+1041   2              /* If we have a pointer. */
+1042   2              if(source)
+1043   2              {
+1044   3                  /* Get Source address. */
+1045   3                  CONVERT_WORD *convert = (CONVERT_WORD *)&DMAC_TDMEM[tdHandle].TD1[0];
+1046   3                  *source = CY_GET_REG16(&convert->word);
+1047   3              }
+1048   2      
+1049   2              /* If we have a pointer. */
+1050   2              if(destination)
+1051   2              {
+1052   3                  /* Get Destination address. */
+1053   3                  *destination = CY_GET_REG16((reg16 *) &DMAC_TDMEM[tdHandle].TD1[2]);
+1054   3              }
+1055   2      
+1056   2              status = CYRET_SUCCESS;
+1057   2          }
+1058   1          else
+1059   1          {
+1060   2              status = CYRET_BAD_PARAM;
+1061   2          }
+1062   1      
+1063   1          return status;
+1064   1      }
+1065          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2563    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    108    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

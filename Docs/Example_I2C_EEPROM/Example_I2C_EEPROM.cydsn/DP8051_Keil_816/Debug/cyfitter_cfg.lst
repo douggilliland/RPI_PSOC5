@@ -1,0 +1,464 @@
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE CYFITTER_CFG
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/cyfitter_cfg.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\cyfitter_cfg.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Pr
+                    -ojects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/cyfitter_cfg.lst) DB NOIP OT(0
+                    -) INCDIR(Generated_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Exampl
+                    -e_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/cyfitter_cfg.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * Copyright 2010, Cypress Semiconductor Corporation.  All rights reserved.
+   3          * You may use this file only in accordance with the license, terms, conditions, 
+   4          * disclaimers, and limitations in the end user license agreement accompanying 
+   5          * the software package with which this file was provided.
+   6          ********************************************************************************/
+   7          
+   8          #include <string.h>
+   9          #include <cytypes.h>
+  10          #include <cydevice.h>
+  11          #include <cydevice_trm.h>
+  12          #include <cyfitter.h>
+  13          #include <CyLib.h>
+  14          #include <CyDmac.h>
+  15          #include <cyfitter_cfg.h>
+  16          
+  17          /* Clock startup error codes                                                   */
+  18          #define CYCLOCKSTART_NO_ERROR    0
+  19          #define CYCLOCKSTART_XTAL_ERROR  1
+  20          #define CYCLOCKSTART_32KHZ_ERROR 2
+  21          #define CYCLOCKSTART_PLL_ERROR   3
+  22          
+  23          /*******************************************************************************
+  24          * Function Name: CyClockStartupError
+  25          ********************************************************************************
+  26          * Summary:
+  27          *  If an error is encountered during clock configuration (crystal startup error,
+  28          *  PLL lock error, etc) the system will end up here.  Unless reimplemented by 
+  29          *  the customer, an infinite loop will be encountered.
+  30          *
+  31          * Parameters:  
+  32          *   void.
+  33          *
+  34          *
+  35          * Return:
+  36          *   void.
+  37          *
+  38          *******************************************************************************/
+  39          #if defined(__GNUC__) || defined(__ARMCC_VERSION)
+              __attribute__ ((unused))
+              #endif
+  42          static void CyClockStartupError(uint8 errorCode)
+  43          {
+  44   1          /* To remove the compiler warning if errorCode not used.                */
+  45   1          errorCode = errorCode;
+  46   1      
+  47   1          /* `#START CyClockStartupError` */
+  48   1      
+  49   1          /* `#END` */
+  50   1      
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 2   
+
+  51   1          /* If nothing else, stop here since the clocks have not started         */
+  52   1          /* correctly.                                                           */
+  53   1          while(1) {}
+  54   1      }
+  55          
+  56          /* This file contains the data used to initialize the device. */
+  57          
+  58          #undef CYCODE
+  59          #undef CYDATA
+  60          #undef CYXDATA
+  61          #undef CYFAR
+  62          #if defined(__C51__) || defined(__CX51__)
+  63          #define CYCODE code
+  64          #define CYDATA data
+  65          #define CYXDATA xdata
+  66          #define CYFAR far
+  67          extern void cymemzero(void CYFAR *addr, uint16 size);
+  68          extern void cyconfigcpy(uint16 size, const void CYFAR *src, void CYFAR *dest) small;
+  69          extern void cyconfigcpycode(uint16 size, const void CYCODE *src, void CYFAR *dest);
+  70          #define CYMEMZERO(a,c) cymemzero((a),(c))
+  71          #define CYCONFIGCPY(d,s,c) cyconfigcpy((c),(s),(d))
+  72          #define CYCONFIGCPYCODE(d,s,c) cyconfigcpycode((c),(s),(d))
+  73          #else
+              #define CYCODE
+              #define CYDATA
+              #define CYXDATA
+              #define CYFAR
+              #define CYMEMZERO(a,c) cymemset((a),0,(c))
+              #define CYCONFIGCPY(d,s,c) cymemcpy((d),(s),(c))
+              #define CYCONFIGCPYCODE(d,s,c) cymemcpy((d),(s),(c))
+              #endif
+  82          
+  83          #if defined(__GNUC__) || defined(__ARMCC_VERSION)
+              #define CYPACKED __attribute__ ((packed))
+              #define CYALIGNED __attribute__ ((aligned))
+              #if CYDEV_CONFIGURATION_DMA
+              #define DMAINITSEC __attribute__ ((section (".dma_init")))
+              #else
+              #define DMAINITSEC
+              #endif
+              #if defined(__ARMCC_VERSION)
+              #define CY_CFG_MEMORY_BARRIER() __memory_changed()
+              #else
+              #define CY_CFG_MEMORY_BARRIER() __sync_synchronize()
+              #endif
+              #else
+  97          /* Keil C51 and others */
+  98          #define CYPACKED
+  99          #define CYALIGNED
+ 100          #define DMAINITSEC
+ 101          #define CY_CFG_MEMORY_BARRIER()
+ 102          #endif
+ 103          
+ 104          typedef struct {
+ 105                  void CYFAR *address;
+ 106                  uint16 size;
+ 107          } CYPACKED cfg_memset_t;
+ 108          
+ 109          typedef struct {
+ 110                  void CYFAR *dest;
+ 111                  const void CYCODE *src;
+ 112                  uint16 size;
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 3   
+
+ 113          } CYPACKED cfg_memcpy_t;
+ 114          
+ 115          
+ 116          #if defined(__C51__) || defined(__CX51__)
+ 117          #define CYMEMZERO8(a,c) cymemzero((a),(c))
+ 118          #define CYCONFIGCPY8(d,s,c) cyconfigcpy((c),(s),(d))
+ 119          #define CYCONFIGCPYCODE8(d,s,c) cyconfigcpycode((c),(s),(d))
+ 120          #else
+              #if defined(__GNUC__) || defined(__ARMCC_VERSION)
+              __attribute__ ((unused))
+              #endif
+              static void cymemzero8(void *addr, unsigned int count)
+              {
+                      volatile uint8 *addr8 = (uint8 *)addr;
+                      while (count--)
+                      {
+                              *addr8 = 0;
+                              addr8++;
+                      }
+              }
+              
+              #if defined(__GNUC__) || defined(__ARMCC_VERSION)
+              __attribute__ ((unused))
+              #endif
+              static void cymemcpy8(void *dest, const void *src, unsigned int count)
+              {
+                      volatile uint8 *dest8 = (uint8 *)dest;
+                      const uint8 *src8 = (const uint8 *)src;
+              
+                      while (count--)
+                      {
+                              *dest8 = *src8;
+                              dest8++;
+                              src8++;
+                      }
+              }
+              
+              #define CYMEMZERO8(a,c) cymemzero8((a),(c))
+              #define CYCONFIGCPY8(d,s,c) cymemcpy8((d),(s),(c))
+              #define CYCONFIGCPYCODE8(d,s,c) cymemcpy8((d),(s),(c))
+              #endif
+ 154          
+ 155          #define CFG_MEMSET_COUNT (sizeof(cfg_memset_list)/sizeof(*cfg_memset_list))
+ 156          static const cfg_memset_t CYCODE cfg_memset_list [] = {
+ 157                  /* address, size */
+ 158                  {(void CYFAR *)(CYDEV_IO_PRT_PRT0_DR), 32},
+ 159                  {(void CYFAR *)(CYDEV_IO_PRT_PRT3_DR), 16},
+ 160                  {(void CYFAR *)(CYDEV_IO_PRT_PRT5_DR), 32},
+ 161                  {(void CYFAR *)(CYDEV_IO_PRT_PRT12_DR), 16},
+ 162                  {(void CYFAR *)(CYDEV_IO_PRT_PRT15_DR), 16},
+ 163                  {(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 2688},
+ 164                  {(void CYFAR *)(CYDEV_UCFG_B0_P5_ROUTE_BASE), 1280},
+ 165                  {(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 2048},
+ 166                  {(void CYFAR *)(CYDEV_UCFG_DSI0_BASE), 2560},
+ 167                  {(void CYFAR *)(CYDEV_UCFG_DSI12_BASE), 512},
+ 168          };
+ 169          
+ 170          const uint8 CYCODE cfg_byte_table[] = {
+ 171                  0x0F,
+ 172                  0x00, 0x64, 0x03, /* Base address 0x006400 */
+ 173                  /* CYDEV_UWRK_UWRK8_B0_BASE */
+ 174                  0x2B, 0x04, 0x2C, 0x0F, 0x3C, 0x08, 
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 4   
+
+ 175                  0x01, 0x05, 0x01, /* Base address 0x010500 */
+ 176                  /* CYDEV_UCFG_B0_P2_ROUTE_BASE + 0x00000080 */
+ 177                  0xE2, 0x80, 
+ 178                  0x01, 0x08, 0x34, /* Base address 0x010800 */
+ 179                  /* CYDEV_UCFG_B0_P4_U0_BASE */
+ 180                  0x00, 0x64, 0x01, 0x81, 0x02, 0x8A, 0x03, 0x20, 0x04, 0x21, 0x05, 0x75, 0x07, 0x0A, 0x08, 0x01, 
+ 181                  0x09, 0x6D, 0x0A, 0x20, 0x0B, 0x12, 0x0C, 0x64, 0x0D, 0x60, 0x0E, 0x92, 0x0F, 0x80, 0x11, 0x02, 
+ 182                  0x12, 0xFF, 0x13, 0x19, 0x14, 0x40, 0x15, 0x40, 0x16, 0x9F, 0x17, 0x9F, 0x18, 0x21, 0x19, 0x18, 
+ 183                  0x1B, 0x67, 0x1D, 0x04, 0x1E, 0xFF, 0x1F, 0x7A, 0x21, 0x02, 0x22, 0x02, 0x25, 0x01, 0x28, 0x04, 
+ 184                  0x29, 0x01, 0x2A, 0x79, 0x2C, 0x25, 0x30, 0x1F, 0x31, 0xE0, 0x32, 0x1F, 0x33, 0x1F, 0x34, 0xE4, 
+ 185                  0x35, 0x1F, 0x36, 0xE4, 0x37, 0xE0, 0x3A, 0xAA, 0x3B, 0xAA, 0x3C, 0xAA, 0x3D, 0xAA, 0x58, 0x0F, 
+ 186                  0x59, 0x0F, 0x5B, 0x05, 0x5E, 0x04, 0x5F, 0x10, 
+ 187                  0x01, 0x09, 0x35, /* Base address 0x010900 */
+ 188                  /* CYDEV_UCFG_B0_P4_ROUTE_BASE */
+ 189                  0x04, 0x20, 0x05, 0x49, 0x0C, 0x20, 0x0D, 0x09, 0x0E, 0x02, 0x16, 0x02, 0x17, 0x22, 0x1C, 0x10, 
+ 190                  0x1D, 0x41, 0x1E, 0x04, 0x1F, 0x06, 0x24, 0x40, 0x25, 0x1C, 0x26, 0x50, 0x2C, 0x88, 0x2E, 0x08, 
+ 191                  0x36, 0x16, 0x37, 0x50, 0x3C, 0x58, 0x3D, 0x01, 0x3E, 0x04, 0x4A, 0x04, 0x4B, 0x10, 0x6C, 0x15, 
+ 192                  0x6F, 0x08, 0x74, 0xA8, 0x75, 0x08, 0x76, 0x08, 0x77, 0x02, 0x7E, 0x01, 0x7F, 0x40, 
+ 193                  /* CYDEV_UCFG_B0_P4_ROUTE_BASE + 0x00000080 */
+ 194                  0x91, 0x03, 0x93, 0x90, 0x94, 0x0A, 0x97, 0x08, 0x9A, 0x02, 0x9B, 0x60, 0x9C, 0x01, 0x9D, 0x01, 
+ 195                  0x9F, 0x12, 0xA2, 0x03, 0xA4, 0xAC, 0xA5, 0x14, 0xA6, 0x40, 0xA7, 0x0A, 0xB6, 0x80, 0xC0, 0xF0, 
+ 196                  0xC2, 0xF0, 0xC4, 0xD0, 0xCA, 0xE0, 0xCC, 0xF0, 0xCE, 0xF0, 0xDE, 0x90, 
+ 197                  0x01, 0x0B, 0x43, /* Base address 0x010B00 */
+ 198                  /* CYDEV_UCFG_B0_P5_ROUTE_BASE */
+ 199                  0x06, 0x80, 0x07, 0x1A, 0x0E, 0x40, 0x0F, 0x29, 0x14, 0x80, 0x15, 0x08, 0x16, 0x08, 0x17, 0x40, 
+ 200                  0x1C, 0x90, 0x1E, 0x40, 0x24, 0x20, 0x25, 0x80, 0x26, 0x02, 0x27, 0x28, 0x2C, 0xA8, 0x2F, 0x02, 
+ 201                  0x36, 0x12, 0x3C, 0x20, 0x3D, 0x08, 0x3F, 0x82, 0x45, 0x22, 0x4D, 0x03, 0x4E, 0x04, 0x56, 0x0B, 
+ 202                  0x57, 0x40, 0x5C, 0x10, 0x5E, 0x80, 0x60, 0x90, 0x61, 0x80, 0x62, 0x42, 0x63, 0x20, 0x64, 0x40, 
+ 203                  0x66, 0x40, 0x7F, 0x48, 
+ 204                  /* CYDEV_UCFG_B0_P5_ROUTE_BASE + 0x00000080 */
+ 205                  0x88, 0x40, 0x91, 0x0A, 0x92, 0x08, 0x93, 0x91, 0x94, 0x2A, 0x97, 0x08, 0x9B, 0x40, 0x9C, 0x01, 
+ 206                  0x9D, 0x03, 0x9E, 0x01, 0xA0, 0x10, 0xA1, 0x22, 0xA2, 0x11, 0xA3, 0x05, 0xA4, 0x44, 0xA5, 0x14, 
+ 207                  0xA7, 0x08, 0xAC, 0x02, 0xAF, 0x02, 0xC0, 0xF0, 0xC2, 0xF0, 0xC4, 0xF0, 0xCA, 0xF0, 0xCC, 0xA0, 
+ 208                  0xCE, 0xF0, 0xD0, 0xA0, 0xD2, 0x20, 0xD6, 0x30, 0xD8, 0x90, 0xDE, 0xA0, 0xE2, 0x80, 0xEA, 0x08, 
+ 209                  0xEC, 0x02, 
+ 210                  0x01, 0x0C, 0x53, /* Base address 0x010C00 */
+ 211                  /* CYDEV_UCFG_B0_P6_U0_BASE */
+ 212                  0x00, 0x40, 0x04, 0x40, 0x05, 0x90, 0x07, 0x44, 0x08, 0x01, 0x0A, 0x02, 0x0B, 0xFF, 0x0C, 0x20, 
+ 213                  0x0D, 0x2D, 0x0E, 0x04, 0x0F, 0xD2, 0x10, 0x02, 0x11, 0x03, 0x12, 0x01, 0x14, 0x04, 0x18, 0x04, 
+ 214                  0x1E, 0x18, 0x20, 0x0C, 0x21, 0xA7, 0x22, 0x10, 0x23, 0x48, 0x24, 0x14, 0x25, 0x45, 0x26, 0x08, 
+ 215                  0x27, 0xBA, 0x29, 0x1F, 0x2A, 0x20, 0x2B, 0x60, 0x2C, 0x04, 0x30, 0x18, 0x31, 0xFF, 0x32, 0x07, 
+ 216                  0x34, 0x20, 0x35, 0xFF, 0x36, 0x40, 0x37, 0xFF, 0x38, 0x88, 0x3B, 0xA2, 0x3D, 0xA2, 0x3E, 0x55, 
+ 217                  0x40, 0x13, 0x46, 0x22, 0x47, 0x05, 0x48, 0x1C, 0x49, 0xFF, 0x4A, 0x7F, 0x4B, 0xFF, 0x4C, 0x42, 
+ 218                  0x4D, 0xA0, 0x4E, 0x70, 0x50, 0x08, 0x51, 0x10, 0x58, 0x04, 0x59, 0x0F, 0x5A, 0x0F, 0x5E, 0x05, 
+ 219                  0x61, 0x48, 0x62, 0x40, 0x63, 0x48, 0x65, 0x48, 0x66, 0x80, 0x67, 0x48, 
+ 220                  /* CYDEV_UCFG_B0_P6_U1_BASE */
+ 221                  0x85, 0x1F, 0x8B, 0x12, 0x91, 0x01, 0x93, 0x02, 0x99, 0x20, 0x9B, 0x08, 0x9D, 0x10, 0x9F, 0x20, 
+ 222                  0xA1, 0x20, 0xA3, 0x04, 0xAB, 0x40, 0xAD, 0x12, 0xAF, 0x21, 0xB1, 0x40, 0xB3, 0x40, 0xB5, 0x3F, 
+ 223                  0xB7, 0x3F, 0xB9, 0xA0, 0xBD, 0x55, 0xD9, 0x0F, 0xDE, 0x05, 
+ 224                  0x01, 0x0D, 0x41, /* Base address 0x010D00 */
+ 225                  /* CYDEV_UCFG_B0_P6_ROUTE_BASE */
+ 226                  0x00, 0x08, 0x03, 0x20, 0x04, 0x0A, 0x06, 0x01, 0x07, 0x08, 0x0C, 0x06, 0x0D, 0x90, 0x10, 0x04, 
+ 227                  0x11, 0x20, 0x12, 0x40, 0x13, 0x01, 0x15, 0x10, 0x16, 0x60, 0x17, 0x40, 0x1D, 0x2A, 0x1F, 0x40, 
+ 228                  0x20, 0x20, 0x21, 0x05, 0x22, 0x02, 0x23, 0x0A, 0x24, 0x40, 0x26, 0x91, 0x28, 0x01, 0x29, 0x01, 
+ 229                  0x2A, 0x10, 0x2C, 0x40, 0x2F, 0x14, 0x32, 0x82, 0x33, 0x60, 0x35, 0x02, 0x38, 0x20, 0x39, 0x20, 
+ 230                  0x3A, 0x08, 0x3B, 0x20, 0x3C, 0x70, 0x3D, 0x08, 0x3F, 0x10, 0x45, 0xC8, 0x55, 0x40, 0x56, 0x18, 
+ 231                  0x58, 0x02, 0x59, 0x01, 0x5C, 0x10, 0x5D, 0x10, 0x60, 0x08, 0x63, 0x08, 0x64, 0x0A, 0x66, 0x20, 
+ 232                  0x67, 0x01, 0x7B, 0x88, 0x7F, 0xC8, 
+ 233                  /* CYDEV_UCFG_B0_P6_ROUTE_BASE + 0x00000080 */
+ 234                  0x86, 0x04, 0x88, 0x40, 0x98, 0x48, 0xA3, 0x01, 0xA7, 0x20, 0xC0, 0xF0, 0xC2, 0xF0, 0xC4, 0xF0, 
+ 235                  0xCA, 0xED, 0xCC, 0x8D, 0xCE, 0x76, 0xD0, 0x50, 0xDE, 0xA5, 0xE6, 0x08, 
+ 236                  0x01, 0x0F, 0x02, /* Base address 0x010F00 */
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 5   
+
+ 237                  /* CYDEV_UCFG_B0_P7_ROUTE_BASE + 0x00000080 */
+ 238                  0x88, 0x48, 0x8B, 0x21, 
+ 239                  0x01, 0x19, 0x04, /* Base address 0x011900 */
+ 240                  /* CYDEV_UCFG_B1_P4_ROUTE_BASE + 0x00000080 */
+ 241                  0xB0, 0x01, 0xB1, 0x08, 0xB2, 0x01, 0xB3, 0x08, 
+ 242                  0x01, 0x42, 0x03, /* Base address 0x014200 */
+ 243                  /* CYDEV_UCFG_DSI2_BASE */
+ 244                  0x35, 0x02, 
+ 245                  /* CYDEV_UCFG_DSI2_BASE + 0x00000080 */
+ 246                  0x89, 0x02, 0xCC, 0x80, 
+ 247                  0x01, 0x45, 0x0A, /* Base address 0x014500 */
+ 248                  /* CYDEV_UCFG_DSI5_BASE */
+ 249                  0x0B, 0x10, 0x0E, 0x30, 0x58, 0x01, 0x5C, 0x02, 0x64, 0x02, 
+ 250                  /* CYDEV_UCFG_DSI5_BASE + 0x00000080 */
+ 251                  0x86, 0x10, 0x88, 0x01, 0xC2, 0x0C, 0xD6, 0x03, 0xE4, 0x04, 
+ 252                  0x01, 0x46, 0x03, /* Base address 0x014600 */
+ 253                  /* CYDEV_UCFG_DSI6_BASE + 0x00000080 */
+ 254                  0x92, 0x10, 0xAC, 0x02, 0xAF, 0x10, 
+ 255                  0x01, 0x47, 0x02, /* Base address 0x014700 */
+ 256                  /* CYDEV_UCFG_DSI7_BASE + 0x00000080 */
+ 257                  0xB6, 0x10, 0xEE, 0x08, 
+ 258                  0x01, 0x50, 0x03, /* Base address 0x015000 */
+ 259                  /* CYDEV_UCFG_BCTL0_MDCLK_EN */
+ 260                  0x00, 0x01, 0x0C, 0x01, 0x0E, 0x01, 
+ 261                  0x01, 0x51, 0x01, /* Base address 0x015100 */
+ 262                  /* CYDEV_IDMUX_IRQ_CTL0 */
+ 263                  0x03, 0x0C, 
+ 264          };
+ 265          /* BYTES: 750 */
+ 266          
+ 267          /* UDB_0_3_1_CONFIG Address: CYDEV_UCFG_B0_P5_U1_BASE Size (bytes): 128 */
+ 268          static const uint8 CYCODE BS_UDB_0_3_1_CONFIG_VAL[] DMAINITSEC = {
+ 269                  0x20, 0x61, 0x40, 0x0E, 0x08, 0x44, 0x72, 0x12, 0x01, 0x00, 0x1E, 0xFF, 0x02, 0x01, 0x00, 0x00, 
+ 270                  0x01, 0x0A, 0x00, 0x01, 0x40, 0x00, 0x20, 0x00, 0x18, 0x10, 0x66, 0x43, 0x1C, 0x00, 0x62, 0x00, 
+ 271                  0x02, 0x00, 0x78, 0x02, 0x00, 0x02, 0x60, 0x00, 0x04, 0x01, 0x00, 0x00, 0x10, 0x1C, 0x6A, 0x20, 
+ 272                  0x1F, 0x7F, 0x60, 0x7F, 0x00, 0x80, 0x00, 0x00, 0x02, 0x00, 0x08, 0x8A, 0x09, 0x9A, 0x00, 0x00, 
+ 273                  0x24, 0x00, 0x00, 0x00, 0x06, 0xD0, 0x0D, 0xDB, 0x36, 0xFF, 0x7F, 0xFF, 0x42, 0xA0, 0x70, 0x00, 
+ 274                  0x08, 0x10, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x0F, 0x0F, 0x0F, 0x0F, 0x00, 0x00, 0x05, 0x00, 
+ 275                  0x00, 0x09, 0x40, 0x09, 0x30, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+ 276                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+ 277          
+ 278          /* IOPINS0_2 Address: CYDEV_IO_PRT_PRT2_DM0 Size (bytes): 8 */
+ 279          static const uint8 CYCODE BS_IOPINS0_2_VAL[] DMAINITSEC = {
+ 280                  0x00, 0x7F, 0x7F, 0x00, 0x00, 0x00, 0x00, 0x00};
+ 281          
+ 282          /* IOPINS0_4 Address: CYDEV_IO_PRT_PRT4_DM0 Size (bytes): 8 */
+ 283          static const uint8 CYCODE BS_IOPINS0_4_VAL[] DMAINITSEC = {
+ 284                  0x00, 0x00, 0x30, 0x00, 0x30, 0x00, 0x00, 0x00};
+ 285          
+ 286          /* IOPORT_4 Address: CYDEV_PRTDSI_PRT4_BASE Size (bytes): 7 */
+ 287          static const uint8 CYCODE BS_IOPORT_4_VAL[] DMAINITSEC = {
+ 288                  0x10, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00};
+ 289          
+ 290          #define CFG_MEMCPY_COUNT (sizeof(cfg_memcpy_list)/sizeof(*cfg_memcpy_list))
+ 291          static const cfg_memcpy_t CYCODE cfg_memcpy_list [] = {
+ 292                  /* dest, src, size */
+ 293                  {(void CYFAR *)(CYDEV_UCFG_B0_P5_U1_BASE), BS_UDB_0_3_1_CONFIG_VAL, 128},
+ 294          };
+ 295          
+ 296          
+ 297          #if defined(__C51__) || defined(__CX51__)
+ 298          extern void cfg_write_bytes_code(void CYCODE *table);
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 6   
+
+ 299          extern void cfg_write_bytes(void CYFAR *table);
+ 300          #else
+              /* For 32-bit little-endian architectures */
+              static void cfg_write_bytes32(void)
+              {
+                      unsigned int i, j = 0;
+                      for (i = 0; i < CY_CFG_BASE_ADDR_COUNT; i++)
+                      {
+                              uint32 baseAddr = cy_cfg_addr_table[i];
+                              uint8 count = baseAddr & 0xFFu;
+                              baseAddr &= 0xFFFFFF00u;
+                              while (count--)
+                              {
+                                      CY_SET_XTND_REG8((void CYFAR *)(baseAddr + cy_cfg_data_table[j].offset), cy_cfg_data_table[j].value);
+                                      j++;
+                              }
+                      }
+              }
+              #endif
+ 318          
+ 319          static void ClockSetup(void)
+ 320          {
+ 321   1              reg32  timeout;
+ 322   1              reg32* timeout_p = &timeout;
+ 323   1              reg8   pllLock;
+ 324   1      
+ 325   1              CY_SET_XTND_REG24((void CYFAR *)(CYDEV_CLKDIST_DCFG0_CFG0), 0x18000E);
+ 326   1              CY_SET_REG8((void CYXDATA *)(CYDEV_SLOWCLK_ILO_CR0), 0x02);
+ 327   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_CR), 0x08);
+ 328   1              CY_SET_REG8((void CYXDATA *)(CYDEV_FASTCLK_IMO_CR), 0x03);
+ 329   1              CY_SET_REG8((void CYXDATA *)(CYDEV_MFGCFG_IMO_TR1), (CY_GET_XTND_REG8(CYDEV_FLSHID_CUST_TABLES_IMO_3MHZ))
+             -);
+ 330   1              CY_SET_XTND_REG16((void CYFAR *)(CYDEV_FASTCLK_PLL_P), 0x0008);
+ 331   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_CR), 0x08);
+ 332   1              CY_SET_XTND_REG16((void CYFAR *)(CYDEV_FASTCLK_PLL_CFG0), 0x1051);
+ 333   1              pllLock = 0;
+ 334   1              for (timeout = 14; *timeout_p && (pllLock != 0x03u); timeout--) { pllLock = 0x03u & ((pllLock << 1) | ((C
+             -Y_GET_REG8(CYDEV_FASTCLK_PLL_SR) & 0x01u) >> 0)); }
+ 335   1              CY_SET_XTND_REG16((void CYFAR *)(CYDEV_CLKDIST_MSTR0), 0x0103);
+ 336   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_MSTR0), 0x00);
+ 337   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_MSTR0), 0x07);
+ 338   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_BCFG0), 0x00);
+ 339   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_BCFG2), 0x48);
+ 340   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_MSTR0), 0x00);
+ 341   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CLKDIST_LD), 0x02);
+ 342   1      
+ 343   1              CY_SET_REG8((void CYXDATA *)(CYDEV_PM_ACT_CFG2), ((CY_GET_REG8(CYDEV_PM_ACT_CFG2) | 0x01)));
+ 344   1      }
+ 345          
+ 346          /* Analog API Functions */
+ 347          void AnalogSetDefault(void)
+ 348          {
+ 349   1              CY_SET_REG8(CYDEV_IO_PRT_PRT12_AG, 0xAA);
+ 350   1              CY_SET_REG8(CYDEV_ANAIF_CFG_PUMP_CR0, 0x44);
+ 351   1      }
+ 352          
+ 353          #define CY_AMUX_UNUSED CYDEV_BOOST_SR
+ 354          
+ 355          /* This function is called by the start-up code for the selected device. */
+ 356          void cyfitter_cfg(void)
+ 357          {
+ 358   1              uint8 CYDATA i;
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 7   
+
+ 359   1      
+ 360   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CACHE_CR), ((CYDEV_INSTRUCT_CACHE_ENABLED) ? 0x50 : 0x40));
+ 361   1              CY_SET_REG8((void CYXDATA *)(CYDEV_PHUB_CH0_BASIC_CFG), 0x00);
+ 362   1              CY_SET_REG8((void CYXDATA *)(CYDEV_PHUB_CH1_BASIC_CFG), 0x00);
+ 363   1      
+ 364   1              CY_SET_XTND_REG8(CYDEV_MFGCFG_MLOGIC_DBG_EN_DBG_EN, (CY_GET_XTND_REG8(CYDEV_MFGCFG_MLOGIC_DBG_EN_DBG_EN) 
+             -| 0x01));
+ 365   1              for (i = 0; i < CFG_MEMSET_COUNT; i++)
+ 366   1              {
+ 367   2                      const cfg_memset_t CYCODE * CYDATA ms = &cfg_memset_list[i];
+ 368   2                      CYMEMZERO(ms->address, ms->size);
+ 369   2              }
+ 370   1      
+ 371   1              for (i = 0; i < CFG_MEMCPY_COUNT; i++)
+ 372   1              {
+ 373   2                      const cfg_memcpy_t CYCODE * CYDATA mc = &cfg_memcpy_list[i];
+ 374   2                      void * CYDATA dest = mc->dest;
+ 375   2                      const void CYCODE * CYDATA src = mc->src;
+ 376   2                      uint16 CYDATA size = mc->size;
+ 377   2                      CYCONFIGCPYCODE(dest, src, size);
+ 378   2              }
+ 379   1      
+ 380   1              cfg_write_bytes_code(cfg_byte_table);
+ 381   1      
+ 382   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT0_BASE), 7);
+ 383   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT1_BASE), 7);
+ 384   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT2_BASE), 7);
+ 385   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT3_BASE), 7);
+ 386   1              CYCONFIGCPYCODE8((void CYFAR *)(CYDEV_PRTDSI_PRT4_BASE), (void CYCODE *)(BS_IOPORT_4_VAL), 7);
+ 387   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT5_BASE), 7);
+ 388   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT6_BASE), 7);
+ 389   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT12_BASE), 6);
+ 390   1              CYMEMZERO8((void CYFAR *)(CYDEV_PRTDSI_PRT15_BASE), 7);
+ 391   1              /* BYTES WRITTEN: 62 */
+ 392   1      
+ 393   1              /* Enable digital routing */
+ 394   1              CY_SET_XTND_REG8(CYDEV_UCFG_BCTL0_BANK_CTL, CY_GET_XTND_REG8(CYDEV_UCFG_BCTL0_BANK_CTL) | 0x02u);
+ 395   1              CY_SET_XTND_REG8(CYDEV_UCFG_BCTL1_BANK_CTL, CY_GET_XTND_REG8(CYDEV_UCFG_BCTL1_BANK_CTL) | 0x02u);
+ 396   1      
+ 397   1              /* Enable UDB array */
+ 398   1              CY_SET_REG8(CYDEV_PM_ACT_CFG0, CY_GET_REG8(CYDEV_PM_ACT_CFG0) | 0x40u);
+ 399   1              CY_SET_REG8(CYDEV_PM_AVAIL_CR2, CY_GET_REG8(CYDEV_PM_AVAIL_CR2) | 0x10u);
+ 400   1      
+ 401   1              CYCONFIGCPYCODE((void CYFAR *)(CYDEV_IO_PRT_PRT2_DM0), (void CYCODE *)(BS_IOPINS0_2_VAL), 8);
+ 402   1              CYCONFIGCPYCODE((void CYFAR *)(CYDEV_IO_PRT_PRT4_DM0), (void CYCODE *)(BS_IOPINS0_4_VAL), 8);
+ 403   1              CY_SET_REG8((void CYXDATA *)(CYDEV_INTC_CLOCK_EN), 0x01);
+ 404   1              /* BYTES WRITTEN: 17 */
+ 405   1      
+ 406   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CACHE_CR), ((CYDEV_INSTRUCT_CACHE_ENABLED) ? 0x10 : 0x00));
+ 407   1              ClockSetup();
+ 408   1              CY_SET_REG8((void CYXDATA *)(CYDEV_CACHE_CR), ((CYDEV_INSTRUCT_CACHE_ENABLED) ? 0x50 : 0x40));
+ 409   1      
+ 410   1              AnalogSetDefault();
+ 411   1      
+ 412   1              /* Configure alternate active mode */
+ 413   1              CYCONFIGCPY((void CYFAR *)CYDEV_PM_STBY_BASE, (void CYFAR *)CYDEV_PM_ACT_BASE, 12);
+ 414   1              CY_SET_REG8(CYDEV_PM_STBY_CFG0, CY_GET_REG8(CYDEV_PM_STBY_CFG0) & ~0x02u);      /* Disable CPU */
+ 415   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    855    ----
+C51 COMPILER V8.16   CYFITTER_CFG                                                          12/13/2010 22:57:38 PAGE 8   
+
+   CONSTANT SIZE    =    958    ----
+   XDATA SIZE       =      8    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     12    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

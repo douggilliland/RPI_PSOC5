@@ -253,7 +253,7 @@ extern uint8 I2C_EEPROM_initVar;
 *   Initial Parameter Constants
 ***************************************/
 
-#define I2C_EEPROM_DATA_RATE          (400u)
+#define I2C_EEPROM_DATA_RATE          (100u)
 #define I2C_EEPROM_DEFAULT_ADDR       (8u)
 #define I2C_EEPROM_I2C_PAIR_SELECTED  (0u)
 
@@ -944,7 +944,7 @@ extern uint8 I2C_EEPROM_initVar;
                                              I2C_EEPROM_ENABLE_SLAVE)
 
     /*I2C_EEPROM_DEFAULT_DIVIDE_FACTOR_REG */
-    #define I2C_EEPROM_DEFAULT_DIVIDE_FACTOR  ((uint16) 10u)
+    #define I2C_EEPROM_DEFAULT_DIVIDE_FACTOR  ((uint16) 40u)
 
 #else
     /* I2C_EEPROM_CFG_REG: bits definition  */

@@ -1,0 +1,372 @@
+C51 COMPILER V8.16   I2C_PM                                                                12/13/2010 22:57:37 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE I2C_PM
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C_PM.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\I2C_PM.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects
+                    -/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C_PM.lst) DB NOIP OT(0) INCDIR(Gen
+                    -erated_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM
+                    -/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C_PM.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: I2C_PM.c
+   3          * Version 2.0
+   4          *
+   5          * Description:
+   6          *  This file provides Sleep APIs for I2C component.
+   7          *
+   8          * Note:
+   9          *  None
+  10          *
+  11          ********************************************************************************
+  12          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  13          * You may use this file only in accordance with the license, terms, conditions, 
+  14          * disclaimers, and limitations in the end user license agreement accompanying 
+  15          * the software package with which this file was provided.
+  16          *******************************************************************************/
+  17          
+  18          #include "I2C.h"
+  19          
+  20          #if (I2C_ADDR_DECODE == I2C_HDWR_DECODE)
+  21              #define  I2C_DEFAULT_XCFG      (I2C_XCFG_HDWR_ADDR_EN | I2C_XCFG_CLK_EN)
+  22          #else
+                  #define  I2C_DEFAULT_XCFG      I2C_XCFG_CLK_EN
+              #endif  /* End (I2C_ADDR_DECODE == I2C_HDWR_DECODE) */
+  25          
+  26          #define I2C_DEFAULT_CFG     (I2C_ENABLE_SLAVE | I2C_ENABLE_MASTER | \
+  27                                                    I2C_DEFAULT_CLK_RATE)
+  28                                                                                              
+  29          /* Define active state */
+  30          #if(I2C_IMPLEMENTATION == I2C_FF)
+                  #define I2C_I2C_ENABLE_REG     I2C_ACT_PWRMGR_REG
+                  #define I2C_IS_I2C_ENABLE(reg) ( ((reg) & I2C_ACT_PWR_EN) != 0u )
+              #else
+  34              #define I2C_I2C_ENABLE_REG     I2C_CFG_REG
+  35              #define I2C_IS_I2C_ENABLE(reg) ( (((reg) & I2C_ENABLE_MASTER) != 0u) ? 1u : \
+  36                                                            (((reg)  & I2C_ENABLE_SLAVE) != 0u) ? 1u : 0u )
+  37          #endif  /* End (I2C_IMPLEMENTATION == I2C_FF)*/
+  38          
+  39          I2C_BACKUP_STRUCT I2C_backup =
+  40          {   
+  41              0x00u, /* enableState; */
+  42                  
+  43              #if ((I2C_IMPLEMENTATION == I2C_FF) && (I2C_ENABLE_WAKEUP == 0u))
+                      I2C_DEFAULT_XCFG, /* xcfg */
+                      I2C_DEFAULT_CFG,  /* cfg */
+              
+                      #if (I2C_MODE & I2C_MODE_SLAVE)
+                          (I2C_DEFAULT_ADDR & I2C_SADDR_MASK), /* addr */
+                      #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+                      
+C51 COMPILER V8.16   I2C_PM                                                                12/13/2010 22:57:37 PAGE 2   
+
+                      #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+                         I2C_DEFAULT_DIVIDE_FACTOR,
+                      #else
+                          LO8(I2C_DEFAULT_DIVIDE_FACTOR), /*  clk_div1 */
+                          HI8(I2C_DEFAULT_DIVIDE_FACTOR), /*  clk_div2 */
+                      #endif  /* End  (I2C_PSOC3_ES2 || I2C_PSOC5_ES1) */
+                      
+                  #else
+  59                  #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+  60                      I2C_INT_ENABLE_MASK, /* int_mask */
+  61                      
+  62                      #if (I2C_MODE & I2C_MODE_SLAVE)
+                              (I2C_DEFAULT_ADDR & I2C_SADDR_MASK), /* addr */
+                          #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+  65                  #else
+                          /* ES3 Saves: 
+                              - Status Int mask: int_mask;
+                              - D0 register: addr;
+                              - Auxiliary Control: aux_ctl;
+                              - Period Register;
+                          */
+                      #endif  /* End (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)*/
+  73                  
+  74              #endif  /* End (I2C_IMPLEMENTATION == I2C_FF)*/
+  75          };
+  76          
+  77          
+  78          /*******************************************************************************
+  79          * Function Name: I2C_SaveConfig
+  80          ********************************************************************************
+  81          *
+  82          * Summary:
+  83          *  Save I2C configuration.
+  84          *
+  85          * Parameters:
+  86          *  void
+  87          *
+  88          * Return:
+  89          *  void
+  90          *
+  91          * Reentrant:
+  92          *  No
+  93          *
+  94          *******************************************************************************/
+  95          void I2C_SaveConfig(void)
+  96          {     
+  97   1          #if (I2C_IMPLEMENTATION == I2C_FF)
+                     
+                      #if (I2C_ENABLE_WAKEUP)
+                          uint8 enableInterrupts;
+                  
+                          /* Need to disable Master */
+                          #if (I2C_MODE & I2C_MODE_MASTER)
+                              I2C_CFG_REG &= ~I2C_CFG_EN_MSTR;
+                          #endif  /* End (I2C_MODE & I2C_MODE_MASTER)*/
+                          
+                          enableInterrupts = CyEnterCriticalSection();
+                          /* Enable the I2C regulator backup */
+                          I2C_PWRSYS_CR1_REG |= I2C_PWRSYS_CR1_I2C_REG_BACKUP;
+                          CyExitCriticalSection(enableInterrupts);
+                          
+                          /* 1) Set force NACK to ignore I2C transactions 
+C51 COMPILER V8.16   I2C_PM                                                                12/13/2010 22:57:37 PAGE 3   
+
+                             2) Wait while I2C will be ready to go Sleep 
+                             3) This bits clears on wake up */
+                          I2C_XCFG_REG  |= I2C_XCFG_FORCE_NACK;
+                          while ((I2C_XCFG_REG  & I2C_XCFG_RDY_TO_SLEEP) == 0u);
+                                      
+                      #else
+                          I2C_backup.xcfg = I2C_XCFG_REG ;
+                          I2C_backup.cfg  = I2C_CFG_REG;
+                          
+                          #if (I2C_MODE & I2C_MODE_SLAVE)
+                              I2C_backup.addr = I2C_ADDR_REG;
+                          #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+                          
+                          #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+                              I2C_backup.clk_div  = I2C_CLKDIV_REG;
+                          
+                          #else
+                              I2C_backup.clk_div1  = I2C_CLKDIV1_REG;
+                              I2C_backup.clk_div2  = I2C_CLKDIV2_REG;
+                                  
+                          #endif  /* End (I2C_PSOC3_ES2 || I2C_PSOC5_ES1) */
+                          
+                      #endif  /* End ((I2C_ENABLE_WAKEUP) && (I2C_I2C_PAIR_SELECTED)) */
+                      
+                  #else        
+ 138   1              #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+ 139   1      
+ 140   1                  I2C_backup.int_mask = I2C_INT_MASK_REG;
+ 141   1              
+ 142   1                  #if (I2C_MODE & I2C_MODE_SLAVE)
+                              I2C_backup.addr = I2C_ADDR_REG;
+                          
+                          #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+ 146   1                  
+ 147   1              #else
+                      
+                          /* Saves: 
+                              - Status Int mask: int_mask;
+                              - D0 register: addr;
+                              - Auxiliary Control: aux_ctl;
+                              - Period Register;
+                              - D0, D1 register: mclk_gen;  
+                          */
+                      #endif  /* End (I2C_PSOC3_ES2 || I2C_PSOC5_ES1) */
+ 157   1              
+ 158   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_FF) */
+ 159   1      }
+ 160          
+ 161          
+ 162          /*******************************************************************************
+ 163          * Function Name: I2C_Sleep
+ 164          ********************************************************************************
+ 165          *
+ 166          * Summary:
+ 167          *  Stops I2C computation and saves CRC configuration.
+ 168          *
+ 169          * Parameters:
+ 170          *  void
+ 171          *
+ 172          * Return:
+ 173          *  void
+ 174          *
+C51 COMPILER V8.16   I2C_PM                                                                12/13/2010 22:57:37 PAGE 4   
+
+ 175          * Reentrant:
+ 176          *  No
+ 177          *
+ 178          *******************************************************************************/
+ 179          void I2C_Sleep(void)
+ 180          {
+ 181   1          #if (I2C_ENABLE_WAKEUP)
+                      /* The I2C block should be always enabled if used as 
+                         wakeup source. */
+                  
+                  #else
+ 186   1              /* Store PRS enable state */
+ 187   1              if(I2C_IS_I2C_ENABLE(I2C_I2C_ENABLE_REG))
+ 188   1              {
+ 189   2                  I2C_backup.enableState = 1u;
+ 190   2                  I2C_Stop();
+ 191   2              }
+ 192   1              else
+ 193   1              {
+ 194   2                  I2C_backup.enableState = 0u;
+ 195   2              }
+ 196   1          #endif  /* End  (I2C_ENABLE_WAKEUP) */
+ 197   1          
+ 198   1          I2C_SaveConfig();
+ 199   1      }
+ 200          
+ 201          
+ 202          /*******************************************************************************
+ 203          * Function Name: I2C_RestoreConfig
+ 204          ********************************************************************************
+ 205          *
+ 206          * Summary:
+ 207          *  Restore I2C computation.
+ 208          *
+ 209          * Parameters:
+ 210          *  void
+ 211          *
+ 212          * Return:
+ 213          *  void
+ 214          *
+ 215          *******************************************************************************/
+ 216          void I2C_RestoreConfig(void) 
+ 217          {
+ 218   1          #if (I2C_IMPLEMENTATION == I2C_FF)
+                  
+                      #if ((I2C_ENABLE_WAKEUP) && (I2C_I2C_PAIR_SELECTED))
+                          uint8 enableInterrupts;
+                          
+                          enableInterrupts = CyEnterCriticalSection();
+                          /* Disable the I2C regulator backup */
+                          I2C_PWRSYS_CR1_REG &= ~I2C_PWRSYS_CR1_I2C_REG_BACKUP;
+                          CyExitCriticalSection(enableInterrupts);
+                          
+                          /* Need to re-enable Master */
+                          #if (I2C_MODE & I2C_MODE_MASTER)
+                              I2C_CFG_REG |= I2C_CFG_EN_MSTR;
+                          #endif  /* End (I2C_MODE & I2C_MODE_MASTER)*/
+                          
+                      #else
+                          I2C_XCFG_REG = I2C_backup.xcfg;
+                          I2C_CFG_REG = I2C_backup.cfg;
+                      
+C51 COMPILER V8.16   I2C_PM                                                                12/13/2010 22:57:37 PAGE 5   
+
+                          #if (I2C_MODE & I2C_MODE_SLAVE)
+                              I2C_ADDR_REG = I2C_backup.addr;
+                          #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */ 
+                              
+                          #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+                              I2C_CLKDIV_REG =I2C_backup.clk_div;
+                          
+                          #else   
+                              I2C_CLKDIV1_REG = I2C_backup.clk_div1;
+                              I2C_CLKDIV2_REG = I2C_backup.clk_div2;
+                                  
+                          #endif  /* End (I2C_PSOC3_ES2 || I2C_PSOC5_ES1) */
+                      
+                      #endif  /* End (I2C_ENABLE_WAKEUP == 0u) */
+                      
+                  #else
+ 253   1              
+ 254   1              #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+ 255   1                  I2C_INT_MASK_REG = I2C_backup.int_mask;
+ 256   1              
+ 257   1                  #if (I2C_MODE & I2C_MODE_MASTER)
+ 258   1                  
+ 259   1                      /* Restore Master Clock generator */
+ 260   1                      I2C_MCLK_PRD_REG = I2C_MCLK_PERIOD_VALUE;
+ 261   1                      I2C_MCLK_CMP_REG = I2C_MCLK_COMPARE_VALUE;
+ 262   1                 
+ 263   1                  #endif /* End (I2C_MODE & I2C_MODE_MASTER) */
+ 264   1      
+ 265   1                  #if (I2C_MODE & I2C_MODE_SLAVE)
+                              I2C_ADDR_REG = I2C_backup.addr;
+                              
+                              /* Restore Slave bit counter */
+                              I2C_PERIOD_REG = I2C_PERIOD_VALUE;
+                          
+                          #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+ 272   1                  
+ 273   1              #else
+                          /* Saves: 
+                              - Status Int mask: int_mask;
+                              - D0 register: addr;
+                              - Auxiliary Control: aux_ctl;
+                              - Period Register: always 7;
+                          */
+                      #endif  /* End (I2C_PSOC3_ES2 || I2C_PSOC5_ES1) */
+ 281   1              
+ 282   1              /* Restore Control register */
+ 283   1              #if (I2C_MODE & I2C_MODE_SLAVE)
+                          #if (I2C_ADDR_DECODE == I2C_HDWR_DECODE)
+                              /* Turn off any address match */
+                              I2C_CFG_REG &= ~(I2C_CTRL_ANY_ADDRESS_MASK);
+                              
+                          #else
+                              /* Turn on any address match */
+                              I2C_CFG_REG |= I2C_CTRL_ANY_ADDRESS_MASK;
+                              
+                          #endif  /* End (I2C_ADDR_DECODE == I2C_HDWR_DECODE) */
+              
+                      #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+ 295   1              
+ 296   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_FF) */
+ 297   1      }
+ 298          
+C51 COMPILER V8.16   I2C_PM                                                                12/13/2010 22:57:37 PAGE 6   
+
+ 299          
+ 300          /*******************************************************************************
+ 301          * Function Name: I2C_Wakeup
+ 302          ********************************************************************************
+ 303          *
+ 304          * Summary:
+ 305          *  Restores I2C configuration and starts CRC computation on rising edge of 
+ 306          *  input clock.
+ 307          *
+ 308          * Parameters:
+ 309          *  void
+ 310          *
+ 311          * Return:
+ 312          *  void
+ 313          *
+ 314          * Reentrant:
+ 315          *  No/YES
+ 316          *
+ 317          *******************************************************************************/
+ 318          void I2C_Wakeup(void) 
+ 319          {
+ 320   1          I2C_RestoreConfig();
+ 321   1          
+ 322   1          /* Restore I2C Enable state */
+ 323   1          if (I2C_backup.enableState != 0u)
+ 324   1          {
+ 325   2              I2C_Enable();
+ 326   2          }
+ 327   1      }
+ 328          
+ 329          
+ 330          /* [] END OF FILE */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     93    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      2    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

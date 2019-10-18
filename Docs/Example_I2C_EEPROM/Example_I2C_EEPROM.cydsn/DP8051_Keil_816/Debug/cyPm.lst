@@ -1,0 +1,1864 @@
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE CYPM
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/cyPm.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\cyPm.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects/P
+                    -SoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/cyPm.lst) DB NOIP OT(0) INCDIR(Generat
+                    -ed_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Exa
+                    -mple_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/cyPm.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: cyPm.c
+   3          * Version 2.0
+   4          *
+   5          *  Description:
+   6          *   Provides an API for the power management.
+   7          *
+   8          *  Note:
+   9          *   Documentation of the API's in this file is located in the
+  10          *   System Reference Guide provided with PSoC Creator.
+  11          *
+  12          *******************************************************************************
+  13          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  14          * You may use this file only in accordance with the license, terms, conditions,
+  15          * disclaimers, and limitations in the end user license agreement accompanying
+  16          * the software package with which this file was provided.
+  17          ********************************************************************************/
+  18          
+  19          #include "cyPm.h"
+  20          
+  21          static CY_PM_BACKUP_STRUCT  cyPmBackup;
+  22          
+  23          /* Convertion table between CyIMO_SetFreq() parameters and register's value */
+  24          const uint8 CYCODE cyPmImoFreqMhz2Reg[7u] = {
+  25              CY_IMO_FREQ_12MHZ, CY_IMO_FREQ_6MHZ,  CY_IMO_FREQ_24MHZ, CY_IMO_FREQ_3MHZ,
+  26              CY_IMO_FREQ_48MHZ, CY_IMO_FREQ_62MHZ, CY_IMO_FREQ_74MHZ};
+  27          
+  28          /* Convertion table between register's values and frequency in MHz  */
+  29          const uint8 CYCODE cyPmImoFreqReg2Mhz[7u] = {12u, 6u, 24u, 3u, 48u, 62u, 74u};
+  30          
+  31          /* Function Prototypes */
+  32          void CyPmCtwSaveSet(uint8 ctwInterval);
+  33          void CyPmFtwSaveSet(uint8 ftwInterval);
+  34          void CyPmOppsSaveSet(void);
+  35          
+  36          void CyPmHibSaveSet(void);
+  37          void CyPmHibRestore(void) ;
+  38          
+  39          void CyPmHibSlpSaveSet(uint8 powerMode);
+  40          void CyPmHibSlpRestore(void);
+  41          
+  42          
+  43          /*******************************************************************************
+  44          * Function Name: CyPmSaveClocks
+  45          ********************************************************************************
+  46          *
+  47          * Summary:
+  48          *  This function is called in preparation for entering sleep or hibernate low
+  49          *  power modes. Saves all state of the clocking system that doesn?t persist
+  50          *  during sleep/hibernate or that needs to be altered in preparation for
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 2   
+
+  51          *  sleep/hibernate. Shutdowns all the digital and analog clock dividers.
+  52          *
+  53          *  Switches the master clock over to the IMO and shuts down the PLL and MHz
+  54          *  Crystal. If the IMO is not currently running it is enabled at 3 MHz before
+  55          *  the switch over. The ILO and 32 KHz oscillators are not impacted. The current
+  56          *  Flash wait state setting is saved and the Flash wait state setting is
+  57          *  set for the current IMO speed.
+  58          *
+  59          * Parameters:
+  60          *  None.
+  61          *
+  62          * Return:
+  63          *  None.
+  64          *
+  65          * Reentrant:
+  66          *  No.
+  67          *
+  68          * Side Effects:
+  69          *  All peripheral clocks are going to be off after this API method call.
+  70          *
+  71          *******************************************************************************/
+  72          void CyPmSaveClocks(void)
+  73          {
+  74   1          /* Digital and analog clocks - save enable state and disable them all */
+  75   1          cyPmBackup.enClkA = CY_PM_ACT_CFG1_REG & CY_PM_ACT_EN_CLK_A_MASK;
+  76   1          cyPmBackup.enClkD = CY_PM_ACT_CFG2_REG;
+  77   1          CY_PM_ACT_CFG1_REG &= ~CY_PM_ACT_EN_CLK_A_MASK;
+  78   1          CY_PM_ACT_CFG2_REG &= ~CY_PM_ACT_EN_CLK_D_MASK;
+  79   1      
+  80   1          /* Master clock - save current source */
+  81   1          cyPmBackup.masterClkSrc = CY_PM_CLKDIST_MSTR1_REG & CY_PM_MASTER_CLK_SRC_MASK;
+  82   1      
+  83   1          /* IMO - save current IMO MHZ OSC */
+  84   1          cyPmBackup.imoFreqMhz = cyPmImoFreqReg2Mhz[(CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_FREQ_MASK)
+             -];
+  85   1      
+  86   1          /* Save current flash wait cycles and set the maximum new one */
+  87   1          cyPmBackup.flashWaitCycles = (CY_PM_CACHE_CR_CYCLES_MASK & CY_PM_CACHE_CR_REG);
+  88   1      
+  89   1          #if(CY_PM_PSOC3_ES3)
+              
+                      CyFlash_SetWaitCycles(45u);
+                                  
+                  #endif  /* End of (CY_PM_PSOC3_ES3) */
+  94   1      
+  95   1          #if(CY_PM_PSOC3_ES2)
+  96   1              
+  97   1              CyFlash_SetWaitCycles(49u);
+  98   1              
+  99   1          #endif  /* End of (CY_PM_PSOC3_ES2) */
+ 100   1          
+ 101   1          #if(CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2)
+              
+                      CyFlash_SetWaitCycles(73u);
+              
+                  #endif  /* End of (CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2) */
+ 106   1      
+ 107   1          /* IMO - save enable state and enable with wait to settle */
+ 108   1          if(0u != (CY_PM_ACT_CFG0_IMO & CY_PM_ACT_CFG0_REG))
+ 109   1          {
+ 110   2              /* IMO - save enabled state */
+ 111   2              cyPmBackup.imoEnable = CY_PM_ENABLED;
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 3   
+
+ 112   2              
+ 113   2              /* IMO - set it below 48 MHz */
+ 114   2              if((CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_FREQ_MASK) > CY_IMO_FREQ_48MHZ)
+ 115   2              {
+ 116   3                  /* IMO - set 48 MHz frequency */
+ 117   3                  CyIMO_SetFreq(CY_IMO_FREQ_48MHZ);
+ 118   3              }
+ 119   2          }
+ 120   1          else
+ 121   1          {
+ 122   2              /* IMO - save disabled state */
+ 123   2              cyPmBackup.imoEnable = CY_PM_DISABLED;
+ 124   2              
+ 125   2              /* IMO - set 3 MHz frequency if not yet */
+ 126   2              if(cyPmImoFreqReg2Mhz[(CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_FREQ_MASK)] != CY_IMO_FREQ_
+             -3MHZ)
+ 127   2              {
+ 128   3                  CyIMO_SetFreq(CY_IMO_FREQ_3MHZ);
+ 129   3              }   /* Do nothing if IMO MHZ OSC is already set */
+ 130   2              
+ 131   2              /* IMO - enable */
+ 132   2              CyIMO_Start(CY_PM_WAIT_IMO);
+ 133   2          }
+ 134   1      
+ 135   1          /* IMO - save the current IMOCLK source and set to IMO if not yet */
+ 136   1          if(0u != (CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_XCLKEN))
+ 137   1          {
+ 138   2              /* DSI or XTAL CLK */
+ 139   2              cyPmBackup.imoClkSrc =
+ 140   2                  (CY_PM_CLKDIST_CR_REG & CY_PM_CLKDIST_IMO2X_SRC) ? CY_IMO_SOURCE_XTAL : CY_IMO_SOURCE_DSI;
+ 141   2      
+ 142   2              /* IMO -  set IMOCLK source to MHz OSC */
+ 143   2              CyIMO_SetSource(CY_IMO_SOURCE_IMO);
+ 144   2          }
+ 145   1          else
+ 146   1          {
+ 147   2              /* IMO */
+ 148   2              cyPmBackup.imoClkSrc = CY_IMO_SOURCE_IMO;
+ 149   2          }
+ 150   1      
+ 151   1          /* Save clk_imo source */
+ 152   1          cyPmBackup.clkImoSrc = (CY_PM_CLKDIST_CR_REG & CY_PM_CLKDIST_IMO_OUT_MASK);
+ 153   1      
+ 154   1          if(CY_PM_CLKDIST_IMO_OUT_IMO != cyPmBackup.clkImoSrc)
+ 155   1          {
+ 156   2              /* IMOCLK2X or SPC OSC is source for clk_imo */
+ 157   2      
+ 158   2              /* Set IMOCLK to source for clk_imo */
+ 159   2              CY_PM_CLKDIST_CR_REG = (CY_PM_CLKDIST_CR_REG & ~CY_PM_CLKDIST_IMO_OUT_MASK) |
+ 160   2                                  CY_PM_CLKDIST_IMO_OUT_IMO;
+ 161   2          }    /* Need to change nothing if IMOCLK is source clk_imo */
+ 162   1      
+ 163   1          /* IMO doubler - save enable state and disable */
+ 164   1          if(0u != (CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_F2XON))
+ 165   1          {
+ 166   2              /* IMO doubler enabled - save and disable */
+ 167   2              cyPmBackup.imo2x = CY_PM_ENABLED;
+ 168   2              CyIMO_DisableDoubler();
+ 169   2          }
+ 170   1          else
+ 171   1          {
+ 172   2              /* IMO doubler disabled */
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 4   
+
+ 173   2              cyPmBackup.imo2x = CY_PM_DISABLED;
+ 174   2          }
+ 175   1      
+ 176   1          /* Master clock - save divider and set it to divide-by-one (if no yet) */
+ 177   1          cyPmBackup.clkSyncDiv = CY_PM_CLKDIST_MSTR0_REG;
+ 178   1          if(CY_PM_DIV_BY_ONE != cyPmBackup.clkSyncDiv)
+ 179   1          {
+ 180   2              /* Divider is > 1 */
+ 181   2              CyMasterClk_SetDivider(CY_PM_DIV_BY_ONE);
+ 182   2          }    /* Need to change nothing if master clock divider is 1 */
+ 183   1      
+ 184   1          /* Master clock source - set it to IMO if not yet. Saved above. */
+ 185   1          if(CY_MASTER_SOURCE_IMO != cyPmBackup.masterClkSrc)
+ 186   1          {
+ 187   2              CyMasterClk_SetSource(CY_MASTER_SOURCE_IMO);
+ 188   2          }    /* Need to change nothing if master clock source is IMO */
+ 189   1      
+ 190   1          /* Bus clock - save divider and set it, if needed, to divide-by-one */
+ 191   1          cyPmBackup.clkBusDiv = ((uint16) CY_PM_CLK_BUS_MSB_DIV_REG << 8u) | CY_PM_CLK_BUS_LSB_DIV_REG;
+ 192   1          if(CY_PM_BUS_CLK_DIV_BY_ONE != cyPmBackup.clkBusDiv)
+ 193   1          {
+ 194   2              CyBusClk_SetDivider(CY_PM_BUS_CLK_DIV_BY_ONE);
+ 195   2          }    /* Do nothing if saved and actual values are equal */
+ 196   1      
+ 197   1      
+ 198   1          /* Get CPU frequency in MHz */
+ 199   1          #if(CY_PM_PSOC3_ES3)
+              
+                      cyPmBackup.cpuFreqMhz = (cyPmImoFreqReg2Mhz[CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_FREQ_M
+             -ASK] /
+                                  (((CY_PM_CLKDIST_MSTR1_REG & CY_PM_CLKDIST_CPU_DIV_MASK) >> 4u) + 1u));
+              
+                  #endif  /* End of (CY_PM_PSOC3_ES3) */
+ 205   1      
+ 206   1          #if(CY_PM_PSOC3_ES2)
+ 207   1      
+ 208   1              cyPmBackup.cpuFreqMhz = (cyPmImoFreqReg2Mhz[CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_FREQ_M
+             -ASK] /
+ 209   1                          ((CY_GET_XTND_REG8(CYREG_SFR_USER_CPUCLK_DIV) & CY_PM_SFR_USER_CPUCLK_MASK) + 1u));
+ 210   1      
+ 211   1          #endif  /* End of (CY_PM_PSOC3_ES2) */
+ 212   1          
+ 213   1          #if(CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2)
+              
+                      /* The CPU clock is directly derived from bus clock */
+              
+                      cyPmBackup.cpuFreqMhz = (cyPmImoFreqReg2Mhz[CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_FREQ_M
+             -ASK]);
+              
+                  #endif  /* End of (CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2) */
+ 220   1          
+ 221   1          /* Set number of wait cycles for the flash */
+ 222   1          CyFlash_SetWaitCycles(cyPmBackup.cpuFreqMhz);
+ 223   1      
+ 224   1          /* PLL - check enable state, disable if needed */
+ 225   1          if(0u != (CY_PM_FASTCLK_PLL_CFG0_REG & CY_PM_PLL_CFG0_ENABLE))
+ 226   1          {
+ 227   2              /* PLL is enabled - save state and disable */
+ 228   2              cyPmBackup.pllEnableState = CY_PM_ENABLED;
+ 229   2              CyPLL_OUT_Stop();
+ 230   2          }
+ 231   1          else
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 5   
+
+ 232   1          {
+ 233   2              /* PLL is disabled - save state */
+ 234   2              cyPmBackup.pllEnableState = CY_PM_DISABLED;
+ 235   2          }
+ 236   1      
+ 237   1          /* MHz ECO - check enable state and disable if needed */
+ 238   1          if(0u != (CY_PM_FASTCLK_XMHZ_CSR_REG & CY_PM_XMHZ_CSR_ENABLE))
+ 239   1          {
+ 240   2              /* MHz ECO is enabled - save state and disable */
+ 241   2              cyPmBackup.xmhzEnableState = CY_PM_ENABLED;
+ 242   2              CyXTAL_Stop();
+ 243   2          }
+ 244   1          else
+ 245   1          {
+ 246   2              /* MHz ECO is disabled - save state */
+ 247   2              cyPmBackup.xmhzEnableState = CY_PM_DISABLED;
+ 248   2          }
+ 249   1      }
+ 250          
+ 251          
+ 252          /*******************************************************************************
+ 253          * Function Name: CyPmRestoreClocks
+ 254          ********************************************************************************
+ 255          *
+ 256          * Summary:
+ 257          *  Restores any state that was preserved by the last call to CyPmSaveClocks().
+ 258          *  The Flash wait state setting is also restored.
+ 259          *
+ 260          *  The merge region could be used to process state when  the megahertz crystal
+ 261          *  is not ready after CY_PM_MHZ_XTAL_WAIT_MS milliseconds.
+ 262          *
+ 263          *
+ 264          * Parameters:
+ 265          *  None.
+ 266          *
+ 267          * Return:
+ 268          *  None.
+ 269          *
+ 270          * Side Effects:
+ 271          *  None.
+ 272          *
+ 273          *******************************************************************************/
+ 274          void CyPmRestoreClocks(void) 
+ 275          {
+ 276   1          cystatus status = CYRET_TIMEOUT;
+ 277   1          uint8 i;
+ 278   1          
+ 279   1          /* MHz ECO restore state */
+ 280   1          if(CY_PM_ENABLED == cyPmBackup.xmhzEnableState)
+ 281   1          {
+ 282   2              /* Enabling XMHZ XTAL. The actual CyXTAL_Start() with non zero wait
+ 283   2                 period uses FTW for period measurement. This could cause a problem
+ 284   2                 if CTW/FTW is used as a wake up time in the low power modes APIs.
+ 285   2                 So, the XTAL wait procedure is implemented with a software delay.
+ 286   2              */
+ 287   2              
+ 288   2              /* Enable XMHZ XTAL with no wait */
+ 289   2              CyXTAL_Start(CY_PM_XTAL_MHZ_NO_WAIT);
+ 290   2              
+ 291   2              /* Read XERR bit to clear it */
+ 292   2              CY_PM_FASTCLK_XMHZ_CSR_REG;
+ 293   2              
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 6   
+
+ 294   2              /* Wait 5 times for CY_PM_WAIT_200_US */
+ 295   2              for(i = 5u; i > 0u; i--)
+ 296   2              {
+ 297   3                  /* Make a us delay */
+ 298   3                  CyDelayCycles(CY_PM_WAIT_200_US * cyPmBackup.cpuFreqMhz);
+ 299   3                  
+ 300   3                  /* High output indicates oscillator failure */
+ 301   3                  if(0u == (CY_PM_FASTCLK_XMHZ_CSR_REG & CY_PM_XMHZ_CSR_XERR)) 
+ 302   3                  {
+ 303   4                      status = CYRET_SUCCESS;
+ 304   4                      break;
+ 305   4                  }
+ 306   3              }
+ 307   2              
+ 308   2              if(CYRET_TIMEOUT == status)
+ 309   2              {
+ 310   3                  /* `#START MHZ ECO TIMEOUT` */
+ 311   3      
+ 312   3                  /* `#END` */
+ 313   3              }
+ 314   2          }
+ 315   1          else
+ 316   1          {
+ 317   2              /* Disable MHz ECO */
+ 318   2              CyXTAL_Stop();
+ 319   2          }   /* End of (CY_PM_ENABLED == cyPmBackup.xmhzEnableState) */
+ 320   1      
+ 321   1      
+ 322   1          /* PLL restore state */
+ 323   1          if(CY_PM_ENABLED == cyPmBackup.pllEnableState)
+ 324   1          {
+ 325   2              /* Enabling PLL. The actual CyPLL_OUT_Start() without wait period uses
+ 326   2                 FTW for period measurement. This could cause a problem if CTW/FTW is
+ 327   2                 used as a wake up time in the low power modes APIs. So, the PLL wait
+ 328   2                 procedure is implemented with a software delay.
+ 329   2              */
+ 330   2              
+ 331   2              /* Enable PLL */
+ 332   2              CyPLL_OUT_Start(CY_PM_PLL_OUT_NO_WAIT);
+ 333   2      
+ 334   2              /* Make a 250 us delay */
+ 335   2              CyDelayCycles(CY_PM_WAIT_250_US * cyPmBackup.cpuFreqMhz);
+ 336   2          }
+ 337   1          else
+ 338   1          {
+ 339   2              /* Disable PLL */
+ 340   2              CyPLL_OUT_Stop();
+ 341   2          }   /* End of (CY_PM_ENABLED == cyPmBackup.pllEnableState) */
+ 342   1      
+ 343   1          /* Temprorary set the maximum flash wait cycles */
+ 344   1          #if(CY_PM_PSOC3_ES3)
+              
+                      CyFlash_SetWaitCycles(45u);
+                                  
+                  #endif  /* End of (CY_PM_PSOC3_ES3) */
+ 349   1      
+ 350   1          #if(CY_PM_PSOC3_ES2)
+ 351   1              
+ 352   1              CyFlash_SetWaitCycles(49u);
+ 353   1              
+ 354   1          #endif  /* End of (CY_PM_PSOC3_ES2) */
+ 355   1          
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 7   
+
+ 356   1          #if(CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2)
+              
+                      CyFlash_SetWaitCycles(73u);
+              
+                  #endif  /* End of (CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2) */
+ 361   1      
+ 362   1          if(CY_PM_MASTER_CLK_SRC_IMO != cyPmBackup.masterClkSrc)
+ 363   1          {
+ 364   2              /* If not IMO, then PLL or XMHZ or DSI_CLKIN.
+ 365   2              *  All clocks above are ready to be source for Master clock,
+ 366   2              *  so restore Master clock source and Master clock divider.
+ 367   2              */
+ 368   2              if(CY_PM_CLKDIST_MSTR0_REG != cyPmBackup.clkSyncDiv)
+ 369   2              {
+ 370   3                  /* Restore Master clock divider */
+ 371   3                  CyMasterClk_SetDivider(cyPmBackup.clkSyncDiv);
+ 372   3              }
+ 373   2              
+ 374   2              /* Restore Master clock source */
+ 375   2              CyMasterClk_SetSource(cyPmBackup.masterClkSrc);
+ 376   2          }
+ 377   1      
+ 378   1          /* IMO - restore IMO frequency */
+ 379   1          if(cyPmBackup.imoFreqMhz != cyPmImoFreqReg2Mhz[(CY_PM_FASTCLK_IMO_CR_REG & CY_PM_FASTCLK_IMO_CR_FREQ_M
+             -ASK)])
+ 380   1          {
+ 381   2              CyIMO_SetFreq(cyPmImoFreqMhz2Reg[cyPmBackup.imoFreqMhz]);
+ 382   2          }    /* Do nothing if IMO freq is equal to saved */
+ 383   1      
+ 384   1          /* IMO - restore enable state if needed */
+ 385   1          if((CY_PM_ENABLED == cyPmBackup.imoEnable) &&
+ 386   1                  (0u == (CY_PM_ACT_CFG0_IMO & CY_PM_ACT_CFG0_REG)))
+ 387   1          {
+ 388   2              /* IMO - restore enabled state */
+ 389   2              CyIMO_Start(CY_PM_WAIT_IMO);
+ 390   2          }    /* Do nothing if saved and actual values are equal */
+ 391   1      
+ 392   1          /* IMO - restore enable state if needed */
+ 393   1          if((CY_PM_ENABLED != cyPmBackup.imoEnable) &&
+ 394   1                  (0u != (CY_PM_ACT_CFG0_IMO & CY_PM_ACT_CFG0_REG)))
+ 395   1          {
+ 396   2              /* IMO - restore disabled state */
+ 397   2              CyIMO_Stop();
+ 398   2          }    /* Do nothing if saved and actual values are equal */
+ 399   1      
+ 400   1          /* IMO - restore IMOCLK source */
+ 401   1          CyIMO_SetSource(cyPmBackup.imoClkSrc);
+ 402   1      
+ 403   1          /* Restore IMO doubler enable state */
+ 404   1          if(CY_PM_ENABLED == cyPmBackup.imo2x)
+ 405   1          {
+ 406   2              /* IMO doubler - enable */
+ 407   2              CyIMO_EnableDoubler();
+ 408   2          }
+ 409   1          else
+ 410   1          {
+ 411   2              /* IMO doubler - disable */
+ 412   2              CyIMO_DisableDoubler();
+ 413   2          }
+ 414   1      
+ 415   1          /* IMO - restore clk_imo source, if needed */
+ 416   1          if(cyPmBackup.clkImoSrc != (CY_PM_CLKDIST_CR_REG & CY_PM_CLKDIST_IMO_OUT_MASK))
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 8   
+
+ 417   1          {
+ 418   2              CY_PM_CLKDIST_CR_REG = (CY_PM_CLKDIST_CR_REG & ~CY_PM_CLKDIST_IMO_OUT_MASK) |
+ 419   2                                  cyPmBackup.clkImoSrc;
+ 420   2          }    /* Do nothing if saved and actual values are equal */
+ 421   1      
+ 422   1          if(CY_PM_MASTER_CLK_SRC_IMO == cyPmBackup.masterClkSrc)
+ 423   1          {
+ 424   2              /* The IMO is ready to be source for Master clock */
+ 425   2              if(CY_PM_CLKDIST_MSTR0_REG != cyPmBackup.clkSyncDiv)
+ 426   2              {
+ 427   3                  /* Restore Master clock divider */
+ 428   3                  CyMasterClk_SetDivider(cyPmBackup.clkSyncDiv);
+ 429   3              }
+ 430   2              
+ 431   2              /* Restore Master clock source */
+ 432   2              CyMasterClk_SetSource(cyPmBackup.masterClkSrc);
+ 433   2              
+ 434   2          }   /* End of (CY_PM_MASTER_CLK_SRC_IMO == cyPmBackup.masterClkSrc) */
+ 435   1      
+ 436   1          /* Bus clock - restore divider, if needed */
+ 437   1          if(cyPmBackup.clkBusDiv != (((uint16) CY_PM_CLK_BUS_MSB_DIV_REG << 8u) | CY_PM_CLK_BUS_LSB_DIV_REG))
+ 438   1          {
+ 439   2              CyBusClk_SetDivider(cyPmBackup.clkBusDiv);
+ 440   2          }
+ 441   1          
+ 442   1          /* Restore flash wait cycles */
+ 443   1          CY_PM_CACHE_CR_REG = ((CY_PM_CACHE_CR_REG & ~CY_PM_CACHE_CR_CYCLES_MASK) |
+ 444   1                                  cyPmBackup.flashWaitCycles);
+ 445   1      
+ 446   1          /* Digital and analog clocks - restore state */
+ 447   1          CY_PM_ACT_CFG1_REG = cyPmBackup.enClkA;
+ 448   1          CY_PM_ACT_CFG2_REG = cyPmBackup.enClkD;
+ 449   1      }
+ 450          
+ 451          
+ 452          /*******************************************************************************
+ 453          * Function Name: CyPmAltAct
+ 454          ********************************************************************************
+ 455          *
+ 456          * Summary:
+ 457          *  Puts the part into the Alternate Active (Standby) state.  Before switching to
+ 458          *  Alternate Active, if a wakeupTime other than NONE is specified, then the
+ 459          *  appropriate timer state is configured as specified with the interrupt for
+ 460          *  that timer disabled.  The wakeup source will be the combination of the values
+ 461          *  specified in the wakeupSource and any timer specified in the wakeupTime
+ 462          *  argument.  Once the wakeup condition is satisfied, then all saved state is
+ 463          *  restored and the function returns in the Active state.
+ 464          *
+ 465          *  Note that if the wakeupTime is made with a different value, the period before
+ 466          *  the wakeup occurs can be significantly shorter than the specified time.  If
+ 467          *  the next call is made with the same wakeupTime value, then the wakeup will
+ 468          *  occur the specified period after the previous wakeup occurred.
+ 469          *
+ 470          *  If a wakeupTime other than NONE is specified, then upon exit the state of the
+ 471          *  specified timer will be left as specified by wakeupTime with the timer
+ 472          *  enabled and the interrupt disabled.  If the CTW, FTW or One PPS is already
+ 473          *  configured for wakeup, for example with the SleepTimer or RTC components,
+ 474          *  then specify NONE for the wakeupTime and include the appropriate source for
+ 475          *  wakeupSource. 
+ 476          *
+ 477          *  The Alternate Active state can allow for any of the capabilities of the
+ 478          *  device to be active, but the operation of this function is dependent on the
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 9   
+
+ 479          *  CPU being disabled during the Alternate Active state.  The configuration code
+ 480          *  and the component APIs will configure the template for the Alternate Active
+ 481          *  state to be the same as the Active state with the exception that the CPU will
+ 482          *  be disabled during Alternate Active.
+ 483          *
+ 484          * Parameters:
+ 485          *  wakeupTime: Specifies a timer wakeup source and the frequency of that
+ 486          *               source.
+ 487          *
+ 488          *           Define                      Time
+ 489          *  PM_ALT_ACT_TIME_NONE             None
+ 490          *  PM_ALT_ACT_TIME_ONE_PPS          One PPS: 1 second
+ 491          *  PM_ALT_ACT_TIME_CTW_2MS          CTW: 2 ms
+ 492          *  PM_ALT_ACT_TIME_CTW_4MS          CTW: 4 ms
+ 493          *  PM_ALT_ACT_TIME_CTW_8MS          CTW: 8 ms
+ 494          *  PM_ALT_ACT_TIME_CTW_16MS         CTW: 16 ms
+ 495          *  PM_ALT_ACT_TIME_CTW_32MS         CTW: 32 ms
+ 496          *  PM_ALT_ACT_TIME_CTW_64MS         CTW: 64 ms
+ 497          *  PM_ALT_ACT_TIME_CTW_128MS        CTW: 128 ms
+ 498          *  PM_ALT_ACT_TIME_CTW_256MS        CTW: 256 ms
+ 499          *  PM_ALT_ACT_TIME_CTW_512MS        CTW: 512 ms
+ 500          *  PM_ALT_ACT_TIME_CTW_1024MS       CTW: 1024 ms
+ 501          *  PM_ALT_ACT_TIME_CTW_2048MS       CTW: 2048 ms
+ 502          *  PM_ALT_ACT_TIME_CTW_4096MS       CTW: 4096 ms
+ 503          *  PM_ALT_ACT_TIME_FTW(1-256)*       FTW: 10us to 2.56ms
+ 504          *
+ 505          *  *Note:   PM_ALT_ACT_TIME_FTW() is a macro that takes an argument that
+ 506          *           specifies how many increments of 10us to delay. For PSoC 3 ES2
+ 507          *           silicon and earlier and PSoC 5 ES1 silicon and earlier the valid
+ 508          *           range of values is 1 to 32. For later silicon the valid range of
+ 509          *           values is 1 to 256.
+ 510          *
+ 511          *  wakeUpSource:    Specifies a bitwise mask of wakeup sources. In addition, if
+ 512          *                   a wakeupTime has been specified the associated timer will be
+ 513          *                   included as a wakeup source.
+ 514          *
+ 515          *           Define                      Source
+ 516          *  PM_ALT_ACT_SRC_NONE              None
+ 517          *  PM_ALT_ACT_SRC_COMPARATOR0       Comparator 0
+ 518          *  PM_ALT_ACT_SRC_COMPARATOR1       Comparator 1
+ 519          *  PM_ALT_ACT_SRC_COMPARATOR2       Comparator 2
+ 520          *  PM_ALT_ACT_SRC_COMPARATOR3       Comparator 3
+ 521          *  PM_ALT_ACT_SRC_INTERRUPT         Interrupt
+ 522          *  PM_ALT_ACT_SRC_PICU              PICU
+ 523          *  PM_ALT_ACT_SRC_I2C               I2C
+ 524          *  PM_ALT_ACT_SRC_BOOSTCONVERTER    Boost Converter
+ 525          *  PM_ALT_ACT_SRC_FTW               Fast Timewheel
+ 526          *  PM_ALT_ACT_SRC_CTW               Central Timewheel*
+ 527          *  PM_ALT_ACT_SRC_ONE_PPS           One PPS*
+ 528          *  PM_ALT_ACT_SRC_LCD               LCD
+ 529          *
+ 530          *  *Note: CTW and One PPS wakeup signals are in the same mask bit. For
+ 531          *         PSoC 5 ES1 these are also the same address as the FTW.
+ 532          *
+ 533          *  When specifying a Comparator as the wakeupSource an instance specific define
+ 534          *  should be used that will track with the specific comparator that the instance
+ 535          *  is placed into. As an example, for a Comparator instance named ?MyComp? the
+ 536          *  value to OR into the mask is: MyComp_ctComp__CMP_MASK.
+ 537          *
+ 538          * Return:
+ 539          *  None.
+ 540          *
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 10  
+
+ 541          * Reentrant:
+ 542          *  No.
+ 543          *
+ 544          * Side Effects:
+ 545          *  For PSoC 3 ES2 silcon or earlier the wakeup source is not selectable. In this
+ 546          *  case the wakeupSource argument is ignored and any of the available wakeup
+ 547          *  sources will wake the device.
+ 548          *
+ 549          *  For PSoC 5 ES1 silicon or earlier the LCD is not a selectable wakeup source.
+ 550          *
+ 551          *  If a wakeupTime other than NONE is specified, then upon exit the state of the
+ 552          *  specified timer will be left as specified by wakeupTime with the timer
+ 553          *  enabled and the interrupt disabled.  Also, ILO power mode will be left in a
+ 554          *  low power mode, the ILO 1 KHz (if CTW timer is used as wake up time) or
+ 555          *  ILO 100 KHz (if FTW timer is used as wake up time) will be left started.
+ 556          *
+ 557          *******************************************************************************/
+ 558          void CyPmAltAct(uint16 wakeupTime, uint16 wakeupSource)
+ 559          {
+ 560   1          /* FTW - save current and set new configuration */
+ 561   1          if((wakeupTime >= PM_ALT_ACT_TIME_FTW(1u)) && (wakeupTime <= PM_ALT_ACT_TIME_FTW(256u)))
+ 562   1          {
+ 563   2              #if(CY_PM_PSOC3_ES2 || CY_PM_PSOC5_ES1)
+ 564   2              
+ 565   2                  /* If out of range - set to max value */
+ 566   2                  if(wakeupTime >= PM_ALT_ACT_TIME_FTW(32u))
+ 567   2                  {
+ 568   3                                      /* Save FTW configuration and set new one to max value */
+ 569   3                      CyPmFtwSaveSet((PM_ALT_ACT_TIME_FTW(32u) - CY_PM_FTW_INTERVAL_SHIFT - 1u) & CY_PM_FTW_INTE
+             -RVAL_MASK);
+ 570   3                  }
+ 571   2                  else    /* value is in range - just pass parameter as is */
+ 572   2                  {
+ 573   3                      /* Save current FTW configuration and set new one */
+ 574   3                      CyPmFtwSaveSet((wakeupTime - CY_PM_FTW_INTERVAL_SHIFT - 1u) & CY_PM_FTW_INTERVAL_MASK);
+ 575   3                  }
+ 576   2              
+ 577   2              #else   /* PSoC3 ES3 and later, PSoC5 ES2 and later */
+              
+                          /* Save current FTW configuration and set new one */
+                          CyPmFtwSaveSet((wakeupTime - CY_PM_FTW_INTERVAL_SHIFT - 1u) & CY_PM_FTW_INTERVAL_MASK);
+                      
+                      #endif  /* End of (CY_PM_PSOC3_ES2 || CY_PM_PSOC5_ES1) */
+ 583   2              
+ 584   2              /* Include associated timer to the wakeupSource */
+ 585   2              wakeupSource |= PM_ALT_ACT_SRC_FTW;
+ 586   2          }
+ 587   1      
+ 588   1          /* CTW - save current and set new configuration */
+ 589   1          if((wakeupTime >= PM_ALT_ACT_TIME_CTW_2MS) && (wakeupTime <= PM_ALT_ACT_TIME_CTW_4096MS))
+ 590   1          {
+ 591   2              /* Save current CTW configuration and set new one */
+ 592   2              CyPmCtwSaveSet((wakeupTime - 1u) & CY_PM_CTW_INTERVAL_MASK);
+ 593   2      
+ 594   2              /* Include associated timer to the wakeupSource */
+ 595   2              wakeupSource |= PM_ALT_ACT_SRC_CTW;
+ 596   2          }
+ 597   1      
+ 598   1          /* 1PPS - save current and set new configuration */
+ 599   1          if(PM_ALT_ACT_TIME_ONE_PPS == wakeupTime)
+ 600   1          {
+ 601   2              /* Save current 1PPS configuration and set new one */
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 11  
+
+ 602   2              CyPmOppsSaveSet();
+ 603   2      
+ 604   2              /* Include associated timer to the wakeupSource */
+ 605   2              wakeupSource |= PM_ALT_ACT_SRC_ONE_PPS;
+ 606   2          }
+ 607   1      
+ 608   1          /* Save and set new wake up configuration */
+ 609   1          #if(CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2)
+              
+                      /* Interrupt, PICU, I2C, Boost converter, CTW/1PPS */
+                      cyPmBackup.wakeupCfg0 = CY_PM_WAKEUP_CFG0_REG;
+                      CY_PM_WAKEUP_CFG0_REG = ((uint8) ((wakeupSource >> 4u) & 0xFFu));
+              
+                      /* Comparators */
+                      cyPmBackup.wakeupCfg1 = CY_PM_WAKEUP_CFG1_REG;
+                      CY_PM_WAKEUP_CFG1_REG = (((uint8) wakeupSource) & CY_PM_WAKEUP_SRC_CMPS_MASK);
+              
+                      #if(CY_PM_PSOC3_ES3)   /* PSoC3 ES3 or later */
+              
+                          /* LCD */
+                          cyPmBackup.wakeupCfg2 = CY_PM_WAKEUP_CFG2_REG;
+                          CY_PM_WAKEUP_CFG2_REG = ((uint8) ((wakeupSource >> 12u) & 0x01u));
+              
+                      #endif  /* End of (CY_PM_PSOC3_ES3) */
+              
+                  #else
+ 628   1      
+ 629   1              /* To remove unreferenced local variable warning */
+ 630   1              wakeupSource++;
+ 631   1      
+ 632   1          #endif /* End of (CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2) */
+ 633   1      
+ 634   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Save current global interrupt enable and disable it,
+                      *  this should be done only if clk_bus is disabled during
+                      *  Alternate Active mode. By default, clk_bus is enabled
+                      *  during this mode, but user is able to disable it manually,
+                      *  so implement this workaround for sure.
+                      */
+                      cyPmBackup.interruptEnable = CyEnterCriticalSection();
+              
+                  #endif  /* End of (CY_PM_PSOC3_ES3)*/
+ 645   1      
+ 646   1          /* Switch to the Sleep mode */
+ 647   1          CY_PM_MODE_CSR_REG = ((CY_PM_MODE_CSR_REG & ~CY_PM_MODE_CSR_MASK) | CY_PM_MODE_CSR_ALT_ACT);
+ 648   1      
+ 649   1          /* Recommended readback. */
+ 650   1          CY_PM_MODE_CSR_REG;
+ 651   1      
+ 652   1          /* Two recommended NOPs to get into the mode. */
+ 653   1          CY_NOP;
+ 654   1          CY_NOP;
+ 655   1      
+ 656   1          /* PSoC3 and PSoC5 has different low power modes entry way */
+ 657   1          #if(CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2)
+              
+                      #if defined(__ARMCC_VERSION)
+              
+                          /* Instristic for keil compilers */
+                          __wfi();
+              
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 12  
+
+                      #else
+              
+                          /* ASM for GCC */
+                          asm volatile ("WFI \n");
+              
+                      #endif /* End of (__ARMCC_VERSION) */
+              
+                  #endif /* End of (DEVICE_PSOC5_ES1 || DEVICE_PSOC5_ES2) */
+ 672   1          
+ 673   1          /* Point of return from Alternate Active Mode */
+ 674   1      
+ 675   1      
+ 676   1          #if(CY_PM_PSOC3_ES3)
+                  
+                      /* Restore global interrupt enable state */
+                      CyExitCriticalSection(cyPmBackup.interruptEnable);
+                  
+                  #endif  /* End of (CY_PM_PSOC3_ES3)*/
+ 682   1      
+ 683   1          /* Wake up source configuration */
+ 684   1          #if(CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2)
+              
+                      /* Restore current wake up configuration */
+                      CY_PM_WAKEUP_CFG0_REG = cyPmBackup.wakeupCfg0;
+                      CY_PM_WAKEUP_CFG1_REG = cyPmBackup.wakeupCfg1;
+              
+                      /* PSoC3 ES3 or later */
+                      #if(CY_PM_PSOC3_ES3)
+              
+                          CY_PM_WAKEUP_CFG2_REG = cyPmBackup.wakeupCfg2;
+              
+                      #endif  /* End of (CY_PM_PSOC3_ES3) */
+              
+                  #endif /* End of (_PSOC3_ES3 || _PSOC5_ES2) */
+ 698   1      }
+ 699          
+ 700          
+ 701          /*******************************************************************************
+ 702          * Function Name: CyPmSleep
+ 703          ********************************************************************************
+ 704          *
+ 705          * Summary:
+ 706          *  Puts the part into the Sleep state.  Before switching to Sleep, if a
+ 707          *  wakeupTime other than NONE is specified, then the appropriate timer state is
+ 708          *  configured as specified with the interrupt for that timer disabled.  The
+ 709          *  wakeup source will be the combination of the values specified in the
+ 710          *  wakeupSource and any timer specified in the wakeupTime argument.  Once the
+ 711          *  wakeup condition is satisfied, then all saved state is restored and the
+ 712          *  function returns in the Active state.
+ 713          *
+ 714          *  Note that if the wakeupTime is made with a different value, the period before
+ 715          *  the wakeup occurs can be significantly shorter than the specified time.  If
+ 716          *  the next call is made with the same wakeupTime value, then the wakeup will
+ 717          *  occur the specified period after the previous wakeup occurred.
+ 718          *
+ 719          *  If a wakeupTime other than NONE is specified, then upon exit the state of the
+ 720          *  specified timer will be left as specified by wakeupTime with the timer
+ 721          *  enabled and the interrupt disabled.  If the CTW or One PPS is already
+ 722          *  configured for wakeup, for example with the SleepTimer or RTC components,
+ 723          *  then specify NONE for the wakeupTime and include the appropriate source for
+ 724          *  wakeupSource. 
+ 725          *
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 13  
+
+ 726          * Parameters:
+ 727          *  wakeupTime:      Specifies a timer wakeup source and the frequency of that
+ 728          *                   source.
+ 729          *
+ 730          *           Define                      Time
+ 731          *  PM_SLEEP_TIME_NONE               None
+ 732          *  PM_SLEEP_TIME_ONE_PPS            One PPS: 1 second
+ 733          *  PM_SLEEP_TIME_CTW_2MS            CTW: 2 ms
+ 734          *  PM_SLEEP_TIME_CTW_4MS            CTW: 4 ms
+ 735          *  PM_SLEEP_TIME_CTW_8MS            CTW: 8 ms
+ 736          *  PM_SLEEP_TIME_CTW_16MS           CTW: 16 ms
+ 737          *  PM_SLEEP_TIME_CTW_32MS           CTW: 32 ms
+ 738          *  PM_SLEEP_TIME_CTW_64MS           CTW: 64 ms
+ 739          *  PM_SLEEP_TIME_CTW_128MS          CTW: 128 ms
+ 740          *  PM_SLEEP_TIME_CTW_256MS          CTW: 256 ms
+ 741          *  PM_SLEEP_TIME_CTW_512MS          CTW: 512 ms
+ 742          *  PM_SLEEP_TIME_CTW_1024MS         CTW: 1024 ms
+ 743          *  PM_SLEEP_TIME_CTW_2048MS         CTW: 2048 ms
+ 744          *  PM_SLEEP_TIME_CTW_4096MS         CTW: 4096 ms
+ 745          *
+ 746          *  wakeUpSource:    Specifies a bitwise mask of wakeup sources. In addition, if
+ 747          *                   a wakeupTime has been specified the associated timer will be
+ 748          *                   included as a wakeup source.
+ 749          *
+ 750          *           Define                      Source
+ 751          *  PM_SLEEP_SRC_NONE                None
+ 752          *  PM_SLEEP_SRC_COMPARATOR0         Comparator 0
+ 753          *  PM_SLEEP_SRC_COMPARATOR1         Comparator 1
+ 754          *  PM_SLEEP_SRC_COMPARATOR2         Comparator 2
+ 755          *  PM_SLEEP_SRC_COMPARATOR3         Comparator 3
+ 756          *  PM_SLEEP_SRC_PICU                PICU
+ 757          *  PM_SLEEP_SRC_I2C                 I2C
+ 758          *  PM_SLEEP_SRC_BOOSTCONVERTER      Boost Converter
+ 759          *  PM_SLEEP_SRC_CTW                 Central Timewheel*
+ 760          *  PM_SLEEP_SRC_ONE_PPS             One PPS*
+ 761          *  PM_SLEEP_SRC_LCD                 LCD
+ 762          *
+ 763          *  *Note:   CTW and One PPS wakeup signals are in the same mask bit. For
+ 764          *           PSoC 5 ES1 these are in a different bit.
+ 765          *
+ 766          *  When specifying a Comparator as the wakeupSource an instance specific define
+ 767          *  should be used that will track with the specific comparator that the instance
+ 768          *  is placed into. As an example for a Comparator instance named ?MyComp? the
+ 769          *  value to OR into the mask is: MyComp_ctComp__CMP_MASK.
+ 770          *
+ 771          * Return:
+ 772          *  None.
+ 773          *
+ 774          * Reentrant:
+ 775          *  No.
+ 776          *
+ 777          * Side Effects:
+ 778          *  For PSoC 3 ES2 silcon or earlier the wakeup source is not selectable. In this
+ 779          *  case the wakeupSource argument is ignored and any of the available wakeup
+ 780          *  sources will wake the device.
+ 781          *
+ 782          *  For PSoC 5 ES1 silicon or earlier the LCD is not a selectable wakeup source.
+ 783          *
+ 784          *  If a wakeupTime other than NONE is specified, then upon exit the state of the
+ 785          *  specified timer will be left as specified by wakeupTime with the timer
+ 786          *  enabled and the interrupt disabled.  Also, ILO power mode will be left in a
+ 787          *  low power mode, the ILO 1 KHz (if CTW timer is used as wake up time) will be
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 14  
+
+ 788          *  left started.
+ 789          *
+ 790          *  Note: PSoC 3 ES2 and PSoC 5 ES1 silicon have a defect that causes connections
+ 791          *  to several analog resources to be unreliable when not the device is placed in
+ 792          *  a low power mode. See the silicon errata  "PSoC(R)3: CY8C38 Family Errata Silicon
+ 793          *  Revision ES2" (http://www.cypress.com/?rID=35179) and App Note AN# 001-63479
+ 794          *  (Unreliable Analog Routing in PSoC 3 and PSoC 5 Early Silicon) for details.
+ 795          *
+ 796          *  Be aware of potential silent failures when using CyPmSleep().
+ 797          *
+ 798          *******************************************************************************/
+ 799          void CyPmSleep(uint8 wakeupTime, uint16 wakeupSource)
+ 800          {
+ 801   1          /* PSoC3 ES3 */
+ 802   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Hibernate/Sleep regulator stabilization */
+                      if(0u == (CY_PM_MODE_CSR_REG & CY_PM_MODE_CSR_PWRUP_PULSE_Q))
+                      {
+                          /* Disable hold off - no action on restore */
+                          CY_PM_PWRSYS_SLP_TR_REG &= CY_PM_PWRSYS_SLP_TR_HIBSLP_HOLDOFF_MASK;    
+                      }
+                      else
+                      {
+                          /* Abort, device is not ready for low power mode entry */
+                          /* This section will be redesign to be correct till Beta 5
+                          *  when PSoC3/5 PM API files become device version specific.
+                          */
+                          return;
+                      }
+              
+                  #endif /* End of (CY_PM_PSOC3_ES3) */
+ 820   1          
+ 821   1          /* CTW - save current and set new configuration */
+ 822   1          if((wakeupTime >= PM_SLEEP_TIME_CTW_2MS) && (wakeupTime <= PM_SLEEP_TIME_CTW_4096MS))
+ 823   1          {
+ 824   2              /* Save current and set new configuration of the CTW */
+ 825   2              CyPmCtwSaveSet((wakeupTime - 1u) & CY_PM_CTW_INTERVAL_MASK);
+ 826   2      
+ 827   2              /* Include associated timer to the wakeupSource */
+ 828   2              wakeupSource |= PM_SLEEP_SRC_CTW;
+ 829   2          }
+ 830   1          
+ 831   1          /* 1PPS - save current and set new configuration */
+ 832   1          if(PM_SLEEP_TIME_ONE_PPS == wakeupTime)
+ 833   1          {
+ 834   2              /* Save current and set new configuration of the 1PPS */
+ 835   2              CyPmOppsSaveSet();
+ 836   2              
+ 837   2              /* Include associated timer to the wakeupSource */
+ 838   2              wakeupSource |= PM_SLEEP_SRC_ONE_PPS;
+ 839   2          }
+ 840   1      
+ 841   1          /* Save and set new wake up configuration */
+ 842   1          #if(CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2)
+              
+                      /* Interrupt, PICU, I2C, Boost converter, CTW/1PPS */
+                      cyPmBackup.wakeupCfg0 = CY_PM_WAKEUP_CFG0_REG;
+                      CY_PM_WAKEUP_CFG0_REG = ((uint8) ((wakeupSource >> 4u) & 0xFFu));
+              
+                      /* Comparators */
+                      cyPmBackup.wakeupCfg1 = CY_PM_WAKEUP_CFG1_REG;
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 15  
+
+                      CY_PM_WAKEUP_CFG1_REG = (((uint8) wakeupSource) & CY_PM_WAKEUP_SRC_CMPS_MASK);
+              
+                      /* LCD */
+                      #if(CY_PM_PSOC3_ES3)   /* PSoC3 ES3 or later */
+              
+                          cyPmBackup.wakeupCfg2 = CY_PM_WAKEUP_CFG2_REG;
+                          CY_PM_WAKEUP_CFG2_REG = ((uint8) ((wakeupSource >> 12u) & 0x01u));
+              
+                      #endif  /* End of (CY_PM_PSOC3_ES3) */
+              
+                  #else
+ 861   1      
+ 862   1              /* To remove unreferenced local variable warning */
+ 863   1              wakeupSource++;
+ 864   1      
+ 865   1          #endif /* End of (CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2) */
+ 866   1      
+ 867   1          /* Tune LVI/HVI and wait for Hibernate/Sleep regulator to stabilize */
+ 868   1          CyPmHibSlpSaveSet(CY_PM_MODE_CSR_SLEEP);
+ 869   1      
+ 870   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Save current global interrupt enable and disable it */
+                      cyPmBackup.interruptEnable = CyEnterCriticalSection();
+              
+                  #endif  /* End of (CY_PM_PSOC3_ES3)*/
+ 876   1      
+ 877   1          /* Switch to the Sleep mode */
+ 878   1          CY_PM_MODE_CSR_REG = ((CY_PM_MODE_CSR_REG & ~CY_PM_MODE_CSR_MASK) | CY_PM_MODE_CSR_SLEEP);
+ 879   1      
+ 880   1          /* CHECK: Recommended readback. */
+ 881   1          CY_PM_MODE_CSR_REG;
+ 882   1      
+ 883   1          /* Two recommended NOPs to get into the mode. */
+ 884   1          CY_NOP;
+ 885   1          CY_NOP;
+ 886   1      
+ 887   1          /* PSoC3 and PSoC5 has different low power modes entry way */
+ 888   1          #if(CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2)
+              
+                      #if defined(__ARMCC_VERSION)
+              
+                          /* Instristic for keil compilers */
+                          __wfi();
+              
+                      #else
+              
+                          /* ASM for GCC */
+                          asm volatile ("WFI \n");
+              
+                      #endif /* End of (__ARMCC_VERSION) */
+              
+                  #endif /* End of (DEVICE_PSOC5_ES1 || DEVICE_PSOC5_ES2) */
+ 903   1      
+ 904   1          /* Point of return from Sleep Mode */
+ 905   1      
+ 906   1          /* Gives the sleep regulator time to stabilize (20us) */
+ 907   1          CyDelayCycles(CY_PM_WAIT_20_US * cyPmBackup.cpuFreqMhz); 
+ 908   1      
+ 909   1          #if(CY_PM_PSOC3_ES3)
+                  
+                      /* Restore global interrupt enable state */
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 16  
+
+                      CyExitCriticalSection(cyPmBackup.interruptEnable);
+                  
+                  #endif  /* End of (CY_PM_PSOC3_ES3)*/
+ 915   1      
+ 916   1          /* Restore LVI/HVI configuration */
+ 917   1          CyPmHibSlpRestore();
+ 918   1      
+ 919   1          /* Wake up source configuration */
+ 920   1          #if(CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2)
+              
+                      /* Restore current wake up configuration */
+                      CY_PM_WAKEUP_CFG0_REG = cyPmBackup.wakeupCfg0;
+                      CY_PM_WAKEUP_CFG1_REG = cyPmBackup.wakeupCfg1;
+              
+                      /* PSoC3 ES3 or later */
+                      #if(CY_PM_PSOC3_ES3)
+              
+                          CY_PM_WAKEUP_CFG2_REG = cyPmBackup.wakeupCfg2;
+              
+                      #endif  /* End of (CY_PM_PSOC3_ES3) */
+              
+                  #endif /* End of (CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2) */
+ 934   1      }
+ 935          
+ 936          
+ 937          /*******************************************************************************
+ 938          * Function Name: CyPmHibernate
+ 939          ********************************************************************************
+ 940          *
+ 941          * Summary:
+ 942          *  Puts the part into the Hibernate state. Before switching to Hibernate the
+ 943          *  PICU wakeup source bit is saved and then set. The PICU is the only available
+ 944          *  source to wakeup from the Hibernate state. Once the wakeup condition is
+ 945          *  satisfied, then the PICU wakeup source bit is restored and the function
+ 946          *  returns in the Active state.
+ 947          *
+ 948          *  There is a firmware requirement that specifies applications cannot wakeup
+ 949          *  from hibernate and enter sleep for 20 us. The time starts from the wakeup
+ 950          *  event and gives the sleep regulator time to stabilize. There is no hardware
+ 951          *  check that this requirement is met. The specified delay should be done on
+ 952          *  ISR entry.
+ 953          *
+ 954          * Parameters:
+ 955          *  None.
+ 956          *
+ 957          * Return:
+ 958          *  None.
+ 959          *
+ 960          * Reentrant:
+ 961          *  No.
+ 962          *
+ 963          * Side Effects:
+ 964          *  None.
+ 965          *
+ 966          *  Note: PSoC 3 ES2 and PSoC 5 ES1 silicon have a defect that causes connections
+ 967          *  to several analog resources to be unreliable when not the device is placed in
+ 968          *  a low power mode. See the silicon errata "PSoC(R)3: CY8C38 Family Errata Silicon
+ 969          *  Revision ES2" (http://www.cypress.com/?rID=35179) and App Note AN# 001-63479
+ 970          *  (Unreliable Analog Routing in PSoC 3 and PSoC 5 Early Silicon) for details.
+ 971          *
+ 972          *  Be aware of potential silent failures when using CyPmHibernate().
+ 973          *
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 17  
+
+ 974          *******************************************************************************/
+ 975          void CyPmHibernate(void)
+ 976          {
+ 977   1          /* PSoC3 ES3 */
+ 978   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Hibernate/Sleep regulator stabilization */
+                      if(0u == (CY_PM_MODE_CSR_REG & CY_PM_MODE_CSR_PWRUP_PULSE_Q))
+                      {
+                          /* Disable hold off - no action on restore */
+                          CY_PM_PWRSYS_SLP_TR_REG &= CY_PM_PWRSYS_SLP_TR_HIBSLP_HOLDOFF_MASK;    
+                      }
+                      else
+                      {
+                          /* Abort, device is not ready for low power mode entry */
+                          /* This section will be redesign to be correct till Beta 5
+                          *  when PSoC3/5 PM API files become device version specific.
+                          */            
+                          return;
+                      }
+              
+                  #endif /* End of (CY_PM_PSOC3_ES3) */
+ 996   1          
+ 997   1          /* Prepare device for proper Hibernate mode entry */
+ 998   1          CyPmHibSaveSet();
+ 999   1      
+1000   1          /* Save and set new wake up configuration */
+1001   1          #if(CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2)
+              
+                      /* Interrupt, PICU, I2C, Boost converter, CTW/1PPS */
+                      cyPmBackup.wakeupCfg0 = CY_PM_WAKEUP_CFG0_REG;
+                      CY_PM_WAKEUP_CFG0_REG = CY_PM_WAKEUP_PICU;  /* Enable wake up on PICU */
+              
+                      /* Comparators */
+                      cyPmBackup.wakeupCfg1 = CY_PM_WAKEUP_CFG1_REG;
+                      CY_PM_WAKEUP_CFG1_REG = 0x00u;
+              
+                      #if(CY_PM_PSOC3_ES3)   /* PSoC3 ES3 or later */
+              
+                          /* LCD */
+                          cyPmBackup.wakeupCfg2 = CY_PM_WAKEUP_CFG2_REG;
+                          CY_PM_WAKEUP_CFG2_REG = 0x00u;
+              
+                      #endif  /* End of (CY_PM_PSOC3_ES3) */
+              
+                  #endif /* End of (CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2) */
+1020   1      
+1021   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Save current global interrupt enable and disable it */
+                      cyPmBackup.interruptEnable = CyEnterCriticalSection();
+              
+                  #endif  /* End of (CY_PM_PSOC3_ES3)*/
+1027   1      
+1028   1          /* Switch to Hibernate Mode */
+1029   1          CY_PM_MODE_CSR_REG = ((CY_PM_MODE_CSR_REG & ~CY_PM_MODE_CSR_MASK) | CY_PM_MODE_CSR_HIBERNATE);
+1030   1      
+1031   1          /* CHECK: Recommended readback. */
+1032   1          CY_PM_MODE_CSR_REG;
+1033   1      
+1034   1          /* Two recommended NOPs to get into the mode. */
+1035   1          CY_NOP;
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 18  
+
+1036   1          CY_NOP;
+1037   1      
+1038   1          /* PSoC3 and PSoC5 has different low power modes entry way */
+1039   1          #if(CY_PM_PSOC5_ES1 || CY_PM_PSOC5_ES2)
+              
+                      #if defined(__ARMCC_VERSION)
+              
+                          /* Instristic for keil compilers */
+                          __wfi();
+              
+                      #else
+              
+                          /* ASM for GCC */
+                          asm volatile ("WFI \n");
+              
+                      #endif /* End of (__ARMCC_VERSION) */
+              
+                  #endif /* End of (DEVICE_PSOC5_ES1 || DEVICE_PSOC5_ES2) */
+1054   1      
+1055   1          /* Point of return from Hibernate mode */
+1056   1      
+1057   1          #if(CY_PM_PSOC3_ES3)
+                  
+                      /* Restore global interrupt enable state */
+                      CyExitCriticalSection(cyPmBackup.interruptEnable);
+                  
+                  #endif  /* End of (CY_PM_PSOC3_ES3)*/
+1063   1      
+1064   1          /* Restore device for proper Hibernate mode exit*/
+1065   1          CyPmHibRestore();
+1066   1      
+1067   1          /* PSoC3 ES3 or later, PSoC5 ES2 or later */
+1068   1          #if(CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2)
+              
+                      /* Restore saved wake up configuration */
+                      CY_PM_WAKEUP_CFG0_REG = cyPmBackup.wakeupCfg0;
+                      CY_PM_WAKEUP_CFG1_REG = cyPmBackup.wakeupCfg1;
+              
+                      #if(CY_PM_PSOC3_ES3)   /* PSoC3 ES3 or later */
+              
+                          CY_PM_WAKEUP_CFG2_REG = cyPmBackup.wakeupCfg2;
+              
+                      #endif  /* End of (CY_PM_PSOC3_ES3) */
+              
+                  #endif /* End of (CY_PM_PSOC3_ES3 || CY_PM_PSOC5_ES2) */
+1081   1      }
+1082          
+1083          
+1084          /*******************************************************************************
+1085          * Function Name: CyPMReadStatus
+1086          ********************************************************************************
+1087          *
+1088          * Summary:
+1089          *  Manages the Power Manager Interrupt Status Register.  This register has the
+1090          *  interrupt status for the one pulse per second, central timewheel and fast
+1091          *  timewheel timers.  This hardware register clears on read.  To allow for only
+1092          *  clearing the bits of interest and preserving the other bits, this function
+1093          *  uses a shadow register that retains the state.  This function reads the
+1094          *  status register and ORs that value with the shadow register.  That is the
+1095          *  value that is returned.  Then the bits in the mask that are set are cleared
+1096          *  from this value and written back to the shadow register.
+1097          *
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 19  
+
+1098          * Parameters:
+1099          *  mask: Bits in the shadow register to clear.
+1100          *
+1101          *       Define                      Source
+1102          *  CY_PM_FTW_INT                Fast Timewheel
+1103          *  CY_PM_CTW_INT                Central Timewheel
+1104          *  CY_PM_ONEPPS_INT             One Pulse Per Second
+1105          *
+1106          * Return:
+1107          *  Status.  Same bits values as the mask parameter.
+1108          *
+1109          * Reentrant:
+1110          *  No.
+1111          *
+1112          * Side Effects:
+1113          *  None.
+1114          *
+1115          *******************************************************************************/
+1116          uint8 CyPmReadStatus(uint8 mask)
+1117          {
+1118   1          static uint8 interruptStatus;
+1119   1          uint8 interruptState;
+1120   1          uint8 tmpStatus;
+1121   1      
+1122   1          /* Enter critical section */
+1123   1          interruptState = CyEnterCriticalSection();
+1124   1      
+1125   1          /* Save value of the register, copy it and clear desired bit */
+1126   1          interruptStatus |= CY_PM_INT_SR_REG;
+1127   1          tmpStatus = interruptStatus;
+1128   1          interruptStatus &= ~mask;
+1129   1      
+1130   1          /* Exit critical section */
+1131   1          CyExitCriticalSection(interruptState);
+1132   1      
+1133   1          return(tmpStatus);
+1134   1      }
+1135          
+1136          
+1137          /*******************************************************************************
+1138          * Function Name: CyPmHibSaveSet
+1139          ********************************************************************************
+1140          *
+1141          * Summary:
+1142          *  Prepare device for proper Hibernate low power mode entry: disable I2C backup
+1143          *  regulator, save enable state of the 1 kHz and 100 kHz ILO and disable them.
+1144          *  Save ILO power down mode state and enable it. Disable use_vccdclk_det.
+1145          *
+1146          * Parameters:
+1147          *  None.
+1148          *
+1149          * Return:
+1150          *  None.
+1151          *
+1152          * Reentrant:
+1153          *  No.
+1154          *
+1155          * Side Effects:
+1156          *  None.
+1157          *
+1158          *******************************************************************************/
+1159          void CyPmHibSaveSet(void)
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 20  
+
+1160          {
+1161   1          /* I2C backup reg must be off when the sleep reg is unavailable */
+1162   1          if(0u != (CY_PM_PWRSYS_CR1_REG & CY_PM_PWRSYS_CR1_I2CREG_BACKUP))
+1163   1          {
+1164   2              /* I2C backup reg is enabled, save enable state and disable */
+1165   2              cyPmBackup.i2cRegBackup = CY_PM_ENABLED;
+1166   2              CY_PM_PWRSYS_CR1_REG &= ~CY_PM_PWRSYS_CR1_I2CREG_BACKUP;
+1167   2          }
+1168   1          else
+1169   1          {
+1170   2              /* Save disabled state of the I2C backup regulator */
+1171   2              cyPmBackup.i2cRegBackup = CY_PM_DISABLED;
+1172   2          }
+1173   1      
+1174   1          /* PSoC3 ES3 */
+1175   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Save current ILO power mode and ensure low power mode */
+                      cyPmBackup.iloPowerMode = CyILO_SetPowerMode(CY_PM_POWERDOWN_MODE);
+                  
+                      /* Save current 1kHz ILO enable state. Disabled automatically. */
+                      cyPmBackup.ilo1kEnable = (0u != (CY_PM_SLOWCLK_ILO_CR0_REG & CY_PM_ILO_CR0_EN_1K)) ?
+                                                  CY_PM_ENABLED : CY_PM_DISABLED;
+                  
+                      /* Save current 100kHz ILO enable state. Disabled automatically. */
+                      cyPmBackup.ilo100kEnable = (0u != (CY_PM_SLOWCLK_ILO_CR0_REG & CY_PM_ILO_CR0_EN_100K)) ?
+                                                  CY_PM_ENABLED : CY_PM_DISABLED;
+              
+                  #endif  /* End of (CY_PM_PSOC3_ES3) */
+1189   1      
+1190   1          /* PSoC3 ES3 */
+1191   1          #if(CY_PM_PSOC3_ES3)
+              
+                          if(0u == (CY_PM_PWRSYS_SLP_TR_REG & CY_PM_PWRSYS_SLP_TR_BYPASS))
+                          {
+                              /* Save current bypass state */
+                              cyPmBackup.slpTrBypass = CY_PM_DISABLED;
+                      
+                              /* When set, disables the sleep regulator and shorts vccd to vpwrsleep */
+                              CY_PM_PWRSYS_SLP_TR_REG |= CY_PM_PWRSYS_SLP_TR_BYPASS;
+                          }
+                          else
+                          {
+                              /* Save current bypass state */
+                              cyPmBackup.slpTrBypass = CY_PM_ENABLED;
+                          }
+              
+                      #endif  /* End of (CY_PM_PSOC3_ES3) */
+1208   1      
+1209   1      
+1210   1          /* PSoC3 ES3 */
+1211   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Only affects when BOTH ext_vccd=1 and ext_vcca=1 */
+                      if((0u != (CY_PM_PWRSYS_CR0_REG & CY_PM_PWRSYS_CR0_EXT_VCCA)) &&
+                      (0u != (CY_PM_PWRSYS_CR0_REG & CY_PM_PWRSYS_CR0_EXT_VCCD)))
+                      {
+              
+                          if(0u != CY_PM_PWRSYS_WAKE_TR2_REG & CY_PM_PWRSYS_WAKE_TR2_VCCD_CLK_DET)
+                          {
+                              /* Save alternate powergood detector state */
+                              cyPmBackup.vccdClkDet = CY_PM_ENABLED;
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 21  
+
+              
+                              /* Enable LPCOMPs (slower) instead of faster powergood detector */
+                              CY_PM_PWRSYS_WAKE_TR2_REG &= ~CY_PM_PWRSYS_WAKE_TR2_VCCD_CLK_DET;
+                          }
+                          else
+                          {
+                              /* Save alternate powergood detector state */
+                              cyPmBackup.vccdClkDet = CY_PM_DISABLED;
+                          }
+                      }
+              
+                  #endif /* End of (CY_PM_PSOC3_ES3) */
+1234   1      
+1235   1          /* Tune LVI/HVI and wait for Hibernate/Sleep regulator to stabilize */
+1236   1          CyPmHibSlpSaveSet(CY_PM_MODE_CSR_HIBERNATE);
+1237   1      }
+1238          
+1239          
+1240          /*******************************************************************************
+1241          * Function Name: CyPmHibRestore
+1242          ********************************************************************************
+1243          *
+1244          * Summary:
+1245          *  Restore device for proper Hibernate mode exit: restore state of I2C backup
+1246          *  regulator, restore enable state of the 1 kHz ILO and 100 kHz ILO. Restore
+1247          *  ILO power down mode state.
+1248          *
+1249          * Parameters:
+1250          *  None.
+1251          *
+1252          * Return:
+1253          *  None.
+1254          *
+1255          * Side Effects:
+1256          *  None.
+1257          *
+1258          *******************************************************************************/
+1259          void CyPmHibRestore(void) 
+1260          {
+1261   1          /* Restore LVI/HVI configuration */
+1262   1          CyPmHibSlpRestore();
+1263   1      
+1264   1          /* Restore I2C backup regulator configuration */
+1265   1          if(CY_PM_ENABLED == cyPmBackup.i2cRegBackup)
+1266   1          {
+1267   2              /* Enable I2C backup regulator state */
+1268   2              CY_PM_PWRSYS_CR1_REG |= CY_PM_PWRSYS_CR1_I2CREG_BACKUP;
+1269   2          }
+1270   1      
+1271   1      
+1272   1          /* PSoC3 ES3 */
+1273   1          #if(CY_PM_PSOC3_ES3)
+                  
+                      /* Restore 1kHz ILO enable state */
+                      if(CY_PM_ENABLED == cyPmBackup.ilo1kEnable)
+                      {
+                          /* Enable 1kHz ILO */
+                          CyILO_Start1K();
+                      }
+                  
+                      /* Restore 100kHz ILO enable state */
+                      if(CY_PM_ENABLED == cyPmBackup.ilo100kEnable)
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 22  
+
+                      {
+                          /* Enable 100kHz ILO */
+                          CyILO_Start100K();
+                      }
+                  
+                      /* Restore ILO power mode */
+                      CyILO_SetPowerMode(cyPmBackup.iloPowerMode);
+              
+                  #endif  /* End of (CY_PM_PSOC3_ES3) */
+1293   1      
+1294   1          /* PSoC3 ES3 */
+1295   1          #if(CY_PM_PSOC3_ES3)
+                  
+                      if(CY_PM_DISABLED == cyPmBackup.slpTrBypass)
+                      {
+                          /* Enable the sleep regulator and short vccd to vpwrsleep */
+                          CY_PM_PWRSYS_SLP_TR_REG &= ~CY_PM_PWRSYS_SLP_TR_BYPASS;    
+                      }
+              
+                  #endif
+1304   1          
+1305   1          /* PSoC3 ES3 */
+1306   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Restore alternate powergood detector state */
+                      if(CY_PM_ENABLED == cyPmBackup.vccdClkDet)
+                      {
+                          /* Enable LPCOMPs (slower) instead of faster powergood detector */
+                          CY_PM_PWRSYS_WAKE_TR2_REG |= CY_PM_PWRSYS_WAKE_TR2_VCCD_CLK_DET;
+                      }
+              
+                  #endif /* End of (CY_PM_PSOC3_ES3) */
+1316   1      }
+1317          
+1318          
+1319          /*******************************************************************************
+1320          * Function Name: CyPmCtwSaveSet
+1321          ********************************************************************************
+1322          *
+1323          * Summary:
+1324          *  Saves current CTW interval, ILO power mode, 1 kHz ILO enable state, CTW
+1325          *  interrupt enable state and CTW enable state. Sets new CTW interval, sets ILO
+1326          *  to the low power mode, enables 1 kHz ILO (if needed), disables CTW interrupt
+1327          *  and enables CTW (if needed).
+1328          *
+1329          * Parameters:
+1330          *  ctwInterval: the CTW interval to be set.
+1331          *
+1332          * Return:
+1333          *  None.
+1334          *
+1335          * Reentrant:
+1336          *  No.
+1337          *
+1338          * Side Effects:
+1339          *  None.
+1340          *
+1341          *******************************************************************************/
+1342          void CyPmCtwSaveSet(uint8 ctwInterval)
+1343          {
+1344   1          /* Enable low power mode */
+1345   1              CyILO_SetPowerMode(CY_PM_POWERDOWN_MODE);
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 23  
+
+1346   1      
+1347   1          /* Disable CTW interrupt enable if not yet */
+1348   1          if(0u != (CY_PM_TW_CFG2_REG & CY_PM_CTW_IE))
+1349   1          {
+1350   2              /* Disable CTW interrupt */
+1351   2              CY_PM_TW_CFG2_REG &= ~CY_PM_CTW_IE;
+1352   2          }   /* Do nothing if CTW interrupt is disabled */
+1353   1      
+1354   1          /* Enable 1kHz ILO if needed */
+1355   1          if(0u == (CY_PM_SLOWCLK_ILO_CR0_REG & CY_PM_ILO_CR0_EN_1K))
+1356   1          {
+1357   2              /* Enable the 1kHz ILO */
+1358   2              CyILO_Start1K();
+1359   2          }
+1360   1                      
+1361   1          /* Enable CTW and update interval if needed */
+1362   1          if(0u != (CY_PM_TW_CFG2_REG & CY_PM_CTW_EN))
+1363   1          {
+1364   2                      /* Set CTW interval if needed */
+1365   2                      if(CY_PM_TW_CFG1_REG != ctwInterval)
+1366   2                      {
+1367   3                              /* Disable the CTW, set new CTW interval and enable it again */
+1368   3                              CY_PM_TW_CFG2_REG &= ~CY_PM_CTW_EN;         
+1369   3                              CY_PM_TW_CFG1_REG = ctwInterval;
+1370   3                              CY_PM_TW_CFG2_REG |= CY_PM_CTW_EN;
+1371   3                      }
+1372   2          }
+1373   1          else
+1374   1          {
+1375   2                      /* Set CTW interval if needed */
+1376   2                      if(CY_PM_TW_CFG1_REG != ctwInterval)
+1377   2                      {
+1378   3                              /* Set the new CTW interval. Could be changed if CTW is disabled */
+1379   3                              CY_PM_TW_CFG1_REG = ctwInterval;
+1380   3                      }
+1381   2      
+1382   2              /* Enable the CTW */
+1383   2              CY_PM_TW_CFG2_REG |= CY_PM_CTW_EN;
+1384   2          }
+1385   1      }
+1386          
+1387          
+1388          /*******************************************************************************
+1389          * Function Name: CyPmOppsSaveSet
+1390          ********************************************************************************
+1391          *
+1392          * Summary:
+1393          *  Saves current 32kHz XTAL power mode state, saves current 32kHz XTAL enable
+1394          *  state, saves 1PPS interrupt enable state, saves 1PPS enable state. Enable
+1395          *  32kHz XTAL (if needed), disable 1PPS interrupt (if needed), enable 1PPS
+1396          *  (if needed).
+1397          *
+1398          * Parameters:
+1399          *  None.
+1400          *
+1401          * Return:
+1402          *  None.
+1403          *
+1404          * Reentrant:
+1405          *  No.
+1406          *
+1407          * Side Effects:
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 24  
+
+1408          *  None.
+1409          *
+1410          *******************************************************************************/
+1411          void CyPmOppsSaveSet(void)
+1412          {
+1413   1          /* Set 32kHz XTAL low power mode */
+1414   1              CyXTAL_32KHZ_SetPowerMode(CY_PM_POWERDOWN_MODE);
+1415   1      
+1416   1          /* Enable 32kHz XTAL if needed */
+1417   1          if(0u == (CY_PM_SLOWCLK_X32_CR_REG & CY_PM_X32_CR_X32EN))
+1418   1          {
+1419   2              /* Enable 32kHz XTAL */
+1420   2              CyXTAL_32KHZ_Start();
+1421   2          }
+1422   1      
+1423   1          /* Disable 1PPS interrupt enable if needed */
+1424   1          if(0u != (CY_PM_TW_CFG2_REG & CY_PM_1PPS_IE))
+1425   1          {
+1426   2              /* Disable 1PPS interrupt */
+1427   2              CY_PM_TW_CFG2_REG &= ~CY_PM_1PPS_IE;
+1428   2          }
+1429   1      
+1430   1          /* Enable 1PPS if needed */
+1431   1          if(0u == (CY_PM_TW_CFG2_REG & CY_PM_1PPS_EN))
+1432   1          {
+1433   2              /* Enable 1PPS operation */
+1434   2              CY_PM_TW_CFG2_REG |= CY_PM_1PPS_EN;
+1435   2          }
+1436   1      }
+1437          
+1438          
+1439          /*******************************************************************************
+1440          * Function Name: CyPmFtwSaveSet
+1441          ********************************************************************************
+1442          *
+1443          * Summary:
+1444          *  Saves current FTW interval and set new one, saves ILO power mode state and
+1445          *  sets low power mode, saves 100kHz ILO enable state and enables 100kHz ILO,
+1446          *  saves current FTW interrupt enable state and disable it if needed, saves
+1447          *  current FTW enable state and enable if needed.
+1448          *
+1449          * Parameters:
+1450          *  ftwInterval - FTW counter interval.
+1451          *
+1452          * Return:
+1453          *  None.
+1454          *
+1455          * Reentrant:
+1456          *  No.
+1457          *
+1458          * Side Effects:
+1459          *  None.
+1460          *
+1461          *******************************************************************************/
+1462          void CyPmFtwSaveSet(uint8 ftwInterval)
+1463          {
+1464   1          /* Enable ILO low power mode */
+1465   1          CyILO_SetPowerMode(CY_PM_POWERDOWN_MODE);
+1466   1      
+1467   1          /* Enable 100kHz ILO if needed */
+1468   1          if(0u == (CY_PM_SLOWCLK_ILO_CR0_REG & CY_PM_ILO_CR0_EN_100K))
+1469   1          {
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 25  
+
+1470   2              /* Enable the 100kHz ILO */
+1471   2              CyILO_Start100K();
+1472   2          }
+1473   1      
+1474   1          /* Enable FTW and set new FTW interval if needed */
+1475   1          if(0u != (CY_PM_TW_CFG2_REG & CY_PM_FTW_EN))
+1476   1          {
+1477   2              /* Disable FTW, set new FTW interval if needed and enable it again */
+1478   2                      if(CY_PM_TW_CFG0_REG != ftwInterval)
+1479   2                      {
+1480   3                              /* Disable the CTW, set new CTW interval and enable it again */
+1481   3                  CY_PM_TW_CFG2_REG &= ~CY_PM_FTW_EN;
+1482   3                  CY_PM_TW_CFG0_REG = ftwInterval;
+1483   3                  CY_PM_TW_CFG2_REG |= CY_PM_FTW_EN;
+1484   3                      }
+1485   2          }
+1486   1          else
+1487   1          {
+1488   2              /* Set new FTW counter interval if nedded. FTW is disabled. */
+1489   2                      if(CY_PM_TW_CFG0_REG != ftwInterval)
+1490   2                      {
+1491   3                              /* Set the new CTW interval. Could be changed if CTW is disabled */
+1492   3                              CY_PM_TW_CFG0_REG = ftwInterval;
+1493   3                      }
+1494   2      
+1495   2              /* Enable the FTW */
+1496   2              CY_PM_TW_CFG2_REG |= CY_PM_FTW_EN;
+1497   2          }
+1498   1      
+1499   1          /* Disable FTW interrupt enable if needed */
+1500   1          if(0u != (CY_PM_TW_CFG2_REG & CY_PM_FTW_IE))
+1501   1          {
+1502   2              /* Disable FTW interrupt */
+1503   2              CY_PM_TW_CFG2_REG &= ~CY_PM_FTW_IE;
+1504   2          }
+1505   1      }
+1506          
+1507          
+1508          /*******************************************************************************
+1509          * Function Name: CyPmHibSlpSaveSet
+1510          ********************************************************************************
+1511          *
+1512          * Summary:
+1513          *  Saves en_lvia, en_lvid, en_hvi enable state, saves wakeup trims (timeout and
+1514          *  holdoff). Disable LVI/HVI if entering hibernate power mode to avoid spurious
+1515          *  interrupts on wakeup. For the Sleep power mode, leaves LVI/HVI as is but
+1516          *  update wakeup time if they are used.
+1517          *
+1518          *  Before entering a mode that can lose state, make sure pwrup_pulse is finished
+1519          *  and clear the powerup pulse holdoff setting.
+1520          *
+1521          * Parameters:
+1522          *  CY_PM_MODE_CSR_HIBERNATE - prepare for the Hibernate low power mode.
+1523          *  CY_PM_MODE_CSR_SLEEP     - prepare for the Sleep low power mode.
+1524          *
+1525          * Return:
+1526          *  None.
+1527          *
+1528          * Reentrant:
+1529          *  No.
+1530          *
+1531          * Side Effects:
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 26  
+
+1532          *  Currently, the is no way to define device grade. This API method must be
+1533          *  invoked only for I- & A-grades.
+1534          *
+1535          *  This API could be blocking as it waits for Hibernate/Sleep regulator to
+1536          *  stabilize.
+1537          *
+1538          *******************************************************************************/
+1539          void CyPmHibSlpSaveSet(uint8 powerMode)
+1540          {
+1541   1          /* Save en_lvia, en_lvid, en_hvi */
+1542   1          cyPmBackup.lviaLvidHvi = (CY_PM_RESET_CR1_REG & CY_PM_RESET_CR1_HVI_LVI_EN_MASK);
+1543   1      
+1544   1          #if(CY_PM_PSOC3_ES3)
+                  
+                      /* Save SC/CT routing registers */
+                      cyPmBackup.scct_data[0u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC0_SW0 );
+                      cyPmBackup.scct_data[1u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC0_SW2 );
+                      cyPmBackup.scct_data[2u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC0_SW3 );
+                      cyPmBackup.scct_data[3u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC0_SW4 );
+                      cyPmBackup.scct_data[4u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC0_SW6 );
+                      cyPmBackup.scct_data[5u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC0_SW8 );
+                      cyPmBackup.scct_data[6u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC0_SW10);
+                  
+                      cyPmBackup.scct_data[7u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC1_SW0 );
+                      cyPmBackup.scct_data[8u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC1_SW2 );
+                      cyPmBackup.scct_data[9u]   = CY_GET_REG8(CYDEV_ANAIF_RT_SC1_SW3 );
+                      cyPmBackup.scct_data[10u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC1_SW4 );
+                      cyPmBackup.scct_data[11u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC1_SW6 );
+                      cyPmBackup.scct_data[12u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC1_SW8 );
+                      cyPmBackup.scct_data[13u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC1_SW10);
+                  
+                      cyPmBackup.scct_data[14u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC2_SW0 );
+                      cyPmBackup.scct_data[15u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC2_SW2 );
+                      cyPmBackup.scct_data[16u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC2_SW3 );
+                      cyPmBackup.scct_data[17u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC2_SW4 );
+                      cyPmBackup.scct_data[18u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC2_SW6 );
+                      cyPmBackup.scct_data[19u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC2_SW8 );
+                      cyPmBackup.scct_data[20u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC2_SW10);
+                  
+                      cyPmBackup.scct_data[21u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC3_SW0 );
+                      cyPmBackup.scct_data[22u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC3_SW2 );
+                      cyPmBackup.scct_data[23u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC3_SW3 );
+                      cyPmBackup.scct_data[24u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC3_SW4 );
+                      cyPmBackup.scct_data[25u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC3_SW6 );
+                      cyPmBackup.scct_data[26u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC3_SW8 );
+                      cyPmBackup.scct_data[27u]  = CY_GET_REG8(CYDEV_ANAIF_RT_SC3_SW10);
+              
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW0 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW2 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW3 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW4 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW6 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW8 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW10, 0u);
+                  
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW0 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW2 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW3 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW4 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW6 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW8 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW10, 0u);
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 27  
+
+                  
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW0 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW2 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW3 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW4 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW6 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW8 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW10, 0u);
+                  
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW0 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW2 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW3 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW4 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW6 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW8 , 0u);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW10, 0u);
+              
+              
+                      /* Save replica regulated vcca supply state and enable */
+                      cyPmBackup.useVccaBackup = (CY_PM_PWRSYS_WAKE_TR2_REG & CY_PM_PWRSYS_WAKE_TR2_USE_VCCA_BACKUP);
+                      CY_PM_PWRSYS_WAKE_TR2_REG |= CY_PM_PWRSYS_WAKE_TR2_USE_VCCA_BACKUP;
+              
+                      /* LVI/HVI workaround  - save wake up trims */
+                      cyPmBackup.wakeupTrimTimeout = CY_PM_PWRSYS_WAKE_TR0_REG;
+                      cyPmBackup.wakeupTrimHoldoff = CY_PM_PWRSYS_WAKE_TR3_REG; 
+                              
+                      switch(powerMode)
+                      {
+                          case CY_PM_MODE_CSR_HIBERNATE:
+              
+                              if(0u == (CY_PM_PWRSYS_HIB_TR1_REG & CY_PM_PWRSYS_HIB_TRIM))
+                              {
+                                  /* Disable LVI/HVI for hibernate - clear en_lvia, en_lvid, en_hvi */
+                                  CY_PM_RESET_CR1_REG &= ~CY_PM_RESET_CR1_HVI_LVI_EN_MASK;
+                                  break;
+                              }
+                              /* Intentional fall through */
+              
+                          case CY_PM_MODE_CSR_SLEEP:
+              
+                              /* If LVI/HVI enabled then extend wakeup timeline */
+                              if(0u != (CY_PM_RESET_CR1_REG & (CY_PM_RESET_CR1_HVIA_EN | 
+                                        CY_PM_RESET_CR1_LVIA_EN | CY_PM_RESET_CR1_LVID_EN)))
+                              {
+                                  /* Extend wakeup timeline */
+                                  CY_PM_PWRSYS_WAKE_TR0_REG = CY_PM_PWRSYS_WAKE_TIMEOUT_IA;
+                                  CY_PM_PWRSYS_WAKE_TR3_REG = CY_PM_PWRSYS_WAKE_HOLFOFF_IA;
+                              }
+                              break;
+              
+                          default:
+              
+                              /* No action */
+                              break;
+                      }   /* End of switch(powerMode) */
+                      
+                      /* Serial Wire Viewer (SWV) workaround */
+                  
+                      /* Disable SWV before entering low power mode */
+                      if(0u != (CY_PM_MLOGIC_DBG_REG & CY_PM_MLOGIC_DBG_SWV_CLK_EN))
+                      {
+                          /* Save SWV clock enabled state */
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 28  
+
+                          cyPmBackup.swvClkEnabled = CY_PM_ENABLED;
+                          
+                          /* Save current ports drive mode settings */
+                          cyPmBackup.prt1Dm = ((CY_PM_PRT1_PC3_REG & CY_PM_PRT1_PC3_DM_MASK) |
+                                              CY_PM_PRT1_PC3_DM_STRONG);
+                  
+                          /* Disable SWV clocks */
+                          CY_PM_MLOGIC_DBG_REG &= ~CY_PM_MLOGIC_DBG_SWV_CLK_EN;
+                      }
+                      else
+                      {
+                          /* Save SWV clock disabled state */
+                          cyPmBackup.swvClkEnabled = CY_PM_DISABLED;
+                      }
+                  
+                  #else   /* Not PSoC3 ES3 */
+1672   1      
+1673   1              /* Disable LVI/HVI to save power - doesn't work during buzzing in these revisions */
+1674   1              CY_PM_RESET_CR1_REG &= ~CY_PM_RESET_CR1_HVI_LVI_EN_MASK;
+1675   1      
+1676   1              /* Suppress unreferenced local variable warning */
+1677   1              powerMode++;
+1678   1              
+1679   1          #endif  /* End of (CY_PM_PSOC3_ES3) */
+1680   1      
+1681   1      }
+1682          
+1683          
+1684          /*******************************************************************************
+1685          * Function Name: CyPmHibSlpRestore
+1686          ********************************************************************************
+1687          *
+1688          * Summary:
+1689          *  Restores en_lvia, en_lvid, en_hvi enable state and wakeup trims (timeout and
+1690          *  holdoff).
+1691          *
+1692          * Parameters:
+1693          *  None.
+1694          *
+1695          * Return:
+1696          *  None.
+1697          *
+1698          * Side Effects:
+1699          *  None.
+1700          *
+1701          *******************************************************************************/
+1702          void CyPmHibSlpRestore(void) 
+1703          {
+1704   1          /* Restore en_lvia, en_lvid, en_hvi */
+1705   1          CY_PM_RESET_CR1_REG = cyPmBackup.lviaLvidHvi;
+1706   1      
+1707   1          /* PSoC3 ES3 */
+1708   1          #if(CY_PM_PSOC3_ES3)
+              
+                      /* Restore SC/CT routing registers */
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW0 , cyPmBackup.scct_data[0u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW2 , cyPmBackup.scct_data[1u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW3 , cyPmBackup.scct_data[2u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW4 , cyPmBackup.scct_data[3u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW6 , cyPmBackup.scct_data[4u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW8 , cyPmBackup.scct_data[5u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC0_SW10, cyPmBackup.scct_data[6u] );
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 29  
+
+              
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW0 , cyPmBackup.scct_data[7u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW2 , cyPmBackup.scct_data[8u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW3 , cyPmBackup.scct_data[9u] );
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW4 , cyPmBackup.scct_data[10u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW6 , cyPmBackup.scct_data[11u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW8 , cyPmBackup.scct_data[12u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC1_SW10, cyPmBackup.scct_data[13u]);
+              
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW0 , cyPmBackup.scct_data[14u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW2 , cyPmBackup.scct_data[15u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW3 , cyPmBackup.scct_data[16u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW4 , cyPmBackup.scct_data[17u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW6 , cyPmBackup.scct_data[18u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW8 , cyPmBackup.scct_data[19u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC2_SW10, cyPmBackup.scct_data[20u]);
+              
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW0 , cyPmBackup.scct_data[21u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW2 , cyPmBackup.scct_data[22u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW3 , cyPmBackup.scct_data[23u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW4 , cyPmBackup.scct_data[24u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW6 , cyPmBackup.scct_data[25u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW8 , cyPmBackup.scct_data[26u]);
+                      CY_SET_REG8(CYDEV_ANAIF_RT_SC3_SW10, cyPmBackup.scct_data[27u]);        
+              
+              
+                      /* Restore replica regulated vcca supply state */
+                      CY_PM_PWRSYS_WAKE_TR2_REG = ((CY_PM_PWRSYS_WAKE_TR2_REG & ~CY_PM_PWRSYS_WAKE_TR2_USE_VCCA_BACKUP) 
+             -|
+                                                    cyPmBackup.useVccaBackup);
+              
+                      /* Restore wake up trims */ 
+                      CY_PM_PWRSYS_WAKE_TR0_REG = cyPmBackup.wakeupTrimTimeout;
+                      CY_PM_PWRSYS_WAKE_TR3_REG = cyPmBackup.wakeupTrimHoldoff;
+              
+                      /* Serial Wire Viewer (SWV) workaround */
+                      if(CY_PM_ENABLED == cyPmBackup.swvClkEnabled)
+                      {
+                          /* Restore ports drive mode */
+                          cyPmBackup.prt1Dm = ((CY_PM_PRT1_PC3_REG & CY_PM_PRT1_PC3_DM_MASK) |
+                                                  cyPmBackup.prt1Dm);
+                  
+                          /* Enable SWV clocks */
+                          CY_PM_MLOGIC_DBG_REG |= CY_PM_MLOGIC_DBG_SWV_CLK_EN;
+                      }
+                  #endif /* End of (CY_PM_PSOC3_ES3) */
+1763   1      }
+1764          
+1765          /* [] END OF FILE */
+1766          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2031    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =     39    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+C51 COMPILER V8.16   CYPM                                                                  12/13/2010 22:57:36 PAGE 30  
+
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

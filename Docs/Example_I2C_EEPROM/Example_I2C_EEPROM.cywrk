@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" name="Example_I2C_EEPROM" persistent="" config="Debug" platform="4bd5669a-0e4e-4e1c-9625-e982dd945372">
+<current_project name="./Example_I2C_EEPROM.cydsn/Example_I2C_EEPROM.cyprj" />
+<wrkspc_folders />
+<files />
+<projects>
+<name_val_pair name="Example_I2C_EEPROM" v="./Example_I2C_EEPROM.cydsn/Example_I2C_EEPROM.cyprj" />
+</projects>
+<workspace_id v="35dfcda1-06f6-4349-ac01-339ec2dcc1ad" />
+<WriteAppVersionLastSavedWith v="1.0.0.7006" />
+<WriteAppMarketingVersionLastSavedWith v="1.0 Beta 5.0" />
+<CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjDependencyList" version="3">
+<wrkspc_dependencies />
+</CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316>
+<CyGuid_63b68103-67f5-4406-8da6-5c8625765b82 type_name="CyDesigner.Common.ProjMgmt.Model.CyIgnoredSystemDepsList" version="1">
+<wrkspc_dependencies />
+</CyGuid_63b68103-67f5-4406-8da6-5c8625765b82>
+</CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd>
+</CyXmlSerializer>

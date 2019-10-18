@@ -1,0 +1,807 @@
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE CYSPC
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CySpc.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\CySpc.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects/
+                    -PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CySpc.lst) DB NOIP OT(0) INCDIR(Gener
+                    -ated_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/E
+                    -xample_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CySpc.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: CySpc.c  
+   3          * Version 2.0
+   4          *
+   5          *  Description:
+   6          *   Provides an API for the System Performance Component. 
+   7          *   The SPC functions are not meant to be called directly by the user application.
+   8          *
+   9          *  Note:
+  10          *
+  11          *   
+  12          *
+  13          *******************************************************************************
+  14          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  15          * You may use this file only in accordance with the license, terms, conditions, 
+  16          * disclaimers, and limitations in the end user license agreement accompanying 
+  17          * the software package with which this file was provided.
+  18          ********************************************************************************/
+  19          
+  20          
+  21          #include <CySpc.h>
+  22          
+  23          
+  24          /* Gate calls to the SPC. */
+  25          unsigned int SpcLockState = 0;
+  26          
+  27          /* We only need storage for one comand since we can only do one command at a time. */
+  28          uint8 cyCommand[16];
+  29          uint8 cyCommandSize;
+  30          
+  31          
+  32          
+  33          /*******************************************************************************
+  34          * Function Name: CySpcLock
+  35          ********************************************************************************
+  36          * Summary:
+  37          *   Locks the SPC so it can not be used by someone else.
+  38          *   NOTE: SPC functions are not meant to be called directly by the user application.
+  39          *
+  40          * Parameters:
+  41          *   void.
+  42          *
+  43          *   
+  44          * Return:
+  45          *   .
+  46          *   CYRET_SUCCESS if the resource was free.
+  47          *   CYRET_LOCKED if the SPC is in use.
+  48          *
+  49          *
+  50          *******************************************************************************/
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 2   
+
+  51          cystatus CySpcLock(void)
+  52          {
+  53   1          cystatus status;
+  54   1          uint8 interruptState;
+  55   1      
+  56   1      
+  57   1          /* Enter critical section! */
+  58   1          interruptState = CyEnterCriticalSection();
+  59   1      
+  60   1          if(SpcLockState == 0)
+  61   1          {
+  62   2              SpcLockState = 1;
+  63   2              status = CYRET_SUCCESS;
+  64   2          }
+  65   1          else
+  66   1          {
+  67   2              status = CYRET_LOCKED;
+  68   2          }
+  69   1      
+  70   1          /* Exit critical section! */
+  71   1          CyExitCriticalSection(interruptState);
+  72   1      
+  73   1          return status;
+  74   1      }
+  75          
+  76          
+  77          /*******************************************************************************
+  78          * Function Name: CySpcWriteCommand
+  79          ********************************************************************************
+  80          * Summary:
+  81          *   Writes the command created by one of the "CySpcCreateCmd..." functions, then
+  82          *   writes the data parameters passed into this function. 
+  83          *   NOTE: SPC functions are not meant to be called directly by the user application.
+  84          *
+  85          * Parameters:
+  86          * parameters:
+  87          *   Address of the parameters associated with the SPC function being executed.
+  88          *   NOTE: SPC functions are not meant to be called directly by the user application.
+  89          *
+  90          * size:
+  91          *   size of data in bytes.
+  92          *
+  93          *   
+  94          * Return:
+  95          *   CYRET_LOCKED if the SPC is in use.
+  96          *   CYRET_CANCELED if the SPC didn't accept the commnad.
+  97          *   CYRET_STARTED if the command and data was correctly started.
+  98          *
+  99          * Theory:
+ 100          *   This function must be called after one of the "CySpcCreateCmd..." functions.
+ 101          *   This function writes the command and data parameters to the
+ 102          *   SPC.
+ 103          *
+ 104          *
+ 105          *******************************************************************************/
+ 106          cystatus CySpcWriteCommand(uint8 * parameters, uint16 size)
+ 107          {
+ 108   1          uint8 * pointer;
+ 109   1          uint16 index;
+ 110   1          cystatus status;
+ 111   1      
+ 112   1      
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 3   
+
+ 113   1          /* Has the SPC controller started something? */
+ 114   1          if(*SPC_STATUS & SPC_SPC_IDLE)
+ 115   1          {
+ 116   2              /* Create packet. */
+ 117   2              pointer = cyCommand;
+ 118   2              *SPC_CPU_DATA = *pointer++;
+ 119   2              *SPC_CPU_DATA = *pointer++;
+ 120   2              *SPC_CPU_DATA = *pointer++;
+ 121   2      
+ 122   2              /* Make sure the command was accepted. */
+ 123   2              if(!(*SPC_STATUS & SPC_SPC_IDLE))
+ 124   2              {
+ 125   3                  /* Write the parameters. */
+ 126   3                  for(index = 0; index < cyCommandSize; index++)
+ 127   3                      *SPC_CPU_DATA = *pointer++;
+ 128   3      
+ 129   3                  /* Write parameters. */
+ 130   3                  if(size != 0)
+ 131   3                  {
+ 132   4                      for(index = 0; index < size; index++)
+ 133   4                          *SPC_CPU_DATA = parameters[index];
+ 134   4                  }
+ 135   3      
+ 136   3                  /* We successfuly wrote the command, the caller can check for errors. */
+ 137   3                  status = CYRET_STARTED;
+ 138   3              }
+ 139   2              else
+ 140   2              {
+ 141   3                  /* Get the status. */
+ 142   3                  status = CYRET_CANCELED;
+ 143   3              }
+ 144   2          }
+ 145   1          else
+ 146   1          {
+ 147   2              status = CYRET_LOCKED;
+ 148   2          }
+ 149   1      
+ 150   1          return status;
+ 151   1      }
+ 152          
+ 153          
+ 154          /*******************************************************************************
+ 155          * Function Name: CySPCReadData
+ 156          ********************************************************************************
+ 157          * Summary:
+ 158          *   Reads data back from the SPC.  
+ 159          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 160          *
+ 161          * Parameters:
+ 162          * buffer:
+ 163          *   Address to store data read.
+ 164          *
+ 165          * size:
+ 166          *   number of bytes to read from the SPC.
+ 167          *
+ 168          * Return:
+ 169          *   The number of bytes read from the SPC.
+ 170          *
+ 171          *
+ 172          *******************************************************************************/
+ 173          cystatus CySpcReadData(uint8 * buffer, uint8 size) 
+ 174          {
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 4   
+
+ 175   1          uint8 index;
+ 176   1          
+ 177   1          for(index = 0; index < size; index++)
+ 178   1          {    
+ 179   2              while(!(*SPC_STATUS & SPC_DATA_READY))
+ 180   2              {
+ 181   3              }
+ 182   2      
+ 183   2              buffer[index] = *SPC_CPU_DATA;
+ 184   2          }
+ 185   1      
+ 186   1          return index;
+ 187   1      }
+ 188          
+ 189          
+ 190          /*******************************************************************************
+ 191          * Function Name: CySpcUnlock
+ 192          ********************************************************************************
+ 193          * Summary:
+ 194          *   Unlocks the SPC so it can be used by someone else.
+ 195          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 196          *
+ 197          * Parameters:
+ 198          *   void.
+ 199          *
+ 200          *   
+ 201          * Return:
+ 202          *   void.
+ 203          *
+ 204          *
+ 205          *******************************************************************************/
+ 206          void CySpcUnlock(void)
+ 207          {
+ 208   1          /* Release the SPC object. */
+ 209   1          SpcLockState = 0;
+ 210   1      }
+ 211          
+ 212          
+ 213          /*******************************************************************************
+ 214          * Function Name: CySpcCreateCmdLoadMultiByte
+ 215          ********************************************************************************
+ 216          * Summary:
+ 217          *   Sets up the command to LoadMultiByte.
+ 218          *
+ 219          * Parameters:
+ 220          * array:
+ 221          *   Id of the array.
+ 222          *
+ 223          * address:
+ 224          *   flash/eeprom addrress
+ 225          *
+ 226          * size:
+ 227          *   number bytes to load.
+ 228          *   
+ 229          * Return:
+ 230          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 231          *   CYRET_LOCKED if the SPC is in use.
+ 232          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 233          *
+ 234          * Theory:
+ 235          *
+ 236          *
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 5   
+
+ 237          *******************************************************************************/
+ 238          cystatus CySpcCreateCmdLoadMultiByte(uint8 array, uint16 address, uint16 number)
+ 239          {
+ 240   1          cystatus status;
+ 241   1      
+ 242   1      
+ 243   1          /* Check if number is correct for array. */
+ 244   1          if((array < LAST_FLASH_ARRAYID && number == 32) ||
+ 245   1             (array > LAST_FLASH_ARRAYID && number == 16))
+ 246   1          {
+ 247   2              /* Create packet command. */
+ 248   2              cyCommand[0] = SPC_KEY_ONE;
+ 249   2              cyCommand[1] = SPC_KEY_TWO(SPC_CMD_LD_MULTI_BYTE);
+ 250   2              cyCommand[2] = SPC_CMD_LD_MULTI_BYTE;
+ 251   2              
+ 252   2              /* Create packet parameters. */
+ 253   2              cyCommand[3] = array;
+ 254   2              cyCommand[4] = 1 & HI8(address);
+ 255   2              cyCommand[5] = LO8(address);
+ 256   2              cyCommand[6] = number - 1;
+ 257   2      
+ 258   2              cyCommandSize = SIZEOF_CMD_LOAD_MBYTE;
+ 259   2      
+ 260   2              status = CYRET_SUCCESS;
+ 261   2          }
+ 262   1          else
+ 263   1          {
+ 264   2              status = CYRET_BAD_PARAM;
+ 265   2          }
+ 266   1      
+ 267   1          return status;
+ 268   1      }
+ 269          
+ 270          
+ 271          /*******************************************************************************
+ 272          * Function Name: CySpcCreateCmdLoadRow
+ 273          ********************************************************************************
+ 274          * Summary:
+ 275          *   Sets up the command to LoadRow.
+ 276          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 277          *   
+ 278          *
+ 279          * Parameters:
+ 280          * array:
+ 281          *   Id of the array.
+ 282          *
+ 283          *
+ 284          * Return:
+ 285          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 286          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 287          *
+ 288          *
+ 289          * Theory:
+ 290          *
+ 291          *
+ 292          *******************************************************************************/
+ 293          cystatus CySpcCreateCmdLoadRow(uint8 array)
+ 294          {
+ 295   1          cystatus status;
+ 296   1      
+ 297   1      
+ 298   1          /* Create packet command. */
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 6   
+
+ 299   1          cyCommand[0] = SPC_KEY_ONE;
+ 300   1          cyCommand[1] = SPC_KEY_TWO(SPC_CMD_LD_ROW);
+ 301   1          cyCommand[2] = SPC_CMD_LD_ROW;
+ 302   1          
+ 303   1          /* Create packet parameters. */
+ 304   1          cyCommand[3] = array;
+ 305   1      
+ 306   1          cyCommandSize = SIZEOF_CMD_LOAD_ROW;
+ 307   1      
+ 308   1          status = CYRET_SUCCESS;
+ 309   1          
+ 310   1          
+ 311   1          return status;
+ 312   1      }
+ 313          
+ 314          
+ 315          /*******************************************************************************
+ 316          * Function Name: CySpcCreateCmdReadMultiByte
+ 317          ********************************************************************************
+ 318          * Summary:
+ 319          *   Sets up the command to ReadMultiByte.
+ 320          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 321          *
+ 322          * Parameters:
+ 323          * array:
+ 324          *   Id of the array.
+ 325          *
+ 326          * ecc:
+ 327          *   0x80 if reading ecc data.
+ 328          *   0x00 if user data.
+ 329          *
+ 330          * address:
+ 331          *   flash addrress.
+ 332          *
+ 333          * size:
+ 334          *   number bytes to load.
+ 335          *   
+ 336          * Return:
+ 337          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 338          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 339          *
+ 340          * Theory:
+ 341          *
+ 342          *
+ 343          *******************************************************************************/
+ 344          cystatus CySpcCreateCmdReadMultiByte(uint8 array, uint8 ecc, uint16 address, uint8 number)
+ 345          {
+ 346   1          cystatus status;
+ 347   1      
+ 348   1      
+ 349   1          /* Create packet command. */
+ 350   1          cyCommand[0] = SPC_KEY_ONE;
+ 351   1          cyCommand[1] = SPC_KEY_TWO(SPC_CMD_RD_MULTI_BYTE);
+ 352   1          cyCommand[2] = SPC_CMD_RD_MULTI_BYTE;
+ 353   1          
+ 354   1          /* Create packet parameters. */
+ 355   1          cyCommand[3] = array;
+ 356   1          cyCommand[4] = ecc;
+ 357   1          cyCommand[5] = HI8(address);
+ 358   1          cyCommand[6] = LO8(address);
+ 359   1          cyCommand[7] = number - 1;
+ 360   1      
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 7   
+
+ 361   1          cyCommandSize = SIZEOF_CMD_READ_MBYTE;
+ 362   1      
+ 363   1          status = CYRET_SUCCESS;
+ 364   1          
+ 365   1          return status;
+ 366   1      }
+ 367          
+ 368          
+ 369          /*******************************************************************************
+ 370          * Function Name: CySpcCreateCmdWriteRow
+ 371          ********************************************************************************
+ 372          * Summary:
+ 373          *   Sets up the command to WriteRow.
+ 374          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 375          *   
+ 376          *
+ 377          * Parameters:
+ 378          * array:
+ 379          *   Id of the array.
+ 380          *
+ 381          *
+ 382          * address:
+ 383          *   flash/eeprom addrress
+ 384          *
+ 385          *
+ 386          * tempPolarity:
+ 387          *
+ 388          *
+ 389          * tempMagnitute:
+ 390          *
+ 391          *
+ 392          *
+ 393          *   
+ 394          * Return:
+ 395          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 396          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 397          *
+ 398          *
+ 399          * Theory:
+ 400          *
+ 401          *
+ 402          *******************************************************************************/
+ 403          cystatus CySpcCreateCmdWriteRow(uint8 array, uint16 address, uint8 tempPolarity, uint8 tempMagnitute)
+ 404          {
+ 405   1          cystatus status;
+ 406   1      
+ 407   1          
+ 408   1          /* Create packet command. */
+ 409   1          cyCommand[0] = SPC_KEY_ONE;
+ 410   1          cyCommand[1] = SPC_KEY_TWO(SPC_CMD_WR_ROW);
+ 411   1          cyCommand[2] = SPC_CMD_WR_ROW;
+ 412   1          
+ 413   1          /* Create packet parameters. */
+ 414   1          cyCommand[3] = array;
+ 415   1          cyCommand[4] = HI8(address);
+ 416   1          cyCommand[5] = LO8(address);
+ 417   1          cyCommand[6] = tempPolarity;
+ 418   1          cyCommand[7] = tempMagnitute;
+ 419   1      
+ 420   1          cyCommandSize = SIZEOF_CMD_WR_ROW;
+ 421   1      
+ 422   1          status = CYRET_SUCCESS;
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 8   
+
+ 423   1          
+ 424   1          return status;
+ 425   1      }
+ 426          
+ 427          
+ 428          /*******************************************************************************
+ 429          * Function Name: CySpcCreateCmdProgramRow
+ 430          ********************************************************************************
+ 431          * Summary:
+ 432          *   Sets up the command to ProgramRow.
+ 433          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 434          *   
+ 435          *
+ 436          * Parameters:
+ 437          * array:
+ 438          *   Id of the array.
+ 439          *
+ 440          *
+ 441          * address:
+ 442          *   flash/eeprom addrress
+ 443          *
+ 444          *
+ 445          * par3:
+ 446          *
+ 447          *   
+ 448          * Return:
+ 449          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 450          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 451          *
+ 452          *
+ 453          * Theory:
+ 454          *
+ 455          *
+ 456          *******************************************************************************/
+ 457          cystatus CySpcCreateCmdProgramRow(uint8 array, uint16 address)
+ 458          {
+ 459   1          cystatus status;
+ 460   1      
+ 461   1      
+ 462   1          /* Create packet command. */
+ 463   1          cyCommand[0] = SPC_KEY_ONE;
+ 464   1          cyCommand[1] = SPC_KEY_TWO(SPC_CMD_PRG_ROW);
+ 465   1          cyCommand[2] = SPC_CMD_PRG_ROW;
+ 466   1          
+ 467   1          /* Create packet parameters. */
+ 468   1          cyCommand[3] = array;
+ 469   1          cyCommand[4] = HI8(address);
+ 470   1          cyCommand[5] = LO8(address);
+ 471   1      
+ 472   1          cyCommandSize = SIZEOF_CMD_PRGM_ROW;
+ 473   1      
+ 474   1          status = CYRET_SUCCESS;
+ 475   1          
+ 476   1          return status;
+ 477   1      }
+ 478          
+ 479          
+ 480          /*******************************************************************************
+ 481          * Function Name: CySpcCreateCmdEraseSector
+ 482          ********************************************************************************
+ 483          * Summary:
+ 484          *   Sets up the command to EraseSector.
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 9   
+
+ 485          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 486          *   
+ 487          *
+ 488          * Parameters:
+ 489          * array:
+ 490          *   Id of the array.
+ 491          *
+ 492          *
+ 493          * address:
+ 494          *   flash/eeprom addrress
+ 495          *
+ 496          *   
+ 497          * Return:
+ 498          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 499          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 500          *
+ 501          *
+ 502          * Theory:
+ 503          *
+ 504          *
+ 505          *******************************************************************************/
+ 506          cystatus CySpcCreateCmdEraseSector(uint8 array, uint16 address)
+ 507          {
+ 508   1          cystatus status;
+ 509   1      
+ 510   1          
+ 511   1          /* Create packet command. */
+ 512   1          cyCommand[0] = SPC_KEY_ONE;
+ 513   1          cyCommand[1] = SPC_KEY_TWO(SPC_CMD_ER_SECTOR);
+ 514   1          cyCommand[2] = SPC_CMD_ER_SECTOR;
+ 515   1          
+ 516   1          /* Create packet parameters. */
+ 517   1          cyCommand[3] = array;
+ 518   1      
+ 519   1          if(array < LAST_FLASH_ARRAYID)
+ 520   1          {
+ 521   2              cyCommand[4] = FLASH_SECTOR_ADDRESS(address);  
+ 522   2          }
+ 523   1          else
+ 524   1          {
+ 525   2              cyCommand[4] = EEPRM_SECTOR_ADDRESS(address);  
+ 526   2          }
+ 527   1      
+ 528   1          cyCommandSize = SIZEOF_CMD_ER_SECTOR;
+ 529   1      
+ 530   1          status = CYRET_SUCCESS;
+ 531   1          
+ 532   1          return status;
+ 533   1      }
+ 534          
+ 535          
+ 536          /*******************************************************************************
+ 537          * Function Name: CySpcCreateCmdGetTemp
+ 538          ********************************************************************************
+ 539          * Summary:
+ 540          *   Sets up the command to GetTemp.
+ 541          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 542          *   
+ 543          *
+ 544          * Parameters:
+ 545          * numSamples:
+ 546          *
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 10  
+
+ 547          *
+ 548          * timerPeriod:
+ 549          *
+ 550          *
+ 551          * clkDivSelect:
+ 552          *
+ 553          *   
+ 554          * Return:
+ 555          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 556          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 557          *
+ 558          * Theory:
+ 559          *
+ 560          *
+ 561          *******************************************************************************/
+ 562          cystatus CySpcCreateCmdGetTemp(uint8 numSamples, uint16 timerPeriod, uint8 clkDivSelect)
+ 563          {
+ 564   1          cystatus status;
+ 565   1      
+ 566   1      
+ 567   1          /* Check parameters. */
+ 568   1          if(numSamples)
+ 569   1          {
+ 570   2              /* Create packet command. */
+ 571   2              cyCommand[0] = SPC_KEY_ONE;
+ 572   2              cyCommand[1] = SPC_KEY_TWO(SPC_CMD_GET_TEMP);
+ 573   2              cyCommand[2] = SPC_CMD_GET_TEMP;
+ 574   2          
+ 575   2              /* Create packet parameters. */
+ 576   2              cyCommand[3] = numSamples;
+ 577   2              cyCommand[4] = HI8(timerPeriod);
+ 578   2              cyCommand[5] = LO8(timerPeriod);
+ 579   2              cyCommand[6] = clkDivSelect;
+ 580   2      
+ 581   2              cyCommandSize = SIZEOF_CMD_GET_TEMP;
+ 582   2      
+ 583   2              status = CYRET_SUCCESS;
+ 584   2          }
+ 585   1          else
+ 586   1          {
+ 587   2              status = CYRET_BAD_PARAM;
+ 588   2          }
+ 589   1      
+ 590   1          return status;
+ 591   1      }
+ 592          
+ 593          
+ 594          /*******************************************************************************
+ 595          * Function Name: CySpcCreateCmdSetupTs
+ 596          ********************************************************************************
+ 597          * Summary:
+ 598          *   Sets up the command to Setup Temperature Sensor.
+ 599          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 600          *   
+ 601          *
+ 602          * Parameters:
+ 603          * SeqSelect:
+ 604          *
+ 605          *
+ 606          * SeqFreeze:
+ 607          *
+ 608          *
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 11  
+
+ 609          * ClkDivSel:
+ 610          *
+ 611          *
+ 612          * CurvCompEnable:
+ 613          *
+ 614          *
+ 615          *   
+ 616          * Return:
+ 617          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 618          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 619          *
+ 620          *
+ 621          * Theory:
+ 622          *
+ 623          *
+ 624          *******************************************************************************/
+ 625          cystatus CySpcCreateCmdSetupTs(uint8 SeqSelect, uint8 SeqFreeze, uint8 ClkDivSel, uint8 CurvCompEnable)
+ 626          {
+ 627   1          cystatus status;
+ 628   1      
+ 629   1          
+ 630   1          /* Create packet command. */
+ 631   1          cyCommand[0] = SPC_KEY_ONE;
+ 632   1          cyCommand[1] = SPC_KEY_TWO(SPC_CMD_SETUP_TS);
+ 633   1          cyCommand[2] = SPC_CMD_SETUP_TS;
+ 634   1          
+ 635   1          /* Create packet parameters. */
+ 636   1          cyCommand[3] = SeqSelect;
+ 637   1          cyCommand[4] = SeqFreeze;  
+ 638   1          cyCommand[5] = ClkDivSel;  
+ 639   1          cyCommand[6] = CurvCompEnable;  
+ 640   1      
+ 641   1          cyCommandSize = SIZEOF_CMD_SETUP_TS;
+ 642   1      
+ 643   1          status = CYRET_SUCCESS;
+ 644   1          
+ 645   1          return status;
+ 646   1      }
+ 647          
+ 648          
+ 649          /*******************************************************************************
+ 650          * Function Name: CySpcCreateCmdDisableTs
+ 651          ********************************************************************************
+ 652          * Summary:
+ 653          *   Sets up the command to Temperature Sensor.
+ 654          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 655          *   
+ 656          *
+ 657          * Parameters:
+ 658          * array:
+ 659          *   Id of the array.
+ 660          *
+ 661          *
+ 662          * address:
+ 663          *   flash/eeprom addrress
+ 664          *
+ 665          *   
+ 666          * Return:
+ 667          *   CYRET_SUCCESS if the command was created sucessfuly.
+ 668          *   CYRET_BAD_PARAM if an invalid parameter was passed.
+ 669          *
+ 670          *
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 12  
+
+ 671          * Theory:
+ 672          *
+ 673          *
+ 674          *******************************************************************************/
+ 675          cystatus CySpcCreateCmdDisableTs(void)
+ 676          {
+ 677   1          cystatus status;
+ 678   1      
+ 679   1          
+ 680   1          /* Create packet command. */
+ 681   1          cyCommand[0] = SPC_KEY_ONE;
+ 682   1          cyCommand[1] = SPC_KEY_TWO(SPC_CMD_DISABLE_TS);
+ 683   1          cyCommand[2] = SPC_CMD_DISABLE_TS;
+ 684   1          
+ 685   1          cyCommandSize = SIZEOF_CMD_DISABLE_TS;
+ 686   1      
+ 687   1          status = CYRET_SUCCESS;
+ 688   1          
+ 689   1          return status;
+ 690   1      }
+ 691          
+ 692          
+ 693          /*******************************************************************************
+ 694          * Function Name: CySpcActivePower
+ 695          ********************************************************************************
+ 696          * Summary:
+ 697          *   Selects the power for active operation mode.
+ 698          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 699          *
+ 700          *
+ 701          * Parameters:
+ 702          *   state:
+ 703          *       Active power state. 1 is active, 0 inactive.
+ 704          *
+ 705          *   
+ 706          * Return:
+ 707          *   void.
+ 708          *
+ 709          *
+ 710          *******************************************************************************/
+ 711          void CySpcActivePower(uint8 state) 
+ 712          {
+ 713   1          if(state == 0)
+ 714   1          {
+ 715   2              *PM_ACT_SPC &= ~PM_SPC_MASK;
+ 716   2          }
+ 717   1          else
+ 718   1          {
+ 719   2              *PM_ACT_SPC |= PM_SPC_MASK;
+ 720   2          }
+ 721   1      }
+ 722          
+ 723          /*******************************************************************************
+ 724          * Function Name: CySpcStandbyPower
+ 725          ********************************************************************************
+ 726          * Summary:
+ 727          *   Selects the power for standby operation modes.
+ 728          *   NOTE: SPC functions are not meant to be called directly by the user application.
+ 729          *
+ 730          *
+ 731          * Parameters:
+ 732          *   state:
+C51 COMPILER V8.16   CYSPC                                                                 12/13/2010 22:57:36 PAGE 13  
+
+ 733          *       Standby power state. 1 is active, 0 inactive.
+ 734          *
+ 735          *   
+ 736          * Return:
+ 737          *   void.
+ 738          *
+ 739          *
+ 740          *******************************************************************************/
+ 741          void CySpcStandbyPower(uint8 state) 
+ 742          {
+ 743   1          if(state == 0)
+ 744   1          {
+ 745   2              *PM_STBY_SPC &= ~PM_SPC_MASK;
+ 746   2          }
+ 747   1          else
+ 748   1          {
+ 749   2              *PM_STBY_SPC |= PM_SPC_MASK;
+ 750   2          }
+ 751   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1464    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     78    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

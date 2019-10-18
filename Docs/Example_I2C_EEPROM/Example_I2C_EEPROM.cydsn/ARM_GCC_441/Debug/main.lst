@@ -1,0 +1,971 @@
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 18, 4
+  12              		.thumb
+  13              		.file	"main.c"
+  14              		.section	.debug_abbrev,"",%progbits
+  15              	.Ldebug_abbrev0:
+  16              		.section	.debug_info,"",%progbits
+  17              	.Ldebug_info0:
+  18              		.section	.debug_line,"",%progbits
+  19              	.Ldebug_line0:
+  20 0000 83000000 		.text
+  20      02005300 
+  20      00000201 
+  20      FB0E0D00 
+  20      01010101 
+  21              	.Ltext0:
+  22              		.cfi_sections	.debug_frame
+  23              		.global	cMessage
+  24              		.data
+  25              		.align	2
+  26              		.type	cMessage, %object
+  27              		.size	cMessage, 17
+  28              	cMessage:
+  29 0000 00       		.byte	0
+  30 0001 01       		.byte	1
+  31 0002 02       		.byte	2
+  32 0003 03       		.byte	3
+  33 0004 04       		.byte	4
+  34 0005 05       		.byte	5
+  35 0006 06       		.byte	6
+  36 0007 07       		.byte	7
+  37 0008 08       		.byte	8
+  38 0009 09       		.byte	9
+  39 000a 0A       		.byte	10
+  40 000b 0B       		.byte	11
+  41 000c 0C       		.byte	12
+  42 000d 0D       		.byte	13
+  43 000e 0E       		.byte	14
+  44 000f 0F       		.byte	15
+  45 0010 10       		.byte	16
+  46              		.comm	cRx_Buffer,15,4
+  47              		.global	cLength
+  48              		.type	cLength, %object
+  49              		.size	cLength, 1
+  50              	cLength:
+  51 0011 11       		.byte	17
+  52              		.comm	cStatus,1,1
+  53              		.comm	cIndex,1,1
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 2
+
+
+  54              		.comm	cPosn,1,1
+  55 0012 0000     		.section	.text.main,"ax",%progbits
+  56              		.align	2
+  57              		.global	main
+  58              		.thumb
+  59              		.thumb_func
+  60              		.type	main, %function
+  61              	main:
+  62              	.LFB29:
+  63              		.file 1 "./main.c"
+   1:./main.c      **** //--------------------------------------------------------------------------
+   2:./main.c      **** //
+   3:./main.c      **** // Copyright 2008, Cypress Semiconductor Corporation.
+   4:./main.c      **** //
+   5:./main.c      **** // This software is owned by Cypress Semiconductor Corporation (Cypress)
+   6:./main.c      **** // and is protected by and subject to worldwide patent protection (United
+   7:./main.c      **** // States and foreign), United States copyright laws and international
+   8:./main.c      **** // treaty provisions. Cypress hereby grants to licensee a personal,
+   9:./main.c      **** // non-exclusive, non-transferable license to copy, use, modify, create
+  10:./main.c      **** // derivative works of, and compile the Cypress Source Code and derivative
+  11:./main.c      **** // works for the sole purpose of creating custom software in support of
+  12:./main.c      **** // licensee product to be used only in conjunction with a Cypress integrated
+  13:./main.c      **** // circuit as specified in the applicable agreement. Any reproduction,
+  14:./main.c      **** // modification, translation, compilation, or representation of this
+  15:./main.c      **** // software except as specified above is prohibited without the express
+  16:./main.c      **** // written permission of Cypress.
+  17:./main.c      **** //
+  18:./main.c      **** // Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND,EXPRESS OR IMPLIED,
+  19:./main.c      **** // WITH REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  20:./main.c      **** // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  21:./main.c      **** // Cypress reserves the right to make changes without further notice to the
+  22:./main.c      **** // materials described herein. Cypress does not assume any liability arising
+  23:./main.c      **** // out of the application or use of any product or circuit described herein.
+  24:./main.c      **** // Cypress does not authorize its products for use as critical components in
+  25:./main.c      **** // life-support systems where a malfunction or failure may reasonably be
+  26:./main.c      **** // expected to result in significant injury to the user. The inclusion of
+  27:./main.c      **** // Cypress' product in a life-support systems application implies that the
+  28:./main.c      **** // manufacturer assumes all risk of such use and in doing so indemnifies
+  29:./main.c      **** // Cypress against all charges.
+  30:./main.c      **** //
+  31:./main.c      **** // Use may be limited by and subject to the applicable Cypress software
+  32:./main.c      **** // license agreement.
+  33:./main.c      **** //
+  34:./main.c      **** //
+  35:./main.c      **** //--------------------------------------------------------------------------
+  36:./main.c      **** //*****************************************************************************
+  37:./main.c      **** //*****************************************************************************
+  38:./main.c      **** //  FILENAME: main.c
+  39:./main.c      **** //   Version: 1.0, Updated on 24 November 2009
+  40:./main.c      **** //
+  41:./main.c      **** //  DESCRIPTION: Main file of the Example_I2C_EEPROM Project.
+  42:./main.c      **** //
+  43:./main.c      **** //-----------------------------------------------------------------------------
+  44:./main.c      **** //  Copyright (c) Cypress MicroSystems 2000-2003. All Rights Reserved.
+  45:./main.c      **** //*****************************************************************************
+  46:./main.c      **** //*****************************************************************************
+  47:./main.c      **** //*****************************************************************************
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 3
+
+
+  48:./main.c      **** // 
+  49:./main.c      **** //The project can be tested using a serial EEPROM 24C04.
+  50:./main.c      **** // 
+  51:./main.c      **** //CY8CKIT-001 Board Project
+  52:./main.c      **** //
+  53:./main.c      **** //Project Objective
+  54:./main.c      **** //	    To demonstrate the interfacing of serial EEPROM with PSoC.
+  55:./main.c      **** //
+  56:./main.c      **** //Overview
+  57:./main.c      **** //	This project is designed to demonstrate the interfacing of serial EEPROM with PSoC.
+  58:./main.c      **** //	In this I2C protocol is used to control the transfer between the EEPROM and PSoC.
+  59:./main.c      **** //
+  60:./main.c      **** //	The following changes were made to the default settings in the Device Editor:
+  61:./main.c      **** // 
+  62:./main.c      **** //    	Select User Modules
+  63:./main.c      **** //    	    o Place I2C Component 
+  64:./main.c      **** //    	    o In this example, this Component is renamed as I2C
+  65:./main.c      **** //    		o Place Character LCD Component
+  66:./main.c      **** //			o Rename it as LCD
+  67:./main.c      **** //		Configure these Components as explained in documentation.
+  68:./main.c      **** //
+  69:./main.c      **** // Operation
+  70:./main.c      **** //	Upon program execution all hardware settings from the device configuration are loaded 
+  71:./main.c      **** //	into the device and main.c is executed. Data Stored in the RAM (RAMBuffer) is transmitted
+  72:./main.c      **** //	out of PSoC to be stored at address 0 of external EEPROM using I2C protocol.  Next the
+  73:./main.c      **** //	internal subaddress of EEPROM is reset to 0 and data is read back
+  74:./main.c      **** //
+  75:./main.c      **** // Circuit Connections
+  76:./main.c      **** // 	This example can be tested using the CCY8CKIT-001 board.  The following connections
+  77:./main.c      **** // 	are to be made.  
+  78:./main.c      **** // 
+  79:./main.c      **** // 	PSoC
+  80:./main.c      **** // 	--------
+  81:./main.c      **** // 		P4[5] - SDA 			(Externally pull up to Vcc using 2.2K resistor)
+  82:./main.c      **** // 		P4[4] - SCL 			(Externally pull up to Vcc using 2.2K resistor)
+  83:./main.c      **** // 	
+  84:./main.c      **** // 	24C04 (8 Pin PDIP) - EEPROM		
+  85:./main.c      **** // 	---------------------------
+  86:./main.c      **** // 		Pin 1,2,3	- Ground    (to make the 7 bit address as 1010 000)
+  87:./main.c      **** // 		Pin 4		- Ground
+  88:./main.c      **** // 		Pin 5		- SDA		Connect to P4[5] of PSoC
+  89:./main.c      **** // 		Pin 6		- SCL		Connect to P4[4] of PSoC
+  90:./main.c      **** // 		Pin 7 		- Ground
+  91:./main.c      **** // 		Pin 8		- Vcc.	
+  92:./main.c      **** //
+  93:./main.c      **** //----------------------------------------------------------------------------
+  94:./main.c      **** 
+  95:./main.c      **** 
+  96:./main.c      **** #include <device.h> 
+  97:./main.c      **** 
+  98:./main.c      **** //Word address
+  99:./main.c      **** #define ADDR 0x00 
+ 100:./main.c      **** 
+ 101:./main.c      **** //Slave address
+ 102:./main.c      **** #define SLAVE_ADDR 0x50	
+ 103:./main.c      **** 
+ 104:./main.c      **** //Message is the data which has to be written to EEPROM. 
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 4
+
+
+ 105:./main.c      **** //First data in this array is Word address
+ 106:./main.c      **** uint8 cMessage[] = {ADDR, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+ 107:./main.c      **** 
+ 108:./main.c      **** // buffer to save read back data
+ 109:./main.c      **** uint8 cRx_Buffer[15]; 
+ 110:./main.c      **** 
+ 111:./main.c      **** // Length of data to be written including word address
+ 112:./main.c      **** uint8 cLength = 0x11; 
+ 113:./main.c      **** 
+ 114:./main.c      **** uint8 cStatus,cIndex,cPosn;
+ 115:./main.c      **** 
+ 116:./main.c      **** //Main routine starts from here
+ 117:./main.c      **** void main()
+ 118:./main.c      **** {
+  64              		.loc 1 118 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 1, uses_anonymous_args = 0
+  68 0000 80B5     		push	{r7, lr}
+  69              	.LCFI0:
+  70              		.cfi_def_cfa_offset 8
+  71 0002 00AF     		add	r7, sp, #0
+  72              		.cfi_offset 14, -4
+  73              		.cfi_offset 7, -8
+  74              	.LCFI1:
+  75              		.cfi_def_cfa_register 7
+ 119:./main.c      **** 	// enable global interrupts
+ 120:./main.c      **** 	CYGlobalIntEnable;  
+  76              		.loc 1 120 0
+  77              	@ 120 "./main.c" 1
+  78 0004 62B6     		CPSIE   i
+  79              	@ 0 "" 2
+ 121:./main.c      **** 	
+ 122:./main.c      **** 	// enable I2C interrupts
+ 123:./main.c      **** 	I2C_EnableInt();  
+  80              		.loc 1 123 0
+  81              		.thumb
+  82 0006 FFF7FEFF 		bl	I2C_EnableInt
+ 124:./main.c      **** 	
+ 125:./main.c      **** 	//Start LCD
+ 126:./main.c      **** 	LCD_Start(); 
+  83              		.loc 1 126 0
+  84 000a FFF7FEFF 		bl	LCD_Start
+ 127:./main.c      **** 	
+ 128:./main.c      **** 	//Start I2C
+ 129:./main.c      **** 	I2C_Start(); 
+  85              		.loc 1 129 0
+  86 000e FFF7FEFF 		bl	I2C_Start
+  87              	.L9:
+ 130:./main.c      **** 	
+ 131:./main.c      ****     for(;;)
+ 132:./main.c      ****     {
+ 133:./main.c      **** 		I2C_MasterClearStatus(); /* Clear any previous status */
+  88              		.loc 1 133 0
+  89 0012 FFF7FEFF 		bl	I2C_MasterClearStatus
+ 134:./main.c      **** 					
+ 135:./main.c      **** 		//Following API writes the data from PSoC3 RAM buffer to EEPROM
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 5
+
+
+ 136:./main.c      **** 		//SLAVE_ADDR is the slave address in this API
+ 137:./main.c      **** 		//cMessage is the pointer to array which contains the data to be written to EEPROM.
+ 138:./main.c      **** 		//cLength is the number of bytes which have to be written to EEPROM
+ 139:./main.c      **** 		//I2C_MODE_COMPLETE_XFER, is to send data completly before sending stop command.
+ 140:./main.c      **** 		
+ 141:./main.c      **** 		I2C_MasterWriteBuf(SLAVE_ADDR, cMessage, cLength, I2C_MODE_COMPLETE_XFER);
+  90              		.loc 1 141 0
+  91 0016 40F20003 		movw	r3, #:lower16:cLength
+  92 001a C0F20003 		movt	r3, #:upper16:cLength
+  93 001e 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+  94 0020 4FF05000 		mov	r0, #80
+  95 0024 40F20001 		movw	r1, #:lower16:cMessage
+  96 0028 C0F20001 		movt	r1, #:upper16:cMessage
+  97 002c 1A46     		mov	r2, r3
+  98 002e 4FF00003 		mov	r3, #0
+  99 0032 FFF7FEFF 		bl	I2C_MasterWriteBuf
+ 100              	.L2:
+ 142:./main.c      **** 		
+ 143:./main.c      **** 		//wait until Transfer is complete
+ 144:./main.c      **** 		while((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT )==0); 
+ 101              		.loc 1 144 0
+ 102 0036 FFF7FEFF 		bl	I2C_MasterStatus
+ 103 003a 0346     		mov	r3, r0
+ 104 003c 03F00203 		and	r3, r3, #2
+ 105 0040 002B     		cmp	r3, #0
+ 106 0042 F8D0     		beq	.L2
+ 145:./main.c      **** 		
+ 146:./main.c      **** 		// delay to complete the write operation(twr)
+ 147:./main.c      **** 		CyDelay(10);
+ 107              		.loc 1 147 0
+ 108 0044 4FF00A00 		mov	r0, #10
+ 109 0048 FFF7FEFF 		bl	CyDelay
+ 148:./main.c      **** 		
+ 149:./main.c      **** 		//write a dummy byte to initialize the address word counter of 
+ 150:./main.c      **** 		//eeprom to start address for read back operation. First location 
+ 151:./main.c      **** 		//of cMessage array has word address.
+ 152:./main.c      **** 		
+ 153:./main.c      **** 		I2C_MasterWriteBuf(SLAVE_ADDR, cMessage, 1, I2C_MODE_COMPLETE_XFER);
+ 110              		.loc 1 153 0
+ 111 004c 4FF05000 		mov	r0, #80
+ 112 0050 40F20001 		movw	r1, #:lower16:cMessage
+ 113 0054 C0F20001 		movt	r1, #:upper16:cMessage
+ 114 0058 4FF00102 		mov	r2, #1
+ 115 005c 4FF00003 		mov	r3, #0
+ 116 0060 FFF7FEFF 		bl	I2C_MasterWriteBuf
+ 117              	.L3:
+ 154:./main.c      **** 		
+ 155:./main.c      **** 		//wait until Transfer is complete
+ 156:./main.c      **** 		while((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT )==0);
+ 118              		.loc 1 156 0
+ 119 0064 FFF7FEFF 		bl	I2C_MasterStatus
+ 120 0068 0346     		mov	r3, r0
+ 121 006a 03F00203 		and	r3, r3, #2
+ 122 006e 002B     		cmp	r3, #0
+ 123 0070 F8D0     		beq	.L3
+ 157:./main.c      **** 		
+ 158:./main.c      **** 		//Delay for setting address in EEPROM
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 6
+
+
+ 159:./main.c      **** 		CyDelayUs(1);
+ 124              		.loc 1 159 0
+ 125 0072 4FF00100 		mov	r0, #1
+ 126 0076 FFF7FEFF 		bl	CyDelayUs
+ 160:./main.c      **** 		
+ 161:./main.c      **** 		//Read the 16 bytes from slave, staring from word address specified by iMessage
+ 162:./main.c      **** 		//SLAVE_ADDR is the slave address in this API
+ 163:./main.c      **** 		//cRx_Buffer is the pointer to array where data has to be stored after reading from EEPROM.
+ 164:./main.c      **** 		//cLength-1 is the number of bytes which have to be read from EEPROM
+ 165:./main.c      **** 		//I2C_MODE_COMPLETE_XFER, is to read data completly before sending stop command.
+ 166:./main.c      **** 		
+ 167:./main.c      **** 		I2C_MasterReadBuf(SLAVE_ADDR, cRx_Buffer,cLength-1, I2C_MODE_COMPLETE_XFER );
+ 127              		.loc 1 167 0
+ 128 007a 40F20003 		movw	r3, #:lower16:cLength
+ 129 007e C0F20003 		movt	r3, #:upper16:cLength
+ 130 0082 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 131 0084 03F1FF33 		add	r3, r3, #-1
+ 132 0088 DBB2     		uxtb	r3, r3
+ 133 008a 4FF05000 		mov	r0, #80
+ 134 008e 40F20001 		movw	r1, #:lower16:cRx_Buffer
+ 135 0092 C0F20001 		movt	r1, #:upper16:cRx_Buffer
+ 136 0096 1A46     		mov	r2, r3
+ 137 0098 4FF00003 		mov	r3, #0
+ 138 009c FFF7FEFF 		bl	I2C_MasterReadBuf
+ 139              	.L4:
+ 168:./main.c      **** 				
+ 169:./main.c      **** 		//wait until Transfer is complete
+ 170:./main.c      **** 		while((I2C_MasterStatus() & I2C_MSTAT_RD_CMPLT )==0); 
+ 140              		.loc 1 170 0
+ 141 00a0 FFF7FEFF 		bl	I2C_MasterStatus
+ 142 00a4 0346     		mov	r3, r0
+ 143 00a6 03F00103 		and	r3, r3, #1
+ 144 00aa 002B     		cmp	r3, #0
+ 145 00ac F8D0     		beq	.L4
+ 171:./main.c      **** 		
+ 172:./main.c      **** 		//Display the data LCD. First 8 bytes in row 0 		
+ 173:./main.c      **** 		for (cIndex=0,cPosn=0;cIndex<8;cIndex++,cPosn+=2)
+ 146              		.loc 1 173 0
+ 147 00ae 40F20003 		movw	r3, #:lower16:cIndex
+ 148 00b2 C0F20003 		movt	r3, #:upper16:cIndex
+ 149 00b6 4FF00002 		mov	r2, #0
+ 150 00ba 1A70     		strb	r2, [r3, #0]
+ 151 00bc 40F20003 		movw	r3, #:lower16:cPosn
+ 152 00c0 C0F20003 		movt	r3, #:upper16:cPosn
+ 153 00c4 4FF00002 		mov	r2, #0
+ 154 00c8 1A70     		strb	r2, [r3, #0]
+ 155 00ca 31E0     		b	.L5
+ 156              	.L6:
+ 174:./main.c      **** 		{
+ 175:./main.c      **** 			LCD_Position(0,cPosn);
+ 157              		.loc 1 175 0
+ 158 00cc 40F20003 		movw	r3, #:lower16:cPosn
+ 159 00d0 C0F20003 		movt	r3, #:upper16:cPosn
+ 160 00d4 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 161 00d6 4FF00000 		mov	r0, #0
+ 162 00da 1946     		mov	r1, r3
+ 163 00dc FFF7FEFF 		bl	LCD_Position
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 7
+
+
+ 176:./main.c      **** 			LCD_PrintInt8(cRx_Buffer[cIndex]);
+ 164              		.loc 1 176 0
+ 165 00e0 40F20003 		movw	r3, #:lower16:cIndex
+ 166 00e4 C0F20003 		movt	r3, #:upper16:cIndex
+ 167 00e8 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 168 00ea 1A46     		mov	r2, r3
+ 169 00ec 40F20003 		movw	r3, #:lower16:cRx_Buffer
+ 170 00f0 C0F20003 		movt	r3, #:upper16:cRx_Buffer
+ 171 00f4 9B5C     		ldrb	r3, [r3, r2]	@ zero_extendqisi2
+ 172 00f6 1846     		mov	r0, r3
+ 173 00f8 FFF7FEFF 		bl	LCD_PrintHexUint8
+ 174              		.loc 1 173 0
+ 175 00fc 40F20003 		movw	r3, #:lower16:cIndex
+ 176 0100 C0F20003 		movt	r3, #:upper16:cIndex
+ 177 0104 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 178 0106 03F10103 		add	r3, r3, #1
+ 179 010a DAB2     		uxtb	r2, r3
+ 180 010c 40F20003 		movw	r3, #:lower16:cIndex
+ 181 0110 C0F20003 		movt	r3, #:upper16:cIndex
+ 182 0114 1A70     		strb	r2, [r3, #0]
+ 183 0116 40F20003 		movw	r3, #:lower16:cPosn
+ 184 011a C0F20003 		movt	r3, #:upper16:cPosn
+ 185 011e 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 186 0120 03F10203 		add	r3, r3, #2
+ 187 0124 DAB2     		uxtb	r2, r3
+ 188 0126 40F20003 		movw	r3, #:lower16:cPosn
+ 189 012a C0F20003 		movt	r3, #:upper16:cPosn
+ 190 012e 1A70     		strb	r2, [r3, #0]
+ 191              	.L5:
+ 192 0130 40F20003 		movw	r3, #:lower16:cIndex
+ 193 0134 C0F20003 		movt	r3, #:upper16:cIndex
+ 194 0138 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 195 013a 072B     		cmp	r3, #7
+ 196 013c C6D9     		bls	.L6
+ 177:./main.c      **** 		}
+ 178:./main.c      **** 		
+ 179:./main.c      **** 		//Display next 8 bytes in row 1		
+ 180:./main.c      **** 		for (cIndex=8,cPosn=0;cIndex<cLength-1;cIndex++,cPosn+=2)
+ 197              		.loc 1 180 0
+ 198 013e 40F20003 		movw	r3, #:lower16:cIndex
+ 199 0142 C0F20003 		movt	r3, #:upper16:cIndex
+ 200 0146 4FF00802 		mov	r2, #8
+ 201 014a 1A70     		strb	r2, [r3, #0]
+ 202 014c 40F20003 		movw	r3, #:lower16:cPosn
+ 203 0150 C0F20003 		movt	r3, #:upper16:cPosn
+ 204 0154 4FF00002 		mov	r2, #0
+ 205 0158 1A70     		strb	r2, [r3, #0]
+ 206 015a 31E0     		b	.L7
+ 207              	.L8:
+ 181:./main.c      **** 		{
+ 182:./main.c      **** 			LCD_Position(1,cPosn);
+ 208              		.loc 1 182 0
+ 209 015c 40F20003 		movw	r3, #:lower16:cPosn
+ 210 0160 C0F20003 		movt	r3, #:upper16:cPosn
+ 211 0164 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 212 0166 4FF00100 		mov	r0, #1
+ 213 016a 1946     		mov	r1, r3
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 8
+
+
+ 214 016c FFF7FEFF 		bl	LCD_Position
+ 183:./main.c      **** 			LCD_PrintInt8(cRx_Buffer[cIndex]);
+ 215              		.loc 1 183 0
+ 216 0170 40F20003 		movw	r3, #:lower16:cIndex
+ 217 0174 C0F20003 		movt	r3, #:upper16:cIndex
+ 218 0178 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 219 017a 1A46     		mov	r2, r3
+ 220 017c 40F20003 		movw	r3, #:lower16:cRx_Buffer
+ 221 0180 C0F20003 		movt	r3, #:upper16:cRx_Buffer
+ 222 0184 9B5C     		ldrb	r3, [r3, r2]	@ zero_extendqisi2
+ 223 0186 1846     		mov	r0, r3
+ 224 0188 FFF7FEFF 		bl	LCD_PrintHexUint8
+ 225              		.loc 1 180 0
+ 226 018c 40F20003 		movw	r3, #:lower16:cIndex
+ 227 0190 C0F20003 		movt	r3, #:upper16:cIndex
+ 228 0194 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 229 0196 03F10103 		add	r3, r3, #1
+ 230 019a DAB2     		uxtb	r2, r3
+ 231 019c 40F20003 		movw	r3, #:lower16:cIndex
+ 232 01a0 C0F20003 		movt	r3, #:upper16:cIndex
+ 233 01a4 1A70     		strb	r2, [r3, #0]
+ 234 01a6 40F20003 		movw	r3, #:lower16:cPosn
+ 235 01aa C0F20003 		movt	r3, #:upper16:cPosn
+ 236 01ae 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 237 01b0 03F10203 		add	r3, r3, #2
+ 238 01b4 DAB2     		uxtb	r2, r3
+ 239 01b6 40F20003 		movw	r3, #:lower16:cPosn
+ 240 01ba C0F20003 		movt	r3, #:upper16:cPosn
+ 241 01be 1A70     		strb	r2, [r3, #0]
+ 242              	.L7:
+ 243 01c0 40F20003 		movw	r3, #:lower16:cIndex
+ 244 01c4 C0F20003 		movt	r3, #:upper16:cIndex
+ 245 01c8 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 246 01ca 1A46     		mov	r2, r3
+ 247 01cc 40F20003 		movw	r3, #:lower16:cLength
+ 248 01d0 C0F20003 		movt	r3, #:upper16:cLength
+ 249 01d4 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 250 01d6 03F1FF33 		add	r3, r3, #-1
+ 251 01da 9A42     		cmp	r2, r3
+ 252 01dc BEDB     		blt	.L8
+ 184:./main.c      **** 		}
+ 185:./main.c      **** 	}
+ 253              		.loc 1 185 0
+ 254 01de 18E7     		b	.L9
+ 255              		.cfi_endproc
+ 256              	.LFE29:
+ 257              		.size	main, .-main
+ 258              		.text
+ 259              	.Letext0:
+ 260              		.section	.debug_loc,"",%progbits
+ 261              	.Ldebug_loc0:
+ 262              	.LLST0:
+ 263 0000 00000000 		.4byte	.LFB29
+ 264 0004 02000000 		.4byte	.LCFI0
+ 265 0008 0100     		.2byte	0x1
+ 266 000a 5D       		.byte	0x5d
+ 267 000b 02000000 		.4byte	.LCFI0
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 9
+
+
+ 268 000f 04000000 		.4byte	.LCFI1
+ 269 0013 0200     		.2byte	0x2
+ 270 0015 7D       		.byte	0x7d
+ 271 0016 08       		.sleb128 8
+ 272 0017 04000000 		.4byte	.LCFI1
+ 273 001b E0010000 		.4byte	.LFE29
+ 274 001f 0200     		.2byte	0x2
+ 275 0021 77       		.byte	0x77
+ 276 0022 08       		.sleb128 8
+ 277 0023 00000000 		.4byte	0x0
+ 278 0027 00000000 		.4byte	0x0
+ 279              		.file 2 "./Generated_Source/PSoC5/core_cm3.h"
+ 280              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 281              		.section	.debug_info
+ 282 0000 34010000 		.4byte	0x134
+ 283 0004 0200     		.2byte	0x2
+ 284 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 285 000a 04       		.byte	0x4
+ 286 000b 01       		.uleb128 0x1
+ 287 000c 73000000 		.4byte	.LASF17
+ 288 0010 01       		.byte	0x1
+ 289 0011 6A000000 		.4byte	.LASF18
+ 290 0015 E7000000 		.4byte	.LASF19
+ 291 0019 00000000 		.4byte	0x0
+ 292 001d 00000000 		.4byte	0x0
+ 293 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 294 0025 00000000 		.4byte	.Ldebug_line0
+ 295 0029 02       		.uleb128 0x2
+ 296 002a 01       		.byte	0x1
+ 297 002b 06       		.byte	0x6
+ 298 002c CA000000 		.4byte	.LASF0
+ 299 0030 02       		.uleb128 0x2
+ 300 0031 01       		.byte	0x1
+ 301 0032 08       		.byte	0x8
+ 302 0033 7F000000 		.4byte	.LASF1
+ 303 0037 02       		.uleb128 0x2
+ 304 0038 02       		.byte	0x2
+ 305 0039 05       		.byte	0x5
+ 306 003a DD000000 		.4byte	.LASF2
+ 307 003e 02       		.uleb128 0x2
+ 308 003f 02       		.byte	0x2
+ 309 0040 07       		.byte	0x7
+ 310 0041 B7000000 		.4byte	.LASF3
+ 311 0045 02       		.uleb128 0x2
+ 312 0046 04       		.byte	0x4
+ 313 0047 05       		.byte	0x5
+ 314 0048 AE000000 		.4byte	.LASF4
+ 315 004c 02       		.uleb128 0x2
+ 316 004d 04       		.byte	0x4
+ 317 004e 07       		.byte	0x7
+ 318 004f 41000000 		.4byte	.LASF5
+ 319 0053 02       		.uleb128 0x2
+ 320 0054 08       		.byte	0x8
+ 321 0055 05       		.byte	0x5
+ 322 0056 00000000 		.4byte	.LASF6
+ 323 005a 02       		.uleb128 0x2
+ 324 005b 08       		.byte	0x8
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 10
+
+
+ 325 005c 07       		.byte	0x7
+ 326 005d 53000000 		.4byte	.LASF7
+ 327 0061 03       		.uleb128 0x3
+ 328 0062 04       		.byte	0x4
+ 329 0063 05       		.byte	0x5
+ 330 0064 696E7400 		.ascii	"int\000"
+ 331 0068 02       		.uleb128 0x2
+ 332 0069 04       		.byte	0x4
+ 333 006a 07       		.byte	0x7
+ 334 006b 16000000 		.4byte	.LASF8
+ 335 006f 02       		.uleb128 0x2
+ 336 0070 01       		.byte	0x1
+ 337 0071 08       		.byte	0x8
+ 338 0072 8D000000 		.4byte	.LASF9
+ 339 0076 04       		.uleb128 0x4
+ 340 0077 3B000000 		.4byte	.LASF20
+ 341 007b 03       		.byte	0x3
+ 342 007c 2A       		.byte	0x2a
+ 343 007d 30000000 		.4byte	0x30
+ 344 0081 05       		.uleb128 0x5
+ 345 0082 04       		.byte	0x4
+ 346 0083 07       		.byte	0x7
+ 347 0084 06       		.uleb128 0x6
+ 348 0085 01       		.byte	0x1
+ 349 0086 2B000000 		.4byte	.LASF21
+ 350 008a 01       		.byte	0x1
+ 351 008b 75       		.byte	0x75
+ 352 008c 00000000 		.4byte	.LFB29
+ 353 0090 E0010000 		.4byte	.LFE29
+ 354 0094 00000000 		.4byte	.LLST0
+ 355 0098 07       		.uleb128 0x7
+ 356 0099 9B000000 		.4byte	.LASF10
+ 357 009d 02       		.byte	0x2
+ 358 009e CE06     		.2byte	0x6ce
+ 359 00a0 A6000000 		.4byte	0xa6
+ 360 00a4 01       		.byte	0x1
+ 361 00a5 01       		.byte	0x1
+ 362 00a6 08       		.uleb128 0x8
+ 363 00a7 61000000 		.4byte	0x61
+ 364 00ab 09       		.uleb128 0x9
+ 365 00ac 76000000 		.4byte	0x76
+ 366 00b0 BB000000 		.4byte	0xbb
+ 367 00b4 0A       		.uleb128 0xa
+ 368 00b5 81000000 		.4byte	0x81
+ 369 00b9 10       		.byte	0x10
+ 370 00ba 00       		.byte	0x0
+ 371 00bb 0B       		.uleb128 0xb
+ 372 00bc 92000000 		.4byte	.LASF11
+ 373 00c0 01       		.byte	0x1
+ 374 00c1 6A       		.byte	0x6a
+ 375 00c2 AB000000 		.4byte	0xab
+ 376 00c6 01       		.byte	0x1
+ 377 00c7 05       		.byte	0x5
+ 378 00c8 03       		.byte	0x3
+ 379 00c9 00000000 		.4byte	cMessage
+ 380 00cd 09       		.uleb128 0x9
+ 381 00ce 76000000 		.4byte	0x76
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 11
+
+
+ 382 00d2 DD000000 		.4byte	0xdd
+ 383 00d6 0A       		.uleb128 0xa
+ 384 00d7 81000000 		.4byte	0x81
+ 385 00db 0E       		.byte	0xe
+ 386 00dc 00       		.byte	0x0
+ 387 00dd 0B       		.uleb128 0xb
+ 388 00de 30000000 		.4byte	.LASF12
+ 389 00e2 01       		.byte	0x1
+ 390 00e3 6D       		.byte	0x6d
+ 391 00e4 CD000000 		.4byte	0xcd
+ 392 00e8 01       		.byte	0x1
+ 393 00e9 05       		.byte	0x5
+ 394 00ea 03       		.byte	0x3
+ 395 00eb 00000000 		.4byte	cRx_Buffer
+ 396 00ef 0B       		.uleb128 0xb
+ 397 00f0 0E000000 		.4byte	.LASF13
+ 398 00f4 01       		.byte	0x1
+ 399 00f5 70       		.byte	0x70
+ 400 00f6 76000000 		.4byte	0x76
+ 401 00fa 01       		.byte	0x1
+ 402 00fb 05       		.byte	0x5
+ 403 00fc 03       		.byte	0x3
+ 404 00fd 00000000 		.4byte	cLength
+ 405 0101 0B       		.uleb128 0xb
+ 406 0102 23000000 		.4byte	.LASF14
+ 407 0106 01       		.byte	0x1
+ 408 0107 72       		.byte	0x72
+ 409 0108 76000000 		.4byte	0x76
+ 410 010c 01       		.byte	0x1
+ 411 010d 05       		.byte	0x5
+ 412 010e 03       		.byte	0x3
+ 413 010f 00000000 		.4byte	cStatus
+ 414 0113 0B       		.uleb128 0xb
+ 415 0114 D6000000 		.4byte	.LASF15
+ 416 0118 01       		.byte	0x1
+ 417 0119 72       		.byte	0x72
+ 418 011a 76000000 		.4byte	0x76
+ 419 011e 01       		.byte	0x1
+ 420 011f 05       		.byte	0x5
+ 421 0120 03       		.byte	0x3
+ 422 0121 00000000 		.4byte	cIndex
+ 423 0125 0B       		.uleb128 0xb
+ 424 0126 A8000000 		.4byte	.LASF16
+ 425 012a 01       		.byte	0x1
+ 426 012b 72       		.byte	0x72
+ 427 012c 76000000 		.4byte	0x76
+ 428 0130 01       		.byte	0x1
+ 429 0131 05       		.byte	0x5
+ 430 0132 03       		.byte	0x3
+ 431 0133 00000000 		.4byte	cPosn
+ 432 0137 00       		.byte	0x0
+ 433              		.section	.debug_abbrev
+ 434 0000 01       		.uleb128 0x1
+ 435 0001 11       		.uleb128 0x11
+ 436 0002 01       		.byte	0x1
+ 437 0003 25       		.uleb128 0x25
+ 438 0004 0E       		.uleb128 0xe
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 12
+
+
+ 439 0005 13       		.uleb128 0x13
+ 440 0006 0B       		.uleb128 0xb
+ 441 0007 03       		.uleb128 0x3
+ 442 0008 0E       		.uleb128 0xe
+ 443 0009 1B       		.uleb128 0x1b
+ 444 000a 0E       		.uleb128 0xe
+ 445 000b 11       		.uleb128 0x11
+ 446 000c 01       		.uleb128 0x1
+ 447 000d 52       		.uleb128 0x52
+ 448 000e 01       		.uleb128 0x1
+ 449 000f 55       		.uleb128 0x55
+ 450 0010 06       		.uleb128 0x6
+ 451 0011 10       		.uleb128 0x10
+ 452 0012 06       		.uleb128 0x6
+ 453 0013 00       		.byte	0x0
+ 454 0014 00       		.byte	0x0
+ 455 0015 02       		.uleb128 0x2
+ 456 0016 24       		.uleb128 0x24
+ 457 0017 00       		.byte	0x0
+ 458 0018 0B       		.uleb128 0xb
+ 459 0019 0B       		.uleb128 0xb
+ 460 001a 3E       		.uleb128 0x3e
+ 461 001b 0B       		.uleb128 0xb
+ 462 001c 03       		.uleb128 0x3
+ 463 001d 0E       		.uleb128 0xe
+ 464 001e 00       		.byte	0x0
+ 465 001f 00       		.byte	0x0
+ 466 0020 03       		.uleb128 0x3
+ 467 0021 24       		.uleb128 0x24
+ 468 0022 00       		.byte	0x0
+ 469 0023 0B       		.uleb128 0xb
+ 470 0024 0B       		.uleb128 0xb
+ 471 0025 3E       		.uleb128 0x3e
+ 472 0026 0B       		.uleb128 0xb
+ 473 0027 03       		.uleb128 0x3
+ 474 0028 08       		.uleb128 0x8
+ 475 0029 00       		.byte	0x0
+ 476 002a 00       		.byte	0x0
+ 477 002b 04       		.uleb128 0x4
+ 478 002c 16       		.uleb128 0x16
+ 479 002d 00       		.byte	0x0
+ 480 002e 03       		.uleb128 0x3
+ 481 002f 0E       		.uleb128 0xe
+ 482 0030 3A       		.uleb128 0x3a
+ 483 0031 0B       		.uleb128 0xb
+ 484 0032 3B       		.uleb128 0x3b
+ 485 0033 0B       		.uleb128 0xb
+ 486 0034 49       		.uleb128 0x49
+ 487 0035 13       		.uleb128 0x13
+ 488 0036 00       		.byte	0x0
+ 489 0037 00       		.byte	0x0
+ 490 0038 05       		.uleb128 0x5
+ 491 0039 24       		.uleb128 0x24
+ 492 003a 00       		.byte	0x0
+ 493 003b 0B       		.uleb128 0xb
+ 494 003c 0B       		.uleb128 0xb
+ 495 003d 3E       		.uleb128 0x3e
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 13
+
+
+ 496 003e 0B       		.uleb128 0xb
+ 497 003f 00       		.byte	0x0
+ 498 0040 00       		.byte	0x0
+ 499 0041 06       		.uleb128 0x6
+ 500 0042 2E       		.uleb128 0x2e
+ 501 0043 00       		.byte	0x0
+ 502 0044 3F       		.uleb128 0x3f
+ 503 0045 0C       		.uleb128 0xc
+ 504 0046 03       		.uleb128 0x3
+ 505 0047 0E       		.uleb128 0xe
+ 506 0048 3A       		.uleb128 0x3a
+ 507 0049 0B       		.uleb128 0xb
+ 508 004a 3B       		.uleb128 0x3b
+ 509 004b 0B       		.uleb128 0xb
+ 510 004c 11       		.uleb128 0x11
+ 511 004d 01       		.uleb128 0x1
+ 512 004e 12       		.uleb128 0x12
+ 513 004f 01       		.uleb128 0x1
+ 514 0050 40       		.uleb128 0x40
+ 515 0051 06       		.uleb128 0x6
+ 516 0052 00       		.byte	0x0
+ 517 0053 00       		.byte	0x0
+ 518 0054 07       		.uleb128 0x7
+ 519 0055 34       		.uleb128 0x34
+ 520 0056 00       		.byte	0x0
+ 521 0057 03       		.uleb128 0x3
+ 522 0058 0E       		.uleb128 0xe
+ 523 0059 3A       		.uleb128 0x3a
+ 524 005a 0B       		.uleb128 0xb
+ 525 005b 3B       		.uleb128 0x3b
+ 526 005c 05       		.uleb128 0x5
+ 527 005d 49       		.uleb128 0x49
+ 528 005e 13       		.uleb128 0x13
+ 529 005f 3F       		.uleb128 0x3f
+ 530 0060 0C       		.uleb128 0xc
+ 531 0061 3C       		.uleb128 0x3c
+ 532 0062 0C       		.uleb128 0xc
+ 533 0063 00       		.byte	0x0
+ 534 0064 00       		.byte	0x0
+ 535 0065 08       		.uleb128 0x8
+ 536 0066 35       		.uleb128 0x35
+ 537 0067 00       		.byte	0x0
+ 538 0068 49       		.uleb128 0x49
+ 539 0069 13       		.uleb128 0x13
+ 540 006a 00       		.byte	0x0
+ 541 006b 00       		.byte	0x0
+ 542 006c 09       		.uleb128 0x9
+ 543 006d 01       		.uleb128 0x1
+ 544 006e 01       		.byte	0x1
+ 545 006f 49       		.uleb128 0x49
+ 546 0070 13       		.uleb128 0x13
+ 547 0071 01       		.uleb128 0x1
+ 548 0072 13       		.uleb128 0x13
+ 549 0073 00       		.byte	0x0
+ 550 0074 00       		.byte	0x0
+ 551 0075 0A       		.uleb128 0xa
+ 552 0076 21       		.uleb128 0x21
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 14
+
+
+ 553 0077 00       		.byte	0x0
+ 554 0078 49       		.uleb128 0x49
+ 555 0079 13       		.uleb128 0x13
+ 556 007a 2F       		.uleb128 0x2f
+ 557 007b 0B       		.uleb128 0xb
+ 558 007c 00       		.byte	0x0
+ 559 007d 00       		.byte	0x0
+ 560 007e 0B       		.uleb128 0xb
+ 561 007f 34       		.uleb128 0x34
+ 562 0080 00       		.byte	0x0
+ 563 0081 03       		.uleb128 0x3
+ 564 0082 0E       		.uleb128 0xe
+ 565 0083 3A       		.uleb128 0x3a
+ 566 0084 0B       		.uleb128 0xb
+ 567 0085 3B       		.uleb128 0x3b
+ 568 0086 0B       		.uleb128 0xb
+ 569 0087 49       		.uleb128 0x49
+ 570 0088 13       		.uleb128 0x13
+ 571 0089 3F       		.uleb128 0x3f
+ 572 008a 0C       		.uleb128 0xc
+ 573 008b 02       		.uleb128 0x2
+ 574 008c 0A       		.uleb128 0xa
+ 575 008d 00       		.byte	0x0
+ 576 008e 00       		.byte	0x0
+ 577 008f 00       		.byte	0x0
+ 578              		.section	.debug_pubnames,"",%progbits
+ 579 0000 60000000 		.4byte	0x60
+ 580 0004 0200     		.2byte	0x2
+ 581 0006 00000000 		.4byte	.Ldebug_info0
+ 582 000a 38010000 		.4byte	0x138
+ 583 000e 84000000 		.4byte	0x84
+ 584 0012 6D61696E 		.ascii	"main\000"
+ 584      00
+ 585 0017 BB000000 		.4byte	0xbb
+ 586 001b 634D6573 		.ascii	"cMessage\000"
+ 586      73616765 
+ 586      00
+ 587 0024 DD000000 		.4byte	0xdd
+ 588 0028 6352785F 		.ascii	"cRx_Buffer\000"
+ 588      42756666 
+ 588      657200
+ 589 0033 EF000000 		.4byte	0xef
+ 590 0037 634C656E 		.ascii	"cLength\000"
+ 590      67746800 
+ 591 003f 01010000 		.4byte	0x101
+ 592 0043 63537461 		.ascii	"cStatus\000"
+ 592      74757300 
+ 593 004b 13010000 		.4byte	0x113
+ 594 004f 63496E64 		.ascii	"cIndex\000"
+ 594      657800
+ 595 0056 25010000 		.4byte	0x125
+ 596 005a 63506F73 		.ascii	"cPosn\000"
+ 596      6E00
+ 597 0060 00000000 		.4byte	0x0
+ 598              		.section	.debug_aranges,"",%progbits
+ 599 0000 1C000000 		.4byte	0x1c
+ 600 0004 0200     		.2byte	0x2
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 15
+
+
+ 601 0006 00000000 		.4byte	.Ldebug_info0
+ 602 000a 04       		.byte	0x4
+ 603 000b 00       		.byte	0x0
+ 604 000c 0000     		.2byte	0x0
+ 605 000e 0000     		.2byte	0x0
+ 606 0010 00000000 		.4byte	.LFB29
+ 607 0014 E0010000 		.4byte	.LFE29-.LFB29
+ 608 0018 00000000 		.4byte	0x0
+ 609 001c 00000000 		.4byte	0x0
+ 610              		.section	.debug_ranges,"",%progbits
+ 611              	.Ldebug_ranges0:
+ 612 0000 00000000 		.4byte	.Ltext0
+ 613 0004 00000000 		.4byte	.Letext0
+ 614 0008 00000000 		.4byte	.LFB29
+ 615 000c E0010000 		.4byte	.LFE29
+ 616 0010 00000000 		.4byte	0x0
+ 617 0014 00000000 		.4byte	0x0
+ 618              		.section	.debug_str,"MS",%progbits,1
+ 619              	.LASF6:
+ 620 0000 6C6F6E67 		.ascii	"long long int\000"
+ 620      206C6F6E 
+ 620      6720696E 
+ 620      7400
+ 621              	.LASF13:
+ 622 000e 634C656E 		.ascii	"cLength\000"
+ 622      67746800 
+ 623              	.LASF8:
+ 624 0016 756E7369 		.ascii	"unsigned int\000"
+ 624      676E6564 
+ 624      20696E74 
+ 624      00
+ 625              	.LASF14:
+ 626 0023 63537461 		.ascii	"cStatus\000"
+ 626      74757300 
+ 627              	.LASF21:
+ 628 002b 6D61696E 		.ascii	"main\000"
+ 628      00
+ 629              	.LASF12:
+ 630 0030 6352785F 		.ascii	"cRx_Buffer\000"
+ 630      42756666 
+ 630      657200
+ 631              	.LASF20:
+ 632 003b 75696E74 		.ascii	"uint8\000"
+ 632      3800
+ 633              	.LASF5:
+ 634 0041 6C6F6E67 		.ascii	"long unsigned int\000"
+ 634      20756E73 
+ 634      69676E65 
+ 634      6420696E 
+ 634      7400
+ 635              	.LASF7:
+ 636 0053 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 636      206C6F6E 
+ 636      6720756E 
+ 636      7369676E 
+ 636      65642069 
+ 637              	.LASF18:
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 16
+
+
+ 638 006a 2E2F6D61 		.ascii	"./main.c\000"
+ 638      696E2E63 
+ 638      00
+ 639              	.LASF17:
+ 640 0073 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 640      4320342E 
+ 640      342E3100 
+ 641              	.LASF1:
+ 642 007f 756E7369 		.ascii	"unsigned char\000"
+ 642      676E6564 
+ 642      20636861 
+ 642      7200
+ 643              	.LASF9:
+ 644 008d 63686172 		.ascii	"char\000"
+ 644      00
+ 645              	.LASF11:
+ 646 0092 634D6573 		.ascii	"cMessage\000"
+ 646      73616765 
+ 646      00
+ 647              	.LASF10:
+ 648 009b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 648      52784275 
+ 648      66666572 
+ 648      00
+ 649              	.LASF16:
+ 650 00a8 63506F73 		.ascii	"cPosn\000"
+ 650      6E00
+ 651              	.LASF4:
+ 652 00ae 6C6F6E67 		.ascii	"long int\000"
+ 652      20696E74 
+ 652      00
+ 653              	.LASF3:
+ 654 00b7 73686F72 		.ascii	"short unsigned int\000"
+ 654      7420756E 
+ 654      7369676E 
+ 654      65642069 
+ 654      6E7400
+ 655              	.LASF0:
+ 656 00ca 7369676E 		.ascii	"signed char\000"
+ 656      65642063 
+ 656      68617200 
+ 657              	.LASF15:
+ 658 00d6 63496E64 		.ascii	"cIndex\000"
+ 658      657800
+ 659              	.LASF2:
+ 660 00dd 73686F72 		.ascii	"short int\000"
+ 660      7420696E 
+ 660      7400
+ 661              	.LASF19:
+ 662 00e7 433A5C44 		.ascii	"C:\\Documents and Settings\\akay\\My Documents\\Exa"
+ 662      6F63756D 
+ 662      656E7473 
+ 662      20616E64 
+ 662      20536574 
+ 663 0116 6D706C65 		.ascii	"mple Projects\\PSoC3 I2C EEPROM\\Example_I2C_EEPROM"
+ 663      2050726F 
+ 663      6A656374 
+ARM GAS  C:\DOCUME~1\akay\LOCALS~1\Temp\ccyl07yW.s 			page 17
+
+
+ 663      735C5053 
+ 663      6F433320 
+ 664 0147 5C457861 		.ascii	"\\Example_I2C_EEPROM.cydsn\000"
+ 664      6D706C65 
+ 664      5F493243 
+ 664      5F454550 
+ 664      524F4D2E 
+ 665              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

@@ -1,0 +1,592 @@
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE I2C_INT
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C_INT.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\I2C_INT.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Project
+                    -s/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C_INT.lst) DB NOIP OT(0) INCDIR(G
+                    -enerated_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPR
+                    -OM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C_INT.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: I2C_INT.c  
+   3          * Version 2.0
+   4          *
+   5          *  Description:
+   6          *    This file contains the code that operates during the interrupt service
+   7          *    routine.  
+   8          *
+   9          *   Note:
+  10          *
+  11          *******************************************************************************
+  12          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  13          * You may use this file only in accordance with the license, terms, conditions, 
+  14          * disclaimers, and limitations in the end user license agreement accompanying 
+  15          * the software package with which this file was provided.
+  16          ********************************************************************************/
+  17          
+  18          #include "cytypes.h"
+  19          #include "I2C.h"  
+  20          
+  21          
+  22          /**********************************
+  23          *      System variables
+  24          **********************************/
+  25          
+  26          volatile uint8 I2C_State;               /* Current state of I2C state machine */
+  27          volatile uint8 I2C_Status;              /* Status byte */
+  28          
+  29          /* Master variables */
+  30          #if (I2C_MODE & I2C_MODE_MASTER)
+  31              volatile uint8 I2C_mstrStatus;         /* Master Status byte */
+  32              volatile uint8 I2C_mstrControl;        /* Master Control byte */
+  33              
+  34              /* Transmit buffer variables */
+  35              uint8 * I2C_mstrRdBufPtr;              /* Pointer to Master Tx/Rx buffer */       
+  36              volatile uint8 I2C_mstrRdBufSize;     /* Master buffer size  */
+  37              volatile uint8  I2C_mstrRdBufIndex;     /* Master buffer Index */
+  38              
+  39              /* Receive buffer variables */
+  40              uint8 * I2C_mstrWrBufPtr;              /* Pointer to Master Tx/Rx buffer */       
+  41              volatile uint8 I2C_mstrWrBufSize;      /* Master buffer size  */
+  42              volatile uint8 I2C_mstrWrBufIndex;     /* Master buffer Index */
+  43          
+  44          #endif  /* End (I2C_MODE & I2C_MODE_MASTER) */
+  45          
+  46          /* Slave variables */
+  47          #if (I2C_MODE & I2C_MODE_SLAVE)
+                  volatile uint8 I2C_slStatus;          /* Slave Status byte */
+              
+                  #if (I2C_ADDR_DECODE == I2C_SW_DECODE)
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 2   
+
+                      volatile uint8 I2C_Address;       /* Software address variable */
+                  #endif  /* End (I2C_ADDR_DECODE == I2C_SW_DECODE) */
+              
+                  /* Transmit buffer variables */
+                  uint8 * I2C_readBufPtr;                /* Pointer to Transmit buffer */       
+                  volatile uint8 I2C_readBufSize;        /* Slave Transmit buffer size */
+                  volatile uint8 I2C_readBufIndex;       /* Slave Transmit buffer Index */
+              
+                  /* Receive buffer variables */
+                  uint8 * I2C_writeBufPtr;               /* Pointer to Receive buffer */       
+                  volatile uint8 I2C_writeBufSize;       /* Slave Receive buffer size */
+                  volatile uint8 I2C_writeBufIndex;      /* Slave Receive buffer Index */
+              
+              #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+  65          
+  66          
+  67          /*******************************************************************************
+  68          * Function Name: I2C_ISR
+  69          ********************************************************************************
+  70          *
+  71          * Summary:
+  72          *  Handle Interrupt Service Routine.  
+  73          *
+  74          * Parameters:  
+  75          *  void
+  76          *
+  77          * Return: 
+  78          *  void
+  79          *
+  80          * Reentrant:
+  81          *  No
+  82          *
+  83          *******************************************************************************/
+  84          CY_ISR(I2C_ISR)
+  85          {
+  86   1          #if (I2C_MODE & I2C_MODE_SLAVE)
+                     static uint8  tmp8;    /* Making these static so not wasting time allocating */
+                  #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+  89   1      
+  90   1          static uint8  tmpCsr;  /* on the stack each time and no one else can see them */
+  91   1      
+  92   1          /* Entry from interrupt */
+  93   1          /* In hardware address compare mode, we can assume we only get interrupted when */
+  94   1          /* a valid address is recognized. In software address compare mode, we have to */
+  95   1          /* check every address after a start condition.                                 */
+  96   1      
+  97   1          tmpCsr = I2C_CSR_REG;          /* Make temp copy so that we can check */
+  98   1                                                      /* for stop condition after we are done */
+  99   1          
+ 100   1          #if (I2C_MODE & I2C_MODE_MULTI_MASTER_ENABLE)
+                     
+                      /* Check for loss of arbitration  */
+                      if(I2C_CHECK_LOST_ARB(tmpCsr))
+                      {
+                          /* Clear CSR to release the bus, if no Slave */
+                          #if ((I2C_MODE & I2C_MODE_SLAVE) == 0u)
+                              I2C_READY_TO_READ;
+                          #endif  /* (I2C_MODE == I2C_MULTI_MASTER_ENABLE) */    
+              
+                          /* Arbitration has been lost, reset state machine to Idle */
+                          I2C_State = I2C_SM_IDLE;
+                
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 3   
+
+                          /* Set status transfer complete and arbitration lost */
+                          I2C_mstrStatus |= (I2C_MSTAT_ERR_ARB_LOST | I2C_MSTAT_ERR_XFER);
+                      }
+                  #endif  /* End (I2C_MODE & I2C_MODE_MULTI_MASTER_ENABLE) */    
+ 117   1           
+ 118   1          /* Check for Master operation mode  */
+ 119   1          if(I2C_State & I2C_SM_MASTER)    /*******  Master *******/
+ 120   1          { 
+ 121   2              #if (I2C_MODE & I2C_MODE_MASTER)
+ 122   2              /* Enter Master state machine */
+ 123   2            
+ 124   2                  if(I2C_CHECK_BYTE_COMPLETE(tmpCsr))
+ 125   2                  {
+ 126   3                      switch(I2C_State)
+ 127   3                      {
+ 128   4                          case I2C_SM_MSTR_WR_ADDR:    /* After address is sent, Write some data */
+ 129   4                          case I2C_SM_MSTR_RD_ADDR:    /* After address is sent, Read some data */
+ 130   4                      
+ 131   4                              /* Check for Slave address ACK */
+ 132   4                              if(I2C_CHECK_ADDR_ACK(tmpCsr))  /* Check ACK/NAK */
+ 133   4                              {
+ 134   5                                  /* Setup for transmit or receive of data */
+ 135   5                                  if((I2C_State & I2C_SM_MSTR_ADDR) == I2C_SM_MSTR_WR_ADDR)  /* Write data */
+ 136   5                                  {
+ 137   6                                      if(I2C_mstrWrBufSize > 0)    /* Check if at least one byte is transfered *
+             -/
+ 138   6                                      {
+ 139   7                                          I2C_DATA_REG = I2C_mstrWrBufPtr[0u];   /* Load first data byte  */
+ 140   7                                          I2C_TRANSMIT_DATA;                                  /* Transmit data *
+             -/
+ 141   7                                          I2C_mstrWrBufIndex = 1u;                            /* Set index to 2n
+             -d location */
+ 142   7                                          I2C_State = I2C_SM_MSTR_WR_DATA;       /* Set transmit state until don
+             -e */
+ 143   7                                      }
+ 144   6                                      else   /* No data to tranfer */
+ 145   6                                      {
+ 146   7                                          /* Handles 0 bytes transfer */
+ 147   7                                          #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+ 148   7                                              I2C_GENERATE_STOP;
+ 149   7                                              I2C_mstrStatus |= I2C_MSTAT_WR_CMPLT;  /* Set status to Transfer c
+             -omplete */
+ 150   7                                              I2C_State  = I2C_SM_IDLE;              /* Reset State Machine to i
+             -dle */
+ 151   7                                              
+ 152   7                                          #else  /* The PSoC3 ES3 only handles this well */
+                                                      if(I2C_CHECK_NO_STOP(I2C_mstrControl))
+                                                      {
+                                                          /* Don't do stop, just halt */
+                                                          I2C_State  = I2C_SM_MSTR_HALT;    /* Reset State Machine to Ha
+             -lt, expect ReStart */
+                                                          I2C_mstrStatus |= I2C_MSTAT_XFER_HALT; 
+                                                          CyIntClearPending(I2C_ISR_NUMBER);
+                                                          I2C_DisableInt();
+                                                      }
+                                                      else  /* Do normal Stop */
+                                                      {
+                                                          I2C_GENERATE_STOP;
+                                                          I2C_State = I2C_SM_IDLE;    /* Reset State Machine to idle */
+                                                      }
+                                                      
+                                                  #endif  /* End (I2C_PSOC3_ES2 || I2C_PSOC5_ES1) */
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 4   
+
+ 168   7                                      }
+ 169   6                                  }
+ 170   5                                  else  /* Master Receive data */
+ 171   5                                  {                                
+ 172   6                                      I2C_READY_TO_READ;                              /* Ready to Read data */
+ 173   6                                      I2C_State  = I2C_SM_MSTR_RD_DATA;  /* Set state machine to Read data */
+ 174   6                                  }
+ 175   5                              }
+ 176   4                              /* The Address was NAKed */
+ 177   4                              else if(I2C_CHECK_ADDR_NAK(tmpCsr))
+ 178   4                              {
+ 179   5                                  if(I2C_CHECK_NO_STOP(I2C_mstrControl))
+ 180   5                                  {
+ 181   6                                      /* Don't do stop, just halt */
+ 182   6                                      I2C_State  = I2C_SM_MSTR_HALT;    /* Reset State Machine to Halt, expect R
+             -eStart */
+ 183   6                                      I2C_mstrStatus |= I2C_MSTAT_ERR_ADDR_NAK | \
+ 184   6                                                                     I2C_MSTAT_XFER_HALT; 
+ 185   6                                      CyIntClearPending(I2C_ISR_NUMBER);
+ 186   6                                      I2C_DisableInt();
+ 187   6                                  }
+ 188   5                                  else  /* Do normal Stop */
+ 189   5                                  {
+ 190   6                                      I2C_GENERATE_STOP;
+ 191   6                                      I2C_State = I2C_SM_IDLE;    /* Reset State Machine to idle */
+ 192   6                                      /* Set Address NAK Error */
+ 193   6                                      I2C_mstrStatus |= I2C_MSTAT_ERR_ADDR_NAK; 
+ 194   6                                  }
+ 195   5                              }
+ 196   4                              else   
+ 197   4                              {
+ 198   5                                  /* Bogus */
+ 199   5                                  CyIntClearPending(I2C_ISR_NUMBER);
+ 200   5                                  I2C_DisableInt();
+ 201   5                              }
+ 202   4                              break;
+ 203   4                      
+ 204   4                          case I2C_SM_MSTR_WR_DATA:                                             /* Write data to
+             - slave */
+ 205   4                      
+ 206   4                              if(I2C_CHECK_DATA_ACK(tmpCsr))       /* Check ACK */
+ 207   4                              {
+ 208   5                                  if(I2C_mstrWrBufIndex  < I2C_mstrWrBufSize)    /* Check if end of buffer */
+ 209   5                                  {
+ 210   6                                       /* Load first data byte  */
+ 211   6                                      I2C_DATA_REG = I2C_mstrWrBufPtr[I2C_mstrWrBufIndex];
+ 212   6                                      I2C_TRANSMIT_DATA;                                        /* Transmit */
+ 213   6                                      
+ 214   6                                      I2C_mstrWrBufIndex++;                                     /* Advance to da
+             -ta location */
+ 215   6                                  }
+ 216   5                                  else   /* Last byte was transmitted, send STOP */
+ 217   5                                  {
+ 218   6                                      if(I2C_CHECK_NO_STOP(I2C_mstrControl))
+ 219   6                                      {
+ 220   7                                          /* Don't do stop, just halt */
+ 221   7                                          I2C_State  = I2C_SM_MSTR_HALT;    /* Reset State Machine to Halt, expe
+             -ct ReStart */
+ 222   7                                          I2C_mstrStatus |= (I2C_MSTAT_WR_CMPLT | \
+ 223   7                                                                          I2C_MSTAT_XFER_HALT);
+ 224   7                                          CyIntClearPending(I2C_ISR_NUMBER);
+ 225   7                                          I2C_DisableInt();
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 5   
+
+ 226   7                                      }
+ 227   6                                      else  /* Do normal Stop */
+ 228   6                                      {
+ 229   7                                          I2C_Workaround(); /* Workaround for CDT 78083 */
+ 230   7                                          I2C_GENERATE_STOP;
+ 231   7                                          I2C_State = I2C_SM_IDLE;    /* Reset State Machine to idle */
+ 232   7                                          I2C_mstrStatus |= I2C_MSTAT_WR_CMPLT;
+ 233   7                                      }
+ 234   6                                  }
+ 235   5                              }
+ 236   4                              else /* If last byte NAKed, stop transmit and send STOP. */
+ 237   4                              {
+ 238   5                                  if(I2C_CHECK_NO_STOP(I2C_mstrControl))
+ 239   5                                  {
+ 240   6                                      /* Don't do stop, just halt */
+ 241   6                                      I2C_State  = I2C_SM_MSTR_HALT;    /* Reset State Machine to Halt, expect R
+             -eStart */
+ 242   6                                      I2C_mstrStatus |= (I2C_MSTAT_WR_CMPLT | \
+ 243   6                                                                      I2C_MSTAT_XFER_HALT | \
+ 244   6                                                                      I2C_MSTAT_ERR_SHORT_XFER);
+ 245   6                                      CyIntClearPending(I2C_ISR_NUMBER);  
+ 246   6                                      I2C_DisableInt();
+ 247   6                                  }
+ 248   5                                  else  /* Do normal Stop */
+ 249   5                                  {
+ 250   6                                      I2C_GENERATE_STOP;
+ 251   6                                      I2C_State = I2C_SM_IDLE;    /* Reset State Machine to idle */
+ 252   6                                      I2C_mstrStatus |= (I2C_MSTAT_WR_CMPLT | \
+ 253   6                                                                      I2C_MSTAT_ERR_SHORT_XFER);
+ 254   6                                  }
+ 255   5                              }
+ 256   4                              break;
+ 257   4                      
+ 258   4                          case I2C_SM_MSTR_RD_DATA:  /* Data received */  
+ 259   4                      
+ 260   4                              I2C_mstrRdBufPtr[I2C_mstrRdBufIndex] = I2C_DATA_REG; 
+ 261   4                              I2C_mstrRdBufIndex++;
+ 262   4                              if(I2C_mstrRdBufIndex  < I2C_mstrRdBufSize)    /* Check if end of buffer */
+ 263   4                              {
+ 264   5                                  I2C_ACK_AND_RECEIVE;
+ 265   5                              }
+ 266   4                              else   /* End of data, generate a STOP */
+ 267   4                              {
+ 268   5                                  if(I2C_CHECK_NO_STOP(I2C_mstrControl))
+ 269   5                                  {
+ 270   6                                      I2C_State = I2C_SM_MSTR_HALT;    /* Reset State Machine to Halt, expect Re
+             -Start */
+ 271   6                                      I2C_mstrStatus |= (I2C_MSTAT_RD_CMPLT | \
+ 272   6                                                                      I2C_MSTAT_XFER_HALT );
+ 273   6                                  }
+ 274   5                                  else   /* Do normal Stop */
+ 275   5                                  {
+ 276   6                                      I2C_NAK_AND_RECEIVE;
+ 277   6                                      I2C_State = I2C_SM_IDLE;                /* Set state to idle */
+ 278   6                                      I2C_mstrStatus |= I2C_MSTAT_RD_CMPLT;   /* Set status to complete read */
+ 279   6                                  }
+ 280   5                              }
+ 281   4                              break;
+ 282   4                      
+ 283   4                          case I2C_SM_MSTR_WAIT_STOP:
+ 284   4                              I2C_mstrStatus |= I2C_MSTAT_ERR_XFER;
+ 285   4                              break;
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 6   
+
+ 286   4                      
+ 287   4                          /* This case used for NO STOP condition, ready for a restart */
+ 288   4                          case I2C_SM_MSTR_HALT:   /* Do one transfer and halt, used for polling or single stepp
+             -ing */
+ 289   4                              I2C_mstrStatus |= I2C_MSTAT_WR_CMPLT;
+ 290   4                              I2C_DisableInt();
+ 291   4                              break;
+ 292   4                      
+ 293   4                          default:
+ 294   4                              /* Invalid state, reset state machine  to a known state */
+ 295   4                              I2C_State = I2C_SM_IDLE;
+ 296   4                      
+ 297   4                              /* Set transfer complete with error */
+ 298   4                              I2C_mstrStatus |= I2C_MSTAT_ERR_XFER;
+ 299   4                              break;
+ 300   4                      }
+ 301   3                  }
+ 302   2                  
+ 303   2              #endif  /* End (I2C_MODE & I2C_MODE_MASTER) */
+ 304   2          }
+ 305   1          else  /******** Slave Mode ********/                                        
+ 306   1          {
+ 307   2              #if (I2C_MODE & I2C_MODE_SLAVE)
+                          /* Check to see if a Start/Address is detected */
+                          if((tmpCsr & I2C_CSR_ADDRESS) != 0u)
+                          {
+                              /* CSR bit _STOP_STATUS clears when Read/Write opearion */
+                              tmpCsr &=  ~I2C_CSR_STOP_STATUS;  /* Clear Stop bit */
+                              
+                              /* This is a Start or ReStart, So Reset the state machine, Check for a Read/Write conditio
+             -n */
+                                  
+                              #if (I2C_ADDR_DECODE == I2C_SW_DECODE)  /* Check for software address detection */
+                                  /******************* Software address detection ************************/
+                                  tmp8 = ((I2C_DATA_REG >> 1u) & I2C_SADDR_MASK);
+                                  if(tmp8 == I2C_Address)   /* Check for address match  */
+                                  {
+                                      if((I2C_DATA_REG & I2C_READ_FLAG) != 0u)  /* Check for read or write command */
+                                      {
+                                          /*******************************************/
+                                          /*  Place code to prepare read buffer here */
+                                          /*******************************************/
+                                          /* `#START SW_PREPARE_READ_BUF`  */
+              
+                                          /* `#END`  */
+                              
+                                          /* Prepare next opeation to read, Get data and place in data register */
+                                          if(I2C_readBufIndex < I2C_readBufSize)  
+                                          {
+                                              I2C_DATA_REG = I2C_readBufPtr[I2C_readBufIndex];   /* Load first data byte
+             -  */
+                                              I2C_ACK_AND_TRANSMIT;
+                                              I2C_readBufIndex++;                                                      /
+             -* Advance to data location */
+                                              I2C_slStatus |= I2C_SSTAT_RD_BUSY;                          /* Set Read ac
+             -tivity */
+                                          }
+                                          else   /* Data overflow */
+                                          {
+                                              I2C_DATA_REG = 0xFFu;    /* Out of range, send 0xFF  */
+                                              I2C_ACK_AND_TRANSMIT;
+                                              I2C_slStatus  |= (I2C_SSTAT_RD_BUSY | \
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 7   
+
+                                                                             I2C_SSTAT_RD_ERR_OVFL); /* Set Read activit
+             -y */
+                                          }
+                                          
+                                          I2C_State = I2C_SM_SL_RD_DATA;                                /* Prepare for r
+             -ead transaction */
+                                      }
+                                      else  /* Start of a Write transaction, reset pointers, first byte is address */
+                                      {
+                                          /* Prepare next opeation to write offset */
+                                          I2C_ACK_AND_RECEIVE;
+                                          I2C_slStatus |= I2C_SSTAT_WR_BUSY;       /* Set Write activity */
+                                          I2C_State     = I2C_SM_SL_WR_DATA;       /* Prepare for read transaction */
+                              
+                                          /* Enable interrupt on Stop */
+                                          I2C_ENABLE_INT_ON_STOP;
+                                      } 
+                                  }
+                                  /**********************************************/
+                                  /* Place compare for additional address here  */
+                                  /**********************************************/
+                                  /* `#START ADDR_COMPARE`  */
+              
+                                  /* `#END`  */
+                              
+                                  else   /* No address match */
+                                  {
+                                      /* NAK address Match  */
+                                      I2C_NAK_AND_RECEIVE;
+                                  }
+                          
+                              #else  /* Hardware address detection */
+                                  if((I2C_DATA_REG & I2C_READ_FLAG) != 0u)  /* Check for read or write command */
+                                  {
+                                      /*******************************************/
+                                      /*  Place code to prepare read buffer here */
+                                      /*******************************************/
+                                      /* `#START SW_PREPARE_READ_BUF`  */
+              
+                                      /* `#END`  */
+                              
+                                      /* Prepare next opeation to read, Get data and place in data register */
+                                      if(I2C_readBufIndex < I2C_readBufSize)  
+                                      {
+                                          I2C_DATA_REG = I2C_readBufPtr[I2C_readBufIndex];   /* Load first data byte  */
+                                          I2C_ACK_AND_TRANSMIT;                                                    /* AC
+             -K and transmit */
+                                          I2C_readBufIndex++;                                                      /* Ad
+             -vance to data location */
+                                          I2C_slStatus  |= I2C_SSTAT_RD_BUSY;                         /* Set Read activi
+             -ty */
+                                      }
+                                      else   /* Data overflow */
+                                      {
+                                          #if defined(CYDEV_BOOTLOADER_IO_COMP) && (CYDEV_BOOTLOADER_IO_COMP == CyBtldr_
+             -I2C)
+                                              I2C_slStatus |= (I2C_SSTAT_RD_BUSY | \
+                                                                            I2C_SSTAT_RD_ERR_OVFL);      /* Set Read act
+             -ivity and Start clock stretching,
+                                                                                                                        
+             - SCL = 0, till the CyBtldrCommWrite() gives the 
+                                                                                                                        
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 8   
+
+             - ACK response and data */     
+                                          #else
+                                              I2C_DATA_REG = 0xFFu;    /* Out of range, send 0xFF  */
+                                              I2C_ACK_AND_TRANSMIT;
+                                              I2C_slStatus  |= (I2C_SSTAT_RD_BUSY | \
+                                                                             I2C_SSTAT_RD_ERR_OVFL); /* Set Read activit
+             -y */
+                                          
+                                          #endif  /* End defined(CYDEV_BOOTLOADER_IO_COMP) && 
+                                                     (CYDEV_BOOTLOADER_IO_COMP == CyBtldr_I2C) */
+                                      }
+                                      
+                                      I2C_State = I2C_SM_SL_RD_DATA;    /* Prepare for read transaction */
+                                  }
+                                  else  /* Start of a Write transaction, reset pointers, first byte is address */
+                                  {
+                                      /* Prepare next opeation to write offset */
+                                      I2C_ACK_AND_RECEIVE; /* ACK and ready to receive addr */
+                                      I2C_slStatus |= I2C_SSTAT_WR_BUSY;       /* Set Write activity */
+                                      I2C_State     = I2C_SM_SL_WR_DATA;       /* Prepare for read transaction */
+                                      I2C_ENABLE_INT_ON_STOP;                               /* Enable interrupt on Stop 
+             -*/
+                                  }
+                                  
+                              #endif  /* End (I2C_ADDR_DECODE == I2C_SW_DECODE) */
+                              
+                          }
+                          else if(I2C_CHECK_BYTE_COMPLETE(tmpCsr))    /* Check for data transfer */
+                          {
+                              if (I2C_State == I2C_SM_SL_WR_DATA)    /* Data write from Master to Slave. */
+                              {
+                                  if(I2C_writeBufIndex < I2C_writeBufSize)       /* Check for valid range */
+                                  {
+                                      tmp8 = I2C_DATA_REG;                                        /* Get data, to ACK qu
+             -ickly */
+                                      I2C_ACK_AND_RECEIVE;                                    /* ACK and ready to receiv
+             -e sub addr */
+                                      I2C_writeBufPtr[I2C_writeBufIndex] = tmp8; /* Write data to array */
+                                      I2C_writeBufIndex++;                                    /* Inc pointer */
+                                  }
+                                  else
+                                  {
+                                      /* NAK cause beyond write area */
+                                      I2C_NAK_AND_RECEIVE;
+                                      I2C_slStatus &= ~I2C_SSTAT_WR_BUSY;        /* Set Write activity */
+                                      I2C_slStatus |= (I2C_SSTAT_WR_CMPT | \
+                                                                    I2C_SSTAT_WR_ERR_OVFL);   /* Set Write activity */
+                                  }
+                              }
+                              else if (I2C_State == I2C_SM_SL_RD_DATA)    /* Data Read from Slave to Master */
+                              {
+                                  if(I2C_CHECK_DATA_ACK(tmpCsr))
+                                  {
+                                      if(I2C_readBufIndex < I2C_readBufSize) 
+                                      {
+                                           /* Get data from array */
+                                          I2C_DATA_REG = I2C_readBufPtr[I2C_readBufIndex];
+                          
+                                          /* Send Data */
+                                          I2C_TRANSMIT_DATA;
+                                          I2C_readBufIndex++;                                  /* Inc pointer */
+                                      }
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 9   
+
+                                      else   /* Over flow */
+                                      {
+                                          /* Send 0xFF at the end of the buffer */
+                                          I2C_DATA_REG = 0xFFu;
+                          
+                                          /* Send Data */
+                                          I2C_TRANSMIT_DATA;
+                                          I2C_slStatus  |= I2C_SSTAT_RD_ERR_OVFL; /* Set overflow */
+                                      }
+                                  }
+                                  else  /* Last byte NAKed, done */
+                                  {
+                                      /* End of read transaction */
+                                      I2C_DATA_REG = 0xFFu;
+                                       
+                                      /* Clear transmit bit at the end of read transaction */
+                                      I2C_NAK_AND_TRANSMIT;
+                                      I2C_slStatus &= ~I2C_SSTAT_RD_BUSY;   /* Clear Busy Flag */
+                                      I2C_slStatus |= I2C_SSTAT_RD_CMPT;    /* Set complete Flag */
+                                      I2C_State = I2C_SM_IDLE;              /* Return to idle state */
+                                  }
+                              }
+                              else  /* This is an invalid state and should not occur  */
+                              {
+                                  /* Invalid state, Reset */
+                                  I2C_State = I2C_SM_IDLE;
+                                  I2C_NAK_AND_RECEIVE;
+                              }   /* End Transfer mode */
+                          }  
+                          else if ((tmpCsr & I2C_CSR_BUS_ERROR) != 0u)    /* Quick check for Error */
+                          {
+                              if((I2C_CSR_REG & I2C_CSR_BUS_ERROR) != 0u)
+                              {
+                                  /* May want to reset bus here CHECK */
+                              }
+                          } /* End if without else */
+                          
+                          if((tmpCsr & I2C_CSR_STOP_STATUS) != 0u)    /* Check if Stop was detected */
+                          {
+                              /* 1) The Write transaction only IE on Stop, so Read never gets here */
+                              /* 2) The WR_BUSY flag will be cleared at the end of "Write-ReStart-Read-Stop" transaction
+             - */
+                              I2C_slStatus &= ~I2C_SSTAT_WR_BUSY;   /* Clear Busy Flag */
+                              I2C_slStatus |= I2C_SSTAT_WR_CMPT;    /* Set complete Flag */
+                              I2C_DISABLE_INT_ON_STOP;
+                              I2C_State = I2C_SM_IDLE;
+                          }       
+                      
+                      #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+ 502   2          }
+ 503   1          
+ 504   1          #if (I2C_PSOC3_ES2 && (I2C_I2C_IRQ__ES2_PATCH))
+                      I2C_ISR_PATCH();
+                  #endif  /* End (I2C_PSOC3_ES2 && (I2C_I2C_IRQ__ES2_PATCH)) */
+ 507   1      }
+ 508          
+ 509          
+ 510          /* [] END OF FILE */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    963    ----
+C51 COMPILER V8.16   I2C_INT                                                               12/13/2010 22:57:37 PAGE 10  
+
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     15    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

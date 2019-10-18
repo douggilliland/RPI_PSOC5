@@ -1,0 +1,163 @@
+C51 COMPILER V8.16   SCL                                                                   12/13/2010 22:57:38 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE SCL
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/SCL.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\SCL.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects/PS
+                    -oC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/SCL.lst) DB NOIP OT(0) INCDIR(Generated
+                    -_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Examp
+                    -le_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/SCL.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: SCL.c  
+   3          * Version 1.50
+   4          *
+   5          * Description:
+   6          *  This file contains API to enable firmware control of a Pins component.
+   7          *
+   8          * Note:
+   9          *
+  10          ********************************************************************************
+  11          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  12          * You may use this file only in accordance with the license, terms, conditions, 
+  13          * disclaimers, and limitations in the end user license agreement accompanying 
+  14          * the software package with which this file was provided.
+  15          ********************************************************************************/
+  16          
+  17          #include "cytypes.h"
+  18          #include "SCL.h"
+  19          
+  20          
+  21          /*******************************************************************************
+  22          * Function Name: SCL_Write
+  23          ********************************************************************************
+  24          * Summary:
+  25          *  Assign a new value to the digital port's data output register.  
+  26          *
+  27          * Parameters:  
+  28          *  prtValue:  The value to be assigned to the Digital Port. 
+  29          *
+  30          * Return: 
+  31          *  void 
+  32          *  
+  33          *******************************************************************************/
+  34          void SCL_Write(uint8 value) 
+  35          {
+  36   1          uint8 staticBits = SCL_DR & ~SCL_MASK;
+  37   1          SCL_DR = staticBits | ((value << SCL_SHIFT) & SCL_MASK);
+  38   1      }
+  39          
+  40          
+  41          /*******************************************************************************
+  42          * Function Name: SCL_SetDriveMode
+  43          ********************************************************************************
+  44          * Summary:
+  45          *  Change the drive mode on the pins of the port.
+  46          * 
+  47          * Parameters:  
+  48          *  mode:  Change the pins to this drive mode.
+  49          *
+  50          * Return: 
+C51 COMPILER V8.16   SCL                                                                   12/13/2010 22:57:38 PAGE 2   
+
+  51          *  void
+  52          *
+  53          *******************************************************************************/
+  54          void SCL_SetDriveMode(uint8 mode) 
+  55          {
+  56   1              CyPins_SetPinDriveMode(SCL_0, mode);
+  57   1      }
+  58          
+  59          
+  60          /*******************************************************************************
+  61          * Function Name: SCL_Read
+  62          ********************************************************************************
+  63          * Summary:
+  64          *  Read the current value on the pins of the Digital Port in right justified 
+  65          *  form.
+  66          *
+  67          * Parameters:  
+  68          *  void 
+  69          *
+  70          * Return: 
+  71          *  Returns the current value of the Digital Port as a right justified number
+  72          *  
+  73          * Note:
+  74          *  Macro SCL_ReadPS calls this function. 
+  75          *  
+  76          *******************************************************************************/
+  77          uint8 SCL_Read(void) 
+  78          {
+  79   1          return (SCL_PS & SCL_MASK) >> SCL_SHIFT;
+  80   1      }
+  81          
+  82          
+  83          /*******************************************************************************
+  84          * Function Name: SCL_ReadDataReg
+  85          ********************************************************************************
+  86          * Summary:
+  87          *  Read the current value assigned to a Digital Port's data output register
+  88          *
+  89          * Parameters:  
+  90          *  void 
+  91          *
+  92          * Return: 
+  93          *  Returns the current value assigned to the Digital Port's data output register
+  94          *  
+  95          *******************************************************************************/
+  96          uint8 SCL_ReadDataReg(void) 
+  97          {
+  98   1          return (SCL_DR & SCL_MASK) >> SCL_SHIFT;
+  99   1      }
+ 100          
+ 101          
+ 102          /* If Interrupts Are Enabled for this Pins component */ 
+ 103          #if defined(SCL_INTSTAT) 
+              
+                  /*******************************************************************************
+                  * Function Name: SCL_ClearInterrupt
+                  ********************************************************************************
+                  * Summary:
+                  *  Clears any active interrupts attached to port and returns the value of the 
+                  *  interrupt status register.
+                  *
+                  * Parameters:  
+C51 COMPILER V8.16   SCL                                                                   12/13/2010 22:57:38 PAGE 3   
+
+                  *  void 
+                  *
+                  * Return: 
+                  *  Returns the value of the interrupt status register
+                  *  
+                  *******************************************************************************/
+                  uint8 SCL_ClearInterrupt(void) 
+                  {
+                      return (SCL_INTSTAT & SCL_MASK) >> SCL_SHIFT;
+                  }
+              
+              #endif /* If Interrupts Are Enabled for this Pins component */ 
+ 125          
+ 126          
+ 127          /* [] END OF FILE */ 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    131    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      3    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,2224 @@
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE CYLIB
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CyLib.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\CyLib.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects/
+                    -PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CyLib.lst) DB NOIP OT(0) INCDIR(Gener
+                    -ated_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/E
+                    -xample_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/CyLib.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: CyLib.c
+   3          * Version 2.0
+   4          *
+   5          *  Description:
+   6          *
+   7          *  Note:
+   8          *   Documentation of the API's in this file is located in the
+   9          *   System Reference Guide provided with PSoC Creator.
+  10          *
+  11          *******************************************************************************
+  12          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  13          * You may use this file only in accordance with the license, terms, conditions,
+  14          * disclaimers, and limitations in the end user license agreement accompanying
+  15          * the software package with which this file was provided.
+  16          ********************************************************************************/
+  17          
+  18          #include <CyLib.h>
+  19          
+  20          
+  21          /* CYLIB CLOCK funcs begin*/
+  22          
+  23          /*******************************************************************************
+  24          * Function Name: CyPLL_OUT_Start
+  25          ********************************************************************************
+  26          *
+  27          * Summary:
+  28          *   Enables the PLL.  Optionally waits for it to become stable.
+  29          *   Waits at least 250us or until it is detected that the PLL is stable.
+  30          *
+  31          * Parameters:
+  32          *   wait:
+  33          *    0: Return immediately after configuration
+  34          *    1: Wait for PLL lock or timeout.
+  35          *
+  36          * Return:
+  37          *   Status
+  38          *     CYRET_SUCCESS - Completed successfully
+  39          *    CYRET_TIMEOUT - Timeout occurred without detecting a stable clock.  
+  40          *     If the input source of the clock is jittery, then the lock indication 
+  41          *     may not occur.  However, after the timeout has expired the generated PLL 
+  42          *     clock can still be used..
+  43          *
+  44          *******************************************************************************/
+  45          cystatus CyPLL_OUT_Start(uint8 wait) 
+  46          {
+  47   1          cystatus status = CYRET_SUCCESS;
+  48   1          uint8 pm_tw_cfg2_state;
+  49   1          uint8 pm_tw_cfg0_state;
+  50   1          uint8 ilo_clock_state;
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 2   
+
+  51   1          
+  52   1          FASTCLK_PLL_CFG0 |= PLL_CONTROL_ENABLE;
+  53   1          
+  54   1          /*Non-zero wait value*/
+  55   1          if (wait != 0) 
+  56   1          {
+  57   2              /*Need to turn on the 100KHz ILO if it happens to not already be running.*/
+  58   2              ilo_clock_state = SLOWCLK_ILO_CR0;
+  59   2              if(!(ilo_clock_state & ILO_CONTROL_100KHZ_ON))
+  60   2              {
+  61   3                  CyILO_Start100K();
+  62   3              }
+  63   2              
+  64   2              /*Use ILO 100Khz*/
+  65   2              pm_tw_cfg2_state = PM_TW_CFG2;
+  66   2              pm_tw_cfg0_state = PM_TW_CFG0;
+  67   2              
+  68   2              /* FTW_EN (bit 0) must be clear to change the period*/
+  69   2              PM_TW_CFG2 &= FTW_CLEAR_FTW_BITS;
+  70   2              
+  71   2              /* Set the FTW interval of 25 100KHz ILO clocks
+  72   2              Should result in status getting set at a (100/25)KHz rate*/
+  73   2              PM_TW_CFG0 =  25-1;
+  74   2              /* Enable FTW, but not the interrupt*/
+  75   2              PM_TW_CFG2 = FTW_ENABLE;        
+  76   2              
+  77   2              status = CYRET_TIMEOUT;
+  78   2              /*check the CyPmReadStatus() return value, 0th bit is ftw*/
+  79   2              while (CyPmReadStatus(1) == 0)
+  80   2              {
+  81   3                  /* Wait for the interrupt status*/
+  82   3                  if(FASTCLK_PLL_SR & PLL_STATUS_LOCK)
+  83   3                  {
+  84   4                      if(FASTCLK_PLL_SR & PLL_STATUS_LOCK)
+  85   4                      {
+  86   5                          /*A stable clock.                    */
+  87   5                          status = CYRET_SUCCESS;
+  88   5                          break;
+  89   5                      }
+  90   4                  }
+  91   3              }
+  92   2              /*reset the clock */
+  93   2              if(!(ilo_clock_state & ILO_CONTROL_100KHZ_ON))
+  94   2              {
+  95   3                  CyILO_Stop100K();
+  96   3              }
+  97   2      
+  98   2              /*restore the FTW*/
+  99   2              PM_TW_CFG0 = pm_tw_cfg0_state;
+ 100   2              PM_TW_CFG2 = pm_tw_cfg2_state;
+ 101   2          }
+ 102   1          return status;
+ 103   1      }
+ 104          
+ 105          
+ 106          /*******************************************************************************
+ 107          * Function Name: CyPLL_OUT_Stop
+ 108          ********************************************************************************
+ 109          * Summary:
+ 110          *   Disables the PLL.
+ 111          *
+ 112          *
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 3   
+
+ 113          * Parameters:
+ 114          *   void.
+ 115          *
+ 116          *
+ 117          * Return:
+ 118          *   void.
+ 119          *
+ 120          *******************************************************************************/
+ 121          void CyPLL_OUT_Stop(void) 
+ 122          {
+ 123   1          /* Disable the PLL. */
+ 124   1          FASTCLK_PLL_CFG0 &= ~PLL_CONTROL_ENABLE;
+ 125   1      }
+ 126          
+ 127          
+ 128          /*******************************************************************************
+ 129          * Function Name: CyPLL_OUT_SetPQ
+ 130          ********************************************************************************
+ 131          * Summary:
+ 132          *   Sets the P and Q dividers and the charge pump current.  
+ 133          *   The Frequency Out will be P/Q * Frequency In.  
+ 134          *   The PLL must be disabled before calling this function.
+ 135          *
+ 136          *
+ 137          * Parameters:
+ 138          *   P: Valid range [4 - 255]
+ 139          *   Q: Valid range [1 - 16].  Input Frequency / Q must be in the range of 1MHz to 3MHz.
+ 140          *   current: Valid range [1 - 7].  Charge pump current in uA.  
+ 141          *            Recommendation of 2uA for output frequencies of 67MHz or less and 
+ 142          *            3uA for higher output frequencies.
+ 143          *
+ 144          *
+ 145          * Return:
+ 146          *   void.
+ 147          *
+ 148          *******************************************************************************/
+ 149          void CyPLL_OUT_SetPQ(uint8 P, uint8 Q, uint8 current) 
+ 150          {
+ 151   1          CYASSERT(!(FASTCLK_PLL_CFG0 & PLL_STATUS_ENABLED));
+ 152   1          
+ 153   1          /*Set the CYREG_FASTCLK_PLL_P register
+ 154   1          Settings less than 4 do not give valid outputs. Valid range is 4 - 255*/
+ 155   1          if (P >= MIN_FASTCLK_PLL_P_VALUE)
+ 156   1          {
+ 157   2              FASTCLK_PLL_P = P;
+ 158   2          }
+ 159   1          /*Set the CYREG_FASTCLK_PLL_Q register*/
+ 160   1          if (Q <= MAX_FASTCLK_PLL_Q_VALUE && Q >= MIN_FASTCLK_PLL_Q_VALUE)
+ 161   1          {
+ 162   2              FASTCLK_PLL_Q = Q-1;
+ 163   2          }
+ 164   1          if(current >= MIN_FASTCLK_PLL_CUR_VALUE && current <= MAX_FASTCLK_PLL_CUR_VALUE)
+ 165   1          {
+ 166   2              /*
+ 167   2              Bits     Name         Description
+ 168   2              6:4     icpsel[2:0] Charge Pump current select; BROS tables contain 
+ 169   2                                  important stability information for given frequencies,
+ 170   2                                  P values, and other parameters
+ 171   2              1:0     vco_gain[1:0] VCO loop gain
+ 172   2              */
+ 173   2              FASTCLK_PLL_CFG1 = ((current - 1) << PLL_CURRENT_POSITION) | PLL_VCO_GAIN_2;
+ 174   2          }
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 4   
+
+ 175   1      }
+ 176          
+ 177          
+ 178          /*******************************************************************************
+ 179          * Function Name: CyPLL_OUT_SetSource
+ 180          ********************************************************************************
+ 181          * Summary:
+ 182          *   Sets the input clock source to the PLL.  The PLL must be disabled before 
+ 183          *   calling this function.
+ 184          *
+ 185          * Parameters:
+ 186          *   source: One of the three available PLL clock sources
+ 187          *            0 :        IMO
+ 188          *            1 :        MHz Crystal
+ 189          *            2 :        DSI
+ 190          *
+ 191          *
+ 192          * Return:
+ 193          *   void.
+ 194          *
+ 195          *******************************************************************************/
+ 196          void CyPLL_OUT_SetSource(uint8 source) 
+ 197          {
+ 198   1          CYASSERT(!(FASTCLK_PLL_CFG0 & PLL_STATUS_ENABLED));
+ 199   1          
+ 200   1          /*Set the 1:0 bits of CLKDIST_CR */
+ 201   1          /*  Value    Name    Description
+ 202   1              2'h0     IMO     IMO is selected
+ 203   1              2'h1     XTAL    33MHz XTAL is selected
+ 204   1              2'h2     DSI     Digital System Interconnect is selected*/
+ 205   1          switch(source)
+ 206   1          {
+ 207   2              case CY_PLL_SOURCE_IMO:
+ 208   2              case CY_PLL_SOURCE_XTAL:
+ 209   2              case CY_PLL_SOURCE_DSI:
+ 210   2                  CLKDIST_CR = ((CLKDIST_CR & CLOCK_CONTROL_DIST_MASK) | source);
+ 211   2              break;
+ 212   2          }
+ 213   1      }
+ 214          
+ 215          
+ 216          /*******************************************************************************
+ 217          * Function Name: CyIMO_Start
+ 218          ********************************************************************************
+ 219          * Summary:
+ 220          *   Enables the IMO.  Optionally waits at least 6us for it to settle.
+ 221          *
+ 222          *
+ 223          * Parameters:
+ 224          *   wait:
+ 225          *   0: Return immediately after configuration
+ 226          *   1: Wait for at least 6us for the IMO to settle.
+ 227          *
+ 228          *
+ 229          * Return:
+ 230          *   void.
+ 231          *
+ 232          * Side Effects and Restrictions:
+ 233          *   If wait is enabled: Uses the Fast Timewheel to time the wait.
+ 234          *   Any other use of the Fast Timewheel will be stopped during the period of -
+ 235          *   this function and then restored.
+ 236          *   Uses the 100KHz ILO.  If not enabled, this function will enable the 100KHz -
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 5   
+
+ 237          *   ILO for the period of this function.
+ 238          *
+ 239          *******************************************************************************/
+ 240          void CyIMO_Start(uint8 wait) 
+ 241          {
+ 242   1          uint8 pm_tw_cfg2_state;
+ 243   1          uint8 pm_tw_cfg0_state;
+ 244   1          uint8 ilo_clock_state;
+ 245   1      
+ 246   1          /* Set the bit to enable the clock. */
+ 247   1          PM_ACT_CFG0 |= IMO_PM_ENABLE;
+ 248   1      
+ 249   1          /*Wait for 6 us*/
+ 250   1          if(wait)
+ 251   1          {
+ 252   2              /*Need to turn on the 100KHz ILO if it happens to not already be running.*/
+ 253   2              ilo_clock_state = SLOWCLK_ILO_CR0;
+ 254   2              if(!(ilo_clock_state & ILO_CONTROL_100KHZ_ON))
+ 255   2              {
+ 256   3                  CyILO_Start100K();
+ 257   3              }
+ 258   2              
+ 259   2              /*Use ILO 100Khz*/
+ 260   2              pm_tw_cfg2_state = PM_TW_CFG2;
+ 261   2              pm_tw_cfg0_state = PM_TW_CFG0;
+ 262   2              
+ 263   2              /* FTW_EN (bit 0) must be clear to change the period*/
+ 264   2              PM_TW_CFG2 &= FTW_CLEAR_FTW_BITS;
+ 265   2              
+ 266   2              /* Set the FTW interval of 1 100KHz ILO clocks
+ 267   2              Should result in status getting set at a (100/1)KHz rate*/
+ 268   2              PM_TW_CFG0 = 1-1;
+ 269   2              /* Enable FTW, but not the interrupt*/
+ 270   2              PM_TW_CFG2 = FTW_ENABLE;        
+ 271   2              
+ 272   2              /*Read FTW value*/
+ 273   2              while (CyPmReadStatus(1) == 0)
+ 274   2              {
+ 275   3                  /* Wait for the interrupt status*/
+ 276   3              }
+ 277   2      
+ 278   2              /*reset the clock */
+ 279   2              if(!(ilo_clock_state & ILO_CONTROL_100KHZ_ON))
+ 280   2              {
+ 281   3                  CyILO_Stop100K();
+ 282   3              }
+ 283   2              /*restore the FTW*/
+ 284   2              PM_TW_CFG0 = pm_tw_cfg0_state;
+ 285   2              PM_TW_CFG2 = pm_tw_cfg2_state;
+ 286   2          }
+ 287   1      }
+ 288          
+ 289          
+ 290          /*******************************************************************************
+ 291          * Function Name: CyIMO_Stop
+ 292          ********************************************************************************
+ 293          * Summary:
+ 294          *   Disables the IMO.
+ 295          *
+ 296          * Parameters:
+ 297          *   void.
+ 298          *
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 6   
+
+ 299          *
+ 300          * Return:
+ 301          *   void.
+ 302          *
+ 303          *******************************************************************************/
+ 304          void CyIMO_Stop(void) 
+ 305          {
+ 306   1          /* Clear the bit to disable the clock. */
+ 307   1          PM_ACT_CFG0 &= ~IMO_PM_ENABLE;
+ 308   1      }
+ 309          
+ 310          
+ 311          /*******************************************************************************
+ 312          * Function Name: CyIMO_SetTrimValue
+ 313          ********************************************************************************
+ 314          * Summary:
+ 315          *   Sets the IMO factory trim values.
+ 316          *
+ 317          * Parameters:
+ 318          *   freq.
+ 319          *
+ 320          *
+ 321          * Return:
+ 322          *   void.
+ 323          *
+ 324          *******************************************************************************/
+ 325          void CyIMO_SetTrimValue(uint8 freq) 
+ 326          {
+ 327   1          /*Unlock USB write*/
+ 328   1          CY_USB_CR1 &= ~CLOCK_USB_ENABLE;
+ 329   1          
+ 330   1          switch(freq)
+ 331   1          {
+ 332   2              case CY_IMO_FREQ_3MHZ:
+ 333   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_CUST_TABLES_IMO_3MHZ_PTR);
+ 334   2              break;
+ 335   2      
+ 336   2              case CY_IMO_FREQ_6MHZ:
+ 337   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_CUST_TABLES_IMO_6MHZ_PTR);
+ 338   2              break;
+ 339   2      
+ 340   2              case CY_IMO_FREQ_12MHZ:
+ 341   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_CUST_TABLES_IMO_12MHZ_PTR);
+ 342   2              break;
+ 343   2      
+ 344   2              case CY_IMO_FREQ_24MHZ:
+ 345   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_CUST_TABLES_IMO_24MHZ_PTR);
+ 346   2              break;
+ 347   2      
+ 348   2              case CY_IMO_FREQ_48MHZ:
+ 349   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_MFG_CFG_IMO_TR1_PTR);
+ 350   2              break;
+ 351   2      
+ 352   2              case CY_IMO_FREQ_62MHZ:
+ 353   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_CUST_TABLES_IMO_67MHZ_PTR);
+ 354   2              break;
+ 355   2      
+ 356   2              case CY_IMO_FREQ_74MHZ:
+ 357   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_CUST_TABLES_IMO_80MHZ_PTR);
+ 358   2              break;
+ 359   2              
+ 360   2              case CY_IMO_FREQ_USB:
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 7   
+
+ 361   2              IMO_TR1 = CY_GET_XTND_REG8(FLSHID_CUST_TABLES_IMO_USB_PTR);
+ 362   2              /*Lock the USB Oscillator*/
+ 363   2              CY_USB_CR1 |= CLOCK_USB_ENABLE;
+ 364   2              break;
+ 365   2              
+ 366   2              default:
+ 367   2              CYASSERT(0);
+ 368   2              break;
+ 369   2          }
+ 370   1          
+ 371   1      }
+ 372          
+ 373          
+ 374          /*******************************************************************************
+ 375          * Function Name: CyIMO_SetFreq
+ 376          ********************************************************************************
+ 377          * Summary:
+ 378          *   Alows the caller to set the IMO fequency (3, 6, 12, 24, 48, 62 MHZ).
+ 379          *   Sets the frequency of the IMO.  
+ 380          *   Changes may be made while the IMO is running.  
+ 381          *   When the USB setting is chosen the USB clock locking circuit is enabled.  
+ 382          *   Otherwise this circuit is disabled.
+ 383          *   If the IMO is currently driving the Master clock, then the Flash wait states
+ 384          *   must be set appropriately before making this change -
+ 385          *   by using CyFlash_SetWaitCycles().
+ 386          *
+ 387          *
+ 388          * Parameters:
+ 389          *   frequency,    CY_IMO_FREQ_3MHZ  to set 3 MHz,
+ 390          *                 CY_IMO_FREQ_6MHZ  to set 6 MHz,
+ 391          *                 CY_IMO_FREQ_12MHZ to set 12MHz,
+ 392          *                 CY_IMO_FREQ_24MHZ to set 24MHz,
+ 393          *                 CY_IMO_FREQ_48MHZ to set 48MHz,
+ 394          *                 CY_IMO_FREQ_62MHZ to set 62.6MHz.
+ 395          *                 CY_IMO_FREQ_74MHZ    to set 74.7 MHz (PSoC 5)
+ 396          *                 CY_IMO_FREQ_USB    to set 24 MHz (Trimmed for USB operation)
+ 397          *
+ 398          *
+ 399          * Return:
+ 400          *   void.
+ 401          *
+ 402          *******************************************************************************/
+ 403          void CyIMO_SetFreq(uint8 freq) 
+ 404          {
+ 405   1          uint8 current_freq;
+ 406   1          uint8 next_freq;
+ 407   1          
+ 408   1          /*
+ 409   1          When changing the IMO frequency the Trim values must also be set accordingly.  
+ 410   1          This requires reading the current frequency.  
+ 411   1          If the new frequency is faster, then set the new trim and then change the
+ 412   1          frequency, otherwise change the frequency and then set the new trim values.
+ 413   1          */
+ 414   1      
+ 415   1          /*
+ 416   1          Value Name         Description
+ 417   1          3'h0 F_RANGE_0 12 MHz (normal)
+ 418   1          3'h1 F_RANGE_1 6 MHz (normal); 12 MHz (fast start)
+ 419   1          3'h2 F_RANGE_2 24 MHz
+ 420   1          3'h3 F_RANGE_3 3 MHz (normal); 12 MHz (fast start)
+ 421   1          3'h4 F_RANGE_4 48 MHz
+ 422   1          3'h5 F_RANGE_5 67 MHz
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 8   
+
+ 423   1          3'h6 F_RANGE_6 80 MHz (normal); 48 MHz (fast start)
+ 424   1          3'h7 F_RANGE_7 96 MHz (normal); 48 MHz (fast start)
+ 425   1          */
+ 426   1          current_freq = FASTCLK_IMO_CR & ~CLOCK_IMO_RANGE_CLEAR;
+ 427   1          /*Check if the requested frequency is USB.*/
+ 428   1          next_freq = (freq == CY_IMO_FREQ_USB) ? CY_IMO_FREQ_24MHZ : freq;
+ 429   1          switch (current_freq)
+ 430   1          {
+ 431   2              case 0:
+ 432   2              current_freq = CY_IMO_FREQ_12MHZ;
+ 433   2              break;
+ 434   2              
+ 435   2              case 1:
+ 436   2              current_freq = CY_IMO_FREQ_6MHZ;
+ 437   2              break;
+ 438   2      
+ 439   2              case 2:
+ 440   2              current_freq = CY_IMO_FREQ_24MHZ;
+ 441   2              break;
+ 442   2      
+ 443   2              case 3:
+ 444   2              current_freq = CY_IMO_FREQ_3MHZ;
+ 445   2              break;
+ 446   2      
+ 447   2              case 4:
+ 448   2              current_freq = CY_IMO_FREQ_48MHZ;
+ 449   2              break;
+ 450   2      
+ 451   2              case 5:
+ 452   2              current_freq = CY_IMO_FREQ_62MHZ;
+ 453   2              break;
+ 454   2      
+ 455   2              case 6:
+ 456   2              current_freq = CY_IMO_FREQ_74MHZ;
+ 457   2              break;
+ 458   2          }
+ 459   1          
+ 460   1          if (next_freq >= current_freq)
+ 461   1          {
+ 462   2              /*Set the new trim first*/
+ 463   2              CyIMO_SetTrimValue(freq);
+ 464   2          }
+ 465   1          
+ 466   1          
+ 467   1          switch(freq)
+ 468   1          {
+ 469   2              case CY_IMO_FREQ_3MHZ:
+ 470   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_3MHZ_VALUE;
+ 471   2              break;
+ 472   2      
+ 473   2              case CY_IMO_FREQ_6MHZ:
+ 474   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_6MHZ_VALUE;
+ 475   2              break;
+ 476   2      
+ 477   2              case CY_IMO_FREQ_12MHZ:
+ 478   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_12MHZ_VALUE;
+ 479   2              break;
+ 480   2      
+ 481   2              case CY_IMO_FREQ_24MHZ:
+ 482   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_24MHZ_VALUE;
+ 483   2              break;
+ 484   2      
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 9   
+
+ 485   2              case CY_IMO_FREQ_48MHZ:
+ 486   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_48MHZ_VALUE;
+ 487   2              break;
+ 488   2      
+ 489   2              case CY_IMO_FREQ_62MHZ:
+ 490   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_62MHZ_VALUE;
+ 491   2              break;
+ 492   2      
+ 493   2              case CY_IMO_FREQ_74MHZ:
+ 494   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_74MHZ_VALUE;
+ 495   2              break;
+ 496   2              
+ 497   2              case CY_IMO_FREQ_USB:
+ 498   2              FASTCLK_IMO_CR = (FASTCLK_IMO_CR & CLOCK_IMO_RANGE_CLEAR) | CLOCK_IMO_24MHZ_VALUE;
+ 499   2              break;
+ 500   2              
+ 501   2              default:
+ 502   2              /*Not a correct fequency value.*/
+ 503   2              CYASSERT(0);
+ 504   2              break;
+ 505   2          }
+ 506   1          
+ 507   1          if (next_freq < current_freq)
+ 508   1          {
+ 509   2              /*Set the new trim after setting the frequency*/
+ 510   2              CyIMO_SetTrimValue(freq);
+ 511   2          }
+ 512   1      }
+ 513          
+ 514          
+ 515          /*******************************************************************************
+ 516          * Function Name: CyIMO_SetSource
+ 517          ********************************************************************************
+ 518          * Summary:
+ 519          *   Sets the source of the clock output from the IMO block.  
+ 520          *   The output from the IMO is by default the IMO itself.  
+ 521          *   Optionally the MHz Crystal or a DSI input can be the source of the 
+ 522          *   IMO output instead.  
+ 523          *   If the IMO is currently driving the Master clock, 
+ 524          *   then the Flash wait states must be set appropriately before making this 
+ 525          *   change by using CyFlash_SetWaitCycles().
+ 526          *
+ 527          *
+ 528          * Parameters:
+ 529          *   source, CY_IMO_SOURCE_DSI to set the DSI as source.
+ 530          *           CY_IMO_SOURCE_XTAL to set the MHz as source.
+ 531          *           CY_IMO_SOURCE_IMO to set the IMO itself.
+ 532          *
+ 533          *
+ 534          * Return:
+ 535          *   void.
+ 536          *
+ 537          *******************************************************************************/
+ 538          void CyIMO_SetSource(uint8 source) 
+ 539          {
+ 540   1          /*Set the xclken bit of FASTCLK_IMO_CR regigster*/
+ 541   1          /*
+ 542   1              IMO2X_SRC     bit in CLKDIST_CR
+ 543   1              
+ 544   1              Bit field encoding: IMO2X_INPUT_SEL_ENUM
+ 545   1              Value Name Description
+ 546   1              1'b0  DSI  Digital System Interconnect is used as a source to IMO doubler
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 10  
+
+ 547   1              1'b1  XTAL External clock source is used as a source to IMO doubler
+ 548   1              
+ 549   1              xclken         bit in FASTCLK_IMO_CR
+ 550   1              
+ 551   1              Value      Name      Description
+ 552   1              1'b0     XCLKEN_0     IMO doubler runs from the IMOCLK
+ 553   1              1'b1     XCLKEN_1     IMO doubler runs from the selected 'external' clock. 
+ 554   1                                  This is a signal on a global - source is TBD.
+ 555   1          */
+ 556   1          
+ 557   1          switch(source)
+ 558   1          {
+ 559   2              case CY_IMO_SOURCE_DSI:
+ 560   2                  CLKDIST_CR &= ~CLOCK_IMO2X_XTAL;
+ 561   2                  FASTCLK_IMO_CR |= CLOCK_IMO_IMO;
+ 562   2                  break;
+ 563   2              
+ 564   2              case CY_IMO_SOURCE_XTAL:        
+ 565   2                  CLKDIST_CR |= CLOCK_IMO2X_XTAL;
+ 566   2                  FASTCLK_IMO_CR |= CLOCK_IMO_IMO;
+ 567   2                  break;
+ 568   2              
+ 569   2              case CY_IMO_SOURCE_IMO:
+ 570   2                  FASTCLK_IMO_CR &= ~CLOCK_IMO_IMO;
+ 571   2                  break;
+ 572   2              
+ 573   2              default:
+ 574   2                  /*Not a correct source value.*/
+ 575   2                  CYASSERT(0);
+ 576   2                  break;        
+ 577   2          }
+ 578   1      }
+ 579          
+ 580          
+ 581          /*******************************************************************************
+ 582          * Function Name: CyIMO_EnableDoubler
+ 583          ********************************************************************************
+ 584          * Summary:
+ 585          *   Enables the IMO doubler.  The 2x frequency clock is used to convert 
+ 586          *   a 24MHz input to a 48MHz output for use by the USB block.
+ 587          *
+ 588          *
+ 589          * Parameters:
+ 590          *   void.
+ 591          *
+ 592          *
+ 593          * Return:
+ 594          *   void.
+ 595          *
+ 596          *******************************************************************************/
+ 597          void CyIMO_EnableDoubler(void) 
+ 598          {
+ 599   1          /*Set the FASTCLK_IMO_CR_PTR regigster's 4th bit*/
+ 600   1          FASTCLK_IMO_CR |= IMO_DOUBLER_ENABLE;
+ 601   1      }
+ 602          
+ 603          
+ 604          /*******************************************************************************
+ 605          * Function Name: CyIMO_DisableDoubler
+ 606          ********************************************************************************
+ 607          * Summary:
+ 608          *   Disables the IMO doubler.
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 11  
+
+ 609          *
+ 610          *
+ 611          * Parameters:
+ 612          *   void.
+ 613          *
+ 614          *
+ 615          * Return:
+ 616          *   void.
+ 617          *
+ 618          *******************************************************************************/
+ 619          void CyIMO_DisableDoubler(void) 
+ 620          {
+ 621   1          /*Set the FASTCLK_IMO_CR_PTR regigster's 4th bit*/
+ 622   1          FASTCLK_IMO_CR &= ~IMO_DOUBLER_ENABLE;
+ 623   1      }
+ 624          
+ 625          
+ 626          /*******************************************************************************
+ 627          * Function Name: CyMasterClk_SetSource
+ 628          ********************************************************************************
+ 629          * Summary:
+ 630          *   Sets the source of the master clock.  
+ 631          *   The current source and the new source must both be running and stable 
+ 632          *   before calling this function.  
+ 633          *   The Flash wait states must be set appropriately before making this change 
+ 634          *   by using CyFlash_SetWaitCycles().
+ 635          *
+ 636          *
+ 637          * Parameters:
+ 638          *   source: One of the four available Master clock sources.
+ 639          *     CY_MASTER_SOURCE_IMO
+ 640          *     CY_MASTER_SOURCE_PLL
+ 641          *     CY_MASTER_SOURCE_XTAL
+ 642          *     CY_MASTER_SOURCE_DSI
+ 643          *
+ 644          *
+ 645          * Return:
+ 646          *   void.
+ 647          *
+ 648          *******************************************************************************/
+ 649          void CyMasterClk_SetSource(uint8 source) 
+ 650          {
+ 651   1          /*
+ 652   1          Silicon before ES3 where a glitch could be created when switching the 
+ 653   1          master clock source.  
+ 654   1          Here is what should be implemented:
+ 655   1          if (master_clk divider == 0)
+ 656   1              set master_clk divider = 3
+ 657   1              change master_clk source
+ 658   1              set master_clk divider back to 0
+ 659   1          else
+ 660   1              change master_clk source
+ 661   1      
+ 662   1          1) Write a non-zero period to the master mux clock divider (MSTR0). 
+ 663   1          Recommended value is 3. This results in    a divide of the master clock by 4.
+ 664   1          2) Write the new select to the mux select register (MSTR1).
+ 665   1          3) Restore the zero period (if desired) to the master mux clock divider (MSTR0).        
+ 666   1          */
+ 667   1          uint8 master_reg_1;
+ 668   1      
+ 669   1      #if CYLIB_PSOC3_ES2
+ 670   1          uint8 master_reg_0;
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 12  
+
+ 671   1      
+ 672   1          /* Read the current setting */
+ 673   1          master_reg_0 = CLKDIST_MSTR0;
+ 674   1          if (master_reg_0 == 0x00u)
+ 675   1          {
+ 676   2              CLKDIST_MSTR0 = 3;
+ 677   2          }
+ 678   1      #endif
+ 679   1      
+ 680   1          /* Read the current setting */
+ 681   1          master_reg_1 = CLKDIST_MSTR1;
+ 682   1      
+ 683   1          CLKDIST_MSTR1 = (master_reg_1 & MASTER_CLK_SRC_CLEAR) | (source & ~MASTER_CLK_SRC_CLEAR);
+ 684   1          
+ 685   1      #if CYLIB_PSOC3_ES2
+ 686   1          /*Restore the registry value.*/
+ 687   1          if (master_reg_0 == 0x00u)
+ 688   1          {
+ 689   2              CLKDIST_MSTR0 = 0;
+ 690   2          }
+ 691   1      #endif
+ 692   1      }
+ 693          
+ 694          
+ 695          /*******************************************************************************
+ 696          * Function Name: CyMasterClk_SetDivider
+ 697          ********************************************************************************
+ 698          * Summary:
+ 699          *   Sets the divider value used to generate Master Clock.  
+ 700          *   The Flash wait states must be set appropriately before making this change 
+ 701          *   by using CyFlash_SetWaitCycles().
+ 702          *
+ 703          *
+ 704          * Parameters:
+ 705          *   divider: Valid range [0-255].  
+ 706          *   The clock will be divided by this value + 1.  
+ 707          *   For example to divide by 2 this parameter should be set to 1.
+ 708          *
+ 709          *
+ 710          * Return:
+ 711          *   void.
+ 712          *
+ 713          *******************************************************************************/
+ 714          void CyMasterClk_SetDivider(uint8 divider) 
+ 715          {
+ 716   1          CLKDIST_MSTR0 = divider;
+ 717   1      }
+ 718          
+ 719          
+ 720          /*******************************************************************************
+ 721          * Function Name: CyBusClk_Internal_SetDivider
+ 722          ********************************************************************************
+ 723          * Summary:
+ 724          *   Sets the divider value used to generate Bus Clock.  
+ 725          *   The Flash wait states must be set appropriately before making this change 
+ 726          *   by using CyFlash_SetWaitCycles().
+ 727          *
+ 728          *
+ 729          * Parameters:
+ 730          *   divider: Valid range [0-65535].
+ 731          *   The clock will be divided by this value + 1.
+ 732          *   For example to divide by 2 this parameter should be set to 1.
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 13  
+
+ 733          *
+ 734          *
+ 735          * Return:
+ 736          *   void.
+ 737          *
+ 738          *******************************************************************************/
+ 739          void CyBusClk_Internal_SetDivider(uint16 divider)
+ 740          {
+ 741   1          /*Clear all the masks (CLKDIST_AMASK, CLKDIST_DMASK)*/
+ 742   1          CLKDIST_AMASK &= BUS_AMASK_CLEAR;
+ 743   1          CLKDIST_DMASK = BUS_DMASK_CLEAR;
+ 744   1          
+ 745   1          /*set the MASK for bus clock, CLKDIST_BCFG2
+ 746   1          Bits      Name      Description
+ 747   1          7         MASK     Mask bit to enable shadow loads
+ 748   1          1'b1      ENABLE      Enable shadow loads*/
+ 749   1          CLKDIST_BCFG2 |= CLKDIST_WRK0_MASK_SET;
+ 750   1          
+ 751   1          /*We change both bytes before we enable/start the clock.*/
+ 752   1          CY_SET_REG16(CLKDIST_WRK0_PTR, divider);
+ 753   1          
+ 754   1          /*load the value , set the CLKDIST_LD LOAD bit*/
+ 755   1          CLKDIST_LD |= CLKDIST_LD_LOAD_SET;    
+ 756   1      }
+ 757          
+ 758          
+ 759          /*******************************************************************************
+ 760          * Function Name: CyBusClk_SetDivider
+ 761          ********************************************************************************
+ 762          * Summary:
+ 763          *   Sets the divider value used to generate Bus Clock.  
+ 764          *   The Flash wait states must be set appropriately before making this change 
+ 765          *   by using CyFlash_SetWaitCycles().
+ 766          *
+ 767          *
+ 768          * Parameters:
+ 769          *   divider: Valid range [0-65535].  
+ 770          *   The clock will be divided by this value + 1.  
+ 771          *   For example to divide by 2 this parameter should be set to 1..
+ 772          *
+ 773          *
+ 774          * Return:
+ 775          *   void.
+ 776          *
+ 777          *******************************************************************************/
+ 778          void CyBusClk_SetDivider(uint16 divider) 
+ 779          {
+ 780   1          uint16 current_busclk_divider;
+ 781   1          uint8 current_masterclk_divider;
+ 782   1      
+ 783   1          /*Bus clock divider value.*/
+ 784   1          current_busclk_divider = CY_GET_REG16(CLKDIST_BCFG0_PTR);
+ 785   1          
+ 786   1          /*Work around to set the bus clock divider value.*/
+ 787   1          if (divider == 0 || current_busclk_divider == 0)
+ 788   1          {
+ 789   2              /*save away the master clock divider value*/
+ 790   2              current_masterclk_divider = CY_GET_REG8(CLKDIST_MSTR0_PTR);
+ 791   2              if (current_masterclk_divider < MASTERCLK_DIVIDER_VALUE)
+ 792   2              {    
+ 793   3                  /*set master clock divider to 7 */
+ 794   3                  CyMasterClk_SetDivider(MASTERCLK_DIVIDER_VALUE);
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 14  
+
+ 795   3              }
+ 796   2              if (divider == 0)
+ 797   2              {
+ 798   3                  /*
+ 799   3                  set the SSS bit 
+ 800   3                  set the divider register desired value*/
+ 801   3                  CLKDIST_BCFG2 |= CLKDIST_BCFG2_SSS_SET;
+ 802   3                  CyBusClk_Internal_SetDivider(divider);
+ 803   3              }
+ 804   2              else 
+ 805   2              {
+ 806   3                  /*
+ 807   3                  set the divider register to divider argument value
+ 808   3                  clear the SSS bit            */
+ 809   3                  CyBusClk_Internal_SetDivider(divider);
+ 810   3                  CLKDIST_BCFG2 &= ~CLKDIST_BCFG2_SSS_SET;
+ 811   3              }
+ 812   2              /*Restore the master clock */
+ 813   2              CyMasterClk_SetDivider(current_masterclk_divider);
+ 814   2          }
+ 815   1          else
+ 816   1          {
+ 817   2              CyBusClk_Internal_SetDivider(divider);
+ 818   2          }
+ 819   1      }
+ 820          
+ 821          
+ 822          /*******************************************************************************
+ 823          * Function Name: CyCpuClk_SetDivider
+ 824          ********************************************************************************
+ 825          * Summary:
+ 826          *   Sets the divider value used to generate the CPU Clock.  Only applicable for PSoC 3.
+ 827          *
+ 828          *
+ 829          * Parameters:
+ 830          *   divider: Valid range [0-15].  
+ 831          *   The clock will be divided by this value + 1.  
+ 832          *   For example to divide by 2 this parameter should be set to 1.
+ 833          *
+ 834          *
+ 835          * Return:
+ 836          *   void.
+ 837          *
+ 838          *******************************************************************************/
+ 839          void CyCpuClk_SetDivider(uint8 divider) 
+ 840          {
+ 841   1      #if CYLIB_PSOC3_ES3
+                  CLKDIST_MSTR1 = (CLKDIST_MSTR1 & CLKDIST_MSTR1_DIV_CLEAR) | (divider << CLKDIST_DIV_POSITION);
+              #elif CYLIB_PSOC3_ES2
+ 844   1          CPUCLK_DIV = (CPUCLK_DIV & ~CPUCLK_DIV) | (divider & SFR_USER_CPUCLK_DIV_MASK);
+ 845   1      #endif /*end (CYLIB_PSOC3_ES3)*/
+ 846   1      }
+ 847          
+ 848          
+ 849          /*******************************************************************************
+ 850          * Function Name: CyUsbClk_SetSource
+ 851          ********************************************************************************
+ 852          * Summary:
+ 853          *   Sets the source of the USB clock.
+ 854          *
+ 855          *
+ 856          * Parameters:
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 15  
+
+ 857          *   source: One of the four available USB clock sources
+ 858          *             USB_CLK_IMO2X     - imo2x  is selected
+ 859          *             USB_CLK_IMO       - imo is selected
+ 860          *             USB_CLK_PLL       - pll is selected
+ 861          *             USB_CLK_DSI       - dsi is selected
+ 862          *
+ 863          *
+ 864          * Return:
+ 865          *   void.
+ 866          *
+ 867          *******************************************************************************/
+ 868          void CyUsbClk_SetSource(uint8 source) 
+ 869          {
+ 870   1          /* SRC_SEL[1:0] of CLKDIST.UCFG*/
+ 871   1          CLKDIST_UCFG = (CLKDIST_UCFG & ~USB_CLKDIST_CONFIG_MASK) | (USB_CLKDIST_CONFIG_MASK & source);
+ 872   1      }
+ 873          
+ 874          
+ 875          /*******************************************************************************
+ 876          * Function Name: CyILO_1KHZ_Start
+ 877          ********************************************************************************
+ 878          * Summary:
+ 879          *   Enables the ILO 1 KHz oscillator.
+ 880          *
+ 881          *
+ 882          * Parameters:
+ 883          *   void.
+ 884          *
+ 885          *
+ 886          * Return:
+ 887          *   void.
+ 888          *
+ 889          *******************************************************************************/
+ 890          void CyILO_Start1K(void) 
+ 891          {
+ 892   1          /*Set the bit 1 of ILO RS */
+ 893   1          SLOWCLK_ILO_CR0 |= ILO_CONTROL_1KHZ_ON;
+ 894   1      }
+ 895          
+ 896          
+ 897          /*******************************************************************************
+ 898          * Function Name: CyILO_Stop1K
+ 899          ********************************************************************************
+ 900          * Summary:
+ 901          *   Disables the ILO 1 KHz oscillator.
+ 902          *
+ 903          *
+ 904          * Parameters:
+ 905          *   void.
+ 906          *
+ 907          *
+ 908          * Return:
+ 909          *   void.
+ 910          *
+ 911          *******************************************************************************/
+ 912          void CyILO_Stop1K(void) 
+ 913          {
+ 914   1          /*Clear the bit 1 of ILO RS */
+ 915   1          SLOWCLK_ILO_CR0 &= ~ILO_CONTROL_1KHZ_ON;
+ 916   1      }
+ 917          
+ 918          
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 16  
+
+ 919          /*******************************************************************************
+ 920          * Function Name: CyILO_Start100K
+ 921          ********************************************************************************
+ 922          * Summary:
+ 923          *   Enables the ILO 100 KHz oscillator.
+ 924          *
+ 925          *
+ 926          * Parameters:
+ 927          *   void.
+ 928          *
+ 929          *
+ 930          * Return:
+ 931          *   void.
+ 932          *
+ 933          *******************************************************************************/
+ 934          void CyILO_Start100K(void) 
+ 935          {
+ 936   1          /*Set the bit 2 of ILO RS */
+ 937   1          SLOWCLK_ILO_CR0 |= ILO_CONTROL_100KHZ_ON;
+ 938   1      }
+ 939          
+ 940          
+ 941          /*******************************************************************************
+ 942          * Function Name: CyILO_Stop100K
+ 943          ********************************************************************************
+ 944          * Summary:
+ 945          *   Disables the ILO 100 KHz oscillator.
+ 946          *
+ 947          *
+ 948          * Parameters:
+ 949          *   void.
+ 950          *
+ 951          *
+ 952          * Return:
+ 953          *   void.
+ 954          *
+ 955          *******************************************************************************/
+ 956          void CyILO_Stop100K(void) 
+ 957          {
+ 958   1          /*Clear the bit 2 of ILO RS */
+ 959   1          SLOWCLK_ILO_CR0 &= ~ILO_CONTROL_100KHZ_ON;
+ 960   1      }
+ 961          
+ 962          
+ 963          /*******************************************************************************
+ 964          * Function Name: CyILO_Enable33K
+ 965          ********************************************************************************
+ 966          * Summary:
+ 967          *   Enables the ILO 33 KHz divider.  
+ 968          *   Note that the 33 KHz clock is generated from the 100 KHz oscillator, 
+ 969          *   so it must also be running in order to generate the 33 KHz output.
+ 970          *
+ 971          *
+ 972          * Parameters:
+ 973          *   void.
+ 974          *
+ 975          *
+ 976          * Return:
+ 977          *   void.
+ 978          *
+ 979          *******************************************************************************/
+ 980          void CyILO_Enable33K(void) 
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 17  
+
+ 981          {
+ 982   1          /*Set the bit 5 of ILO RS */
+ 983   1          SLOWCLK_ILO_CR0 |= ILO_CONTROL_33KHZ_ON;
+ 984   1      }
+ 985          
+ 986          
+ 987          /*******************************************************************************
+ 988          * Function Name: CyILO_Disable33K
+ 989          ********************************************************************************
+ 990          * Summary:
+ 991          *   Disables the ILO 33 KHz divider.  
+ 992          *   Note that the 33 KHz clock is generated from the 100 KHz oscillator, 
+ 993          *   but this API does not disable the 100 KHz clock.
+ 994          *
+ 995          *
+ 996          * Parameters:
+ 997          *   void.
+ 998          *
+ 999          *
+1000          * Return:
+1001          *   void.
+1002          *
+1003          *******************************************************************************/
+1004          void CyILO_Disable33K(void) 
+1005          {
+1006   1          /*Clear the bit 5 of ILO RS */
+1007   1          SLOWCLK_ILO_CR0 &= ~ILO_CONTROL_33KHZ_ON;
+1008   1      }
+1009          
+1010          
+1011          /*******************************************************************************
+1012          * Function Name: CyILO_SetSource
+1013          ********************************************************************************
+1014          * Summary:
+1015          *   Sets the source of the clock output from the ILO block.
+1016          *
+1017          *
+1018          * Parameters:
+1019          *   source: One of the three available ILO output sources
+1020          *       Value        Define                Source
+1021          *       0            CY_ILO_SOURCE_100K    ILO 100 KHz
+1022          *       1            CY_ILO_SOURCE_33K    ILO 33 KHz
+1023          *       2            CY_ILO_SOURCE_1K    ILO 1 KHz
+1024          *
+1025          *
+1026          * Return:
+1027          *   void.
+1028          *
+1029          *******************************************************************************/
+1030          void CyILO_SetSource(uint8 source) 
+1031          {
+1032   1          /*Bits 3:2       ILO_OUT[1:0] of CLKDIST_CR */
+1033   1          CLKDIST_CR = (CLKDIST_CR & CY_ILO_SOURCE_BITS_CLEAR) | ((source << 2) & ~CY_ILO_SOURCE_BITS_CLEAR);
+1034   1      }
+1035          
+1036          
+1037          /*******************************************************************************
+1038          * Function Name: CyILO_SetPowerMode
+1039          ********************************************************************************
+1040          * Summary:
+1041          *   Sets the power mode used by the ILO during power down.  
+1042          *   Allows for lower power down power usage resulting in a slower startup time.
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 18  
+
+1043          *
+1044          *
+1045          * Parameters:
+1046          *   mode, 0 : Faster start-up, internal bias left on when powered down
+1047          *         1 : Slower start-up, internal bias off when powered down
+1048          *
+1049          *
+1050          * Return:
+1051          *   Prevous power mode state.
+1052          *
+1053          *******************************************************************************/
+1054          uint8 CyILO_SetPowerMode(uint8 mode) 
+1055          {
+1056   1          uint8 state;
+1057   1      
+1058   1          /* Get current state. */
+1059   1          state = SLOWCLK_ILO_CR0;
+1060   1      
+1061   1          /* Set the the oscillator power mode. */
+1062   1          if(mode!=0)
+1063   1          {
+1064   2              SLOWCLK_ILO_CR0 = (state | ILO_CONTROL_PD_MODE);
+1065   2          }
+1066   1          else
+1067   1          {
+1068   2              SLOWCLK_ILO_CR0 = (state & ~ILO_CONTROL_PD_MODE);
+1069   2          }
+1070   1      
+1071   1          /* Return the old mode. */
+1072   1          return ((state & ILO_CONTROL_PD_MODE) >> ILO_CONTROL_PD_POSITION);
+1073   1      }
+1074          
+1075          
+1076          /*******************************************************************************
+1077          * Function Name: CyXTAL_32KHZ_Start
+1078          ********************************************************************************
+1079          * Summary:
+1080          *   Enables the 32KHz Crystal Oscillator.
+1081          *
+1082          *
+1083          * Parameters:
+1084          *   void.
+1085          *
+1086          *
+1087          * Return:
+1088          *   void.
+1089          *
+1090          *******************************************************************************/
+1091          void CyXTAL_32KHZ_Start(void) 
+1092          {
+1093   1          volatile uint32  timeout;
+1094   1          volatile uint32* timeout_p = &timeout;
+1095   1          
+1096   1      #if (CYLIB_PSOC3_ES3 || CYLIB_PSOC5_ES2)
+                  uint8 x32TrHold;
+                  x32TrHold = MFGCFG_X32_TR;
+                  MFGCFG_X32_TR = X32_TR_CLEAR;
+              #endif
+1101   1      
+1102   1          SLOWCLK_X32_TST = X32_TST_SETALL;
+1103   1          SLOWCLK_X32_CFG = X32_CFG_LOWPOWERMODE;
+1104   1      
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 19  
+
+1105   1              /* Enable the the oscillator. */
+1106   1      #if (CYLIB_PSOC3_ES3 || CYLIB_PSOC5_ES2)
+                  SLOWCLK_X32_CR |= X32_CONTROL_PDBEN;
+              #endif
+1109   1          SLOWCLK_X32_CR |= X32_CONTROL_X32EN;
+1110   1          for (timeout = 224000; *timeout_p && !(SLOWCLK_X32_CR & 0x20u); timeout--) { }
+1111   1      #if (CYLIB_PSOC3_ES3 || CYLIB_PSOC5_ES2)
+                  MFGCFG_X32_TR = x32TrHold;
+              #endif
+1114   1      }
+1115          
+1116          
+1117          /*******************************************************************************
+1118          * Function Name: CyXTAL_32KHZ_Stop
+1119          ********************************************************************************
+1120          * Summary:
+1121          *   Disables the 32KHz Crystal Oscillator.
+1122          *
+1123          *
+1124          * Parameters:
+1125          *   void.
+1126          *
+1127          *
+1128          * Return:
+1129          *   void.
+1130          *
+1131          *******************************************************************************/
+1132          void CyXTAL_32KHZ_Stop(void) 
+1133          {
+1134   1          /* Disable the oscillator. */
+1135   1          SLOWCLK_X32_CR &= ~X32_CONTROL_X32EN;
+1136   1      }
+1137          
+1138          
+1139          /*******************************************************************************
+1140          * Function Name: CyXTAL_32KHZ_ReadStatus
+1141          ********************************************************************************
+1142          * Summary:
+1143          *   Reads the two status bits for the 32 KHz oscillator.
+1144          *
+1145          *
+1146          * Parameters:
+1147          *   None
+1148          *
+1149          *
+1150          * Return:
+1151          *   Value     Define                    Source
+1152          *   20        CY_XTAL32K_ANA_STAT        Analog measurement   
+1153          *                                   20: Stable
+1154          *                                   00: Not stable
+1155          *   10        CY_XTAL32K_DIG_STAT        Digital measurement (Requires the 33 KHz 
+1156          *                                           ILO to make this measurement)
+1157          *                                   10: Stable
+1158          *                                   00: Not stable
+1159          *
+1160          *******************************************************************************/
+1161          uint8 CyXTAL_32KHZ_ReadStatus() 
+1162          {
+1163   1          uint8 status;
+1164   1          status = SLOWCLK_X32_CR;
+1165   1          /*
+1166   1          Bits 5:4
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 20  
+
+1167   1          */
+1168   1          return (status & CY_XTAL32K_STAT_FIELDS);
+1169   1      }
+1170          
+1171          
+1172          /*******************************************************************************
+1173          * Function Name: CyXTAL_32KHZ_SetPowerMode
+1174          ********************************************************************************
+1175          * Summary:
+1176          *   Sets the power mode for the 32 KHz oscillator used during sleep mode.  
+1177          *   Allows for lower power during sleep when there are fewer sources of noise.  
+1178          *   During active mode the oscillator is always run in high power mode.
+1179          *
+1180          * Parameters:
+1181          *   mode
+1182          *       0: High power mode
+1183          *       1: Low power mode during sleep
+1184          *
+1185          *
+1186          * Return:
+1187          *   Prevous power mode.
+1188          *
+1189          *******************************************************************************/
+1190          uint8 CyXTAL_32KHZ_SetPowerMode(uint8 mode) 
+1191          {
+1192   1          uint8 state;
+1193   1      
+1194   1          /* Get current state. */
+1195   1          state = SLOWCLK_X32_CR;
+1196   1      
+1197   1          /* Set the the oscillator power mode. */
+1198   1          if(mode!=0)
+1199   1          {
+1200   2              SLOWCLK_X32_CR = (state | X32_CONTROL_LPM);
+1201   2          }
+1202   1          else
+1203   1          {
+1204   2              SLOWCLK_X32_CR = (state & ~X32_CONTROL_LPM);
+1205   2          }
+1206   1      
+1207   1          /* Return the old mode. 
+1208   1              Bit 1 position.*/
+1209   1          return ((state & X32_CONTROL_LPM) >> X32_CONTROL_LPM_POSITION);
+1210   1      }
+1211          
+1212          
+1213          /*******************************************************************************
+1214          * Function Name: CyXTAL_Start
+1215          ********************************************************************************
+1216          * Summary:
+1217          *   Enables the megahertz crystal.  
+1218          *   Waits until the XERR bit is low (no error) for a millisecond or 
+1219          *   until the number of milliseconds specified by the wait parameter has expired.
+1220          *
+1221          *
+1222          * Parameters:
+1223          *   wait: Valid range [0-255].
+1224          *   This is the timeout value in milliseconds.  
+1225          *   The appropriate value is crystal specific.
+1226          *
+1227          *
+1228          * Return:
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 21  
+
+1229          *   CYRET_SUCCESS - Completed successfully
+1230          *   CYRET_TIMEOUT - Timeout occurred without detecting a low value on XERR..
+1231          *
+1232          * Side Effects and Restrictions:
+1233          *   If wait is enabled (non-zero wait):
+1234          *    Uses the Fast Timewheel to time the wait.  Any other use of the 
+1235          *    Fast Timewheel will be stopped during the period of this function and 
+1236          *    then restored.
+1237          *    Uses the 100KHz ILO.  If not enabled, this function will enable 
+1238          *    the 100KHz ILO for the period of this function.
+1239          *    No changes to the setup of the ILO, Fast Timewheel, Central Timewheel or 
+1240          *    Once Per Second interrupt may be made by interrupt routines during 
+1241          *    the period of this function.  
+1242          *    The current operation of the ILO, Central Timewheel and Once Per Second 
+1243          *    interrupt are maintained during the operation of this function provided 
+1244          *    the reading of the Power Manager Interrupt Status Register is 
+1245          *    only done using the CyPmReadStatus() function.
+1246          *******************************************************************************/
+1247          cystatus CyXTAL_Start(uint8 wait) 
+1248          {
+1249   1          cystatus status = CYRET_SUCCESS;
+1250   1          uint8 pm_tw_cfg2_state = 0;
+1251   1          uint8 pm_tw_cfg0_state = 0;
+1252   1          uint8 ilo_clock_state = 0;
+1253   1          volatile uint8 count = 0;
+1254   1          volatile uint8 wait_msec = wait;
+1255   1      
+1256   1          FASTCLK_XMHZ_CSR |= XMHZ_CONTROL_ENABLE;
+1257   1          
+1258   1          if(wait > 0) 
+1259   1          {
+1260   2              /*    Need to turn on the 100KHz ILO if it happens to not already be running.*/
+1261   2              ilo_clock_state = SLOWCLK_ILO_CR0;
+1262   2              if(!(ilo_clock_state & ILO_CONTROL_100KHZ_ON))
+1263   2              {
+1264   3                  CyILO_Start100K();
+1265   3              }
+1266   2              status = CYRET_TIMEOUT;
+1267   2              
+1268   2              /*Store the value*/
+1269   2              pm_tw_cfg2_state = PM_TW_CFG2;
+1270   2              pm_tw_cfg0_state = PM_TW_CFG0;
+1271   2      
+1272   2              /* FTW_EN (bit 0) must be clear to change the period*/
+1273   2              PM_TW_CFG2 &= FTW_CLEAR_FTW_BITS;
+1274   2              
+1275   2              /* Set the FTW interval of 25 100KHz ILO clocks
+1276   2              Should result in status getting set at a (100/25)KHz rate*/
+1277   2              PM_TW_CFG0 = 25-1;
+1278   2              /* Enable FTW, but not the interrupt*/
+1279   2              PM_TW_CFG2 = FTW_ENABLE;
+1280   2          }
+1281   1          
+1282   1          for(; wait_msec > 0; wait_msec--)
+1283   1          {
+1284   2              /*read XERR bit to clear it */
+1285   2              FASTCLK_XMHZ_CSR;
+1286   2              
+1287   2              /*wait for milliseconds.. 4 times 250uS delay*/
+1288   2              for(count = 4; count > 0; count --)
+1289   2              {
+1290   3                  /*CyPmReadStatus()*/
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 22  
+
+1291   3                  while (CyPmReadStatus(1) == 0)
+1292   3                  {
+1293   4                      /* Wait for the interrupt status*/
+1294   4                  }            
+1295   3              } /* end of for(count = 4; count > 0; count --)*/
+1296   2              /*High output indicates oscillator failure. 
+1297   2              Only use this after start-up interval is completed (1ms).*/
+1298   2              if ((FASTCLK_XMHZ_CSR & X32_CONTROL_XERR_MASK) == 0) 
+1299   2              {
+1300   3                  status = CYRET_SUCCESS;
+1301   3                  break;
+1302   3              }
+1303   2          } /* end for(; wait_msec > 0; wait_msec--) */
+1304   1      
+1305   1          if(wait > 0)
+1306   1          {
+1307   2              if (!(ilo_clock_state & ILO_CONTROL_100KHZ_ON))
+1308   2              {
+1309   3                  /*reset the clock */
+1310   3                  CyILO_Stop100K();
+1311   3              }
+1312   2      
+1313   2              /*restore the FTW*/
+1314   2              PM_TW_CFG0 = pm_tw_cfg0_state;
+1315   2              PM_TW_CFG2 = pm_tw_cfg2_state;
+1316   2          }
+1317   1          
+1318   1          return status;
+1319   1      }
+1320          
+1321          
+1322          /*******************************************************************************
+1323          * Function Name: CyXTAL_Stop
+1324          ********************************************************************************
+1325          * Summary:
+1326          *   Disables the megahertz crystal oscillator.
+1327          *
+1328          *
+1329          * Parameters:
+1330          *   void.
+1331          *
+1332          *
+1333          * Return:
+1334          *   void.
+1335          *
+1336          *******************************************************************************/
+1337          void CyXTAL_Stop(void) 
+1338          {
+1339   1          /* Disable the the oscillator. */
+1340   1          FASTCLK_XMHZ_CSR &= ~XMHZ_CONTROL_ENABLE;
+1341   1      }
+1342          
+1343          
+1344          /*******************************************************************************
+1345          * Function Name: CyXTAL_EnableErrStatus
+1346          ********************************************************************************
+1347          * Summary:
+1348          *    Enables the generation of the XERR status bit for the megahertz crystal.
+1349          *
+1350          *
+1351          * Parameters:
+1352          *   void.
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 23  
+
+1353          *
+1354          *
+1355          * Return:
+1356          *   void.
+1357          *
+1358          *******************************************************************************/
+1359          void CyXTAL_EnableErrStatus(void) 
+1360          {
+1361   1          /*1'b0      XFB_DIS_0      enabled. If oscillator has insufficient amplitude, XERR bit will be high. *
+             -/
+1362   1          FASTCLK_XMHZ_CSR &= ~X32_CONTROL_XERR_DIS;
+1363   1      }
+1364          
+1365          
+1366          /*******************************************************************************
+1367          * Function Name: CyXTAL_DisableErrStatus
+1368          ********************************************************************************
+1369          * Summary:
+1370          *    Disables the generation of the XERR status bit for the megahertz crystal..
+1371          *
+1372          *
+1373          * Parameters:
+1374          *   void.
+1375          *
+1376          *
+1377          * Return:
+1378          *   void.
+1379          *
+1380          *******************************************************************************/
+1381          void CyXTAL_DisableErrStatus(void) 
+1382          {
+1383   1          /*1'b0      XFB_DIS_0      enabled. If oscillator has insufficient amplitude, XERR bit will be high. *
+             -/
+1384   1          FASTCLK_XMHZ_CSR |= X32_CONTROL_XERR_DIS;
+1385   1      }
+1386          
+1387          
+1388          /*******************************************************************************
+1389          * Function Name: CyXTAL_ReadStatus
+1390          ********************************************************************************
+1391          * Summary:
+1392          *    Reads the XERR status bit for the megahertz crystal.  
+1393          *    This status bit is a sticky clear on read value.
+1394          *
+1395          *
+1396          * Parameters:
+1397          *   void.
+1398          *
+1399          *
+1400          * Return:
+1401          *   Status
+1402          *    0: No error
+1403          *    1: Error.
+1404          *
+1405          *******************************************************************************/
+1406          uint8 CyXTAL_ReadStatus(void) 
+1407          {
+1408   1          /*Bits      Name      Description
+1409   1              7         xerr     High output indicates oscillator failure. 
+1410   1          Only use this after start-up interval is completed. This can be used for 
+1411   1          status and failure recovery.
+1412   1          */
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 24  
+
+1413   1          return ((FASTCLK_XMHZ_CSR & X32_CONTROL_XERR_MASK) >> X32_CONTROL_XERR_POSITION);
+1414   1      }
+1415          
+1416          
+1417          /*******************************************************************************
+1418          * Function Name: CyXTAL_EnableFaultRecovery
+1419          ********************************************************************************
+1420          * Summary:
+1421          *    Enables the fault recovery circuit which will switch to the IMO 
+1422          *    in the case of a fault in the megahertz crystal circuit.  
+1423          *    The crystal must be up and running with the XERR bit at 0, 
+1424          *    before calling this function to prevent immediate fault switchover.
+1425          *
+1426          *
+1427          * Parameters:
+1428          *   void.
+1429          *
+1430          *
+1431          * Return:
+1432          *   void.
+1433          *
+1434          *******************************************************************************/
+1435          void CyXTAL_EnableFaultRecovery(void) 
+1436          {
+1437   1          /*6th bit       xprot of FASTCLK_XMHZ_CSR 
+1438   1          */
+1439   1          FASTCLK_XMHZ_CSR |= X32_CONTROL_FAULT_RECOVER;
+1440   1      }
+1441          
+1442          
+1443          /*******************************************************************************
+1444          * Function Name: CyXTAL_DisableFaultRecovery
+1445          ********************************************************************************
+1446          * Summary:
+1447          *    Disables the fault recovery circuit which will switch to the IMO 
+1448          *     in the case of a fault in the megahertz crystal circuit.
+1449          *
+1450          *
+1451          * Parameters:
+1452          *   void.
+1453          *
+1454          *
+1455          * Return:
+1456          *   void.
+1457          *
+1458          *******************************************************************************/
+1459          void CyXTAL_DisableFaultRecovery(void) 
+1460          {
+1461   1          /*6th bit       xprot of FASTCLK_XMHZ_CSR 
+1462   1          */
+1463   1          FASTCLK_XMHZ_CSR &= ~X32_CONTROL_FAULT_RECOVER;
+1464   1      }
+1465          
+1466          
+1467          /*******************************************************************************
+1468          * Function Name: CyXTAL_SetStartup
+1469          ********************************************************************************
+1470          * Summary:
+1471          *   Sets the startup settings for the crystal.
+1472          *
+1473          *
+1474          * Parameters:
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 25  
+
+1475          *   setting: Valid range [0-31].  
+1476          *    Value is dependent on the frequency and quality of the crystal being used.  
+1477          *    Refer to the TRM for appropriate values for a specific crystal..
+1478          *
+1479          *
+1480          * Return:
+1481          *   void.
+1482          *
+1483          *******************************************************************************/
+1484          void CyXTAL_SetStartup(uint8 setting) 
+1485          {
+1486   1          /*Valid range 0-31*/
+1487   1          FASTCLK_XMHZ_CFG0 = (FASTCLK_XMHZ_CFG0 & ~FASTCLK_XMHZ_GAINMASK) | 
+1488   1                               (setting & FASTCLK_XMHZ_GAINMASK);
+1489   1      }
+1490          
+1491          
+1492          #if CYLIB_PSOC3_ES3
+              /*******************************************************************************
+              * Function Name: CyXTAL_SetFbVoltage
+              ********************************************************************************
+              * Summary:
+              *   Sets the feedback reference voltage to use for the crystal circuit.
+              *
+              *
+              * Parameters:
+              *   setting: Valid range [0-15].  
+              *   Refer to the TRM for details on the mapping of the setting value to 
+              *   specific voltages.
+              *
+              *
+              * Return:
+              *   void.
+              *
+              *
+              * Side Effects and Restrictions:
+              *   The feedback reference voltage must be greater than the watchdog reference 
+              *   voltage.
+              *
+              *******************************************************************************/
+              void CyXTAL_SetFbVoltage(uint8 setting) 
+              {
+                  /*The register with this value has changed between ES2 and ES3 silicon.  
+                  This function should only be made available for ES3 silicon.  
+                  For ES2 there will not be an equivalent function and this register will 
+                  just be left at its default value.*/
+                  FASTCLK_XMHZ_CFG1 = ((FASTCLK_XMHZ_CFG1 & ~FASTCLK_XMHZ_VREFMASK) | 
+                                       (setting & FASTCLK_XMHZ_VREFMASK));
+              }
+              
+              
+              /*******************************************************************************
+              * Function Name: CyXTAL_SetWdVoltage
+              ********************************************************************************
+              * Summary:
+              *   Sets the reference voltage used by the watchdog to detect a failure 
+              *   in the crystal circuit. 
+              *
+              *
+              * Parameters:
+              *   setting: Valid range [0-7].  
+              *   Refer to the TRM for details on the mapping of the setting value to 
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 26  
+
+              *   specific voltages.
+              *
+              *
+              * Return:
+              *   void.
+              *
+              * Side Effects and Restrictions:
+              *   The feedback reference voltage must be greater than the watchdog 
+              *   reference voltage.
+              *
+              *******************************************************************************/
+              void CyXTAL_SetWdVoltage(uint8 setting) 
+              {
+                  /*
+                  The register with this value has changed between ES2 and ES3 silicon.
+                  This function should only be made available for ES3 silicon.
+                  For ES2 there will not be an equivalent function and this register will 
+                  -just be left at its default value.
+                  */
+                  FASTCLK_XMHZ_CFG1 = ((FASTCLK_XMHZ_CFG1 & ~FASTCLK_XMHZ_VREF_WD_MASK) | 
+                                       ((setting << 4) & FASTCLK_XMHZ_VREF_WD_MASK));
+              }
+              
+              #endif /*CYLIB_PSOC3_ES3*/
+1561          
+1562          /* CYLIB CLOCK funcs end */
+1563          
+1564          
+1565          /* CYLIB SYSTEM funcs begin */
+1566          
+1567          
+1568          /*******************************************************************************
+1569          * Function Name: CyHalt
+1570          ********************************************************************************
+1571          * Summary:
+1572          *  Halts the CPU
+1573          *
+1574          *
+1575          * Parameters:
+1576          *   reason: Value to be used during debugging.
+1577          *
+1578          *
+1579          * Return: 
+1580          *   void.
+1581          *
+1582          *
+1583          *******************************************************************************/
+1584          void CyHalt(uint8 reason)
+1585          {
+1586   1          reason = reason;
+1587   1      #if defined (__ARMCC_VERSION)
+                  __breakpoint(0x0);
+              #elif defined(__GNUC__)
+                  __asm("    bkpt    1");
+              #elif defined(__C51__)
+1592   1          CYDEV_HALT_CPU;
+1593   1      #endif
+1594   1      }
+1595          
+1596          
+1597          /*******************************************************************************
+1598          * Function Name: CySoftwareReset
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 27  
+
+1599          ********************************************************************************
+1600          * Summary:
+1601          *  Forces a software reset of the device.
+1602          *
+1603          *
+1604          * Parameters:
+1605          *   None.
+1606          *
+1607          *
+1608          * Return: 
+1609          *   void.
+1610          *
+1611          *
+1612          *******************************************************************************/
+1613          void CySoftwareReset()
+1614          {
+1615   1          /* Perform a reset by writing the software reset bit in reset control register 2 */
+1616   1          *RESET_CR2 = 0x1;
+1617   1      }
+1618          
+1619          /* CYLIB SYSTEM funcs end */
+1620          
+1621          
+1622          uint32 cydelay_freq_hz = BCLK__BUS_CLK__HZ;
+1623          uint32 cydelay_freq_khz = (BCLK__BUS_CLK__HZ + 999u) / 1000u;
+1624          uint8 cydelay_freq_mhz = (uint8)((BCLK__BUS_CLK__HZ + 999999u) / 1000000u);
+1625          uint32 cydelay_32k_ms = 32768 * ((BCLK__BUS_CLK__HZ + 999u) / 1000u);
+1626          
+1627          
+1628          /*******************************************************************************
+1629          * Function Name: CyDelay
+1630          ********************************************************************************
+1631          * Summary:
+1632          *   Blocks for milliseconds.
+1633          *    Note: CyDelay has been implemented with the instruction cache assumed enabled. 
+1634          *      When instruction cache is disabled on PSoC5, CyDelay will be two times 
+1635          *      larger. Ex: With instruction cache disabled CyDelay(100) would result 
+1636          *      in about 200ms delay instead of 100ms.
+1637          *
+1638          * Parameters:
+1639          *   milliseconds: number of milliseconds to delay.
+1640          *
+1641          * Return:
+1642          *   void.
+1643          *
+1644          *******************************************************************************/
+1645          void CyDelay(uint32 milliseconds) CYREENTRANT
+1646          {
+1647   1          while (milliseconds > 32768)
+1648   1          {
+1649   2              /* This loop prevents overflow.
+1650   2               * At 100MHz, milliseconds * delay_freq_khz overflows at about 42 seconds
+1651   2               */
+1652   2              CyDelayCycles(cydelay_32k_ms);
+1653   2              milliseconds -= 32768;
+1654   2          }
+1655   1      
+1656   1          CyDelayCycles(milliseconds * cydelay_freq_khz);
+1657   1      }
+1658          
+1659          
+1660          /*******************************************************************************
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 28  
+
+1661          * Function Name: CyDelayUs
+1662          ********************************************************************************
+1663          * Summary:
+1664          *   Blocks for microseconds.
+1665          *    Note: CyDelay has been implemented with the instruction cache assumed enabled. 
+1666          *      When instruction cache is disabled on PSoC5, CyDelayUs will be two times 
+1667          *      larger. Ex: With instruction cache disabled CyDelayUs(100) would result 
+1668          *      in about 200us delay instead of 100us.
+1669          *
+1670          * Parameters:
+1671          *   microseconds: number of microseconds to delay.
+1672          *
+1673          * Return:
+1674          *   void.
+1675          *
+1676          *******************************************************************************/
+1677          #if defined(__ARMCC_VERSION)
+              void CyDelayUs(uint16 microseconds) CYREENTRANT
+              {
+                  CyDelayCycles((uint32)microseconds * cydelay_freq_mhz);
+              }
+              #elif defined(__GNUC__)
+              void CyDelayUs(uint16 microseconds) CYREENTRANT
+              {
+                  CyDelayCycles((uint32)microseconds * cydelay_freq_mhz);
+              }
+              #endif
+1688          
+1689          
+1690          /*******************************************************************************
+1691          * Function Name: CyDelayFreq
+1692          ********************************************************************************
+1693          * Summary:
+1694          *   Sets clock frequency for CyDelay.
+1695          *
+1696          * Parameters:
+1697          *   freq: Frequency of bus clock in Hertz.
+1698          *
+1699          * Return:
+1700          *   void.
+1701          *
+1702          *******************************************************************************/
+1703          void CyDelayFreq(uint32 freq) CYREENTRANT
+1704          {
+1705   1          if (freq != 0u)
+1706   1              cydelay_freq_hz = freq;
+1707   1          else
+1708   1              cydelay_freq_hz = BCLK__BUS_CLK__HZ;
+1709   1          cydelay_freq_mhz = (uint8)((cydelay_freq_hz + 999999u) / 1000000u);
+1710   1          cydelay_freq_khz = (cydelay_freq_hz + 999u) / 1000u;
+1711   1          cydelay_32k_ms = 32768 * cydelay_freq_khz;
+1712   1      }
+1713          
+1714          /*******************************************************************************
+1715          * Function Name: CyWdtStart
+1716          ********************************************************************************
+1717          * Summary:
+1718          *  Enables the watchdog timer.  
+1719          *  The timer is configured for the specified count interval, the central timewheel 
+1720          *  is cleared, the setting for low power mode is configured and the watchdog 
+1721          *  timer is enabled.  
+1722          *  Once enabled the watchdog cannot be disabled.  
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 29  
+
+1723          *  The watchdog must be cleared using the CyWdtClear() function before 
+1724          *  three ticks of the watchdog timer occur.
+1725          *
+1726          *
+1727          * Parameters: 
+1728          *   ticks: One of the four available timer periods.
+1729          *         CYWDT_2_TICKS     -    2 CTW Ticks
+1730          *         CYWDT_16_TICKS    -   16 CTW Ticks
+1731          *         CYWDT_128_TICKS   -  128 CTW Ticks
+1732          *         CYWDT_1024_TICKS  - 1024 CTW Ticks
+1733          *   lpMode: Low power mode configuration
+1734          *         CYWDT_LPMODE_NOCHANGE - No Change
+1735          *         CYWDT_LPMODE_MAXINTER - Switch to longest timer mode during sleep/hibernate
+1736          *         CYWDT_LPMODE_DISABLED - Disable WDT during sleep/hibernate
+1737          * 
+1738          * Return: 
+1739          *  None.
+1740          *
+1741          *******************************************************************************/
+1742          void CyWdtStart(uint8 ticks, uint8 lpMode)
+1743          {
+1744   1          /* Set the number of ticks. */
+1745   1          *CYWDT_CFG = (ticks & CYWDT_TICKS_MASK) | (*CYWDT_CFG & ~CYWDT_TICKS_MASK);
+1746   1          
+1747   1          /*Clear the central time wheel.*/
+1748   1          *CYWDT_CFG = CYWDT_RESET | *CYWDT_CFG;
+1749   1          *CYWDT_CFG = ~CYWDT_RESET & *CYWDT_CFG;
+1750   1          
+1751   1          /*Setting the low power mode*/
+1752   1          *CYWDT_CFG = ((lpMode << CYWDT_LPMODE_SHIFT) & CYWDT_LPMODE_MASK) | (*CYWDT_CFG & ~CYWDT_LPMODE_MASK);
+1753   1          
+1754   1          /* Enables the watchdog timer.*/
+1755   1          *CYWDT_CFG = CYWDT_ENABLE_BIT | *CYWDT_CFG;
+1756   1      }
+1757          
+1758          /*******************************************************************************
+1759          * Function Name: CyWdtClear
+1760          ********************************************************************************
+1761          * Summary:
+1762          *  Clears (feeds) the watchdog timer.
+1763          *
+1764          *
+1765          * Parameters: 
+1766          *  None.
+1767          *
+1768          *
+1769          * Return: 
+1770          *  None.
+1771          *
+1772          *******************************************************************************/
+1773          void CyWdtClear(void)
+1774          {
+1775   1          /* Clears the Watchdog timer. */
+1776   1      #if (((CYDEV_CHIP_MEMBER_USED == CYDEV_CHIP_MEMBER_3A) && (CYDEV_CHIP_REVISION_USED == CYDEV_CHIP_REVISION
+             -_3A_ES2)) || \
+1777   1           ((CYDEV_CHIP_MEMBER_USED == CYDEV_CHIP_MEMBER_5A) && (CYDEV_CHIP_REVISION_USED == CYDEV_CHIP_REVISION
+             -_5A_ES1)))
+1778   1          /* PSoC3 ES2 and PSoC5 ES1 watchdog time clear requires workaround */
+1779   1          uint8 wdt_cfg_value = *CYWDT_CFG; 
+1780   1          *CYWDT_CR = 1; 
+1781   1          *CYWDT_CFG = 0; 
+1782   1          *CYWDT_CFG = wdt_cfg_value;
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 30  
+
+1783   1      #else
+                  *CYWDT_CR = 1;
+              #endif 
+1786   1      }
+1787          
+1788          /*******************************************************************************
+1789          * Function Name: CyDisableInts
+1790          ********************************************************************************
+1791          * Summary:
+1792          *  Disables the interrupt enable for each interrupt.
+1793          *
+1794          *
+1795          * Parameters: 
+1796          *  None.
+1797          *
+1798          *
+1799          * Return: 
+1800          *  32 bit mask of previously enabled interrupts.
+1801          *
+1802          *******************************************************************************/
+1803          uint32 CyDisableInts(void) 
+1804          {
+1805   1          uint32 intState;
+1806   1      
+1807   1      
+1808   1          /* Get the curreent interrutp state. */
+1809   1          intState = CY_GET_REG32(CYINT_CLEAR);
+1810   1      
+1811   1          /* Disable all of the interrupts. */
+1812   1          CY_SET_REG32(CYINT_CLEAR, 0xFFFFFFFF);
+1813   1      
+1814   1          return intState;
+1815   1      }
+1816          
+1817          /*******************************************************************************
+1818          * Function Name: CyEnableInts
+1819          ********************************************************************************
+1820          * Summary:
+1821          *  Enables interrupts to a given state.
+1822          *
+1823          *
+1824          * Parameters:
+1825          *   mask, 32 bit mask of interrupts to enable.
+1826          *
+1827          *
+1828          * Return: 
+1829          *  void.
+1830          *
+1831          *******************************************************************************/
+1832          void CyEnableInts(uint32 mask) 
+1833          {
+1834   1          /* Set interrupts as enabled. */
+1835   1          CY_SET_REG32(CYINT_ENABLE, mask);
+1836   1      }
+1837          
+1838          
+1839          /*******************************************************************************
+1840          * Function Name: CyIntSetVector
+1841          ********************************************************************************
+1842          * Summary:
+1843          *   Sets the interrupt vector of the specified interrupt number.
+1844          *
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 31  
+
+1845          *
+1846          * Parameters:
+1847          *   number: Valid range [0-31].  Interrupt number
+1848          *
+1849          *   address: Pointer to an interrupt service routine
+1850          *
+1851          * Return:
+1852          *   Previous interrupt vector value.
+1853          *
+1854          *******************************************************************************/
+1855          cyisraddress CyIntSetVector(uint8 number, cyisraddress address) 
+1856          {
+1857   1          cyisraddress oldIsr;
+1858   1      
+1859   1      
+1860   1          /* Save old Interrupt service routine. */
+1861   1          oldIsr = (cyisraddress) CY_GET_REG16(&CYINT_VECT_TABLE[number]);
+1862   1      
+1863   1          /* Set new Interrupt service routine. */
+1864   1          CY_SET_REG16(&CYINT_VECT_TABLE[number], (uint16) address);
+1865   1      
+1866   1          return oldIsr;
+1867   1      }
+1868          
+1869          /*******************************************************************************
+1870          * Function Name: CyIntGetVector
+1871          ********************************************************************************
+1872          * Summary:
+1873          *   Gets the interrupt vector of the specified interrupt number.
+1874          *
+1875          *
+1876          * Parameters:
+1877          *   number: Valid range [0-31].  Interrupt number
+1878          *
+1879          *
+1880          * Return:
+1881          *   Address of the ISR in the interrupt vector table.
+1882          *
+1883          *******************************************************************************/
+1884          cyisraddress CyIntGetVector(uint8 number) 
+1885          {
+1886   1          return (cyisraddress) CY_GET_REG16(&CYINT_VECT_TABLE[number]);
+1887   1      }
+1888          
+1889          /*******************************************************************************
+1890          * Function Name: CyIntSetPriority
+1891          ********************************************************************************
+1892          * Summary:
+1893          *   Sets the Priority of the Interrupt.
+1894          *
+1895          *
+1896          * Parameters:
+1897          *   priority: Priority of the interrupt. 0 - 7, 0 being the highest.
+1898          *
+1899          *   number: The number of the interrupt, 0 - 31.
+1900          *
+1901          * Return:
+1902          *   void.
+1903          *
+1904          *
+1905          *******************************************************************************/
+1906          void CyIntSetPriority(uint8 number, uint8 priority) 
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 32  
+
+1907          {
+1908   1          CYASSERT(priority <= 7);
+1909   1          CYASSERT(number <= 31);
+1910   1          CYINT_PRIORITY[number] = priority << 5;
+1911   1      }
+1912          
+1913          /*******************************************************************************
+1914          * Function Name: CyIntGetPriority
+1915          ********************************************************************************
+1916          * Summary:
+1917          *   Gets the Priority of the Interrupt.
+1918          *
+1919          *
+1920          * Parameters:
+1921          *   number: The number of the interrupt, 0 - 31.
+1922          *
+1923          *
+1924          * Return:
+1925          *   Priority of the interrupt. 0 - 7, 0 being the highest.
+1926          *
+1927          *
+1928          *******************************************************************************/
+1929          uint8 CyIntGetPriority(uint8 number) 
+1930          {
+1931   1          uint8 priority;
+1932   1      
+1933   1      
+1934   1          priority = CYINT_PRIORITY[number] >> 5;
+1935   1      
+1936   1          return priority;
+1937   1      }
+1938          
+1939          /*******************************************************************************
+1940          * Function Name: CyIntEnable
+1941          ********************************************************************************
+1942          * Summary:
+1943          *   Enables the specified interrupt number.
+1944          *
+1945          *
+1946          * Parameters:
+1947          *   number: Valid range [0-31].  Interrupt number
+1948          *
+1949          *
+1950          * Return:
+1951          *   void.
+1952          *
+1953          *******************************************************************************/
+1954          void CyIntEnable(uint8 number) 
+1955          {
+1956   1          reg8 * enableReg;
+1957   1      
+1958   1          /* Get a pointer to the Interrupt enable register. */
+1959   1          enableReg = CYINT_ENABLE + (number >> 3);
+1960   1      
+1961   1          /* Enable the interrupt. */
+1962   1          *enableReg = 1 << (0x07 & number);
+1963   1      }
+1964          
+1965          /*******************************************************************************
+1966          * Function Name: CyIntGetState
+1967          ********************************************************************************
+1968          * Summary:
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 33  
+
+1969          *   Gets the enable state of the specified interrupt number.
+1970          *
+1971          *
+1972          * Parameters:
+1973          *   number: Valid range [0-31].  Interrupt number.
+1974          *
+1975          *
+1976          * Return:
+1977          *   Enable status: 1 if enabled, 0 if disabled
+1978          *
+1979          *******************************************************************************/
+1980          uint8 CyIntGetState(uint8 number) 
+1981          {
+1982   1          reg8 * stateReg;
+1983   1      
+1984   1      
+1985   1          /* Get a pointer to the Interrupt enable register. */
+1986   1          stateReg = CYINT_ENABLE + (number >> 3);
+1987   1      
+1988   1          /* Get the state of the interrupt. */
+1989   1          return (*stateReg & (1 << (0x07 & number))) ? 1:0;
+1990   1      }
+1991          
+1992          /*******************************************************************************
+1993          * Function Name: CyIntDisable
+1994          ********************************************************************************
+1995          * Summary:
+1996          *   Disables the specified interrupt number.
+1997          *
+1998          *
+1999          * Parameters:
+2000          *   number: Valid range [0-31].  Interrupt number.
+2001          *
+2002          *
+2003          * Return:
+2004          *   void.
+2005          *
+2006          *******************************************************************************/
+2007          void CyIntDisable(uint8 number) 
+2008          {
+2009   1          reg8 * clearReg;
+2010   1      
+2011   1      
+2012   1          /* Get a pointer to the Interrupt enable register. */
+2013   1          clearReg = CYINT_CLEAR + (number >> 3);
+2014   1      
+2015   1          /* Enable the interrupt. */
+2016   1          *clearReg = 1 << (0x07 & number);
+2017   1      }
+2018          
+2019          /*******************************************************************************
+2020          * Function Name: CyIntSetPending
+2021          ********************************************************************************
+2022          * Summary:
+2023          *   Forces the specified interrupt number to be pending.
+2024          *
+2025          *
+2026          * Parameters:
+2027          *   number: Valid range [0-31].  Interrupt number.
+2028          *
+2029          *
+2030          * Return:
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 34  
+
+2031          *   void.
+2032          *
+2033          *******************************************************************************/
+2034          void CyIntSetPending(uint8 number) 
+2035          {
+2036   1          reg8 * pendReg;
+2037   1      
+2038   1      
+2039   1          /* Get a pointer to the Interrupt set pending register. */
+2040   1          pendReg = CYINT_SET_PEND + (number >> 3);
+2041   1      
+2042   1          /* Enable the interrupt. */
+2043   1          *pendReg = 1 << (0x07 & number);
+2044   1      }
+2045          
+2046          /*******************************************************************************
+2047          * Function Name: CyIntClearPending
+2048          ********************************************************************************
+2049          * Summary:
+2050          *   Clears any pending interrupt for the specified interrupt number.
+2051          *
+2052          * Parameters:
+2053          *   number: Valid range [0-31].  Interrupt number.
+2054          *
+2055          *
+2056          * Return:
+2057          *   void.
+2058          *
+2059          *******************************************************************************/
+2060          void CyIntClearPending(uint8 number) 
+2061          {
+2062   1          reg8 * pendReg;
+2063   1      
+2064   1      
+2065   1          /* Get a pointer to the Interrupt clear pending register. */
+2066   1          pendReg = CYINT_CLR_PEND + (number >> 3);
+2067   1      
+2068   1          /* Enable the interrupt. */
+2069   1          *pendReg = 1 << (0x07 & number);
+2070   1      }
+2071          
+2072          /* cystrcpy, cystrlen, CyGetSwapReg16 and CySetSwapReg16 are obsolete functions.
+2073          and are not recommended for use in new code. */
+2074          /*******************************************************************************
+2075          * Function Name: cystrcpy
+2076          ********************************************************************************
+2077          * Summary:
+2078          *   Recommended not use these function, these are defined for compatibility.
+2079          *
+2080          *******************************************************************************/
+2081          char * cystrcpy(char * s1, char * s2)
+2082          {
+2083   1          return strcpy(s1, s2);
+2084   1      }
+2085          
+2086          /*******************************************************************************
+2087          * Function Name: cystrlen
+2088          ********************************************************************************
+2089          * Summary:
+2090          *   Recommended not use these function, these are defined for compatibility.
+2091          *
+2092          *******************************************************************************/
+C51 COMPILER V8.16   CYLIB                                                                 12/13/2010 22:57:35 PAGE 35  
+
+2093          uint32 cystrlen(const char * s)
+2094          {
+2095   1          return strlen(s);
+2096   1      }
+2097          
+2098          /*******************************************************************************
+2099          * Function Name: CyGetSwapReg16
+2100          ********************************************************************************
+2101          * Summary:
+2102          *   Recommended not use these function, these are defined for compatibility.
+2103          *
+2104          *******************************************************************************/
+2105          uint16  CyGetSwapReg16(uint16 CYXDATA* addr)
+2106          {
+2107   1          return cyread16_nodpx((void CYFAR *) addr);
+2108   1      }
+2109          
+2110          /*******************************************************************************
+2111          * Function Name: CySetSwapReg16
+2112          ********************************************************************************
+2113          * Summary:
+2114          *   Recommended not use these function, these are defined for compatibility.
+2115          *
+2116          *******************************************************************************/
+2117          void CySetSwapReg16(uint16 CYXDATA* addr, uint16 value)    
+2118          {
+2119   1          cywrite16_nodpx((void CYFAR *) addr, value);
+2120   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3820    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    117    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

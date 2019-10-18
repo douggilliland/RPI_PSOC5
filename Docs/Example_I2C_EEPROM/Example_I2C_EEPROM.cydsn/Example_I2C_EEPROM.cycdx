@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<blockRegMap version="1"
+    xmlns="http://cypress.com/xsd/cyblockregmap"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd">
+    <block name="I2C" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        <register name="I2C_CFG" address="0x6478" bitWidth="8" desc="Configuration Register">
+        </register>
+        <register name="I2C_CSR" address="0x646B" bitWidth="8" desc="Control and Status Register">
+        </register>
+        <register name="I2C_INT_MASK" address="0x648B" bitWidth="8" desc="Interrupt Mask">
+        </register>
+        <register name="I2C_DATA" address="0x640B" bitWidth="8" desc="Data">
+        </register>
+        <block name="Bufoe_SDA" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="Bufoe_SCL" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="I2C_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="VirtualMux_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="VirtualMux_SDA" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="VirtualMux_SCL" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+        <block name="bI2C_UDB" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+    </block>
+    <block name="LCD" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        <block name="LCDPort" BASE="0x0" SIZE="0x0" desc="" visible="True">
+        </block>
+    </block>
+    <block name="Clock" BASE="0x0" SIZE="0x0" desc="" visible="True">
+    </block>
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="True">
+    </block>
+    <block name="SDA" BASE="0x0" SIZE="0x0" desc="" visible="True">
+    </block>
+    <block name="SCL" BASE="0x0" SIZE="0x0" desc="" visible="True">
+    </block>
+</blockRegMap>

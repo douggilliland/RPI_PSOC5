@@ -1,0 +1,1457 @@
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE I2C
+OBJECT MODULE PLACED IN C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C.OBJ
+COMPILER INVOKED BY: C:\Program Files\Cypress\PSoC Creator\1.0\PSoC Creator\import\keil\pk51\8.16\C51\BIN\c51.exe C:\Doc
+                    -uments and Settings\akay\My Documents\Example Projects\PSoC3 I2C EEPROM\Example_I2C_EEPROM\Example_I2C_EEPROM.cydsn\Gene
+                    -rated_Source\PSoC3\I2C.c NOIV LARGE MODDP2 OMF2 VB(1) PR(C:/Documents and Settings/akay/My Documents/Example Projects/PS
+                    -oC3 I2C EEPROM/Example_I2C_EEPROM/Example_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C.lst) DB NOIP OT(0) INCDIR(Generated
+                    -_Source/PSoC3) OJ(C:/Documents and Settings/akay/My Documents/Example Projects/PSoC3 I2C EEPROM/Example_I2C_EEPROM/Examp
+                    -le_I2C_EEPROM.cydsn/DP8051_Keil_816/Debug/I2C.OBJ)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: I2C.c  
+   3          * Version 2.0
+   4          *
+   5          *  Description:
+   6          *    This file contains the setup, control and status commands for the I2C
+   7          *    component.  Actual protocol and operation code resides in the interrupt
+   8          *    service routine file.
+   9          *
+  10          *   Note: 
+  11          *
+  12          *******************************************************************************
+  13          * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  14          * You may use this file only in accordance with the license, terms, conditions, 
+  15          * disclaimers, and limitations in the end user license agreement accompanying 
+  16          * the software package with which this file was provided.
+  17          ********************************************************************************/
+  18          
+  19          #include "I2C.h"  
+  20          
+  21          
+  22          /**********************************
+  23          *      System variables
+  24          **********************************/
+  25          
+  26          uint8 I2C_initVar = 0u;
+  27          extern volatile uint8 I2C_State;       /* Current state of I2C state machine */
+  28          extern volatile uint8 I2C_Status;      /* Status byte */
+  29          
+  30          /* Master variables */
+  31          #if (I2C_MODE & I2C_MODE_MASTER)
+  32             extern volatile uint8 I2C_mstrStatus;       /* Master Status byte */
+  33             extern volatile uint8 I2C_mstrControl;      /* Master Control byte */
+  34             
+  35             /* Transmit buffer variables */
+  36             extern uint8 * I2C_mstrRdBufPtr;            /* Pointer to Master Read buffer */       
+  37             extern volatile uint8 I2C_mstrRdBufSize;    /* Master Read buffer size */
+  38             extern volatile uint8 I2C_mstrRdBufIndex;   /* Master Read buffer Index */
+  39              
+  40             /* Receive buffer variables */
+  41             extern uint8 * I2C_mstrWrBufPtr;            /* Pointer to Master Write buffer */       
+  42             extern volatile uint8 I2C_mstrWrBufSize;    /* Master Write buffer size */
+  43             extern volatile uint8 I2C_mstrWrBufIndex;   /* Master Write buffer Index */
+  44             
+  45          #endif  /* End (I2C_MODE & I2C_MODE_MASTER) */
+  46          
+  47          /* Slave variables */
+  48          #if (I2C_MODE & I2C_MODE_SLAVE)
+                 extern volatile uint8 I2C_slStatus;         /* Slave Status  */   
+                 
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 2   
+
+                 #if (I2C_ADDR_DECODE == I2C_SW_DECODE)
+                    extern volatile uint8 I2C_Address;       /* Software address variable */
+                 #endif   /* End (I2C_ADDR_DECODE == I2C_SW_DECODE) */    
+                 
+                 /* Transmit buffer variables */
+                 extern uint8 * I2C_readBufPtr;              /* Pointer to Transmit buffer */       
+                 extern volatile uint8 I2C_readBufSize;      /* Slave Transmit buffer size */
+                 extern volatile uint8 I2C_readBufIndex;     /* Slave Transmit buffer Index */
+              
+                 /* Receive buffer variables */
+                 extern uint8 * I2C_writeBufPtr;             /* Pointer to Receive buffer */       
+                 extern volatile uint8 I2C_writeBufSize;     /* Slave Receive buffer size */
+                 extern volatile uint8 I2C_writeBufIndex;    /* Slave Receive buffer Index */
+              
+              #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+  66          
+  67          
+  68          /*******************************************************************************
+  69          * Function Name: I2C_Init
+  70          ********************************************************************************
+  71          *
+  72          * Summary:
+  73          *  Initializes I2C component with initial values.
+  74          *
+  75          * Parameters:  
+  76          *  void
+  77          *
+  78          * Return: 
+  79          *  void
+  80          *
+  81          * Reentrant:
+  82          *  No
+  83          *
+  84          *******************************************************************************/
+  85          void I2C_Init(void)
+  86          {
+  87   1          #if (I2C_IMPLEMENTATION == I2C_FF)           
+                      
+                      /* Enable Master or Slave */
+                      I2C_CFG_REG = (I2C_ENABLE_SLAVE | I2C_ENABLE_MASTER);
+                                              
+                      /* 50 kHz - 32 samples/bit */
+                      I2C_CFG_REG |= I2C_DEFAULT_CLK_RATE;
+                       
+                      /* Set devide factor */
+                      #if (I2C_PSOC3_ES2 || I2C_PSOC5_ES1)
+                          I2C_CLKDIV_REG = I2C_DEFAULT_DIVIDE_FACTOR;
+                      #else
+                          I2C_CLKDIV1_REG = LO8(I2C_DEFAULT_DIVIDE_FACTOR);
+                          I2C_CLKDIV2_REG = HI8(I2C_DEFAULT_DIVIDE_FACTOR);
+                      #endif /* End (I2C_PSOC3_ES2 || I2C_PSOC5_ES1) */
+                      
+                      /* if I2C block will be used as wake up source */
+                      #if (I2C_ENABLE_WAKEUP)
+                          /* I2C block as wake-up source */
+                          I2C_XCFG_REG  = I2C_XCFG_I2C_ON;
+                      
+                          /* Process sio_select and pselect */                
+                          #if(I2C_I2C_PAIR_SELECTED == I2C_I2C_PAIR0)
+                              /* Set I2C0 SIO pair P12[0,1] */
+                              I2C_CFG_REG |= I2C_CFG_SIO_SELECT;
+                          #else
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 3   
+
+                              /* Do nothing for I2C1 SIO pair P12[4,5] */
+                          #endif /* End (I2C_ENABLE_WAKEUP) */
+                          
+                          I2C_CFG_REG |= I2C_CFG_PSELECT;
+                      
+                      #endif  /* End ((I2C_ENABLE_WAKEUP)*/
+                      
+                      /* Clear Status register */
+                      I2C_CSR_REG = 0x00u;
+                      
+                  #else
+ 124   1              /* Enable Byte Complete for interrupt in the mask register */
+ 125   1              I2C_INT_MASK_REG |= I2C_BYTE_COMPLETE_IE_MASK;
+ 126   1      
+ 127   1              /* Clear the status register before starting */
+ 128   1              I2C_initVar = I2C_CSR_REG;
+ 129   1              
+ 130   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_FF) */
+ 131   1      
+ 132   1          /* Set address detection type */
+ 133   1          #if (I2C_IMPLEMENTATION == I2C_FF)
+                      #if (I2C_ADDR_DECODE == I2C_HDWR_DECODE)
+                          /* Turn on hardware address detection and enable the clock */
+                          I2C_XCFG_REG  |= (I2C_XCFG_HDWR_ADDR_EN | I2C_XCFG_CLK_EN);
+                          
+                      #else
+                          /* Enable the clock */
+                          I2C_XCFG_REG  |= I2C_XCFG_CLK_EN;
+                                          
+                      #endif  /* End (I2C_ADDR_DECODE == I2C_HDWR_DECODE) */
+                      
+                  #else
+ 145   1              #if (I2C_MODE & I2C_MODE_SLAVE)
+                          #if (I2C_ADDR_DECODE == I2C_HDWR_DECODE)
+                              /* Turn off any address match */
+                              I2C_CFG_REG &= ~(I2C_CTRL_ANY_ADDRESS_MASK);
+                              
+                          #else
+                              /* Turn on any address match */
+                              I2C_CFG_REG |= I2C_CTRL_ANY_ADDRESS_MASK;
+                              
+                          #endif  /* End (I2C_ADDR_DECODE == I2C_HDWR_DECODE) */
+              
+                      #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+ 157   1          
+ 158   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_FF) */
+ 159   1                    
+ 160   1          /* Disable Interrupt */
+ 161   1          CyIntDisable(I2C_ISR_NUMBER);
+ 162   1          
+ 163   1          /* Set the ISR to point to the RTC_SUT_isr Interrupt */
+ 164   1          CyIntSetVector(I2C_ISR_NUMBER, I2C_ISR);
+ 165   1          
+ 166   1          /* Set the priority */
+ 167   1          CyIntSetPriority(I2C_ISR_NUMBER, I2C_ISR_PRIORITY);
+ 168   1          
+ 169   1          /* Clear all status flags */
+ 170   1          I2C_Status = 0x00u; 
+ 171   1      
+ 172   1          /* Put state machine in idle state */
+ 173   1          I2C_State = I2C_SM_IDLE; 
+ 174   1      
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 4   
+
+ 175   1          #if (I2C_MODE & I2C_MODE_SLAVE)
+                      /* Set default status */
+                      I2C_SlaveClearReadBuf();
+                      I2C_SlaveClearWriteBuf();
+                      I2C_SlaveClearReadStatus();
+                      I2C_SlaveClearWriteStatus();
+              
+                      /* Set default address */
+                      I2C_SlaveSetAddress(I2C_DEFAULT_ADDR);
+                  
+                  #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+ 186   1      
+ 187   1          #if (I2C_MODE & I2C_MODE_MASTER)
+ 188   1          
+ 189   1              /* Set default status */
+ 190   1              I2C_MasterClearReadBuf();
+ 191   1              I2C_MasterClearWriteBuf();
+ 192   1              I2C_MasterClearStatus();
+ 193   1              
+ 194   1          #endif  /* End (I2C_MODE & I2C_MODE_MASTER) */
+ 195   1      }
+ 196          
+ 197          
+ 198          /*******************************************************************************
+ 199          * Function Name: I2C_Enable
+ 200          ********************************************************************************
+ 201          *
+ 202          * Summary:
+ 203          *  Starts I2C component operation.
+ 204          *
+ 205          * Parameters:
+ 206          *  void
+ 207          *
+ 208          * Return:
+ 209          *  void
+ 210          *
+ 211          *******************************************************************************/
+ 212          void I2C_Enable(void) 
+ 213          {          
+ 214   1          #if ( (I2C_IMPLEMENTATION != I2C_UDB) || \
+ 215   1                (I2C_MODE & I2C_MODE_SLAVE) )
+                      uint8 enableInterrupts;
+                  #endif  /* End ( (I2C_IMPLEMENTATION != I2C_FF) || \
+                                 (I2C_MODE & I2C_MODE_SLAVE) ) */
+ 219   1                         
+ 220   1          #if(I2C_IMPLEMENTATION == I2C_FF)
+                      enableInterrupts = CyEnterCriticalSection();
+                      /* Enable power to I2C Module */
+                      I2C_ACT_PWRMGR_REG  |= I2C_ACT_PWR_EN;
+                      I2C_STBY_PWRMGR_REG |= I2C_STBY_PWR_EN;
+                      CyExitCriticalSection(enableInterrupts);
+                      
+                  #else
+ 228   1              /* Enable the I2C */
+ 229   1              I2C_CFG_REG = (I2C_ENABLE_MASTER | I2C_ENABLE_SLAVE);
+ 230   1              
+ 231   1              /* Enable bit counter */
+ 232   1              #if (I2C_MODE & I2C_MODE_SLAVE)
+                          enableInterrupts = CyEnterCriticalSection();
+                          I2C_COUNTER_AUX_CTL_REG |= I2C_COUNTER_ENABLE_MASK;
+                          CyExitCriticalSection(enableInterrupts);
+                      #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 5   
+
+ 237   1              
+ 238   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_FF) */   
+ 239   1      }
+ 240          
+ 241          
+ 242          /*******************************************************************************
+ 243          * Function Name: I2C_Start
+ 244          ********************************************************************************
+ 245          *
+ 246          * Summary:
+ 247          *  Starts the component and enables the interupt.
+ 248          *
+ 249          * Parameters:
+ 250          *  void
+ 251          *
+ 252          * Return:
+ 253          *  void
+ 254          *
+ 255          * Side Effects:
+ 256          *   This component automatically enables it's interrupt.  If I2C is enabled
+ 257          *   without the interrupt enabled, it could lock up the I2C bus.
+ 258          *
+ 259          * Reentrant:
+ 260          *  No
+ 261          *
+ 262          *******************************************************************************/
+ 263          void I2C_Start(void)
+ 264          {
+ 265   1          /* Initialize I2C registers, reset I2C buffer index and clears status */
+ 266   1          if (I2C_initVar == 0u)
+ 267   1          {
+ 268   2              I2C_Init();
+ 269   2              I2C_initVar = 1u;
+ 270   2          }
+ 271   1            
+ 272   1          I2C_Enable();
+ 273   1      }
+ 274          
+ 275          
+ 276          /*******************************************************************************
+ 277          * Function Name: I2C_Stop
+ 278          ********************************************************************************
+ 279          *
+ 280          * Summary:
+ 281          *  Disable the component and disable the interrupt.
+ 282          *
+ 283          * Parameters:
+ 284          *  void 
+ 285          *
+ 286          * Return: 
+ 287          *  void 
+ 288          *
+ 289          *******************************************************************************/
+ 290          void I2C_Stop(void)  
+ 291          {   
+ 292   1          #if ( (I2C_IMPLEMENTATION != I2C_UDB) || \
+ 293   1                (I2C_MODE & I2C_MODE_SLAVE) )
+                      uint8 enableInterrupts;
+                  #endif  /* End ( (I2C_IMPLEMENTATION != I2C_FF) || \
+                                 (I2C_MODE & I2C_MODE_SLAVE) ) */
+ 297   1          
+ 298   1          /* Disable Interrupt */
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 6   
+
+ 299   1          I2C_DisableInt();
+ 300   1          
+ 301   1          #if (I2C_IMPLEMENTATION == I2C_FF)
+                      enableInterrupts = CyEnterCriticalSection();
+                      /* Disable power to I2C block */
+                      I2C_ACT_PWRMGR_REG  &= ~I2C_ACT_PWR_EN;
+                      I2C_STBY_PWRMGR_REG &= ~I2C_STBY_PWR_EN;
+                      CyExitCriticalSection(enableInterrupts);
+                      
+                  #else
+ 309   1              /* Reset the I2C before starting */
+ 310   1              I2C_CFG_REG &= ~(I2C_ENABLE_MASTER | I2C_ENABLE_SLAVE);
+ 311   1              
+ 312   1              /* Disable bit counter */
+ 313   1              #if (I2C_MODE & I2C_MODE_SLAVE)
+                          enableInterrupts = CyEnterCriticalSection();
+                          I2C_COUNTER_AUX_CTL_REG &= ~I2C_COUNTER_ENABLE_MASK;
+                          CyExitCriticalSection(enableInterrupts);
+                          #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+ 318   1              
+ 319   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_FF) */
+ 320   1      }
+ 321          
+ 322          
+ 323          /*******************************************************************************
+ 324          * Function Name: I2C_EnableInt
+ 325          ********************************************************************************
+ 326          *
+ 327          * Summary:
+ 328          *  Enables the interrupt service routine for the component.  This is normally
+ 329          *  handled with the start command.
+ 330          *
+ 331          * Parameters:
+ 332          *  void
+ 333          *
+ 334          * Return:
+ 335          *  void
+ 336          *
+ 337          *******************************************************************************/
+ 338          void I2C_EnableInt(void)   
+ 339          {
+ 340   1          #if (I2C_IMPLEMENTATION == I2C_UDB)
+ 341   1              I2C_INT_ENABLE_REG |= I2C_INT_ENABLE_MASK;
+ 342   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_UDB) */
+ 343   1          
+ 344   1          CyIntEnable(I2C_ISR_NUMBER);
+ 345   1      }
+ 346          
+ 347          
+ 348          /*******************************************************************************
+ 349          * Function Name: I2C_DisableInt
+ 350          ********************************************************************************
+ 351          *
+ 352          * Summary:
+ 353          *  This function disables the interrupt service routine.  Normally this
+ 354          *  function should never be called, instead use the Stop() function.
+ 355          *
+ 356          * Parameters:
+ 357          *  void
+ 358          *
+ 359          * Return: 
+ 360          *  void
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 7   
+
+ 361          *
+ 362          * Side Effects:
+ 363          *   If this function is called during normal operation, it will stop the
+ 364          *   I2C function from working and it may lock up the I2C bus.
+ 365          *
+ 366          *******************************************************************************/
+ 367          void I2C_DisableInt(void)   
+ 368          {
+ 369   1          #if (I2C_IMPLEMENTATION == I2C_UDB)
+ 370   1              I2C_INT_ENABLE_REG |= I2C_INT_ENABLE_MASK;
+ 371   1          #endif  /* End (I2C_IMPLEMENTATION == I2C_UDB) */
+ 372   1          
+ 373   1          CyIntDisable(I2C_ISR_NUMBER);
+ 374   1      }
+ 375          
+ 376          
+ 377          #if (I2C_MODE & I2C_MODE_MASTER)
+ 378          
+ 379              /*******************************************************************************
+ 380              * Function Name: I2C_MasterStatus
+ 381              ********************************************************************************
+ 382              *
+ 383              * Summary:
+ 384              *  Returns status of the I2C Master.
+ 385              *
+ 386              * Parameters:
+ 387              *  void
+ 388              *
+ 389              * Return:
+ 390              *  Returns master status register.
+ 391              *
+ 392              *******************************************************************************/
+ 393              uint8 I2C_MasterStatus(void) 
+ 394              {
+ 395   1              if(I2C_State == I2C_SM_SL_WR_IDLE)
+ 396   1              {
+ 397   2                  return(I2C_mstrStatus);
+ 398   2              }
+ 399   1              else
+ 400   1              {
+ 401   2                  return(I2C_mstrStatus | I2C_MSTAT_XFER_INP);
+ 402   2              }
+ 403   1          }
+ 404              
+ 405              
+ 406              /*******************************************************************************
+ 407              * Function Name: I2C_MasterClearStatus
+ 408              ********************************************************************************
+ 409              *
+ 410              * Summary:
+ 411              *  Clears master status flags.
+ 412              *
+ 413              * Parameters:
+ 414              *  void
+ 415              *
+ 416              * Return: 
+ 417              *  Returns the read status.
+ 418              *
+ 419              * Reentrant:
+ 420              *  No
+ 421              *
+ 422              *******************************************************************************/
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 8   
+
+ 423              uint8 I2C_MasterClearStatus(void)
+ 424              {
+ 425   1              uint8 status;
+ 426   1              
+ 427   1              status = I2C_mstrStatus ; 
+ 428   1              I2C_mstrStatus  = I2C_MSTAT_CLEAR; 
+ 429   1          
+ 430   1              return (status);
+ 431   1          }    
+ 432              
+ 433              
+ 434              /*******************************************************************************
+ 435              * Function Name: I2C_MasterWriteBuf
+ 436              ********************************************************************************
+ 437              *
+ 438              * Summary:
+ 439              *  This function initiates a write transaction with an addressed slave.  Writes
+ 440              *  one or more bytes (cnt) to the slave I2C device and gets the data from RAM 
+ 441              *  or ROM array pointed to by the array pointer.  Once this routine is called, 
+ 442              *  the included ISR will handle further data in byte by byte mode.  
+ 443              *
+ 444              * Parameters:
+ 445              *  slaveAddr: 7-bit slave address
+ 446              *  xferData:  Pointer to data in array.
+ 447              *  cnt:       Count of data to write.
+ 448              *  mode:      Mode of operation.  It defines normal start, restart,
+ 449              *             stop, no-stop, etc.
+ 450              *
+ 451              * Return:
+ 452              *  void
+ 453              *
+ 454              * Reentrant:
+ 455              *  No
+ 456              *
+ 457              *******************************************************************************/
+ 458              uint8 I2C_MasterWriteBuf(uint8 slaveAddr, uint8 * xferData, uint8 cnt, uint8 mode)
+ 459              {
+ 460   1              uint8 errStatus = I2C_MSTR_SLAVE_BUSY; 
+ 461   1              
+ 462   1              /* Check if I2C in proper state to generate Start/ReStart condition */
+ 463   1              if((I2C_State == I2C_SM_IDLE) || \
+ 464   1                 (I2C_State == I2C_SM_MSTR_HALT))
+ 465   1              {
+ 466   2                  /* If IDLE, check if bus is free */
+ 467   2                  if(I2C_State != I2C_SM_MSTR_HALT)
+ 468   2                  {
+ 469   3                      /* If Bus is free proceed, no exist with timeout */
+ 470   3                      if(I2C_CHECK_BUS_FREE(I2C_MCSR_REG))
+ 471   3                      {
+ 472   4                          errStatus = I2C_MSTR_NO_ERROR;
+ 473   4                      }
+ 474   3                      else
+ 475   3                      {
+ 476   4                          errStatus = I2C_MSTR_BUS_BUSY;
+ 477   4                      }
+ 478   3                  }
+ 479   2                  else   /* Bus halted waiting for restart */
+ 480   2                  {
+ 481   3                      errStatus = I2C_MSTR_NO_ERROR;
+ 482   3                      I2C_mstrStatus &= ~I2C_MSTAT_XFER_HALT; 
+ 483   3                      CyIntClearPending(I2C_ISR_NUMBER);
+ 484   3                  }
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 9   
+
+ 485   2          
+ 486   2                  /* If no timeout error, generate start */
+ 487   2                  if(errStatus == I2C_MSTR_NO_ERROR)
+ 488   2                  {
+ 489   3                      /* Determine whether or not to automatically generate a stop condition */
+ 490   3                      if((mode & I2C_MODE_NO_STOP) != 0u)
+ 491   3                      {
+ 492   4                          /* Do not generate a Stop at the end of transfer */
+ 493   4                          I2C_mstrControl |= I2C_MSTR_NO_STOP;
+ 494   4                      }
+ 495   3                      else  /* Generate a Stop */
+ 496   3                      {
+ 497   4                          I2C_mstrControl &= ~I2C_MSTR_NO_STOP;
+ 498   4                      }
+ 499   3              
+ 500   3                      slaveAddr = (slaveAddr << 1u);
+ 501   3                      I2C_State = I2C_SM_MSTR_WR_ADDR;
+ 502   3          
+ 503   3                      I2C_mstrWrBufPtr   = xferData; /* Set buffer pointer */
+ 504   3                      I2C_mstrWrBufIndex = 0u;       /* Start buffer at zero */
+ 505   3                      I2C_mstrWrBufSize  = cnt;      /* Set buffer size */
+ 506   3          
+ 507   3                      I2C_DATA_REG = slaveAddr;          /* Write address to data reg */
+ 508   3          
+ 509   3                      /* Generate a Start or ReStart depending on flag passed */
+ 510   3                      if((mode & I2C_MODE_REPEAT_START) != 0u)
+ 511   3                      {
+ 512   4                          I2C_GENERATE_RESTART;  /* Generate a ReStart */
+ 513   4                      }
+ 514   3                      else
+ 515   3                      {
+ 516   4                          I2C_GENERATE_START;    /* Generate a Start */
+ 517   4                      }
+ 518   3                      
+ 519   3                      /* Enable interrupts to process transfer */
+ 520   3                      I2C_EnableInt();
+ 521   3          
+ 522   3                      /* Clear write complete flag */
+ 523   3                      I2C_mstrStatus &= ~I2C_MSTAT_WR_CMPLT; 
+ 524   3                  }
+ 525   2              }
+ 526   1         
+ 527   1              return (errStatus);
+ 528   1          }
+ 529              
+ 530              
+ 531              /*******************************************************************************
+ 532              * Function Name: I2C_MasterReadBuf
+ 533              ********************************************************************************
+ 534              *
+ 535              * Summary:
+ 536              *   The function intiates a read transaction with an addressed slave.  Reads
+ 537              *   one or more bytes (cnt) from the slave I2C device and writes data to the
+ 538              *   array.  Once this routine is called, the included ISR will handle further
+ 539              *   data in byte by byte mode.
+ 540              *
+ 541              * Parameters:
+ 542              *  slaveAddr: 7-bit slave address
+ 543              *  xferData:  Pointer to data in array.
+ 544              *  cnt:       Count of data to write.
+ 545              *  mode:      Mode of operation.  It defines normal start, restart,
+ 546              *             stop, no-stop, etc.
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 10  
+
+ 547              *
+ 548              * Return:
+ 549              *  void
+ 550              *
+ 551              * Reentrant:
+ 552              *  No
+ 553              *
+ 554              *******************************************************************************/
+ 555              uint8 I2C_MasterReadBuf(uint8 slaveAddr, uint8 * xferData, uint8 cnt, uint8 mode )
+ 556              {
+ 557   1              uint8 errStatus = I2C_MSTR_SLAVE_BUSY;
+ 558   1          
+ 559   1              /* Check if I2C in proper state to generate Start/ReStart condition */
+ 560   1              if((I2C_State == I2C_SM_IDLE) || \
+ 561   1                 (I2C_State == I2C_SM_MSTR_HALT))
+ 562   1              {
+ 563   2                  /* If IDLE, check if bus is free */
+ 564   2                  if(I2C_State != I2C_SM_MSTR_HALT)
+ 565   2                  {
+ 566   3                       /* If Bus is free proceed, no exist with timeout */
+ 567   3                      if(I2C_CHECK_BUS_FREE(I2C_MCSR_REG))
+ 568   3                      {
+ 569   4                          errStatus = I2C_MSTR_NO_ERROR;
+ 570   4                      }
+ 571   3                      else
+ 572   3                      {
+ 573   4                          errStatus = I2C_MSTR_BUS_BUSY;
+ 574   4                      }
+ 575   3                  }
+ 576   2                  else   /* Bus halted waiting for restart */
+ 577   2                  {
+ 578   3                      errStatus = I2C_MSTR_NO_ERROR;
+ 579   3                      I2C_mstrStatus &= ~I2C_MSTAT_XFER_HALT; 
+ 580   3                      CyIntClearPending(I2C_ISR_NUMBER);
+ 581   3                  }
+ 582   2          
+ 583   2                  /* If no timeout error, generate Start/ReStart condition */
+ 584   2                  if(errStatus == I2C_MSTR_NO_ERROR)
+ 585   2                  {
+ 586   3                      /* Determine whether or not to automatically generate a stop condition */
+ 587   3                      if((mode & I2C_MODE_NO_STOP) != 0u)
+ 588   3                      {
+ 589   4                          /* Do not generate a Stop at the end of transfer */
+ 590   4                          I2C_mstrControl |= I2C_MSTR_NO_STOP;
+ 591   4                      }
+ 592   3                      else  /* Generate a Stop */
+ 593   3                      {
+ 594   4                          I2C_mstrControl &= ~I2C_MSTR_NO_STOP;
+ 595   4                      }
+ 596   3                      
+ 597   3                      slaveAddr = (slaveAddr << 1);
+ 598   3                      slaveAddr |= I2C_READ_FLAG;   /* Set the Read flag */
+ 599   3                      I2C_State = I2C_SM_MSTR_RD_ADDR;
+ 600   3          
+ 601   3                      I2C_mstrRdBufPtr    = xferData;
+ 602   3                      I2C_mstrRdBufIndex  = 0u;
+ 603   3                      I2C_mstrRdBufSize   = cnt;    /* Set buffer size */
+ 604   3          
+ 605   3                      I2C_DATA_REG = slaveAddr;         /* Write address to data reg */
+ 606   3          
+ 607   3                      /* Generate a Start or ReStart depending on flag passed */
+ 608   3                      if((mode & I2C_MODE_REPEAT_START) != 0u)
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 11  
+
+ 609   3                      {
+ 610   4                          I2C_GENERATE_RESTART;  /* Generate a ReStart */
+ 611   4                      }
+ 612   3                      else
+ 613   3                      {
+ 614   4                          I2C_GENERATE_START;    /* Generate a Start */
+ 615   4                      }
+ 616   3      
+ 617   3                      /* Enable interrupts to process transfer */
+ 618   3                      I2C_EnableInt();
+ 619   3          
+ 620   3                      /* Clear read complete flag */
+ 621   3                      I2C_mstrStatus &= ~I2C_MSTAT_RD_CMPLT; 
+ 622   3                  }
+ 623   2              }
+ 624   1      
+ 625   1              return (errStatus);
+ 626   1          }
+ 627              
+ 628              
+ 629              /*******************************************************************************
+ 630              * Function Name: I2C_MasterSendStart
+ 631              ********************************************************************************
+ 632              *
+ 633              * Summary:
+ 634              *  Sends a start with address and R/W bit.
+ 635              *
+ 636              * Parameters:  
+ 637              *  slaveAddress: Address of slave recipiant. 
+ 638              *  R_nW:         Send or recieve mode.
+ 639              *
+ 640              * Return: 
+ 641              *  Returns a non-zero value if an error is detected
+ 642              *
+ 643              * Reentrant:
+ 644              *  No
+ 645              *
+ 646              *******************************************************************************/
+ 647              uint8 I2C_MasterSendStart(uint8 slaveAddress, uint8 R_nW)
+ 648              {
+ 649   1              uint8 errStatus = I2C_MSTR_SLAVE_BUSY;
+ 650   1          
+ 651   1              if(I2C_State == I2C_SM_IDLE)
+ 652   1              {
+ 653   2                  /* If Bus is free proceed, no exist with timeout */
+ 654   2                  if(I2C_CHECK_BUS_FREE(I2C_MCSR_REG))
+ 655   2                  {
+ 656   3                      /* If no timeout error, generate Start/ReStart condition */
+ 657   3                      CyIntDisable(I2C_ISR_NUMBER);
+ 658   3                      slaveAddress = (slaveAddress << 1u);
+ 659   3                      if(R_nW != 0u)
+ 660   3                      {
+ 661   4                          slaveAddress |= I2C_READ_FLAG;   /* Set the Read flag */
+ 662   4                          I2C_State = I2C_SM_MSTR_RD_ADDR;
+ 663   4                      }
+ 664   3                      else
+ 665   3                      {
+ 666   4                          I2C_State = I2C_SM_MSTR_WR_ADDR;
+ 667   4                      }
+ 668   3                      
+ 669   3                      I2C_DATA_REG = slaveAddress;    /* Write address to data reg */
+ 670   3                      
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 12  
+
+ 671   3                      /* Generates a Start */
+ 672   3                      I2C_GENERATE_START;
+ 673   3                      
+ 674   3                      /* Wait for the address to be transfered */
+ 675   3                      while(I2C_WAIT_BYTE_COMPLETE(I2C_CSR_REG));
+ 676   3                      
+ 677   3                      #if (I2C_MODE & I2C_MODE_MULTI_MASTER_ENABLE)
+                                  /* Check for loss of arbitration */
+                                  if(I2C_CHECK_LOST_ARB(I2C_CSR_REG))
+                                  {
+                                      /* Clear CSR to release the bus, if no Slave */
+                                      #if ((I2C_MODE & I2C_MODE_SLAVE) == 0u)
+                                          I2C_READY_TO_READ;
+                                      #endif  /* (I2C_MODE & I2C_MODE_SLAVE) == 0u) */    
+                  
+                                      /* Arbitration has been lost, reset state machine to Idle */
+                                      I2C_State = I2C_SM_IDLE;
+                                  
+                                      errStatus = I2C_MSTR_ERR_ARB_LOST;
+                                  }
+                                  else if(I2C_CHECK_ADDR_NAK(I2C_CSR_REG))
+                                  {
+                                      errStatus = I2C_MSTR_ERR_LB_NAK;    /* No device ACKed the Master */
+                                  }
+                                  else
+                                  {
+                                      errStatus = I2C_MSTR_NO_ERROR;     /* Send Start witout errors */
+                                  }
+                                  
+                              #else
+ 701   3                          /* Check ACK address if Master mode */
+ 702   3                          if(I2C_CHECK_ADDR_NAK(I2C_CSR_REG))
+ 703   3                          {
+ 704   4                              errStatus = I2C_MSTR_ERR_LB_NAK;    /* No device ACKed the Master */
+ 705   4                          }
+ 706   3                          else    
+ 707   3                          {
+ 708   4                              errStatus = I2C_MSTR_NO_ERROR;     /* Send Start witout errors */
+ 709   4                          }
+ 710   3                      #endif  /* End (I2C_MODE & I2C_MODE_MULTI_MASTER_ENABLE) */
+ 711   3                  }
+ 712   2                  else
+ 713   2                  {
+ 714   3                      errStatus = I2C_MSTR_BUS_BUSY;     /* Bus is busy */
+ 715   3                  } 
+ 716   2              }
+ 717   1      
+ 718   1              return (errStatus);
+ 719   1          }
+ 720              
+ 721              
+ 722              /*******************************************************************************
+ 723              * Function Name: I2C_MasterSendRestart
+ 724              ********************************************************************************
+ 725              *
+ 726              * Summary:
+ 727              *   Sends a restart with address and R/W bit.
+ 728              *  
+ 729              * Parameters:
+ 730              *  slaveAddress: Address of slave recipiant. 
+ 731              *  R_nW:         Send or recieve mode.
+ 732              *
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 13  
+
+ 733              * Return: 
+ 734              *  Returns a non-zero value if an error is detected
+ 735              *
+ 736              * Reentrant:
+ 737              *  No
+ 738              *
+ 739              *******************************************************************************/
+ 740              uint8 I2C_MasterSendRestart(uint8 slaveAddress, uint8 R_nW)
+ 741              {
+ 742   1              uint8 errStatus = I2C_MSTR_SLAVE_BUSY;
+ 743   1              
+ 744   1              /* Check if Start condition was generated */
+ 745   1              if(I2C_CHECK_MASTER_MODE(I2C_MCSR_REG))
+ 746   1              {
+ 747   2                  slaveAddress = (slaveAddress << 1u);
+ 748   2                  if(R_nW != 0u)
+ 749   2                  {
+ 750   3                      slaveAddress |= I2C_READ_FLAG;    /* Set the Read flag */
+ 751   3                      I2C_State = I2C_SM_MSTR_RD_ADDR;
+ 752   3                  }
+ 753   2                  else
+ 754   2                  {
+ 755   3                      I2C_State = I2C_SM_MSTR_WR_ADDR;
+ 756   3                  }
+ 757   2                  
+ 758   2                  I2C_DATA_REG = slaveAddress;    /* Write address to data reg */
+ 759   2                  
+ 760   2                  /* Generates restart */
+ 761   2                  I2C_GENERATE_RESTART;
+ 762   2                  #if (I2C_IMPLEMENTATION == I2C_UDB)
+ 763   2                      while(I2C_CHECK_BYTE_COMPLETE(I2C_CSR_REG));
+ 764   2                  #endif /* End (I2C_IMPLEMENTATION == I2C_UDB) */
+ 765   2      
+ 766   2                  /* Wait for the address to be transfered  */
+ 767   2                  while(I2C_WAIT_BYTE_COMPLETE(I2C_CSR_REG));
+ 768   2      
+ 769   2                  if(I2C_CHECK_ADDR_NAK(I2C_CSR_REG))
+ 770   2                  {
+ 771   3                      errStatus = I2C_MSTR_ERR_LB_NAK;   /* No device ACKed the Master */
+ 772   3                  }
+ 773   2                  else
+ 774   2                  {
+ 775   3                      errStatus = I2C_MSTR_NO_ERROR;     /* Send Start witout errors */
+ 776   3                  }
+ 777   2              }
+ 778   1              
+ 779   1              return (errStatus);
+ 780   1          }
+ 781              
+ 782              
+ 783              /*******************************************************************************
+ 784              * Function Name: I2C_MasterSendStop
+ 785              ********************************************************************************
+ 786              *
+ 787              * Summary:
+ 788              *  Sends stop condition.
+ 789              *
+ 790              * Parameters:
+ 791              *  void
+ 792              *
+ 793              * Return:
+ 794              *  Returns a non-zero value if an error is detected 
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 14  
+
+ 795              *
+ 796              * Reentrant:
+ 797              *  No
+ 798              *
+ 799              *******************************************************************************/
+ 800              uint8 I2C_MasterSendStop(void)
+ 801              {
+ 802   1              /* Always return the success */
+ 803   1              uint8 errStatus = I2C_MSTR_NO_ERROR;
+ 804   1      
+ 805   1              /* Generates stop */
+ 806   1              if(I2C_CHECK_MASTER_MODE(I2C_MCSR_REG))
+ 807   1              {
+ 808   2                  I2C_GENERATE_STOP; 
+ 809   2              }
+ 810   1              
+ 811   1              /* Reset state to IDLE */
+ 812   1              I2C_State  = I2C_SM_IDLE;
+ 813   1                      
+ 814   1              return (errStatus);
+ 815   1          }
+ 816              
+ 817              
+ 818              /*******************************************************************************
+ 819              * Function Name: I2C_MasterWriteByte
+ 820              ********************************************************************************
+ 821              *
+ 822              * Summary:
+ 823              *  This function sends a single-byte I2C bus write and ACK.  This function does
+ 824              *  not generate a start or stop condition.  This routine should ONLY be called
+ 825              *  when a prevous start and address has been generated on the I2Cbus.
+ 826              *
+ 827              * Parameters:
+ 828              *  data:  Byte to be sent to the I2C slave
+ 829              *
+ 830              * Return:
+ 831              *  The return value is non-zero, if the slave acknowledged the master.
+ 832              *  The return value is zero, if the slave did not acknoledge the
+ 833              *  master.  If the slave failed to acknowledged the master, the
+ 834              *  value will be 0xFF.
+ 835              *
+ 836              *******************************************************************************/
+ 837              uint8  I2C_MasterWriteByte(uint8 theByte) 
+ 838              {
+ 839   1              uint8 errStatus = I2C_MSTR_SLAVE_BUSY;
+ 840   1              
+ 841   1              /* Check if Start condition was generated */
+ 842   1              if(I2C_CHECK_MASTER_MODE(I2C_MCSR_REG))
+ 843   1              {
+ 844   2                  I2C_DATA_REG = theByte;
+ 845   2                  I2C_TRANSMIT_DATA;
+ 846   2                  I2C_State = I2C_SM_MSTR_WR_DATA;
+ 847   2                  #if(I2C_IMPLEMENTATION == I2C_UDB)
+ 848   2                      while(I2C_CHECK_BYTE_COMPLETE(I2C_CSR_REG));
+ 849   2                  #endif
+ 850   2                  
+ 851   2                  /* Make sure the last byte has been transfered first. */
+ 852   2                  while(I2C_WAIT_BYTE_COMPLETE(I2C_CSR_REG));
+ 853   2                  
+ 854   2                  if(I2C_CHECK_DATA_ACK(I2C_CSR_REG))
+ 855   2                  {    
+ 856   3                      errStatus = I2C_MSTR_NO_ERROR;     /* Send Start witout errors */
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 15  
+
+ 857   3                  }
+ 858   2                  else
+ 859   2                  {
+ 860   3                      errStatus = I2C_MSTR_ERR_LB_NAK;   /* The last bit was NACKed */
+ 861   3                  }
+ 862   2                  
+ 863   2                  I2C_State = I2C_SM_MSTR_HALT;
+ 864   2              }
+ 865   1      
+ 866   1              return (errStatus);
+ 867   1          }
+ 868              
+ 869              
+ 870              /*******************************************************************************
+ 871              * Function Name: I2C_MasterReadByte
+ 872              ********************************************************************************
+ 873              *
+ 874              * Summary:
+ 875              *  This function sends a single-byte I2C bus read and ACK phase.  This function 
+ 876              *  does not generate a start or stop condition.  This routine should ONLY be 
+ 877              *  called when a prevous start and address has been generated on the I2Cbus.
+ 878              *
+ 879              * Parameters:
+ 880              *  acknNak:  If non-zero an ACK will be the response, else a zero will
+ 881              *            cause a NAK to be sent.
+ 882              *
+ 883              * Return:
+ 884              *  Returns the data received from the I2C slave.
+ 885              *
+ 886              * Reentrant:
+ 887              *  No
+ 888              *
+ 889              *******************************************************************************/
+ 890              uint8 I2C_MasterReadByte(uint8 acknNak)
+ 891              {
+ 892   1              uint8 theByte = 0u;
+ 893   1              
+ 894   1              /* Check if Start condition was generated */
+ 895   1              if(I2C_CHECK_MASTER_MODE(I2C_MCSR_REG))
+ 896   1              {
+ 897   2                  /* When address phase need release the bus and receive the byte,
+ 898   2                  than decide ACK or NACK */
+ 899   2                  if (I2C_SM_MSTR_RD_ADDR == I2C_State)
+ 900   2                  {
+ 901   3                      I2C_READY_TO_READ;
+ 902   3                      I2C_State = I2C_SM_MSTR_DATA;
+ 903   3                      #if (I2C_IMPLEMENTATION == I2C_UDB)
+ 904   3                          while(I2C_CHECK_BYTE_COMPLETE(I2C_CSR_REG));
+ 905   3                      #endif /* End (I2C_IMPLEMENTATION == I2C_UDB) */
+ 906   3                  }
+ 907   2                  
+ 908   2                  while(I2C_WAIT_BYTE_COMPLETE(I2C_CSR_REG));
+ 909   2      
+ 910   2                  theByte = I2C_DATA_REG;
+ 911   2              
+ 912   2                  /* Now if the ACK flag was set, Ack the data which will release the bus and start the next byt
+             -e in
+ 913   2                     otherwise do NOTHING to the CSR reg.  
+ 914   2                     This will allow the calling routine to generate a repeat start or a stop depending on it's 
+             -preference. */
+ 915   2                  if(acknNak != 0u)   /* Do ACK */
+ 916   2                  {
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 16  
+
+ 917   3                      I2C_ACK_AND_RECEIVE;
+ 918   3                      #if (I2C_IMPLEMENTATION == I2C_UDB)
+ 919   3                          while(I2C_CHECK_BYTE_COMPLETE(I2C_CSR_REG));
+ 920   3                      #endif /* End (I2C_IMPLEMENTATION == I2C_UDB) */
+ 921   3                  }
+ 922   2                  else                /* Do NACK */
+ 923   2                  {
+ 924   3                      /* Do nothing to be able work with ReStart */
+ 925   3                      I2C_State = I2C_SM_MSTR_HALT;
+ 926   3                  }
+ 927   2              }
+ 928   1              
+ 929   1              return (theByte);
+ 930   1          }
+ 931              
+ 932              
+ 933              /*******************************************************************************
+ 934              * Function Name: I2C_MasterGetReadBufSize
+ 935              ********************************************************************************
+ 936              *
+ 937              * Summary:
+ 938              *  Determines the number of bytes used in the RX buffer. Empty returns 0.
+ 939              *
+ 940              * Parameters:
+ 941              *  void
+ 942              *
+ 943              * Return:
+ 944              *  Number of bytes in buffer until full.
+ 945              *
+ 946              *******************************************************************************/
+ 947              uint16 I2C_MasterGetReadBufSize(void) 
+ 948              {
+ 949   1              return (I2C_mstrRdBufIndex);
+ 950   1          }
+ 951              
+ 952              
+ 953              /*******************************************************************************
+ 954              * Function Name: I2C_MasterGetWriteBufSize
+ 955              ********************************************************************************
+ 956              * 
+ 957              * Summary:
+ 958              *  Determine the number of bytes used in the TX buffer.  Empty returns 0.
+ 959              *
+ 960              * Parameters:
+ 961              *  void
+ 962              *
+ 963              * Return:
+ 964              *  void
+ 965              *
+ 966              *******************************************************************************/
+ 967              uint16 I2C_MasterGetWriteBufSize(void) 
+ 968              {
+ 969   1              return (I2C_mstrWrBufIndex);
+ 970   1          }
+ 971              
+ 972              
+ 973              /*******************************************************************************
+ 974              * Function Name: I2C_MasterClearReadBuf
+ 975              ********************************************************************************
+ 976              *
+ 977              * Summary:
+ 978              *  Sets the buffer read and write pointers to 0.
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 17  
+
+ 979              *
+ 980              * Parameters:
+ 981              *  void
+ 982              *
+ 983              * Return:
+ 984              *  void
+ 985              *
+ 986              * Reentrant:
+ 987              *  No
+ 988              *
+ 989              *******************************************************************************/
+ 990              void I2C_MasterClearReadBuf(void)
+ 991              {
+ 992   1              I2C_mstrRdBufIndex = 0u;
+ 993   1              I2C_mstrStatus &= ~I2C_MSTAT_RD_CMPLT;
+ 994   1          }
+ 995              
+ 996              
+ 997              /*******************************************************************************
+ 998              * Function Name: I2C_MasterClearWriteBuf
+ 999              ********************************************************************************
+1000              *
+1001              * Summary:
+1002              *  Sets the buffer read and write pointers to 0.
+1003              *
+1004              * Parameters:
+1005              *  void
+1006              *
+1007              * Return:
+1008              *  void
+1009              *
+1010              * Reentrant:
+1011              *  No
+1012              *
+1013              *******************************************************************************/
+1014              void I2C_MasterClearWriteBuf(void)
+1015              {
+1016   1              I2C_mstrWrBufIndex = 0u;
+1017   1              I2C_mstrStatus &= ~I2C_MSTAT_WR_CMPLT;
+1018   1          }
+1019              
+1020              
+1021              /*******************************************************************************
+1022              * Function Name: I2C_Workaround
+1023              ********************************************************************************
+1024              *
+1025              * Summary:
+1026              *  Do nothing. This fake fuction use as workaround for CDT 78083.
+1027              *
+1028              * Parameters:
+1029              *  void
+1030              *
+1031              * Return:
+1032              *  void
+1033              *
+1034              * Reentrant:
+1035              *  No
+1036              *
+1037              *******************************************************************************/
+1038              void I2C_Workaround(void)
+1039              {
+1040   1      
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 18  
+
+1041   1          }
+1042              
+1043          #endif  /* End (I2C_MODE & I2C_MODE_MASTER) */
+1044          
+1045          
+1046          #if (I2C_MODE & I2C_MODE_SLAVE)
+              
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveStatus
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Returns status of the I2C status register. 
+                  *
+                  * Parameters:
+                  *  void
+                  *
+                  * Return:
+                  *  Returns status of I2C slave status register.
+                  *
+                  *******************************************************************************/
+                  uint8 I2C_SlaveStatus(void)   
+                  {
+                      return (I2C_slStatus);
+                  }
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveClearReadStatus
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Clears the read status bits in the I2C_RsrcStatus register and returns read
+                  *  status.  No other bits are affected.
+                  *
+                  * Parameters:
+                  *  void
+                  *
+                  * Return:
+                  *  Return the read status.
+                  *
+                  * Reentrant:
+                  *  No
+                  *
+                  *******************************************************************************/
+                  uint8 I2C_SlaveClearReadStatus(void) 
+                  {
+                      uint8 status;
+                  
+                      status = I2C_slStatus & I2C_SSTAT_RD_MASK;
+                      
+                      /* Mask of transfer complete flag and Error status */
+                      I2C_slStatus &= ~I2C_SSTAT_RD_CLEAR;
+                      
+                      return (status);
+                  }
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveClearWriteStatus
+                  ********************************************************************************
+                  *
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 19  
+
+                  * Summary:
+                  *  Clears the write status bits in the I2C_Status register and returns write
+                  *  status. No other bits are affected.
+                  *
+                  * Parameters:
+                  *  void
+                  *
+                  * Return:
+                  *  Return the write status.
+                  *
+                  * Reentrant:
+                  *  No
+                  *
+                  *******************************************************************************/
+                  uint8 I2C_SlaveClearWriteStatus(void)
+                  {
+                      uint8 status;
+                  
+                      status = I2C_slStatus & I2C_SSTAT_WR_MASK;
+                  
+                      /* Mask of transfer complete flag and Error status */
+                      I2C_slStatus &= ~I2C_SSTAT_WR_CLEAR;
+                      
+                      return (status);
+                  }
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveSetAddress
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Sets the address for the first device.
+                  *
+                  * Parameters:
+                  *  (uint8) address:  The slave adderss for the first device.          
+                  *
+                  * Return:
+                  *  void
+                  *
+                  * Reentrant:
+                  *  No
+                  *
+                  *******************************************************************************/
+                  #if (I2C_ADDR_DECODE == I2C_HDWR_DECODE)
+                      void I2C_SlaveSetAddress(uint8 address) 
+                      { 
+                          I2C_ADDR_REG = address & I2C_SADDR_MASK;     /* Set I2C Address register */
+                      }
+                      
+                  #else
+                      void I2C_SlaveSetAddress(uint8 address)
+                      {  
+                          I2C_Address = address & I2C_SADDR_MASK;  /* Set Address variable */ 
+                      }
+                      
+                  #endif  /* End (I2C_ADDR_DECODE == I2C_HDWR_DECODE) */ 
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlavePutReadByte
+                  ********************************************************************************
+                  *
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 20  
+
+                  * Summary:
+                  *  For Master Read, sends 1 byte out Slave transmit buffer.
+                  *  Wait to send byte until buffer has room.  Used to preload
+                  *  the transmit buffer.
+                  *
+                  *  In byte by byte mode if the last byte was ACKed, stall the master
+                  *  (on the first bit of the next byte) if needed until the next byte
+                  *  is PutChared.  If the last byte was NAKed it does not stall the bus
+                  *  because the master will generate a stop or restart condition.
+                  *
+                  * Parameters:
+                  *  (uint8) transmitDataByte: Byte containing the data to transmit.
+                  *
+                  * Return:
+                  *  void
+                  *
+                  *******************************************************************************/
+                  void I2C_SlavePutReadByte(uint8 transmitDataByte) 
+                  {
+                      I2C_DATA_REG = transmitDataByte;
+                      I2C_ACK_AND_TRANSMIT;
+                  }
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveGetWriteByte
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  For a Master Write, ACKs or NAKs the previous byte and reads out the last
+                  *  byte tranmitted.  The first byte read of a packet is the Address byte in 
+                  *  which case there is no previous data so no ACK or NAK is generated.  The
+                  *  bus is stalled until the next GetByte, therefore a GetByte must be executed
+                  *  after the last byte in order to send the final ACK or NAK before the Master
+                  *  can send a Stop or restart condition.
+                  *
+                  * Parameters:
+                  *  ackNak:  1 = ACK, 0 = NAK for the previous byte received.
+                  *
+                  * Return: 
+                  *  Last byte transmitted or last byte in buffer from Master.
+                  *
+                  *******************************************************************************/
+                  uint8 I2C_SlaveGetWriteByte(uint8 ackNak) 
+                  {
+                      uint8 dataByte;
+                  
+                      dataByte = I2C_DATA_REG;
+                      
+                      if(ackNak == I2C_ACK_DATA)
+                      {
+                          I2C_ACK_AND_RECEIVE;
+                      }
+                      else
+                      {
+                          I2C_NAK_AND_RECEIVE;
+                      }            
+                      
+                      return (dataByte);
+                  }
+                  
+                  
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 21  
+
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveInitReadBuf
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  This function sets up the buffer in which data will be read by the 
+                  *  Master.  The buffer index will be reset to zero and the status flags
+                  *  will be cleared with this command.
+                  *
+                  * Parameters:
+                  *  readBuf:  Pointer to the array to be sent to the Slave transmit register.
+                  *  bufSize:  Size of the buffer to transfer.
+                  *
+                  * Return:
+                  *  void
+                  *
+                  * Side Effects:
+                  *     If this function is called during a bus transaction, data from the 
+                  *     previous buffer location and the beginning of this buffer may be
+                  *     transmitted.
+                  *
+                  * Reentrant:
+                  *  No
+                  *
+                  *******************************************************************************/
+                  void I2C_SlaveInitReadBuf(uint8 * readBuf, uint8 bufSize)
+                  {
+                      I2C_readBufPtr   = readBuf;
+                      I2C_readBufIndex = 0u;
+                      I2C_readBufSize  = bufSize;  /* Set buffer size */
+                  }
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveInitWriteBuf
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  This function initializes the write buffer.  The write buffer is the array
+                  *  that is written to when the master performs a write operation.
+                  *
+                  * Parameters:
+                  *  writeBuf:  Pointer to the array used to store the data written by the Master 
+                  *             and read by the Slave.
+                  *  bufSize:   Size of buffer to receive data from master.
+                  *
+                  * Return: 
+                  *  void
+                  *
+                  * Reentrant:
+                  *  No
+                  *
+                  *******************************************************************************/
+                  void I2C_SlaveInitWriteBuf(uint8 * writeBuf, uint8 bufSize)
+                  {
+                      I2C_writeBufPtr   = writeBuf;
+                      I2C_writeBufIndex = 0u;
+                      I2C_writeBufSize  = bufSize;  /* Set buffer size */
+                  }
+                  
+                  
+                  /*******************************************************************************
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 22  
+
+                  * Function Name: I2C_SlaveGetReadBufSize
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Returns the count of bytes read by the Master since the buffer was reset.
+                  *  The maximum return value will be the size of the buffer.
+                  *
+                  * Parameters:
+                  *  void
+                  *
+                  * Return:
+                  *  (uint8) Bytes read by Master.
+                  *
+                  *******************************************************************************/
+                  uint8 I2C_SlaveGetReadBufSize(void) 
+                  {
+                      return (I2C_readBufIndex);
+                  }
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveGetWriteBufSize
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Returns the count of bytes written by the I2C Master. The maximum value
+                  *  that will be returned in the buffer size itself.
+                  *
+                  * Parameters:
+                  *  void
+                  *
+                  * Return:
+                  *  The valid number of bytes in Tx buffer.
+                  *
+                  *******************************************************************************/
+                  uint8 I2C_SlaveGetWriteBufSize(void) 
+                  {
+                      return (I2C_writeBufIndex);
+                  }
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveClearReadBuf
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Sets the buffer read buffer index back to zero.
+                  *
+                  * Parameters:
+                  *  void
+                  *
+                  * Return:
+                  *  void
+                  *
+                  * Reentrant:
+                  *  No
+                  *
+                  *******************************************************************************/
+                  void I2C_SlaveClearReadBuf(void)
+                  {
+                      I2C_readBufIndex = 0u;
+                  }
+C51 COMPILER V8.16   I2C                                                                   12/13/2010 22:57:36 PAGE 23  
+
+                  
+                  
+                  /*******************************************************************************
+                  * Function Name: I2C_SlaveClearRxBuf
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Sets the I2C write buffer index to 0.
+                  *
+                  * Parameters:
+                  *  void
+                  *
+                  * Return:
+                  *  void
+                  *
+                  * Reentrant:
+                  *  No
+                  *
+                  *******************************************************************************/
+                  void I2C_SlaveClearWriteBuf(void)
+                  {
+                      I2C_writeBufIndex = 0u;
+                  }
+                  
+                  
+              #endif  /* End (I2C_MODE & I2C_MODE_SLAVE) */
+1377          
+1378          
+1379          /* [] END OF FILE */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1659    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     27    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
