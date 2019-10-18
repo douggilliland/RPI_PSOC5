@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="RPS_PSOC5_Serial_01">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01\Source Files\EEPROM_Images.h">
 <ExpandedNodeIds>
 <v>RPS_PSOC5_Serial_01</v>
 <v>RPS_PSOC5_Serial_01\RPS_PSOC5_Serial_01</v>
@@ -280,12 +280,7 @@
 <name v=".\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cydwr" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\main.c" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.c" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.h" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\EEPROM__Images.c" />
 <name v=".\RPS_PSOC5_Serial_01.cydsn\EEPROM_Images.h" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\I2C_EEPROM_MASTER.c" />
-<name v=".\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\I2C_EEPROM.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -293,7 +288,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1059, 633" SelectedTabbedMdiWindow="2952081d-7ead-45cf-98b1-a00b7c448d6d"><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cydwr" Guid="5b84cc8d-aa17-4069-9de0-2959189060fc" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch" Guid="21a43e38-ab99-4ad7-89be-bf84ca0e1f55" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\main.c" Guid="a1bbd744-fdf1-4963-a10c-f2bf7dc0a680" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.c" Guid="739414f8-e7c4-4310-8435-147912c4e71d" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ExtEEPROM.h" Guid="2952081d-7ead-45cf-98b1-a00b7c448d6d" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\EEPROM__Images.c" Guid="abfe2fd6-d862-4eeb-b197-72f91d9b2eae" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\EEPROM_Images.h" Guid="90183914-af18-4d08-b354-b4e945413315" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\I2C_EEPROM_MASTER.c" Guid="014e2eed-885f-462f-9013-6895e31e90df" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5\I2C_EEPROM.h" Guid="e5bd7baa-18d7-4fae-85a8-e0604fbde119" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1059, 633" SelectedTabbedMdiWindow="a1bbd744-fdf1-4963-a10c-f2bf7dc0a680"><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cydwr" Guid="5b84cc8d-aa17-4069-9de0-2959189060fc" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\TopDesign\PSoC5\TopDesign.cysch" Guid="21a43e38-ab99-4ad7-89be-bf84ca0e1f55" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\main.c" Guid="a1bbd744-fdf1-4963-a10c-f2bf7dc0a680" /><DocumentWindow Key="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\EEPROM_Images.h" Guid="ab96c2db-79ad-4c05-925f-a0a84260e414" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

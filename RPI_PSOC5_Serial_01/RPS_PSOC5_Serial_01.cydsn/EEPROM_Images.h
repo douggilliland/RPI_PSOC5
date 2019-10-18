@@ -11,6 +11,7 @@
 */
 
 enum EEPROM_Images {
+    UNSELECTED_CARD,
     RPPUIO16,
     RPPGVSCFG,
     RPPSOC

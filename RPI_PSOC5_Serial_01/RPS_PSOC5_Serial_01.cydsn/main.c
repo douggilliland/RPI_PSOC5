@@ -43,6 +43,8 @@
 */
 #define USBUART_Buffer_SIZE (64u)
 
+void putStringToUSB(char * stringToPutOutUSB);
+
 /*******************************************************************************
 * Function Name: main
 ********************************************************************************
@@ -65,10 +67,9 @@
 int main()
 {
     uint16 inCount;
-    uint16 outCount;
     uint8 inBuffer[USBUART_Buffer_SIZE];
-    char outBuffer[USBUART_Buffer_SIZE];
     uint8 eepromBuffer[256];
+    uint16 cardType = UNSELECTED_CARD;
         
     CyGlobalIntEnable;
 
@@ -109,41 +110,66 @@ int main()
                     while (0u == USBUART_CDCIsReady());
                     if ((inBuffer[0] == 'r') || (inBuffer[0] == 'R'))
                     {
-                        strcpy(outBuffer,"Read from the EEPROM\n\r");
-                        outCount = strlen(outBuffer);
-                        USBUART_PutData((uint8 *)outBuffer, outCount);
-                        while (0u == USBUART_CDCIsReady());
+                        putStringToUSB("Read from the EEPROM\n\r");
                         readEEPROM(eepromBuffer);
                         dumpEEPROM(eepromBuffer);
+                        while (0u == USBUART_CDCIsReady());
                     }
                     else if ((inBuffer[0] == 'w') || (inBuffer[0] == 'W'))
                     {
-                        strcpy(outBuffer,"Write to the EEPROM...");
-                        outCount = strlen(outBuffer);
-                        USBUART_PutData((uint8 *)outBuffer, outCount);
-                        while (0u == USBUART_CDCIsReady());
-                        writeEEPROM(RPPUIO16);
-                        strcpy(outBuffer,"Completed EEPROM write\n\r");
-                        outCount = strlen(outBuffer);
-                        USBUART_PutData((uint8 *)outBuffer, outCount);
+                        if (cardType == UNSELECTED_CARD)
+                        {
+                            putStringToUSB("Must first select card type\n\r");
+                        }
+                        else
+                        {
+                            putStringToUSB("Write to the EEPROM...");
+                            writeEEPROM(cardType);
+                            putStringToUSB("Completed EEPROM write\n\r");
+                        }
                     }
                     else if ((inBuffer[0] == 'b') || (inBuffer[0] == 'B'))
                     {
-                        strcpy(outBuffer,"Blinking the LEDs on the RPP-UIO-16 card, please wait\n\r");
-                        outCount = strlen(outBuffer);
-                        USBUART_PutData((uint8 *)outBuffer, outCount);
-                        while (0u == USBUART_CDCIsReady());
-                        testRPPUIO16();
-                        strcpy(outBuffer,"Completed blinking the LEDs on the RPP-UIO-16 card\n\r");
-                        USBUART_PutData((uint8 *)outBuffer, outCount);
-                        while (0u == USBUART_CDCIsReady());
+                        if (cardType == UNSELECTED_CARD)
+                        {
+                            putStringToUSB("Must first select card type\n\r");
+                        }
+                        else if (cardType == RPPUIO16)
+                        {
+                            putStringToUSB("Blinking the LEDs on the RPP-UIO-16 card, please wait\n\r");
+                            testRPPUIO16();
+                            putStringToUSB("Completed blinking the LEDs on the RPP-UIO-16 card\n\r");
+                        }
+                        else
+                        {
+                            putStringToUSB("Card not yet implemented\n\r");
+                        }
+                    }
+                    else if (inBuffer[0] == '1')
+                    {
+                        cardType = RPPUIO16;
+                        putStringToUSB("Selected RPP-UIO-16 card\n\r");
+                    }
+                    else if (inBuffer[0] == '2')
+                    {
+                        cardType = RPPSOC;
+                        putStringToUSB("Selected RPPSOC card\n\r");
+                    }
+                    else if (inBuffer[0] == '3')
+                    {
+                        cardType = RPPGVSCFG;
+                        putStringToUSB("Selected RASPI-PLUS-GVS-CFG card\n\r");
                     }
                     else
                     {
-                        strcpy(outBuffer,"Not a valid command, legal values are r, w, b\n\r");
-                        outCount = strlen(outBuffer);
-                        USBUART_PutData((uint8 *)outBuffer, outCount);
-                        while (0u == USBUART_CDCIsReady());
+                        putStringToUSB("Land Boards, LLC - RPi Card Test Station\n\r");
+                        putStringToUSB("1 - Select RPP-UIO-16 Card\n\r");
+                        putStringToUSB("2 - Select RPPSOC Card\n\r");
+                        putStringToUSB("3 - Select RASPI-PLUS-GVS-CFG Card\n\r");
+                        putStringToUSB("R - Read EEPROM\n\r");
+                        putStringToUSB("W - Write EEPROM\n\r");
+                        putStringToUSB("B - Bounce LED across Card GPIOs\n\r");
+                        putStringToUSB("? - Print this menu\n\r");
                     }
                     /* If the last sent packet is exactly the maximum packet 
                     *  size, it is followed by a zero-length packet to assure
@@ -166,5 +192,10 @@ int main()
     }
 }
 
+void putStringToUSB(char * stringToPutOutUSB)
+{
+    USBUART_PutData((uint8 *)stringToPutOutUSB, strlen(stringToPutOutUSB));
+    while (0u == USBUART_CDCIsReady());
+}
 
 /* [] END OF FILE */
