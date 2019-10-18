@@ -1,5 +1,12 @@
---------------- Rebuild Started: 10/08/2019 13:09:01 Project: RPS_PSOC5_Serial_01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 10/17/2019 21:46:18 Project: RPS_PSOC5_Serial_01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Deleting file ".\ARM_GCC_541\Debug\main.o"
+Deleting file ".\ARM_GCC_541\Debug\testCards.o"
+Deleting file ".\ARM_GCC_541\Debug\program_RPI_EEPROM.o"
+Deleting file ".\ARM_GCC_541\Debug\Test_RPP-UIO_16.o"
+Deleting file ".\ARM_GCC_541\Debug\RasPi_Pins.o"
+Deleting file ".\ARM_GCC_541\Debug\Z80_SIO_emul.o"
+Deleting file ".\ARM_GCC_541\Debug\ExtEEPROM.o"
+Deleting file ".\ARM_GCC_541\Debug\EEPROM__Images.o"
 Deleting file ".\ARM_GCC_541\Debug\cyfitter_cfg.o"
 Deleting file ".\ARM_GCC_541\Debug\cymetadata.o"
 Deleting file ".\ARM_GCC_541\Debug\CyScBoostClk.o"
@@ -17,8 +24,6 @@ Deleting file ".\ARM_GCC_541\Debug\USBUART_std.o"
 Deleting file ".\ARM_GCC_541\Debug\USBUART_vnd.o"
 Deleting file ".\ARM_GCC_541\Debug\USBUART_midi.o"
 Deleting file ".\ARM_GCC_541\Debug\USBUART_msc.o"
-Deleting file ".\ARM_GCC_541\Debug\SDA_1.o"
-Deleting file ".\ARM_GCC_541\Debug\SCL_1.o"
 Deleting file ".\ARM_GCC_541\Debug\I2C_EEPROM.o"
 Deleting file ".\ARM_GCC_541\Debug\I2C_EEPROM_BOOT.o"
 Deleting file ".\ARM_GCC_541\Debug\I2C_EEPROM_INT.o"
@@ -36,90 +41,36 @@ Deleting file ".\ARM_GCC_541\Debug\CyLib.o"
 Deleting file ".\ARM_GCC_541\Debug\cyPm.o"
 Deleting file ".\ARM_GCC_541\Debug\CySpc.o"
 Deleting file ".\ARM_GCC_541\Debug\cyutils.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port0.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port0_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D4.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D5.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D6.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT0D7.o"
 Deleting file ".\ARM_GCC_541\Debug\Clock_1.o"
-Deleting file ".\ARM_GCC_541\Debug\Dir_Ctl.o"
-Deleting file ".\ARM_GCC_541\Debug\Dir_Ctl_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port2.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port2.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port2_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D4.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D5.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D6.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT2D7.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D4.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D5.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D6.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT3D7.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port3.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port3_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port4.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port4.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port4_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT4D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT4D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT4D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT4D3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT4D4.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT4D5.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT1D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT1D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT1D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT1D3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT1D4.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port1.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port1_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port5.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT5D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT5D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT5D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT5D3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT5D4.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port5.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port5_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port6.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT6D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT6D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT6D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT6D3.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port6.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port6_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port12.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT12D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT12D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT12D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT12D3.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT12D4.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT12D5.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port12.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port12_PM.o"
-Deleting file ".\ARM_GCC_541\Debug\DataIn_Port15.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT15D0.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT15D1.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT15D2.o"
-Deleting file ".\ARM_GCC_541\Debug\PORT15D3.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port15.o"
-Deleting file ".\ARM_GCC_541\Debug\DataOut_Port15_PM.o"
+Deleting file ".\ARM_GCC_541\Debug\SDA0.o"
+Deleting file ".\ARM_GCC_541\Debug\SCL0.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_3.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_12.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_13.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_6.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_16.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_2.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_14.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_5.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_19.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_20.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_26.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_21.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_17.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_18.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_27.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_22.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_23.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_24.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_7.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_15.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_4.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_25.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_9.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_10.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_8.o"
+Deleting file ".\ARM_GCC_541\Debug\IO_11.o"
+Deleting file ".\ARM_GCC_541\Debug\LED.o"
 Deleting file ".\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.hex"
 Deleting file ".\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf"
 Deleting file ".\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.map"
@@ -129,12 +80,12 @@ Deleting file ".\RPS_PSOC5_Serial_01.rpt"
 Deleting file ".\RPS_PSOC5_Serial_01_timing.html"
 Deleting file ".\ARM_GCC_541\Debug\.deps\SOURCE_C__ARM_GCC_GENERIC.P"
 Deleting file ".\ARM_GCC_541\Debug\.deps\SOURCE_ASM__ARM_GCC_GENERIC.P"
-cydsfit.exe -.appdatapath "C:\Users\dgilliland\AppData\Local\Cypress Semiconductor\PSoC Creator\4.2" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -d CY8C5267AXI-LP051 -s C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+cydsfit.exe -.appdatapath "C:\Users\HPz420\AppData\Local\Cypress Semiconductor\PSoC Creator\4.2" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj -d CY8C5267AXI-LP051 -s C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 Elaborating Design...
 HDL Generation...
 Synthesis...
 Tech Mapping...
-Info: plm.M0038: The pin named PORT12D0(0) at location P12[0] prevents usage of special purposes: I2C:SCL. (App=cydsfit)
+Info: plm.M0038: The pin named IO_3(0) at location P12[0] prevents usage of special purposes: I2C:SCL. (App=cydsfit)
 Analog Placement...
 Analog Routing...
 Analog Code Generation...
@@ -147,6 +98,13 @@ API Generation...
 Dependency Generation...
 Cleanup...
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/main.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c main.c -o .\ARM_GCC_541\Debug\main.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/testCards.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c testCards.c -o .\ARM_GCC_541\Debug\testCards.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/program_RPI_EEPROM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c program_RPI_EEPROM.c -o .\ARM_GCC_541\Debug\program_RPI_EEPROM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/Test_RPP-UIO_16.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Test_RPP-UIO_16.c -o .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/RasPi_Pins.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c RasPi_Pins.c -o .\ARM_GCC_541\Debug\RasPi_Pins.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/Z80_SIO_emul.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Z80_SIO_emul.c -o .\ARM_GCC_541\Debug\Z80_SIO_emul.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/ExtEEPROM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c ExtEEPROM.c -o .\ARM_GCC_541\Debug\ExtEEPROM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/EEPROM__Images.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c EEPROM__Images.c -o .\ARM_GCC_541\Debug\EEPROM__Images.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/cyfitter_cfg.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\cyfitter_cfg.c -o .\ARM_GCC_541\Debug\cyfitter_cfg.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/cymetadata.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\cymetadata.c -o .\ARM_GCC_541\Debug\cymetadata.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/CyScBoostClk.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\CyScBoostClk.c -o .\ARM_GCC_541\Debug\CyScBoostClk.o
@@ -164,8 +122,6 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/USBUART_vnd.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\USBUART_vnd.c -o .\ARM_GCC_541\Debug\USBUART_vnd.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/USBUART_midi.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\USBUART_midi.c -o .\ARM_GCC_541\Debug\USBUART_midi.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/USBUART_msc.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\USBUART_msc.c -o .\ARM_GCC_541\Debug\USBUART_msc.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/SDA_1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\SDA_1.c -o .\ARM_GCC_541\Debug\SDA_1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/SCL_1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\SCL_1.c -o .\ARM_GCC_541\Debug\SCL_1.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/I2C_EEPROM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\I2C_EEPROM.c -o .\ARM_GCC_541\Debug\I2C_EEPROM.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/I2C_EEPROM_BOOT.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\I2C_EEPROM_BOOT.c -o .\ARM_GCC_541\Debug\I2C_EEPROM_BOOT.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/I2C_EEPROM_INT.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\I2C_EEPROM_INT.c -o .\ARM_GCC_541\Debug\I2C_EEPROM_INT.o
@@ -182,99 +138,45 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/cyPm.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\cyPm.c -o .\ARM_GCC_541\Debug\cyPm.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/CySpc.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\CySpc.c -o .\ARM_GCC_541\Debug\CySpc.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/cyutils.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\cyutils.c -o .\ARM_GCC_541\Debug\cyutils.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port0.c -o .\ARM_GCC_541\Debug\DataOut_Port0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port0_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port0_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port0_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port0.c -o .\ARM_GCC_541\Debug\DataIn_Port0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D0.c -o .\ARM_GCC_541\Debug\PORT0D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D1.c -o .\ARM_GCC_541\Debug\PORT0D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D2.c -o .\ARM_GCC_541\Debug\PORT0D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D3.c -o .\ARM_GCC_541\Debug\PORT0D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D4.c -o .\ARM_GCC_541\Debug\PORT0D4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D5.c -o .\ARM_GCC_541\Debug\PORT0D5.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D6.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D6.c -o .\ARM_GCC_541\Debug\PORT0D6.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT0D7.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT0D7.c -o .\ARM_GCC_541\Debug\PORT0D7.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/Clock_1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Clock_1.c -o .\ARM_GCC_541\Debug\Clock_1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/Dir_Ctl.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Dir_Ctl.c -o .\ARM_GCC_541\Debug\Dir_Ctl.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/Dir_Ctl_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Dir_Ctl_PM.c -o .\ARM_GCC_541\Debug\Dir_Ctl_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port2.c -o .\ARM_GCC_541\Debug\DataIn_Port2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port2.c -o .\ARM_GCC_541\Debug\DataOut_Port2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port2_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port2_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port2_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D0.c -o .\ARM_GCC_541\Debug\PORT2D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D1.c -o .\ARM_GCC_541\Debug\PORT2D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D2.c -o .\ARM_GCC_541\Debug\PORT2D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D3.c -o .\ARM_GCC_541\Debug\PORT2D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D4.c -o .\ARM_GCC_541\Debug\PORT2D4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D5.c -o .\ARM_GCC_541\Debug\PORT2D5.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D6.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D6.c -o .\ARM_GCC_541\Debug\PORT2D6.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT2D7.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT2D7.c -o .\ARM_GCC_541\Debug\PORT2D7.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port3.c -o .\ARM_GCC_541\Debug\DataIn_Port3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D0.c -o .\ARM_GCC_541\Debug\PORT3D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D1.c -o .\ARM_GCC_541\Debug\PORT3D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D2.c -o .\ARM_GCC_541\Debug\PORT3D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D3.c -o .\ARM_GCC_541\Debug\PORT3D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D4.c -o .\ARM_GCC_541\Debug\PORT3D4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D5.c -o .\ARM_GCC_541\Debug\PORT3D5.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D6.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D6.c -o .\ARM_GCC_541\Debug\PORT3D6.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT3D7.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT3D7.c -o .\ARM_GCC_541\Debug\PORT3D7.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port3.c -o .\ARM_GCC_541\Debug\DataOut_Port3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port3_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port3_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port3_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port4.c -o .\ARM_GCC_541\Debug\DataIn_Port4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port4.c -o .\ARM_GCC_541\Debug\DataOut_Port4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port4_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port4_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port4_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT4D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT4D0.c -o .\ARM_GCC_541\Debug\PORT4D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT4D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT4D1.c -o .\ARM_GCC_541\Debug\PORT4D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT4D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT4D2.c -o .\ARM_GCC_541\Debug\PORT4D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT4D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT4D3.c -o .\ARM_GCC_541\Debug\PORT4D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT4D4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT4D4.c -o .\ARM_GCC_541\Debug\PORT4D4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT4D5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT4D5.c -o .\ARM_GCC_541\Debug\PORT4D5.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port1.c -o .\ARM_GCC_541\Debug\DataIn_Port1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT1D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT1D0.c -o .\ARM_GCC_541\Debug\PORT1D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT1D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT1D1.c -o .\ARM_GCC_541\Debug\PORT1D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT1D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT1D2.c -o .\ARM_GCC_541\Debug\PORT1D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT1D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT1D3.c -o .\ARM_GCC_541\Debug\PORT1D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT1D4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT1D4.c -o .\ARM_GCC_541\Debug\PORT1D4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port1.c -o .\ARM_GCC_541\Debug\DataOut_Port1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port1_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port1_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port1_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port5.c -o .\ARM_GCC_541\Debug\DataIn_Port5.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT5D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT5D0.c -o .\ARM_GCC_541\Debug\PORT5D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT5D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT5D1.c -o .\ARM_GCC_541\Debug\PORT5D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT5D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT5D2.c -o .\ARM_GCC_541\Debug\PORT5D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT5D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT5D3.c -o .\ARM_GCC_541\Debug\PORT5D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT5D4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT5D4.c -o .\ARM_GCC_541\Debug\PORT5D4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port5.c -o .\ARM_GCC_541\Debug\DataOut_Port5.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port5_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port5_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port5_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port6.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port6.c -o .\ARM_GCC_541\Debug\DataIn_Port6.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT6D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT6D0.c -o .\ARM_GCC_541\Debug\PORT6D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT6D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT6D1.c -o .\ARM_GCC_541\Debug\PORT6D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT6D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT6D2.c -o .\ARM_GCC_541\Debug\PORT6D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT6D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT6D3.c -o .\ARM_GCC_541\Debug\PORT6D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port6.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port6.c -o .\ARM_GCC_541\Debug\DataOut_Port6.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port6_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port6_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port6_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port12.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port12.c -o .\ARM_GCC_541\Debug\DataIn_Port12.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT12D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT12D0.c -o .\ARM_GCC_541\Debug\PORT12D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT12D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT12D1.c -o .\ARM_GCC_541\Debug\PORT12D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT12D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT12D2.c -o .\ARM_GCC_541\Debug\PORT12D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT12D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT12D3.c -o .\ARM_GCC_541\Debug\PORT12D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT12D4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT12D4.c -o .\ARM_GCC_541\Debug\PORT12D4.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT12D5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT12D5.c -o .\ARM_GCC_541\Debug\PORT12D5.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port12.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port12.c -o .\ARM_GCC_541\Debug\DataOut_Port12.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port12_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port12_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port12_PM.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataIn_Port15.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataIn_Port15.c -o .\ARM_GCC_541\Debug\DataIn_Port15.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT15D0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT15D0.c -o .\ARM_GCC_541\Debug\PORT15D0.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT15D1.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT15D1.c -o .\ARM_GCC_541\Debug\PORT15D1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT15D2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT15D2.c -o .\ARM_GCC_541\Debug\PORT15D2.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/PORT15D3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PORT15D3.c -o .\ARM_GCC_541\Debug\PORT15D3.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port15.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port15.c -o .\ARM_GCC_541\Debug\DataOut_Port15.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/DataOut_Port15_PM.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\DataOut_Port15_PM.c -o .\ARM_GCC_541\Debug\DataOut_Port15_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/SDA0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\SDA0.c -o .\ARM_GCC_541\Debug\SDA0.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/SCL0.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\SCL0.c -o .\ARM_GCC_541\Debug\SCL0.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_3.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_3.c -o .\ARM_GCC_541\Debug\IO_3.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_12.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_12.c -o .\ARM_GCC_541\Debug\IO_12.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_13.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_13.c -o .\ARM_GCC_541\Debug\IO_13.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_6.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_6.c -o .\ARM_GCC_541\Debug\IO_6.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_16.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_16.c -o .\ARM_GCC_541\Debug\IO_16.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_2.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_2.c -o .\ARM_GCC_541\Debug\IO_2.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_14.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_14.c -o .\ARM_GCC_541\Debug\IO_14.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_5.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_5.c -o .\ARM_GCC_541\Debug\IO_5.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_19.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_19.c -o .\ARM_GCC_541\Debug\IO_19.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_20.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_20.c -o .\ARM_GCC_541\Debug\IO_20.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_26.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_26.c -o .\ARM_GCC_541\Debug\IO_26.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_21.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_21.c -o .\ARM_GCC_541\Debug\IO_21.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_17.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_17.c -o .\ARM_GCC_541\Debug\IO_17.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_18.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_18.c -o .\ARM_GCC_541\Debug\IO_18.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_27.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_27.c -o .\ARM_GCC_541\Debug\IO_27.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_22.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_22.c -o .\ARM_GCC_541\Debug\IO_22.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_23.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_23.c -o .\ARM_GCC_541\Debug\IO_23.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_24.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_24.c -o .\ARM_GCC_541\Debug\IO_24.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_7.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_7.c -o .\ARM_GCC_541\Debug\IO_7.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_15.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_15.c -o .\ARM_GCC_541\Debug\IO_15.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_4.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_4.c -o .\ARM_GCC_541\Debug\IO_4.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_25.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_25.c -o .\ARM_GCC_541\Debug\IO_25.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_9.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_9.c -o .\ARM_GCC_541\Debug\IO_9.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_10.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_10.c -o .\ARM_GCC_541\Debug\IO_10.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_8.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_8.c -o .\ARM_GCC_541\Debug\IO_8.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/IO_11.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\IO_11.c -o .\ARM_GCC_541\Debug\IO_11.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_541\Debug/LED.lst -g -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\LED.c -o .\ARM_GCC_541\Debug\LED.o
 arm-none-eabi-as.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -alh=.\ARM_GCC_541\Debug/CyBootAsmGnu.lst -g -o .\ARM_GCC_541\Debug\CyBootAsmGnu.o Generated_Source\PSoC5\CyBootAsmGnu.s
-arm-none-eabi-ar.exe -rs .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a .\ARM_GCC_541\Debug\CyScBoostClk.o .\ARM_GCC_541\Debug\USBUART.o .\ARM_GCC_541\Debug\USBUART_audio.o .\ARM_GCC_541\Debug\USBUART_boot.o .\ARM_GCC_541\Debug\USBUART_cdc.o .\ARM_GCC_541\Debug\USBUART_cls.o .\ARM_GCC_541\Debug\USBUART_descr.o .\ARM_GCC_541\Debug\USBUART_drv.o .\ARM_GCC_541\Debug\USBUART_episr.o .\ARM_GCC_541\Debug\USBUART_hid.o .\ARM_GCC_541\Debug\USBUART_pm.o .\ARM_GCC_541\Debug\USBUART_std.o .\ARM_GCC_541\Debug\USBUART_vnd.o .\ARM_GCC_541\Debug\USBUART_midi.o .\ARM_GCC_541\Debug\USBUART_msc.o .\ARM_GCC_541\Debug\SDA_1.o .\ARM_GCC_541\Debug\SCL_1.o .\ARM_GCC_541\Debug\I2C_EEPROM.o .\ARM_GCC_541\Debug\I2C_EEPROM_BOOT.o .\ARM_GCC_541\Debug\I2C_EEPROM_INT.o .\ARM_GCC_541\Debug\I2C_EEPROM_PM.o .\ARM_GCC_541\Debug\I2C_EEPROM_SLAVE.o .\ARM_GCC_541\Debug\I2C_EEPROM_MASTER.o .\ARM_GCC_541\Debug\USBUART_Dm.o .\ARM_GCC_541\Debug\USBUART_Dp.o .\ARM_GCC_541\Debug\cy_em_eeprom.o .\ARM_GCC_541\Debug\CyDmac.o .\ARM_GCC_541\Debug\CyFlash.o .\ARM_GCC_541\Debug\CyLib.o .\ARM_GCC_541\Debug\cyPm.o .\ARM_GCC_541\Debug\CySpc.o .\ARM_GCC_541\Debug\cyutils.o .\ARM_GCC_541\Debug\DataOut_Port0.o .\ARM_GCC_541\Debug\DataOut_Port0_PM.o .\ARM_GCC_541\Debug\DataIn_Port0.o .\ARM_GCC_541\Debug\PORT0D0.o .\ARM_GCC_541\Debug\PORT0D1.o .\ARM_GCC_541\Debug\PORT0D2.o .\ARM_GCC_541\Debug\PORT0D3.o .\ARM_GCC_541\Debug\PORT0D4.o .\ARM_GCC_541\Debug\PORT0D5.o .\ARM_GCC_541\Debug\PORT0D6.o .\ARM_GCC_541\Debug\PORT0D7.o .\ARM_GCC_541\Debug\Clock_1.o .\ARM_GCC_541\Debug\Dir_Ctl.o .\ARM_GCC_541\Debug\Dir_Ctl_PM.o .\ARM_GCC_541\Debug\DataIn_Port2.o .\ARM_GCC_541\Debug\DataOut_Port2.o .\ARM_GCC_541\Debug\DataOut_Port2_PM.o .\ARM_GCC_541\Debug\PORT2D0.o .\ARM_GCC_541\Debug\PORT2D1.o .\ARM_GCC_541\Debug\PORT2D2.o .\ARM_GCC_541\Debug\PORT2D3.o .\ARM_GCC_541\Debug\PORT2D4.o .\ARM_GCC_541\Debug\PORT2D5.o .\ARM_GCC_541\Debug\PORT2D6.o .\ARM_GCC_541\Debug\PORT2D7.o .\ARM_GCC_541\Debug\DataIn_Port3.o .\ARM_GCC_541\Debug\PORT3D0.o .\ARM_GCC_541\Debug\PORT3D1.o .\ARM_GCC_541\Debug\PORT3D2.o .\ARM_GCC_541\Debug\PORT3D3.o .\ARM_GCC_541\Debug\PORT3D4.o .\ARM_GCC_541\Debug\PORT3D5.o .\ARM_GCC_541\Debug\PORT3D6.o .\ARM_GCC_541\Debug\PORT3D7.o .\ARM_GCC_541\Debug\DataOut_Port3.o .\ARM_GCC_541\Debug\DataOut_Port3_PM.o .\ARM_GCC_541\Debug\DataIn_Port4.o .\ARM_GCC_541\Debug\DataOut_Port4.o .\ARM_GCC_541\Debug\DataOut_Port4_PM.o .\ARM_GCC_541\Debug\PORT4D0.o .\ARM_GCC_541\Debug\PORT4D1.o .\ARM_GCC_541\Debug\PORT4D2.o .\ARM_GCC_541\Debug\PORT4D3.o .\ARM_GCC_541\Debug\PORT4D4.o .\ARM_GCC_541\Debug\PORT4D5.o .\ARM_GCC_541\Debug\DataIn_Port1.o .\ARM_GCC_541\Debug\PORT1D0.o .\ARM_GCC_541\Debug\PORT1D1.o .\ARM_GCC_541\Debug\PORT1D2.o .\ARM_GCC_541\Debug\PORT1D3.o .\ARM_GCC_541\Debug\PORT1D4.o .\ARM_GCC_541\Debug\DataOut_Port1.o .\ARM_GCC_541\Debug\DataOut_Port1_PM.o .\ARM_GCC_541\Debug\DataIn_Port5.o .\ARM_GCC_541\Debug\PORT5D0.o .\ARM_GCC_541\Debug\PORT5D1.o .\ARM_GCC_541\Debug\PORT5D2.o .\ARM_GCC_541\Debug\PORT5D3.o .\ARM_GCC_541\Debug\PORT5D4.o .\ARM_GCC_541\Debug\DataOut_Port5.o .\ARM_GCC_541\Debug\DataOut_Port5_PM.o .\ARM_GCC_541\Debug\DataIn_Port6.o .\ARM_GCC_541\Debug\PORT6D0.o .\ARM_GCC_541\Debug\PORT6D1.o .\ARM_GCC_541\Debug\PORT6D2.o .\ARM_GCC_541\Debug\PORT6D3.o .\ARM_GCC_541\Debug\DataOut_Port6.o .\ARM_GCC_541\Debug\DataOut_Port6_PM.o .\ARM_GCC_541\Debug\DataIn_Port12.o .\ARM_GCC_541\Debug\PORT12D0.o .\ARM_GCC_541\Debug\PORT12D1.o .\ARM_GCC_541\Debug\PORT12D2.o .\ARM_GCC_541\Debug\PORT12D3.o .\ARM_GCC_541\Debug\PORT12D4.o .\ARM_GCC_541\Debug\PORT12D5.o .\ARM_GCC_541\Debug\DataOut_Port12.o .\ARM_GCC_541\Debug\DataOut_Port12_PM.o .\ARM_GCC_541\Debug\DataIn_Port15.o .\ARM_GCC_541\Debug\PORT15D0.o .\ARM_GCC_541\Debug\PORT15D1.o .\ARM_GCC_541\Debug\PORT15D2.o .\ARM_GCC_541\Debug\PORT15D3.o .\ARM_GCC_541\Debug\DataOut_Port15.o .\ARM_GCC_541\Debug\DataOut_Port15_PM.o .\ARM_GCC_541\Debug\CyBootAsmGnu.o
+arm-none-eabi-ar.exe -rs .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a .\ARM_GCC_541\Debug\CyScBoostClk.o .\ARM_GCC_541\Debug\USBUART.o .\ARM_GCC_541\Debug\USBUART_audio.o .\ARM_GCC_541\Debug\USBUART_boot.o .\ARM_GCC_541\Debug\USBUART_cdc.o .\ARM_GCC_541\Debug\USBUART_cls.o .\ARM_GCC_541\Debug\USBUART_descr.o .\ARM_GCC_541\Debug\USBUART_drv.o .\ARM_GCC_541\Debug\USBUART_episr.o .\ARM_GCC_541\Debug\USBUART_hid.o .\ARM_GCC_541\Debug\USBUART_pm.o .\ARM_GCC_541\Debug\USBUART_std.o .\ARM_GCC_541\Debug\USBUART_vnd.o .\ARM_GCC_541\Debug\USBUART_midi.o .\ARM_GCC_541\Debug\USBUART_msc.o .\ARM_GCC_541\Debug\I2C_EEPROM.o .\ARM_GCC_541\Debug\I2C_EEPROM_BOOT.o .\ARM_GCC_541\Debug\I2C_EEPROM_INT.o .\ARM_GCC_541\Debug\I2C_EEPROM_PM.o .\ARM_GCC_541\Debug\I2C_EEPROM_SLAVE.o .\ARM_GCC_541\Debug\I2C_EEPROM_MASTER.o .\ARM_GCC_541\Debug\USBUART_Dm.o .\ARM_GCC_541\Debug\USBUART_Dp.o .\ARM_GCC_541\Debug\cy_em_eeprom.o .\ARM_GCC_541\Debug\CyDmac.o .\ARM_GCC_541\Debug\CyFlash.o .\ARM_GCC_541\Debug\CyLib.o .\ARM_GCC_541\Debug\cyPm.o .\ARM_GCC_541\Debug\CySpc.o .\ARM_GCC_541\Debug\cyutils.o .\ARM_GCC_541\Debug\Clock_1.o .\ARM_GCC_541\Debug\SDA0.o .\ARM_GCC_541\Debug\SCL0.o .\ARM_GCC_541\Debug\IO_3.o .\ARM_GCC_541\Debug\IO_12.o .\ARM_GCC_541\Debug\IO_13.o .\ARM_GCC_541\Debug\IO_6.o .\ARM_GCC_541\Debug\IO_16.o .\ARM_GCC_541\Debug\IO_2.o .\ARM_GCC_541\Debug\IO_14.o .\ARM_GCC_541\Debug\IO_5.o .\ARM_GCC_541\Debug\IO_19.o .\ARM_GCC_541\Debug\IO_20.o .\ARM_GCC_541\Debug\IO_26.o .\ARM_GCC_541\Debug\IO_21.o .\ARM_GCC_541\Debug\IO_17.o .\ARM_GCC_541\Debug\IO_18.o .\ARM_GCC_541\Debug\IO_27.o .\ARM_GCC_541\Debug\IO_22.o .\ARM_GCC_541\Debug\IO_23.o .\ARM_GCC_541\Debug\IO_24.o .\ARM_GCC_541\Debug\IO_7.o .\ARM_GCC_541\Debug\IO_15.o .\ARM_GCC_541\Debug\IO_4.o .\ARM_GCC_541\Debug\IO_25.o .\ARM_GCC_541\Debug\IO_9.o .\ARM_GCC_541\Debug\IO_10.o .\ARM_GCC_541\Debug\IO_8.o .\ARM_GCC_541\Debug\IO_11.o .\ARM_GCC_541\Debug\LED.o .\ARM_GCC_541\Debug\CyBootAsmGnu.o
 arm-none-eabi-ar.exe: creating .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a
-arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf .\ARM_GCC_541\Debug\main.o .\ARM_GCC_541\Debug\cyfitter_cfg.o .\ARM_GCC_541\Debug\cymetadata.o .\ARM_GCC_541\Debug\Cm3Start.o .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\ARM_GCC_541\Debug/RPS_PSOC5_Serial_01.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -O0 -ffat-lto-objects -Wl,--end-group
-cyelftool.exe -C C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf --flash_row_size 256 --flash_size 131072 --flash_offset 0x00000000
+arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf .\ARM_GCC_541\Debug\main.o .\ARM_GCC_541\Debug\testCards.o .\ARM_GCC_541\Debug\program_RPI_EEPROM.o .\ARM_GCC_541\Debug\Test_RPP-UIO_16.o .\ARM_GCC_541\Debug\RasPi_Pins.o .\ARM_GCC_541\Debug\Z80_SIO_emul.o .\ARM_GCC_541\Debug\ExtEEPROM.o .\ARM_GCC_541\Debug\EEPROM__Images.o .\ARM_GCC_541\Debug\cyfitter_cfg.o .\ARM_GCC_541\Debug\cymetadata.o .\ARM_GCC_541\Debug\Cm3Start.o .\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\ARM_GCC_541\Debug/RPS_PSOC5_Serial_01.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -O0 -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf --flash_row_size 256 --flash_size 131072 --flash_offset 0x00000000
 No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
-cyelftool.exe -S C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf
-Flash used: 26124 of 131072 bytes (19.9%).
-SRAM used: 2893 of 32768 bytes (8.8%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 10/08/2019 13:09:30 ---------------
+cyelftool.exe -S C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\ARM_GCC_541\Debug\RPS_PSOC5_Serial_01.elf
+Flash used: 18696 of 131072 bytes (14.3%).
+SRAM used: 2805 of 32768 bytes (8.6%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Rebuild Succeeded: 10/17/2019 21:46:49 ---------------

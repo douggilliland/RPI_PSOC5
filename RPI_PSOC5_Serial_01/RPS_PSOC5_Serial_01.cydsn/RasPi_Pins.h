@@ -44,6 +44,7 @@ enum BCM_PINS
     IO_21
 };
 
-void setRasPiPin(uint8 bcmPinNum, uint8 value);
+void setRasPiPinValue(uint8 bcmPinNum, uint8 value);
+void setRasPiPinDrive(uint8 bcmPinNum, uint8 value);
 
 /* [] END OF FILE */

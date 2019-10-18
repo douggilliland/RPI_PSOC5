@@ -18,42 +18,73 @@
 #include "RasPi_Pins.h"
 #include "Test_RPP-UIO_16.h"
 
+#define LED_ON 1
+#define LED_OFF 0
+
 void blinkLED(uint8 RPI_Pin)
 {
-	setRasPiPin(RPI_Pin, 1);
+	setRasPiPinValue(RPI_Pin, LED_ON);
     CyDelay(250);
-	setRasPiPin(RPI_Pin, 0);
+	setRasPiPinValue(RPI_Pin, LED_OFF);
 }
 
 void testRPPUIO16(void)
 {
 // Set all of the RPI pins to outputs
-    setRasPiPin(IO_21,0);
-    setRasPiPin(IO_2,0);
-    setRasPiPin(IO_3,0);
-    setRasPiPin(IO_4,0);
-    setRasPiPin(IO_14,0);
-    setRasPiPin(IO_15,0);
-    setRasPiPin(IO_17,0);
-    setRasPiPin(IO_18,0);
-    setRasPiPin(IO_27,0);
-    setRasPiPin(IO_22,0);
-    setRasPiPin(IO_23,0);
-    setRasPiPin(IO_24,0);
-    setRasPiPin(IO_10,0);
-    setRasPiPin(IO_9,0);
-    setRasPiPin(IO_25,0);
-    setRasPiPin(IO_11,0);
-    setRasPiPin(IO_8,0);
-    setRasPiPin(IO_7,0);
-    setRasPiPin(IO_5,0);
-    setRasPiPin(IO_6,0);
-    setRasPiPin(IO_12,0);
-    setRasPiPin(IO_13,0);
-    setRasPiPin(IO_19,0);
-    setRasPiPin(IO_16,0);
-    setRasPiPin(IO_26,0);
-    setRasPiPin(IO_20,0);
+    setRasPiPinValue(IO_2,PIN_DM_STRONG);
+    setRasPiPinValue(IO_3,PIN_DM_STRONG);
+    setRasPiPinValue(IO_4,PIN_DM_STRONG);
+    setRasPiPinValue(IO_14,PIN_DM_STRONG);
+    setRasPiPinValue(IO_15,PIN_DM_STRONG);
+    setRasPiPinValue(IO_17,PIN_DM_STRONG);
+    setRasPiPinValue(IO_18,PIN_DM_STRONG);
+    setRasPiPinValue(IO_27,PIN_DM_STRONG);
+    setRasPiPinValue(IO_22,PIN_DM_STRONG);
+    setRasPiPinValue(IO_23,PIN_DM_STRONG);
+    setRasPiPinValue(IO_24,PIN_DM_STRONG);
+    setRasPiPinValue(IO_10,PIN_DM_STRONG);
+    setRasPiPinValue(IO_9,PIN_DM_STRONG);
+    setRasPiPinValue(IO_25,PIN_DM_STRONG);
+    setRasPiPinValue(IO_11,PIN_DM_STRONG);
+    setRasPiPinValue(IO_8,PIN_DM_STRONG);
+    setRasPiPinValue(IO_7,PIN_DM_STRONG);
+    setRasPiPinValue(IO_5,PIN_DM_STRONG);
+    setRasPiPinValue(IO_6,PIN_DM_STRONG);
+    setRasPiPinValue(IO_12,PIN_DM_STRONG);
+    setRasPiPinValue(IO_13,PIN_DM_STRONG);
+    setRasPiPinValue(IO_19,PIN_DM_STRONG);
+    setRasPiPinValue(IO_16,PIN_DM_STRONG);
+    setRasPiPinValue(IO_26,PIN_DM_STRONG);
+    setRasPiPinValue(IO_20,PIN_DM_STRONG);
+    setRasPiPinValue(IO_21,PIN_DM_STRONG);
+    
+// Set all of the RPI pins to low
+    setRasPiPinValue(IO_2,LED_OFF);
+    setRasPiPinValue(IO_3,LED_OFF);
+    setRasPiPinValue(IO_4,LED_OFF);
+    setRasPiPinValue(IO_14,LED_OFF);
+    setRasPiPinValue(IO_15,LED_OFF);
+    setRasPiPinValue(IO_17,LED_OFF);
+    setRasPiPinValue(IO_18,LED_OFF);
+    setRasPiPinValue(IO_27,LED_OFF);
+    setRasPiPinValue(IO_22,LED_OFF);
+    setRasPiPinValue(IO_23,LED_OFF);
+    setRasPiPinValue(IO_24,LED_OFF);
+    setRasPiPinValue(IO_10,LED_OFF);
+    setRasPiPinValue(IO_9,LED_OFF);
+    setRasPiPinValue(IO_25,LED_OFF);
+    setRasPiPinValue(IO_11,LED_OFF);
+    setRasPiPinValue(IO_8,LED_OFF);
+    setRasPiPinValue(IO_7,LED_OFF);
+    setRasPiPinValue(IO_5,LED_OFF);
+    setRasPiPinValue(IO_6,LED_OFF);
+    setRasPiPinValue(IO_12,LED_OFF);
+    setRasPiPinValue(IO_13,LED_OFF);
+    setRasPiPinValue(IO_19,LED_OFF);
+    setRasPiPinValue(IO_16,LED_OFF);
+    setRasPiPinValue(IO_26,LED_OFF);
+    setRasPiPinValue(IO_20,LED_OFF);
+    setRasPiPinValue(IO_21,LED_OFF);
     
 // Blink all of the LEDs one at a time forever
 // CTRL-C to exit which is not a particularly elegant exit strategy, but this is a demo program

@@ -26,7 +26,8 @@
 #include <project.h>
 #include "stdio.h"
 #include "Test_RPP-UIO_16.h"
-
+#include "ExtEEPROM.h"
+#include "EEPROM_Images.h"
 
 #if defined (__GNUC__)
     /* Add an explicit reference to the floating point printf library */
@@ -51,7 +52,8 @@
 *   1. Waits until VBUS becomes valid and starts the USBFS component which is
 *      enumerated as virtual Com port.
 *   2. Waits until the device is enumerated by the host.
-*   3. Waits for data coming from the hyper terminal and sends it back.
+*   3. Waits for data coming from the hyper terminal
+*   4. Parse command.
 *
 * Parameters:
 *  None.
@@ -66,12 +68,17 @@ int main()
     uint16 outCount;
     uint8 inBuffer[USBUART_Buffer_SIZE];
     char outBuffer[USBUART_Buffer_SIZE];
-    char eepromBuffer[256];
+    uint8 eepromBuffer[256];
         
     CyGlobalIntEnable;
 
     /* Start USBFS operation with 5-V operation. */
     USBUART_Start(USBFS_DEVICE, USBUART_5V_OPERATION);
+
+    // enable I2C interrupts
+	I2C_EEPROM_EnableInt();  
+	//Start I2C
+	I2C_EEPROM_Start(); 
     
     for(;;)
     {
@@ -104,31 +111,39 @@ int main()
                     {
                         strcpy(outBuffer,"Read from the EEPROM\n\r");
                         outCount = strlen(outBuffer);
-                        USBUART_PutData(outBuffer, outCount);
+                        USBUART_PutData((uint8 *)outBuffer, outCount);
                         while (0u == USBUART_CDCIsReady());
                         readEEPROM(eepromBuffer);
                         dumpEEPROM(eepromBuffer);
                     }
                     else if ((inBuffer[0] == 'w') || (inBuffer[0] == 'W'))
                     {
-                        strcpy(outBuffer,"Write to the EEPROM\n\r");
+                        strcpy(outBuffer,"Write to the EEPROM...");
                         outCount = strlen(outBuffer);
-                        USBUART_PutData(outBuffer, outCount);
+                        USBUART_PutData((uint8 *)outBuffer, outCount);
+                        while (0u == USBUART_CDCIsReady());
+                        writeEEPROM(RPPUIO16);
+                        strcpy(outBuffer,"Completed EEPROM write\n\r");
+                        outCount = strlen(outBuffer);
+                        USBUART_PutData((uint8 *)outBuffer, outCount);
                     }
                     else if ((inBuffer[0] == 'b') || (inBuffer[0] == 'B'))
                     {
                         strcpy(outBuffer,"Blinking the LEDs on the RPP-UIO-16 card, please wait\n\r");
                         outCount = strlen(outBuffer);
-                        USBUART_PutData(outBuffer, outCount);
+                        USBUART_PutData((uint8 *)outBuffer, outCount);
+                        while (0u == USBUART_CDCIsReady());
                         testRPPUIO16();
                         strcpy(outBuffer,"Completed blinking the LEDs on the RPP-UIO-16 card\n\r");
-                        USBUART_PutData(outBuffer, outCount);
+                        USBUART_PutData((uint8 *)outBuffer, outCount);
+                        while (0u == USBUART_CDCIsReady());
                     }
                     else
                     {
                         strcpy(outBuffer,"Not a valid command, legal values are r, w, b\n\r");
                         outCount = strlen(outBuffer);
-                        USBUART_PutData(outBuffer, outCount);
+                        USBUART_PutData((uint8 *)outBuffer, outCount);
+                        while (0u == USBUART_CDCIsReady());
                     }
                     /* If the last sent packet is exactly the maximum packet 
                     *  size, it is followed by a zero-length packet to assure

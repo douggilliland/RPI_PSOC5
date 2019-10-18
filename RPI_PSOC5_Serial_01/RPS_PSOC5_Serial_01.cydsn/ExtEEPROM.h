@@ -11,8 +11,15 @@
 */
 
 #include <project.h>
+#include <I2C_EEPROM.h>
 
-void readEEPROM(char *eepromBuffer);
-void dumpEEPROM(char * eepromBuffer);
+void readEEPROM(uint8 *);
+void dumpEEPROM(uint8 *);
+void writeEEPROM(uint16);
+void writeEEPROMBlock(uint8 *);
+
+#define MAX_ID_IMAGE_SIZE   128
+#define NUM_32_BYTE_BLOCKS  4
+#define EEPROM_BLOCK_SIZE   32
 
 /* [] END OF FILE */
