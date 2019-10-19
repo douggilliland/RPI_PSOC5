@@ -91,7 +91,7 @@ void dumpEEPROM(uint8 * eepromBuffer)
 // void writeEEPROM() - Take the EEPROM source and move it to a 32-byte buffer
 // Call the routine to write the 32-byte buffers to the EEPROM
 
-void writeEEPROM(uint16 targetHat)
+uint8 writeEEPROM(uint16 targetHat)
 {
     uint8 array32Bytes[34];
     uint16 srcPointer = 0;
@@ -114,6 +114,7 @@ void writeEEPROM(uint16 targetHat)
             }
             writeEEPROMBlock(array32Bytes);
         }
+        return(1);
     }
     else if (targetHat == RPPGVSCFG)
     {
@@ -132,6 +133,7 @@ void writeEEPROM(uint16 targetHat)
             }
             writeEEPROMBlock(array32Bytes);
         }
+        return(1);
     }
     else if (targetHat == RPPSOC)
     {
@@ -150,7 +152,9 @@ void writeEEPROM(uint16 targetHat)
             }
             writeEEPROMBlock(array32Bytes);
         }
+        return(1);
     }
+    return(0);    
 }
 
 void writeEEPROMBlock(uint8 * cMessage)

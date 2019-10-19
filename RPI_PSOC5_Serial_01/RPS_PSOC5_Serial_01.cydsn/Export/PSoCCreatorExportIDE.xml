@@ -37,16 +37,18 @@
       <Folder BuildType="STRICT" Path="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn">
         <Files Root="C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn">
           <File BuildType="BUILD" Toolchain="">main.c</File>
-          <File BuildType="BUILD" Toolchain="">testCards.c</File>
           <File BuildType="BUILD" Toolchain="">Test_RPP-UIO_16.c</File>
           <File BuildType="BUILD" Toolchain="">RasPi_Pins.h</File>
           <File BuildType="BUILD" Toolchain="">RasPi_Pins.c</File>
-          <File BuildType="BUILD" Toolchain="">Z80_SIO_emul.c</File>
           <File BuildType="BUILD" Toolchain="">Test_RPP-UIO_16.h</File>
           <File BuildType="BUILD" Toolchain="">ExtEEPROM.c</File>
           <File BuildType="BUILD" Toolchain="">ExtEEPROM.h</File>
           <File BuildType="BUILD" Toolchain="">EEPROM__Images.c</File>
           <File BuildType="BUILD" Toolchain="">EEPROM_Images.h</File>
+          <File BuildType="BUILD" Toolchain="">Test_RASPI_GVS.c</File>
+          <File BuildType="BUILD" Toolchain="">Test_RASPI_GVS.h</File>
+          <File BuildType="BUILD" Toolchain="">Test_RASPI_PLUS_GVS.c</File>
+          <File BuildType="BUILD" Toolchain="">Test_RASPI_PLUS_GVS.h</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
         </Files>
       </Folder>

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
   30              		@ args = 0, pretend = 0, frame = 8
   31              		@ frame_needed = 1, uses_anonymous_args = 0
   32 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 2
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 2
 
 
   33              		.cfi_def_cfa_offset 8
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
   80              		.cfi_offset 7, -8
   81              		.cfi_offset 14, -4
   82 0002 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 3
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 3
 
 
   83              		.cfi_def_cfa_register 7
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  125 0054 0C21     		movs	r1, #12
  126 0056 0A20     		movs	r0, #10
  127 0058 FFF7FEFF 		bl	setRasPiPinValue
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 4
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 4
 
 
   45:Test_RPP-UIO_16.c ****     setRasPiPinValue(IO_10,PIN_DM_STRONG);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  171 00b0 FFF7FEFF 		bl	setRasPiPinValue
   56:Test_RPP-UIO_16.c ****     setRasPiPinValue(IO_16,PIN_DM_STRONG);
  172              		.loc 1 56 0
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 5
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 5
 
 
  173 00b4 0C21     		movs	r1, #12
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  215 0108 FFF7FEFF 		bl	setRasPiPinValue
   69:Test_RPP-UIO_16.c ****     setRasPiPinValue(IO_27,LED_OFF);
  216              		.loc 1 69 0
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 6
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 6
 
 
  217 010c 0021     		movs	r1, #0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  260              		.loc 1 80 0
  261 0164 0021     		movs	r1, #0
  262 0166 1220     		movs	r0, #18
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 7
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 7
 
 
  263 0168 FFF7FEFF 		bl	setRasPiPinValue
@@ -403,122 +403,121 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
   91:Test_RPP-UIO_16.c **** 
   92:Test_RPP-UIO_16.c **** //    while (1)
   93:Test_RPP-UIO_16.c ****     {
-  94:Test_RPP-UIO_16.c ****     	blinkLED(IO_7);     // SPICE1
+  94:Test_RPP-UIO_16.c ****      	blinkLED(IO_21);
  292              		.loc 1 94 0
- 293 01a4 1020     		movs	r0, #16
+ 293 01a4 1920     		movs	r0, #25
  294 01a6 FFF7FEFF 		bl	blinkLED
-  95:Test_RPP-UIO_16.c ****         blinkLED(IO_10);    // SPIMOSI
+  95:Test_RPP-UIO_16.c ****     	blinkLED(IO_7);     // SPICE1
  295              		.loc 1 95 0
- 296 01aa 0B20     		movs	r0, #11
+ 296 01aa 1020     		movs	r0, #16
  297 01ac FFF7FEFF 		bl	blinkLED
-  96:Test_RPP-UIO_16.c ****         blinkLED(IO_9);     // SPIMISO
+  96:Test_RPP-UIO_16.c ****         blinkLED(IO_10);    // SPIMOSI
  298              		.loc 1 96 0
- 299 01b0 0C20     		movs	r0, #12
+ 299 01b0 0B20     		movs	r0, #11
  300 01b2 FFF7FEFF 		bl	blinkLED
-  97:Test_RPP-UIO_16.c ****         blinkLED(IO_11);    // SPISCK
+  97:Test_RPP-UIO_16.c ****         blinkLED(IO_9);     // SPIMISO
  301              		.loc 1 97 0
- 302 01b6 0E20     		movs	r0, #14
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 8
+ 302 01b6 0C20     		movs	r0, #12
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 8
 
 
  303 01b8 FFF7FEFF 		bl	blinkLED
-  98:Test_RPP-UIO_16.c ****        	blinkLED(IO_8);     // SPICE0
+  98:Test_RPP-UIO_16.c ****         blinkLED(IO_11);    // SPISCK
  304              		.loc 1 98 0
- 305 01bc 0F20     		movs	r0, #15
+ 305 01bc 0E20     		movs	r0, #14
  306 01be FFF7FEFF 		bl	blinkLED
-  99:Test_RPP-UIO_16.c ****     	blinkLED(IO_2);     // SDA1
+  99:Test_RPP-UIO_16.c ****        	blinkLED(IO_8);     // SPICE0
  307              		.loc 1 99 0
- 308 01c2 0020     		movs	r0, #0
+ 308 01c2 0F20     		movs	r0, #15
  309 01c4 FFF7FEFF 		bl	blinkLED
- 100:Test_RPP-UIO_16.c ****     	blinkLED(IO_3);     // SCL1
+ 100:Test_RPP-UIO_16.c ****     	blinkLED(IO_2);     // SDA1
  310              		.loc 1 100 0
- 311 01c8 0120     		movs	r0, #1
+ 311 01c8 0020     		movs	r0, #0
  312 01ca FFF7FEFF 		bl	blinkLED
- 101:Test_RPP-UIO_16.c ****     	blinkLED(IO_14);    // TXD0
+ 101:Test_RPP-UIO_16.c ****     	blinkLED(IO_3);     // SCL1
  313              		.loc 1 101 0
- 314 01ce 0320     		movs	r0, #3
+ 314 01ce 0120     		movs	r0, #1
  315 01d0 FFF7FEFF 		bl	blinkLED
- 102:Test_RPP-UIO_16.c ****     	blinkLED(IO_15);    // RXD0
+ 102:Test_RPP-UIO_16.c ****     	blinkLED(IO_14);    // TXD0
  316              		.loc 1 102 0
- 317 01d4 0420     		movs	r0, #4
+ 317 01d4 0320     		movs	r0, #3
  318 01d6 FFF7FEFF 		bl	blinkLED
- 103:Test_RPP-UIO_16.c ****         
- 104:Test_RPP-UIO_16.c ****     	blinkLED(IO_4);
- 319              		.loc 1 104 0
- 320 01da 0220     		movs	r0, #2
+ 103:Test_RPP-UIO_16.c ****     	blinkLED(IO_15);    // RXD0
+ 319              		.loc 1 103 0
+ 320 01da 0420     		movs	r0, #4
  321 01dc FFF7FEFF 		bl	blinkLED
- 105:Test_RPP-UIO_16.c ****     	blinkLED(IO_18);
+ 104:Test_RPP-UIO_16.c ****         
+ 105:Test_RPP-UIO_16.c ****     	blinkLED(IO_4);
  322              		.loc 1 105 0
- 323 01e0 0620     		movs	r0, #6
+ 323 01e0 0220     		movs	r0, #2
  324 01e2 FFF7FEFF 		bl	blinkLED
- 106:Test_RPP-UIO_16.c ****     	blinkLED(IO_17);
+ 106:Test_RPP-UIO_16.c ****     	blinkLED(IO_18);
  325              		.loc 1 106 0
- 326 01e6 0520     		movs	r0, #5
+ 326 01e6 0620     		movs	r0, #6
  327 01e8 FFF7FEFF 		bl	blinkLED
- 107:Test_RPP-UIO_16.c ****     	blinkLED(IO_27);
+ 107:Test_RPP-UIO_16.c ****     	blinkLED(IO_17);
  328              		.loc 1 107 0
- 329 01ec 0720     		movs	r0, #7
+ 329 01ec 0520     		movs	r0, #5
  330 01ee FFF7FEFF 		bl	blinkLED
- 108:Test_RPP-UIO_16.c ****     	blinkLED(IO_23);
+ 108:Test_RPP-UIO_16.c ****     	blinkLED(IO_27);
  331              		.loc 1 108 0
- 332 01f2 0920     		movs	r0, #9
+ 332 01f2 0720     		movs	r0, #7
  333 01f4 FFF7FEFF 		bl	blinkLED
- 109:Test_RPP-UIO_16.c ****     	blinkLED(IO_22);
+ 109:Test_RPP-UIO_16.c ****     	blinkLED(IO_23);
  334              		.loc 1 109 0
- 335 01f8 0820     		movs	r0, #8
+ 335 01f8 0920     		movs	r0, #9
  336 01fa FFF7FEFF 		bl	blinkLED
- 110:Test_RPP-UIO_16.c ****     	blinkLED(IO_24);
+ 110:Test_RPP-UIO_16.c ****     	blinkLED(IO_22);
  337              		.loc 1 110 0
- 338 01fe 0A20     		movs	r0, #10
+ 338 01fe 0820     		movs	r0, #8
  339 0200 FFF7FEFF 		bl	blinkLED
- 111:Test_RPP-UIO_16.c ****     	blinkLED(IO_25);
+ 111:Test_RPP-UIO_16.c ****     	blinkLED(IO_24);
  340              		.loc 1 111 0
- 341 0204 0D20     		movs	r0, #13
+ 341 0204 0A20     		movs	r0, #10
  342 0206 FFF7FEFF 		bl	blinkLED
- 112:Test_RPP-UIO_16.c ****         
- 113:Test_RPP-UIO_16.c ****     	blinkLED(IO_5);
- 343              		.loc 1 113 0
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 9
+ 112:Test_RPP-UIO_16.c ****     	blinkLED(IO_25);
+ 343              		.loc 1 112 0
+ 344 020a 0D20     		movs	r0, #13
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 9
 
 
- 344 020a 1120     		movs	r0, #17
  345 020c FFF7FEFF 		bl	blinkLED
- 114:Test_RPP-UIO_16.c ****     	blinkLED(IO_6);
+ 113:Test_RPP-UIO_16.c ****         
+ 114:Test_RPP-UIO_16.c ****     	blinkLED(IO_5);
  346              		.loc 1 114 0
- 347 0210 1220     		movs	r0, #18
+ 347 0210 1120     		movs	r0, #17
  348 0212 FFF7FEFF 		bl	blinkLED
- 115:Test_RPP-UIO_16.c ****     	blinkLED(IO_12);
+ 115:Test_RPP-UIO_16.c ****     	blinkLED(IO_6);
  349              		.loc 1 115 0
- 350 0216 1320     		movs	r0, #19
+ 350 0216 1220     		movs	r0, #18
  351 0218 FFF7FEFF 		bl	blinkLED
- 116:Test_RPP-UIO_16.c ****     	blinkLED(IO_13);
+ 116:Test_RPP-UIO_16.c ****     	blinkLED(IO_12);
  352              		.loc 1 116 0
- 353 021c 1420     		movs	r0, #20
+ 353 021c 1320     		movs	r0, #19
  354 021e FFF7FEFF 		bl	blinkLED
- 117:Test_RPP-UIO_16.c ****     	blinkLED(IO_19);
+ 117:Test_RPP-UIO_16.c ****     	blinkLED(IO_13);
  355              		.loc 1 117 0
- 356 0222 1520     		movs	r0, #21
+ 356 0222 1420     		movs	r0, #20
  357 0224 FFF7FEFF 		bl	blinkLED
- 118:Test_RPP-UIO_16.c ****     	blinkLED(IO_16);
+ 118:Test_RPP-UIO_16.c ****     	blinkLED(IO_19);
  358              		.loc 1 118 0
- 359 0228 1620     		movs	r0, #22
+ 359 0228 1520     		movs	r0, #21
  360 022a FFF7FEFF 		bl	blinkLED
- 119:Test_RPP-UIO_16.c ****         blinkLED(IO_26);
+ 119:Test_RPP-UIO_16.c ****     	blinkLED(IO_16);
  361              		.loc 1 119 0
- 362 022e 1720     		movs	r0, #23
+ 362 022e 1620     		movs	r0, #22
  363 0230 FFF7FEFF 		bl	blinkLED
- 120:Test_RPP-UIO_16.c ****     	blinkLED(IO_20);
+ 120:Test_RPP-UIO_16.c ****         blinkLED(IO_26);
  364              		.loc 1 120 0
- 365 0234 1820     		movs	r0, #24
+ 365 0234 1720     		movs	r0, #23
  366 0236 FFF7FEFF 		bl	blinkLED
- 121:Test_RPP-UIO_16.c ****         
- 122:Test_RPP-UIO_16.c ****     	blinkLED(IO_21);
- 367              		.loc 1 122 0
- 368 023a 1920     		movs	r0, #25
+ 121:Test_RPP-UIO_16.c ****     	blinkLED(IO_20);
+ 367              		.loc 1 121 0
+ 368 023a 1820     		movs	r0, #24
  369 023c FFF7FEFF 		bl	blinkLED
- 123:Test_RPP-UIO_16.c ****     }
- 124:Test_RPP-UIO_16.c **** }
- 370              		.loc 1 124 0
+ 122:Test_RPP-UIO_16.c ****     }
+ 123:Test_RPP-UIO_16.c **** }
+ 370              		.loc 1 123 0
  371 0240 00BF     		nop
  372 0242 80BD     		pop	{r7, pc}
  373              		.cfi_endproc
@@ -538,10 +537,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  387 0006 00000000 		.4byte	.Ldebug_abbrev0
  388 000a 04       		.byte	0x4
  389 000b 01       		.uleb128 0x1
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 10
-
-
  390 000c 00000000 		.4byte	.LASF43
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 10
+
+
  391 0010 0C       		.byte	0xc
  392 0011 2C010000 		.4byte	.LASF44
  393 0015 3E010000 		.4byte	.LASF45
@@ -598,10 +597,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  444 007b 03       		.byte	0x3
  445 007c 2C       		.byte	0x2c
  446 007d 41000000 		.4byte	0x41
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 11
-
-
  447 0081 05       		.uleb128 0x5
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 11
+
+
  448 0082 4A020000 		.4byte	.LASF11
  449 0086 04       		.byte	0x4
  450 0087 E401     		.2byte	0x1e4
@@ -658,10 +657,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  501 00eb D8000000 		.4byte	.LASF24
  502 00ef 07       		.byte	0x7
  503 00f0 07       		.uleb128 0x7
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 12
-
-
  504 00f1 BA000000 		.4byte	.LASF25
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 12
+
+
  505 00f5 08       		.byte	0x8
  506 00f6 07       		.uleb128 0x7
  507 00f7 C0000000 		.4byte	.LASF26
@@ -718,10 +717,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  558 015d 08       		.uleb128 0x8
  559 015e AA010000 		.4byte	.LASF47
  560 0162 01       		.byte	0x1
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 13
-
-
  561 0163 18       		.byte	0x18
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 13
+
+
  562 0164 00000000 		.4byte	.LFB63
  563 0168 2C000000 		.4byte	.LFE63-.LFB63
  564 016c 01       		.uleb128 0x1
@@ -778,10 +777,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  615 0015 00       		.byte	0
  616 0016 0B       		.uleb128 0xb
  617 0017 0B       		.uleb128 0xb
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 14
-
-
  618 0018 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 14
+
+
  619 0019 0B       		.uleb128 0xb
  620 001a 03       		.uleb128 0x3
  621 001b 0E       		.uleb128 0xe
@@ -838,10 +837,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  672 004e 3B       		.uleb128 0x3b
  673 004f 0B       		.uleb128 0xb
  674 0050 01       		.uleb128 0x1
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 15
-
-
  675 0051 13       		.uleb128 0x13
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 15
+
+
  676 0052 00       		.byte	0
  677 0053 00       		.byte	0
  678 0054 07       		.uleb128 0x7
@@ -898,10 +897,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  729 0088 00       		.byte	0
  730 0089 3F       		.uleb128 0x3f
  731 008a 19       		.uleb128 0x19
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 16
-
-
  732 008b 03       		.uleb128 0x3
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 16
+
+
  733 008c 0E       		.uleb128 0xe
  734 008d 3A       		.uleb128 0x3a
  735 008e 0B       		.uleb128 0xb
@@ -958,10 +957,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  786 001c 44020000 		.4byte	.LFE64-.LFB64
  787 0020 00000000 		.4byte	0
  788 0024 00000000 		.4byte	0
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 17
-
-
  789              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 17
+
+
  790              	.Ldebug_ranges0:
  791 0000 00000000 		.4byte	.LFB63
  792 0004 2C000000 		.4byte	.LFE63
@@ -1018,10 +1017,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  817 00c0 494F5F32 		.ascii	"IO_23\000"
  817      3300
  818              	.LASF27:
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 18
-
-
  819 00c6 494F5F32 		.ascii	"IO_24\000"
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 18
+
+
  819      3400
  820              	.LASF30:
  821 00cc 494F5F32 		.ascii	"IO_25\000"
@@ -1078,10 +1077,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  842      616C5F30 
  842      315C5250 
  843              	.LASF13:
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 19
-
-
  844 0197 646F7562 		.ascii	"double\000"
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 19
+
+
  844      6C6500
  845              	.LASF15:
  846 019e 6C6F6E67 		.ascii	"long double\000"
@@ -1138,10 +1137,10 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 1
  874      3900
  875              	.LASF16:
  876 021c 73697A65 		.ascii	"sizetype\000"
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccpdViH2.s 			page 20
-
-
  876      74797065 
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccQqFyKA.s 			page 20
+
+
  876      00
  877              	.LASF6:
  878 0225 6C6F6E67 		.ascii	"long long int\000"

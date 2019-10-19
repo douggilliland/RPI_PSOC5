@@ -118,7 +118,7 @@ void main()
 {
 	// enable global interrupts
 	CYGlobalIntEnable;  
-	
+	 
 	// enable I2C interrupts
 	I2C_EnableInt();  
 	

@@ -26,6 +26,8 @@
 #include <project.h>
 #include "stdio.h"
 #include "Test_RPP-UIO_16.h"
+#include "Test_RASPI_GVS.h"
+#include "Test_RASPI_PLUS_GVS.h"
 #include "ExtEEPROM.h"
 #include "EEPROM_Images.h"
 
@@ -124,8 +126,10 @@ int main()
                         else
                         {
                             putStringToUSB("Write to the EEPROM...");
-                            writeEEPROM(cardType);
-                            putStringToUSB("Completed EEPROM write\n\r");
+                            if (writeEEPROM(cardType) == 1)
+                                putStringToUSB("Completed EEPROM write\n\r");
+                            else
+                                putStringToUSB("EEPROM write failed (does this card have an EEPROM?\n\r");
                         }
                     }
                     else if ((inBuffer[0] == 'b') || (inBuffer[0] == 'B'))
@@ -133,6 +137,24 @@ int main()
                         if (cardType == UNSELECTED_CARD)
                         {
                             putStringToUSB("Must first select card type\n\r");
+                        }
+                        else if (cardType == RPPGVSCFG)
+                        {
+                            putStringToUSB("Blinking the LEDs on the RasPI-PLUS-GVS-CFG card, please wait\n\r");
+                            testRPPUIO16();
+                            putStringToUSB("Completed blinking the LEDs on the RasPI-PLUS-GVS-CFG card\n\r");
+                        }
+                        else if (cardType == RASPIPLUSGVS)
+                        {
+                            putStringToUSB("Blinking the LEDs on the RASPI-PLUS-GVS card, please wait\n\r");
+                            testRPPGVS();
+                            putStringToUSB("Completed blinking the LEDs on the RASPI-PLUS-GVS card\n\r");
+                        }
+                        else if (cardType == RASPIGVS)
+                        {
+                            putStringToUSB("Blinking the LEDs on the RASPI-GVS card, please wait\n\r");
+                            testRASPIGVS();
+                            putStringToUSB("Completed blinking the LEDs on the RASPI-GVS card\n\r");
                         }
                         else if (cardType == RPPUIO16)
                         {
@@ -160,12 +182,24 @@ int main()
                         cardType = RPPGVSCFG;
                         putStringToUSB("Selected RASPI-PLUS-GVS-CFG card\n\r");
                     }
+                    else if (inBuffer[0] == '4')
+                    {
+                        cardType = RASPIGVS;
+                        putStringToUSB("Selected RASPIGVS card\n\r");
+                    }
+                    else if (inBuffer[0] == '5')
+                    {
+                        cardType = RASPIPLUSGVS;
+                        putStringToUSB("Selected RASPI-PLUS-GVS card\n\r");
+                    }
                     else
                     {
-                        putStringToUSB("Land Boards, LLC - RPi Card Test Station\n\r");
+                        putStringToUSB("\n\rLand Boards, LLC - RPi Card Test Station\n\r");
                         putStringToUSB("1 - Select RPP-UIO-16 Card\n\r");
                         putStringToUSB("2 - Select RPPSOC Card\n\r");
                         putStringToUSB("3 - Select RASPI-PLUS-GVS-CFG Card\n\r");
+                        putStringToUSB("4 - Select RASPI-GVS Card\n\r");
+                        putStringToUSB("5 - Select RASPI-PLUS-GVS Card\n\r");
                         putStringToUSB("R - Read EEPROM\n\r");
                         putStringToUSB("W - Write EEPROM\n\r");
                         putStringToUSB("B - Bounce LED across Card GPIOs\n\r");

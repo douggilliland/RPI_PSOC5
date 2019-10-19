@@ -21,14 +21,14 @@
 #define LED_ON 1
 #define LED_OFF 0
 
-void blinkLED(uint8 RPI_Pin)
-{
-	setRasPiPinValue(RPI_Pin, LED_ON);
-    CyDelay(250);
-	setRasPiPinValue(RPI_Pin, LED_OFF);
-}
+//void blinkLED(uint8 RPI_Pin)
+//{
+//	setRasPiPinValue(RPI_Pin, LED_ON);
+//    CyDelay(250);
+//	setRasPiPinValue(RPI_Pin, LED_OFF);
+//}
 
-void testRPPUIO16(void)
+void testRASPIGVS(void)
 {
 // Set all of the RPI pins to outputs
     setRasPiPinValue(IO_2,PIN_DM_STRONG);
@@ -58,10 +58,11 @@ void testRPPUIO16(void)
     setRasPiPinValue(IO_20,PIN_DM_STRONG);
     setRasPiPinValue(IO_21,PIN_DM_STRONG);
     
-// Set all of the RPI pins to low
+    setRasPiPinValue(IO_4,LED_ON);
+
+    // Set all of the RPI pins to low
     setRasPiPinValue(IO_2,LED_OFF);
     setRasPiPinValue(IO_3,LED_OFF);
-    setRasPiPinValue(IO_4,LED_OFF);
     setRasPiPinValue(IO_14,LED_OFF);
     setRasPiPinValue(IO_15,LED_OFF);
     setRasPiPinValue(IO_17,LED_OFF);
@@ -86,39 +87,23 @@ void testRPPUIO16(void)
     setRasPiPinValue(IO_20,LED_OFF);
     setRasPiPinValue(IO_21,LED_OFF);
     
-// Blink all of the LEDs one at a time forever
-// CTRL-C to exit which is not a particularly elegant exit strategy, but this is a demo program
+// Blink all of the LEDs one at a time
 
-//    while (1)
-    {
-     	blinkLED(IO_21);
-    	blinkLED(IO_7);     // SPICE1
-        blinkLED(IO_10);    // SPIMOSI
-        blinkLED(IO_9);     // SPIMISO
-        blinkLED(IO_11);    // SPISCK
-       	blinkLED(IO_8);     // SPICE0
-    	blinkLED(IO_2);     // SDA1
-    	blinkLED(IO_3);     // SCL1
-    	blinkLED(IO_14);    // TXD0
-    	blinkLED(IO_15);    // RXD0
-        
-    	blinkLED(IO_4);
-    	blinkLED(IO_18);
-    	blinkLED(IO_17);
-    	blinkLED(IO_27);
-    	blinkLED(IO_23);
-    	blinkLED(IO_22);
-    	blinkLED(IO_24);
-    	blinkLED(IO_25);
-        
-    	blinkLED(IO_5);
-    	blinkLED(IO_6);
-    	blinkLED(IO_12);
-    	blinkLED(IO_13);
-    	blinkLED(IO_19);
-    	blinkLED(IO_16);
-        blinkLED(IO_26);
-    	blinkLED(IO_20);
-    }
+	blinkLED(IO_3);     // SCL1
+	blinkLED(IO_14);    // TXD0
+	blinkLED(IO_15);    // RXD0
+    blinkLED(IO_10);    // SPIMOSI
+    blinkLED(IO_9);     // SPIMISO
+    blinkLED(IO_11);    // SPISCK
+   	blinkLED(IO_8);     // SPICE0
+	blinkLED(IO_7);     // SPICE1
+	blinkLED(IO_18);
+	blinkLED(IO_17);
+	blinkLED(IO_27);
+	blinkLED(IO_23);
+	blinkLED(IO_22);
+	blinkLED(IO_24);
+	blinkLED(IO_25);
+	blinkLED(IO_2);     // SDA1
 }
 /* [] END OF FILE */
