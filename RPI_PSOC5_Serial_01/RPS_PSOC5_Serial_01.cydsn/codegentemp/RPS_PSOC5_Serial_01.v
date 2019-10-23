@@ -1,6 +1,6 @@
 // ======================================================================
 // RPS_PSOC5_Serial_01.v generated from TopDesign.cysch
-// 10/18/2019 at 09:02
+// 10/22/2019 at 16:13
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 

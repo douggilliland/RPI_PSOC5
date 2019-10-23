@@ -2,7 +2,7 @@
 --	Conversion of RPS_PSOC5_Serial_01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Oct 18 09:02:45 2019
+--	Tue Oct 22 16:13:23 2019
 --
 
 USE cypress.cypress.all;

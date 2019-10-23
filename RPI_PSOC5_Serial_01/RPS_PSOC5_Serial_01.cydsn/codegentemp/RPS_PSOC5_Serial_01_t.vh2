@@ -1,5 +1,5 @@
--- Project:   C:\Users\HPz420\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj
--- Generated: 10/18/2019 09:02:49
+-- Project:   C:\Users\dgilliland\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj
+-- Generated: 10/22/2019 16:13:27
 -- PSoC Creator  4.2
 
 ENTITY RPS_PSOC5_Serial_01 IS
