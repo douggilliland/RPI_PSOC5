@@ -5,7 +5,7 @@
 *
 * Description:
 *   The component is enumerated as a Virtual Com port. Receives data from the 
-*   hyper terminal, then sends back the received data.
+*   serial port, then sends back the received data.
 *
 * Related Document:
 *  Universal Serial Bus Specification Revision 2.0
