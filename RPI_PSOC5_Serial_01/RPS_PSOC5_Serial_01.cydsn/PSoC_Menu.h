@@ -9,13 +9,21 @@
  *
  * ========================================
 */
-#ifndef TESTRASPIGVS_H
-#define TESTRASPIGVS_H
+
+#ifndef PSOC_MENU_H
+#define PSOC_MENU_H
 
 #include <project.h>
 
-void blinkLED(uint8);
-void testRASPIGVS(void);
+void printMenuOptions(void);
+void putStringToUSB(char *);
+void psocMenu(void);
+void addToReceiveBuffer(uint16, uint8 *);
+void clearReceiveBuffer(void);
+
+extern uint8 receiveBuffer[80];
+extern uint8 receiveBufferPtr;
+extern uint8 gotCRorLF;
 
 #endif
 

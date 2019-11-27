@@ -10,9 +10,14 @@
  * ========================================
 */
 
+#ifndef TESTRASPLUSGVS_H
+#define TESTRASPLUSGVS_H
+
 #include <project.h>
 
 void blinkLED(uint8);
 void testRPPGVS(void);
+
+#endif
 
 /* [] END OF FILE */

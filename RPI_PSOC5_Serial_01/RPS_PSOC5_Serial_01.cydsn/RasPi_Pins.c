@@ -10,7 +10,7 @@
  * ========================================
 */
 
-#include "RasPi_Pins.h"
+#include "RPI_PSOC5.h"
 
 void setRasPiPinValue(uint8 bcmPinNum, uint8 value)
 {

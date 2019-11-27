@@ -15,8 +15,7 @@
 // The high level output turns on the LED.
 
 #include <project.h>
-#include "RasPi_Pins.h"
-#include "Test_RPP-UIO_16.h"
+#include "RPI_PSOC5.h"
 
 #define LED_ON 1
 #define LED_OFF 0

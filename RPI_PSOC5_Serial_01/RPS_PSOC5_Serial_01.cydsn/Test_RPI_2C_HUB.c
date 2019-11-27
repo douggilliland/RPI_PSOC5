@@ -9,14 +9,13 @@
  *
  * ========================================
 */
-#ifndef TESTRASPIGVS_H
-#define TESTRASPIGVS_H
 
 #include <project.h>
+#include "RPI_PSOC5.h"
 
-void blinkLED(uint8);
-void testRASPIGVS(void);
-
-#endif
+void testRPIHUB(void)
+{
+    
+}
 
 /* [] END OF FILE */

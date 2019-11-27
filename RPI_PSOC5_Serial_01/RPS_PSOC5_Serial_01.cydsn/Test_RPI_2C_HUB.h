@@ -9,13 +9,13 @@
  *
  * ========================================
 */
-#ifndef TESTRASPIGVS_H
-#define TESTRASPIGVS_H
+
+#ifndef TESTRPII2CHUB_H
+#define TESTRPII2CHUB_H
 
 #include <project.h>
 
-void blinkLED(uint8);
-void testRASPIGVS(void);
+void testRPIHUB(void);
 
 #endif
 

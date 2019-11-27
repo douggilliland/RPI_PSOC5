@@ -10,8 +10,10 @@
  * ========================================
 */
 
+#ifndef EXTEEPROM_H
+#define EXTEEPROM_H
+
 #include <project.h>
-#include <I2C_EEPROM.h>
 
 void readEEPROM(uint8 *);
 void dumpEEPROM(uint8 *);
@@ -21,5 +23,7 @@ void writeEEPROMBlock(uint8 *);
 #define MAX_ID_IMAGE_SIZE   128
 #define NUM_32_BYTE_BLOCKS  4
 #define EEPROM_BLOCK_SIZE   32
+
+#endif
 
 /* [] END OF FILE */

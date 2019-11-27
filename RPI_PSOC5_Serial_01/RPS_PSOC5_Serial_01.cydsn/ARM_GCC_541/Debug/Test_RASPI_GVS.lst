@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 1
 
 
    1              		.syntax unified
@@ -45,25 +45,24 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
   15:Test_RASPI_GVS.c **** // The high level output turns on the LED.
   16:Test_RASPI_GVS.c **** 
   17:Test_RASPI_GVS.c **** #include <project.h>
-  18:Test_RASPI_GVS.c **** #include "RasPi_Pins.h"
-  19:Test_RASPI_GVS.c **** #include "Test_RPP-UIO_16.h"
-  20:Test_RASPI_GVS.c **** 
-  21:Test_RASPI_GVS.c **** #define LED_ON 1
-  22:Test_RASPI_GVS.c **** #define LED_OFF 0
-  23:Test_RASPI_GVS.c **** 
-  24:Test_RASPI_GVS.c **** //void blinkLED(uint8 RPI_Pin)
-  25:Test_RASPI_GVS.c **** //{
-  26:Test_RASPI_GVS.c **** //	setRasPiPinValue(RPI_Pin, LED_ON);
-  27:Test_RASPI_GVS.c **** //    CyDelay(250);
-  28:Test_RASPI_GVS.c **** //	setRasPiPinValue(RPI_Pin, LED_OFF);
-  29:Test_RASPI_GVS.c **** //}
-  30:Test_RASPI_GVS.c **** 
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 2
+  18:Test_RASPI_GVS.c **** #include "RPI_PSOC5.h"
+  19:Test_RASPI_GVS.c **** 
+  20:Test_RASPI_GVS.c **** #define LED_ON 1
+  21:Test_RASPI_GVS.c **** #define LED_OFF 0
+  22:Test_RASPI_GVS.c **** 
+  23:Test_RASPI_GVS.c **** //void blinkLED(uint8 RPI_Pin)
+  24:Test_RASPI_GVS.c **** //{
+  25:Test_RASPI_GVS.c **** //	setRasPiPinValue(RPI_Pin, LED_ON);
+  26:Test_RASPI_GVS.c **** //    CyDelay(250);
+  27:Test_RASPI_GVS.c **** //	setRasPiPinValue(RPI_Pin, LED_OFF);
+  28:Test_RASPI_GVS.c **** //}
+  29:Test_RASPI_GVS.c **** 
+  30:Test_RASPI_GVS.c **** void testRASPIGVS(void)
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 2
 
 
-  31:Test_RASPI_GVS.c **** void testRASPIGVS(void)
-  32:Test_RASPI_GVS.c **** {
-  28              		.loc 1 32 0
+  31:Test_RASPI_GVS.c **** {
+  28              		.loc 1 31 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -73,357 +72,357 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
   35              		.cfi_offset 14, -4
   36 0002 00AF     		add	r7, sp, #0
   37              		.cfi_def_cfa_register 7
-  33:Test_RASPI_GVS.c **** // Set all of the RPI pins to outputs
-  34:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_2,PIN_DM_STRONG);
-  38              		.loc 1 34 0
+  32:Test_RASPI_GVS.c **** // Set all of the RPI pins to outputs
+  33:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_2,PIN_DM_STRONG);
+  38              		.loc 1 33 0
   39 0004 0C21     		movs	r1, #12
   40 0006 0020     		movs	r0, #0
   41 0008 FFF7FEFF 		bl	setRasPiPinValue
-  35:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_3,PIN_DM_STRONG);
-  42              		.loc 1 35 0
+  34:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_3,PIN_DM_STRONG);
+  42              		.loc 1 34 0
   43 000c 0C21     		movs	r1, #12
   44 000e 0120     		movs	r0, #1
   45 0010 FFF7FEFF 		bl	setRasPiPinValue
-  36:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_4,PIN_DM_STRONG);
-  46              		.loc 1 36 0
+  35:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_4,PIN_DM_STRONG);
+  46              		.loc 1 35 0
   47 0014 0C21     		movs	r1, #12
   48 0016 0220     		movs	r0, #2
   49 0018 FFF7FEFF 		bl	setRasPiPinValue
-  37:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_14,PIN_DM_STRONG);
-  50              		.loc 1 37 0
+  36:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_14,PIN_DM_STRONG);
+  50              		.loc 1 36 0
   51 001c 0C21     		movs	r1, #12
   52 001e 0320     		movs	r0, #3
   53 0020 FFF7FEFF 		bl	setRasPiPinValue
-  38:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_15,PIN_DM_STRONG);
-  54              		.loc 1 38 0
+  37:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_15,PIN_DM_STRONG);
+  54              		.loc 1 37 0
   55 0024 0C21     		movs	r1, #12
   56 0026 0420     		movs	r0, #4
   57 0028 FFF7FEFF 		bl	setRasPiPinValue
-  39:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_17,PIN_DM_STRONG);
-  58              		.loc 1 39 0
+  38:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_17,PIN_DM_STRONG);
+  58              		.loc 1 38 0
   59 002c 0C21     		movs	r1, #12
   60 002e 0520     		movs	r0, #5
   61 0030 FFF7FEFF 		bl	setRasPiPinValue
-  40:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_18,PIN_DM_STRONG);
-  62              		.loc 1 40 0
+  39:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_18,PIN_DM_STRONG);
+  62              		.loc 1 39 0
   63 0034 0C21     		movs	r1, #12
   64 0036 0620     		movs	r0, #6
   65 0038 FFF7FEFF 		bl	setRasPiPinValue
-  41:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_27,PIN_DM_STRONG);
-  66              		.loc 1 41 0
+  40:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_27,PIN_DM_STRONG);
+  66              		.loc 1 40 0
   67 003c 0C21     		movs	r1, #12
   68 003e 0720     		movs	r0, #7
   69 0040 FFF7FEFF 		bl	setRasPiPinValue
-  42:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_22,PIN_DM_STRONG);
-  70              		.loc 1 42 0
+  41:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_22,PIN_DM_STRONG);
+  70              		.loc 1 41 0
   71 0044 0C21     		movs	r1, #12
   72 0046 0820     		movs	r0, #8
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 3
-
-
   73 0048 FFF7FEFF 		bl	setRasPiPinValue
-  43:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_23,PIN_DM_STRONG);
-  74              		.loc 1 43 0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 3
+
+
+  42:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_23,PIN_DM_STRONG);
+  74              		.loc 1 42 0
   75 004c 0C21     		movs	r1, #12
   76 004e 0920     		movs	r0, #9
   77 0050 FFF7FEFF 		bl	setRasPiPinValue
-  44:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_24,PIN_DM_STRONG);
-  78              		.loc 1 44 0
+  43:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_24,PIN_DM_STRONG);
+  78              		.loc 1 43 0
   79 0054 0C21     		movs	r1, #12
   80 0056 0A20     		movs	r0, #10
   81 0058 FFF7FEFF 		bl	setRasPiPinValue
-  45:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_10,PIN_DM_STRONG);
-  82              		.loc 1 45 0
+  44:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_10,PIN_DM_STRONG);
+  82              		.loc 1 44 0
   83 005c 0C21     		movs	r1, #12
   84 005e 0B20     		movs	r0, #11
   85 0060 FFF7FEFF 		bl	setRasPiPinValue
-  46:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_9,PIN_DM_STRONG);
-  86              		.loc 1 46 0
+  45:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_9,PIN_DM_STRONG);
+  86              		.loc 1 45 0
   87 0064 0C21     		movs	r1, #12
   88 0066 0C20     		movs	r0, #12
   89 0068 FFF7FEFF 		bl	setRasPiPinValue
-  47:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_25,PIN_DM_STRONG);
-  90              		.loc 1 47 0
+  46:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_25,PIN_DM_STRONG);
+  90              		.loc 1 46 0
   91 006c 0C21     		movs	r1, #12
   92 006e 0D20     		movs	r0, #13
   93 0070 FFF7FEFF 		bl	setRasPiPinValue
-  48:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_11,PIN_DM_STRONG);
-  94              		.loc 1 48 0
+  47:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_11,PIN_DM_STRONG);
+  94              		.loc 1 47 0
   95 0074 0C21     		movs	r1, #12
   96 0076 0E20     		movs	r0, #14
   97 0078 FFF7FEFF 		bl	setRasPiPinValue
-  49:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_8,PIN_DM_STRONG);
-  98              		.loc 1 49 0
+  48:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_8,PIN_DM_STRONG);
+  98              		.loc 1 48 0
   99 007c 0C21     		movs	r1, #12
  100 007e 0F20     		movs	r0, #15
  101 0080 FFF7FEFF 		bl	setRasPiPinValue
-  50:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_7,PIN_DM_STRONG);
- 102              		.loc 1 50 0
+  49:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_7,PIN_DM_STRONG);
+ 102              		.loc 1 49 0
  103 0084 0C21     		movs	r1, #12
  104 0086 1020     		movs	r0, #16
  105 0088 FFF7FEFF 		bl	setRasPiPinValue
-  51:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_5,PIN_DM_STRONG);
- 106              		.loc 1 51 0
+  50:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_5,PIN_DM_STRONG);
+ 106              		.loc 1 50 0
  107 008c 0C21     		movs	r1, #12
  108 008e 1120     		movs	r0, #17
  109 0090 FFF7FEFF 		bl	setRasPiPinValue
-  52:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_6,PIN_DM_STRONG);
- 110              		.loc 1 52 0
+  51:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_6,PIN_DM_STRONG);
+ 110              		.loc 1 51 0
  111 0094 0C21     		movs	r1, #12
  112 0096 1220     		movs	r0, #18
  113 0098 FFF7FEFF 		bl	setRasPiPinValue
-  53:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_12,PIN_DM_STRONG);
- 114              		.loc 1 53 0
+  52:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_12,PIN_DM_STRONG);
+ 114              		.loc 1 52 0
  115 009c 0C21     		movs	r1, #12
  116 009e 1320     		movs	r0, #19
  117 00a0 FFF7FEFF 		bl	setRasPiPinValue
-  54:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_13,PIN_DM_STRONG);
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 4
+  53:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_13,PIN_DM_STRONG);
+ 118              		.loc 1 53 0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 4
 
 
- 118              		.loc 1 54 0
  119 00a4 0C21     		movs	r1, #12
  120 00a6 1420     		movs	r0, #20
  121 00a8 FFF7FEFF 		bl	setRasPiPinValue
-  55:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_19,PIN_DM_STRONG);
- 122              		.loc 1 55 0
+  54:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_19,PIN_DM_STRONG);
+ 122              		.loc 1 54 0
  123 00ac 0C21     		movs	r1, #12
  124 00ae 1520     		movs	r0, #21
  125 00b0 FFF7FEFF 		bl	setRasPiPinValue
-  56:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_16,PIN_DM_STRONG);
- 126              		.loc 1 56 0
+  55:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_16,PIN_DM_STRONG);
+ 126              		.loc 1 55 0
  127 00b4 0C21     		movs	r1, #12
  128 00b6 1620     		movs	r0, #22
  129 00b8 FFF7FEFF 		bl	setRasPiPinValue
-  57:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_26,PIN_DM_STRONG);
- 130              		.loc 1 57 0
+  56:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_26,PIN_DM_STRONG);
+ 130              		.loc 1 56 0
  131 00bc 0C21     		movs	r1, #12
  132 00be 1720     		movs	r0, #23
  133 00c0 FFF7FEFF 		bl	setRasPiPinValue
-  58:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_20,PIN_DM_STRONG);
- 134              		.loc 1 58 0
+  57:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_20,PIN_DM_STRONG);
+ 134              		.loc 1 57 0
  135 00c4 0C21     		movs	r1, #12
  136 00c6 1820     		movs	r0, #24
  137 00c8 FFF7FEFF 		bl	setRasPiPinValue
-  59:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_21,PIN_DM_STRONG);
- 138              		.loc 1 59 0
+  58:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_21,PIN_DM_STRONG);
+ 138              		.loc 1 58 0
  139 00cc 0C21     		movs	r1, #12
  140 00ce 1920     		movs	r0, #25
  141 00d0 FFF7FEFF 		bl	setRasPiPinValue
-  60:Test_RASPI_GVS.c ****     
-  61:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_4,LED_ON);
- 142              		.loc 1 61 0
+  59:Test_RASPI_GVS.c ****     
+  60:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_4,LED_ON);
+ 142              		.loc 1 60 0
  143 00d4 0121     		movs	r1, #1
  144 00d6 0220     		movs	r0, #2
  145 00d8 FFF7FEFF 		bl	setRasPiPinValue
-  62:Test_RASPI_GVS.c **** 
-  63:Test_RASPI_GVS.c ****     // Set all of the RPI pins to low
-  64:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_2,LED_OFF);
- 146              		.loc 1 64 0
+  61:Test_RASPI_GVS.c **** 
+  62:Test_RASPI_GVS.c ****     // Set all of the RPI pins to low
+  63:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_2,LED_OFF);
+ 146              		.loc 1 63 0
  147 00dc 0021     		movs	r1, #0
  148 00de 0020     		movs	r0, #0
  149 00e0 FFF7FEFF 		bl	setRasPiPinValue
-  65:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_3,LED_OFF);
- 150              		.loc 1 65 0
+  64:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_3,LED_OFF);
+ 150              		.loc 1 64 0
  151 00e4 0021     		movs	r1, #0
  152 00e6 0120     		movs	r0, #1
  153 00e8 FFF7FEFF 		bl	setRasPiPinValue
-  66:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_14,LED_OFF);
- 154              		.loc 1 66 0
+  65:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_14,LED_OFF);
+ 154              		.loc 1 65 0
  155 00ec 0021     		movs	r1, #0
  156 00ee 0320     		movs	r0, #3
  157 00f0 FFF7FEFF 		bl	setRasPiPinValue
-  67:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_15,LED_OFF);
- 158              		.loc 1 67 0
+  66:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_15,LED_OFF);
+ 158              		.loc 1 66 0
  159 00f4 0021     		movs	r1, #0
  160 00f6 0420     		movs	r0, #4
  161 00f8 FFF7FEFF 		bl	setRasPiPinValue
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 5
+  67:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_17,LED_OFF);
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 5
 
 
-  68:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_17,LED_OFF);
- 162              		.loc 1 68 0
+ 162              		.loc 1 67 0
  163 00fc 0021     		movs	r1, #0
  164 00fe 0520     		movs	r0, #5
  165 0100 FFF7FEFF 		bl	setRasPiPinValue
-  69:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_18,LED_OFF);
- 166              		.loc 1 69 0
+  68:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_18,LED_OFF);
+ 166              		.loc 1 68 0
  167 0104 0021     		movs	r1, #0
  168 0106 0620     		movs	r0, #6
  169 0108 FFF7FEFF 		bl	setRasPiPinValue
-  70:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_27,LED_OFF);
- 170              		.loc 1 70 0
+  69:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_27,LED_OFF);
+ 170              		.loc 1 69 0
  171 010c 0021     		movs	r1, #0
  172 010e 0720     		movs	r0, #7
  173 0110 FFF7FEFF 		bl	setRasPiPinValue
-  71:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_22,LED_OFF);
- 174              		.loc 1 71 0
+  70:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_22,LED_OFF);
+ 174              		.loc 1 70 0
  175 0114 0021     		movs	r1, #0
  176 0116 0820     		movs	r0, #8
  177 0118 FFF7FEFF 		bl	setRasPiPinValue
-  72:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_23,LED_OFF);
- 178              		.loc 1 72 0
+  71:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_23,LED_OFF);
+ 178              		.loc 1 71 0
  179 011c 0021     		movs	r1, #0
  180 011e 0920     		movs	r0, #9
  181 0120 FFF7FEFF 		bl	setRasPiPinValue
-  73:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_24,LED_OFF);
- 182              		.loc 1 73 0
+  72:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_24,LED_OFF);
+ 182              		.loc 1 72 0
  183 0124 0021     		movs	r1, #0
  184 0126 0A20     		movs	r0, #10
  185 0128 FFF7FEFF 		bl	setRasPiPinValue
-  74:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_10,LED_OFF);
- 186              		.loc 1 74 0
+  73:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_10,LED_OFF);
+ 186              		.loc 1 73 0
  187 012c 0021     		movs	r1, #0
  188 012e 0B20     		movs	r0, #11
  189 0130 FFF7FEFF 		bl	setRasPiPinValue
-  75:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_9,LED_OFF);
- 190              		.loc 1 75 0
+  74:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_9,LED_OFF);
+ 190              		.loc 1 74 0
  191 0134 0021     		movs	r1, #0
  192 0136 0C20     		movs	r0, #12
  193 0138 FFF7FEFF 		bl	setRasPiPinValue
-  76:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_25,LED_OFF);
- 194              		.loc 1 76 0
+  75:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_25,LED_OFF);
+ 194              		.loc 1 75 0
  195 013c 0021     		movs	r1, #0
  196 013e 0D20     		movs	r0, #13
  197 0140 FFF7FEFF 		bl	setRasPiPinValue
-  77:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_11,LED_OFF);
- 198              		.loc 1 77 0
+  76:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_11,LED_OFF);
+ 198              		.loc 1 76 0
  199 0144 0021     		movs	r1, #0
  200 0146 0E20     		movs	r0, #14
  201 0148 FFF7FEFF 		bl	setRasPiPinValue
-  78:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_8,LED_OFF);
- 202              		.loc 1 78 0
+  77:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_8,LED_OFF);
+ 202              		.loc 1 77 0
  203 014c 0021     		movs	r1, #0
  204 014e 0F20     		movs	r0, #15
  205 0150 FFF7FEFF 		bl	setRasPiPinValue
-  79:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_7,LED_OFF);
- 206              		.loc 1 79 0
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 6
-
-
+  78:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_7,LED_OFF);
+ 206              		.loc 1 78 0
  207 0154 0021     		movs	r1, #0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 6
+
+
  208 0156 1020     		movs	r0, #16
  209 0158 FFF7FEFF 		bl	setRasPiPinValue
-  80:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_5,LED_OFF);
- 210              		.loc 1 80 0
+  79:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_5,LED_OFF);
+ 210              		.loc 1 79 0
  211 015c 0021     		movs	r1, #0
  212 015e 1120     		movs	r0, #17
  213 0160 FFF7FEFF 		bl	setRasPiPinValue
-  81:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_6,LED_OFF);
- 214              		.loc 1 81 0
+  80:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_6,LED_OFF);
+ 214              		.loc 1 80 0
  215 0164 0021     		movs	r1, #0
  216 0166 1220     		movs	r0, #18
  217 0168 FFF7FEFF 		bl	setRasPiPinValue
-  82:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_12,LED_OFF);
- 218              		.loc 1 82 0
+  81:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_12,LED_OFF);
+ 218              		.loc 1 81 0
  219 016c 0021     		movs	r1, #0
  220 016e 1320     		movs	r0, #19
  221 0170 FFF7FEFF 		bl	setRasPiPinValue
-  83:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_13,LED_OFF);
- 222              		.loc 1 83 0
+  82:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_13,LED_OFF);
+ 222              		.loc 1 82 0
  223 0174 0021     		movs	r1, #0
  224 0176 1420     		movs	r0, #20
  225 0178 FFF7FEFF 		bl	setRasPiPinValue
-  84:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_19,LED_OFF);
- 226              		.loc 1 84 0
+  83:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_19,LED_OFF);
+ 226              		.loc 1 83 0
  227 017c 0021     		movs	r1, #0
  228 017e 1520     		movs	r0, #21
  229 0180 FFF7FEFF 		bl	setRasPiPinValue
-  85:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_16,LED_OFF);
- 230              		.loc 1 85 0
+  84:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_16,LED_OFF);
+ 230              		.loc 1 84 0
  231 0184 0021     		movs	r1, #0
  232 0186 1620     		movs	r0, #22
  233 0188 FFF7FEFF 		bl	setRasPiPinValue
-  86:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_26,LED_OFF);
- 234              		.loc 1 86 0
+  85:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_26,LED_OFF);
+ 234              		.loc 1 85 0
  235 018c 0021     		movs	r1, #0
  236 018e 1720     		movs	r0, #23
  237 0190 FFF7FEFF 		bl	setRasPiPinValue
-  87:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_20,LED_OFF);
- 238              		.loc 1 87 0
+  86:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_20,LED_OFF);
+ 238              		.loc 1 86 0
  239 0194 0021     		movs	r1, #0
  240 0196 1820     		movs	r0, #24
  241 0198 FFF7FEFF 		bl	setRasPiPinValue
-  88:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_21,LED_OFF);
- 242              		.loc 1 88 0
+  87:Test_RASPI_GVS.c ****     setRasPiPinValue(IO_21,LED_OFF);
+ 242              		.loc 1 87 0
  243 019c 0021     		movs	r1, #0
  244 019e 1920     		movs	r0, #25
  245 01a0 FFF7FEFF 		bl	setRasPiPinValue
-  89:Test_RASPI_GVS.c ****     
-  90:Test_RASPI_GVS.c **** // Blink all of the LEDs one at a time
-  91:Test_RASPI_GVS.c **** 
-  92:Test_RASPI_GVS.c **** 	blinkLED(IO_3);     // SCL1
- 246              		.loc 1 92 0
+  88:Test_RASPI_GVS.c ****     
+  89:Test_RASPI_GVS.c **** // Blink all of the LEDs one at a time
+  90:Test_RASPI_GVS.c **** 
+  91:Test_RASPI_GVS.c **** 	blinkLED(IO_3);     // SCL1
+ 246              		.loc 1 91 0
  247 01a4 0120     		movs	r0, #1
  248 01a6 FFF7FEFF 		bl	blinkLED
-  93:Test_RASPI_GVS.c **** 	blinkLED(IO_14);    // TXD0
- 249              		.loc 1 93 0
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 7
-
-
+  92:Test_RASPI_GVS.c **** 	blinkLED(IO_14);    // TXD0
+ 249              		.loc 1 92 0
  250 01aa 0320     		movs	r0, #3
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 7
+
+
  251 01ac FFF7FEFF 		bl	blinkLED
-  94:Test_RASPI_GVS.c **** 	blinkLED(IO_15);    // RXD0
- 252              		.loc 1 94 0
+  93:Test_RASPI_GVS.c **** 	blinkLED(IO_15);    // RXD0
+ 252              		.loc 1 93 0
  253 01b0 0420     		movs	r0, #4
  254 01b2 FFF7FEFF 		bl	blinkLED
-  95:Test_RASPI_GVS.c ****     blinkLED(IO_10);    // SPIMOSI
- 255              		.loc 1 95 0
+  94:Test_RASPI_GVS.c ****     blinkLED(IO_10);    // SPIMOSI
+ 255              		.loc 1 94 0
  256 01b6 0B20     		movs	r0, #11
  257 01b8 FFF7FEFF 		bl	blinkLED
-  96:Test_RASPI_GVS.c ****     blinkLED(IO_9);     // SPIMISO
- 258              		.loc 1 96 0
+  95:Test_RASPI_GVS.c ****     blinkLED(IO_9);     // SPIMISO
+ 258              		.loc 1 95 0
  259 01bc 0C20     		movs	r0, #12
  260 01be FFF7FEFF 		bl	blinkLED
-  97:Test_RASPI_GVS.c ****     blinkLED(IO_11);    // SPISCK
- 261              		.loc 1 97 0
+  96:Test_RASPI_GVS.c ****     blinkLED(IO_11);    // SPISCK
+ 261              		.loc 1 96 0
  262 01c2 0E20     		movs	r0, #14
  263 01c4 FFF7FEFF 		bl	blinkLED
-  98:Test_RASPI_GVS.c ****    	blinkLED(IO_8);     // SPICE0
- 264              		.loc 1 98 0
+  97:Test_RASPI_GVS.c ****    	blinkLED(IO_8);     // SPICE0
+ 264              		.loc 1 97 0
  265 01c8 0F20     		movs	r0, #15
  266 01ca FFF7FEFF 		bl	blinkLED
-  99:Test_RASPI_GVS.c **** 	blinkLED(IO_7);     // SPICE1
- 267              		.loc 1 99 0
+  98:Test_RASPI_GVS.c **** 	blinkLED(IO_7);     // SPICE1
+ 267              		.loc 1 98 0
  268 01ce 1020     		movs	r0, #16
  269 01d0 FFF7FEFF 		bl	blinkLED
- 100:Test_RASPI_GVS.c **** 	blinkLED(IO_18);
- 270              		.loc 1 100 0
+  99:Test_RASPI_GVS.c **** 	blinkLED(IO_18);
+ 270              		.loc 1 99 0
  271 01d4 0620     		movs	r0, #6
  272 01d6 FFF7FEFF 		bl	blinkLED
- 101:Test_RASPI_GVS.c **** 	blinkLED(IO_17);
- 273              		.loc 1 101 0
+ 100:Test_RASPI_GVS.c **** 	blinkLED(IO_17);
+ 273              		.loc 1 100 0
  274 01da 0520     		movs	r0, #5
  275 01dc FFF7FEFF 		bl	blinkLED
- 102:Test_RASPI_GVS.c **** 	blinkLED(IO_27);
- 276              		.loc 1 102 0
+ 101:Test_RASPI_GVS.c **** 	blinkLED(IO_27);
+ 276              		.loc 1 101 0
  277 01e0 0720     		movs	r0, #7
  278 01e2 FFF7FEFF 		bl	blinkLED
- 103:Test_RASPI_GVS.c **** 	blinkLED(IO_23);
- 279              		.loc 1 103 0
+ 102:Test_RASPI_GVS.c **** 	blinkLED(IO_23);
+ 279              		.loc 1 102 0
  280 01e6 0920     		movs	r0, #9
  281 01e8 FFF7FEFF 		bl	blinkLED
- 104:Test_RASPI_GVS.c **** 	blinkLED(IO_22);
- 282              		.loc 1 104 0
+ 103:Test_RASPI_GVS.c **** 	blinkLED(IO_22);
+ 282              		.loc 1 103 0
  283 01ec 0820     		movs	r0, #8
  284 01ee FFF7FEFF 		bl	blinkLED
- 105:Test_RASPI_GVS.c **** 	blinkLED(IO_24);
- 285              		.loc 1 105 0
+ 104:Test_RASPI_GVS.c **** 	blinkLED(IO_24);
+ 285              		.loc 1 104 0
  286 01f2 0A20     		movs	r0, #10
  287 01f4 FFF7FEFF 		bl	blinkLED
- 106:Test_RASPI_GVS.c **** 	blinkLED(IO_25);
- 288              		.loc 1 106 0
+ 105:Test_RASPI_GVS.c **** 	blinkLED(IO_25);
+ 288              		.loc 1 105 0
  289 01f8 0D20     		movs	r0, #13
  290 01fa FFF7FEFF 		bl	blinkLED
- 107:Test_RASPI_GVS.c **** 	blinkLED(IO_2);     // SDA1
- 291              		.loc 1 107 0
+ 106:Test_RASPI_GVS.c **** 	blinkLED(IO_2);     // SDA1
+ 291              		.loc 1 106 0
  292 01fe 0020     		movs	r0, #0
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 8
-
-
  293 0200 FFF7FEFF 		bl	blinkLED
- 108:Test_RASPI_GVS.c **** }
- 294              		.loc 1 108 0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 8
+
+
+ 107:Test_RASPI_GVS.c **** }
+ 294              		.loc 1 107 0
  295 0204 00BF     		nop
  296 0206 80BD     		pop	{r7, pc}
  297              		.cfi_endproc
@@ -478,10 +477,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  346 0053 02       		.uleb128 0x2
  347 0054 04       		.byte	0x4
  348 0055 07       		.byte	0x7
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 9
-
-
  349 0056 5B010000 		.4byte	.LASF5
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 9
+
+
  350 005a 02       		.uleb128 0x2
  351 005b 08       		.byte	0x8
  352 005c 05       		.byte	0x5
@@ -533,15 +532,15 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  398 00b5 01       		.byte	0x1
  399 00b6 2C000000 		.4byte	0x2c
  400 00ba 05       		.byte	0x5
- 401 00bb 11       		.byte	0x11
+ 401 00bb 13       		.byte	0x13
  402 00bc 5D010000 		.4byte	0x15d
  403 00c0 07       		.uleb128 0x7
  404 00c1 42020000 		.4byte	.LASF17
  405 00c5 00       		.byte	0
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 10
-
-
  406 00c6 07       		.uleb128 0x7
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 10
+
+
  407 00c7 47020000 		.4byte	.LASF18
  408 00cb 01       		.byte	0x1
  409 00cc 07       		.uleb128 0x7
@@ -598,10 +597,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  460 0132 07       		.uleb128 0x7
  461 0133 E6010000 		.4byte	.LASF36
  462 0137 13       		.byte	0x13
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 11
-
-
  463 0138 07       		.uleb128 0x7
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 11
+
+
  464 0139 EC010000 		.4byte	.LASF37
  465 013d 14       		.byte	0x14
  466 013e 07       		.uleb128 0x7
@@ -623,7 +622,7 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  482 015d 08       		.uleb128 0x8
  483 015e AD010000 		.4byte	.LASF47
  484 0162 01       		.byte	0x1
- 485 0163 1F       		.byte	0x1f
+ 485 0163 1E       		.byte	0x1e
  486 0164 00000000 		.4byte	.LFB63
  487 0168 08020000 		.4byte	.LFE63-.LFB63
  488 016c 01       		.uleb128 0x1
@@ -658,10 +657,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  517 0011 00       		.byte	0
  518 0012 00       		.byte	0
  519 0013 02       		.uleb128 0x2
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 12
-
-
  520 0014 24       		.uleb128 0x24
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 12
+
+
  521 0015 00       		.byte	0
  522 0016 0B       		.uleb128 0xb
  523 0017 0B       		.uleb128 0xb
@@ -718,10 +717,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  574 004a 49       		.uleb128 0x49
  575 004b 13       		.uleb128 0x13
  576 004c 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 13
-
-
  577 004d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 13
+
+
  578 004e 3B       		.uleb128 0x3b
  579 004f 0B       		.uleb128 0xb
  580 0050 01       		.uleb128 0x1
@@ -778,10 +777,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  631 0084 00       		.byte	0
  632 0085 00       		.byte	0
  633 0086 0A       		.uleb128 0xa
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 14
-
-
  634 0087 35       		.uleb128 0x35
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 14
+
+
  635 0088 00       		.byte	0
  636 0089 49       		.uleb128 0x49
  637 008a 13       		.uleb128 0x13
@@ -838,10 +837,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  669      20696E74 
  669      00
  670              	.LASF41:
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 15
-
-
  671 00a1 494F5F32 		.ascii	"IO_20\000"
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 15
+
+
  671      3000
  672              	.LASF42:
  673 00a7 494F5F32 		.ascii	"IO_21\000"
@@ -898,10 +897,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  698      69676E65 
  698      6420696E 
  698      7400
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 16
-
-
  699              	.LASF3:
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 16
+
+
  700 016d 73686F72 		.ascii	"short unsigned int\000"
  700      7420756E 
  700      7369676E 
@@ -958,10 +957,10 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  726 01f8 494F5F31 		.ascii	"IO_15\000"
  726      3500
  727              	.LASF39:
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 17
-
-
  728 01fe 494F5F31 		.ascii	"IO_16\000"
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 17
+
+
  728      3600
  729              	.LASF22:
  730 0204 494F5F31 		.ascii	"IO_17\000"
@@ -1018,8 +1017,8 @@ ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 1
  761              	.LASF0:
  762 026a 7369676E 		.ascii	"signed char\000"
  762      65642063 
-ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\cc3je9zj.s 			page 18
-
-
  762      68617200 
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccvyiWcc.s 			page 18
+
+
  763              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

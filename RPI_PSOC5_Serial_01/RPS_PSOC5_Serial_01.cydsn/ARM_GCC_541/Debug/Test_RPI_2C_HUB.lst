@@ -1,0 +1,438 @@
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Test_RPI_2C_HUB.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.testRPIHUB,"ax",%progbits
+  20              		.align	2
+  21              		.global	testRPIHUB
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	testRPIHUB, %function
+  25              	testRPIHUB:
+  26              	.LFB63:
+  27              		.file 1 "Test_RPI_2C_HUB.c"
+   1:Test_RPI_2C_HUB.c **** /* ========================================
+   2:Test_RPI_2C_HUB.c ****  *
+   3:Test_RPI_2C_HUB.c ****  * Copyright LAND BOARDS, LLC, 2019
+   4:Test_RPI_2C_HUB.c ****  * All Rights Reserved
+   5:Test_RPI_2C_HUB.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:Test_RPI_2C_HUB.c ****  *
+   7:Test_RPI_2C_HUB.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:Test_RPI_2C_HUB.c ****  * WHICH IS THE PROPERTY OF Land Boards.
+   9:Test_RPI_2C_HUB.c ****  *
+  10:Test_RPI_2C_HUB.c ****  * ========================================
+  11:Test_RPI_2C_HUB.c **** */
+  12:Test_RPI_2C_HUB.c **** 
+  13:Test_RPI_2C_HUB.c **** #include <project.h>
+  14:Test_RPI_2C_HUB.c **** #include "RPI_PSOC5.h"
+  15:Test_RPI_2C_HUB.c **** 
+  16:Test_RPI_2C_HUB.c **** void testRPIHUB(void)
+  17:Test_RPI_2C_HUB.c **** {
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 80B4     		push	{r7}
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 7, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  18:Test_RPI_2C_HUB.c ****     
+  19:Test_RPI_2C_HUB.c **** }
+  38              		.loc 1 19 0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 2
+
+
+  39 0004 00BF     		nop
+  40 0006 BD46     		mov	sp, r7
+  41              		.cfi_def_cfa_register 13
+  42              		@ sp needed
+  43 0008 80BC     		pop	{r7}
+  44              		.cfi_restore 7
+  45              		.cfi_def_cfa_offset 0
+  46 000a 7047     		bx	lr
+  47              		.cfi_endproc
+  48              	.LFE63:
+  49              		.size	testRPIHUB, .-testRPIHUB
+  50              		.text
+  51              	.Letext0:
+  52              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  53              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  54              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+  55              		.section	.debug_info,"",%progbits
+  56              	.Ldebug_info0:
+  57 0000 C3000000 		.4byte	0xc3
+  58 0004 0400     		.2byte	0x4
+  59 0006 00000000 		.4byte	.Ldebug_abbrev0
+  60 000a 04       		.byte	0x4
+  61 000b 01       		.uleb128 0x1
+  62 000c 5D000000 		.4byte	.LASF16
+  63 0010 0C       		.byte	0xc
+  64 0011 9F010000 		.4byte	.LASF17
+  65 0015 20010000 		.4byte	.LASF18
+  66 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  67 001d 00000000 		.4byte	0
+  68 0021 00000000 		.4byte	.Ldebug_line0
+  69 0025 02       		.uleb128 0x2
+  70 0026 01       		.byte	0x1
+  71 0027 06       		.byte	0x6
+  72 0028 7D010000 		.4byte	.LASF0
+  73 002c 02       		.uleb128 0x2
+  74 002d 01       		.byte	0x1
+  75 002e 08       		.byte	0x8
+  76 002f EB000000 		.4byte	.LASF1
+  77 0033 02       		.uleb128 0x2
+  78 0034 02       		.byte	0x2
+  79 0035 05       		.byte	0x5
+  80 0036 B7010000 		.4byte	.LASF2
+  81 003a 02       		.uleb128 0x2
+  82 003b 02       		.byte	0x2
+  83 003c 07       		.byte	0x7
+  84 003d 0E000000 		.4byte	.LASF3
+  85 0041 03       		.uleb128 0x3
+  86 0042 95010000 		.4byte	.LASF9
+  87 0046 02       		.byte	0x2
+  88 0047 3F       		.byte	0x3f
+  89 0048 4C000000 		.4byte	0x4c
+  90 004c 02       		.uleb128 0x2
+  91 004d 04       		.byte	0x4
+  92 004e 05       		.byte	0x5
+  93 004f FE000000 		.4byte	.LASF4
+  94 0053 02       		.uleb128 0x2
+  95 0054 04       		.byte	0x4
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 3
+
+
+  96 0055 07       		.byte	0x7
+  97 0056 07010000 		.4byte	.LASF5
+  98 005a 02       		.uleb128 0x2
+  99 005b 08       		.byte	0x8
+ 100 005c 05       		.byte	0x5
+ 101 005d 00000000 		.4byte	.LASF6
+ 102 0061 02       		.uleb128 0x2
+ 103 0062 08       		.byte	0x8
+ 104 0063 07       		.byte	0x7
+ 105 0064 46000000 		.4byte	.LASF7
+ 106 0068 04       		.uleb128 0x4
+ 107 0069 04       		.byte	0x4
+ 108 006a 05       		.byte	0x5
+ 109 006b 696E7400 		.ascii	"int\000"
+ 110 006f 02       		.uleb128 0x2
+ 111 0070 04       		.byte	0x4
+ 112 0071 07       		.byte	0x7
+ 113 0072 2E000000 		.4byte	.LASF8
+ 114 0076 03       		.uleb128 0x3
+ 115 0077 C1010000 		.4byte	.LASF10
+ 116 007b 03       		.byte	0x3
+ 117 007c 2C       		.byte	0x2c
+ 118 007d 41000000 		.4byte	0x41
+ 119 0081 02       		.uleb128 0x2
+ 120 0082 04       		.byte	0x4
+ 121 0083 04       		.byte	0x4
+ 122 0084 B1010000 		.4byte	.LASF11
+ 123 0088 02       		.uleb128 0x2
+ 124 0089 08       		.byte	0x8
+ 125 008a 04       		.byte	0x4
+ 126 008b 19010000 		.4byte	.LASF12
+ 127 008f 02       		.uleb128 0x2
+ 128 0090 01       		.byte	0x1
+ 129 0091 08       		.byte	0x8
+ 130 0092 F9000000 		.4byte	.LASF13
+ 131 0096 02       		.uleb128 0x2
+ 132 0097 08       		.byte	0x8
+ 133 0098 04       		.byte	0x4
+ 134 0099 89010000 		.4byte	.LASF14
+ 135 009d 02       		.uleb128 0x2
+ 136 009e 04       		.byte	0x4
+ 137 009f 07       		.byte	0x7
+ 138 00a0 C9010000 		.4byte	.LASF15
+ 139 00a4 05       		.uleb128 0x5
+ 140 00a5 3B000000 		.4byte	.LASF19
+ 141 00a9 01       		.byte	0x1
+ 142 00aa 10       		.byte	0x10
+ 143 00ab 00000000 		.4byte	.LFB63
+ 144 00af 0C000000 		.4byte	.LFE63-.LFB63
+ 145 00b3 01       		.uleb128 0x1
+ 146 00b4 9C       		.byte	0x9c
+ 147 00b5 06       		.uleb128 0x6
+ 148 00b6 21000000 		.4byte	.LASF20
+ 149 00ba 04       		.byte	0x4
+ 150 00bb 1207     		.2byte	0x712
+ 151 00bd C1000000 		.4byte	0xc1
+ 152 00c1 07       		.uleb128 0x7
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 4
+
+
+ 153 00c2 76000000 		.4byte	0x76
+ 154 00c6 00       		.byte	0
+ 155              		.section	.debug_abbrev,"",%progbits
+ 156              	.Ldebug_abbrev0:
+ 157 0000 01       		.uleb128 0x1
+ 158 0001 11       		.uleb128 0x11
+ 159 0002 01       		.byte	0x1
+ 160 0003 25       		.uleb128 0x25
+ 161 0004 0E       		.uleb128 0xe
+ 162 0005 13       		.uleb128 0x13
+ 163 0006 0B       		.uleb128 0xb
+ 164 0007 03       		.uleb128 0x3
+ 165 0008 0E       		.uleb128 0xe
+ 166 0009 1B       		.uleb128 0x1b
+ 167 000a 0E       		.uleb128 0xe
+ 168 000b 55       		.uleb128 0x55
+ 169 000c 17       		.uleb128 0x17
+ 170 000d 11       		.uleb128 0x11
+ 171 000e 01       		.uleb128 0x1
+ 172 000f 10       		.uleb128 0x10
+ 173 0010 17       		.uleb128 0x17
+ 174 0011 00       		.byte	0
+ 175 0012 00       		.byte	0
+ 176 0013 02       		.uleb128 0x2
+ 177 0014 24       		.uleb128 0x24
+ 178 0015 00       		.byte	0
+ 179 0016 0B       		.uleb128 0xb
+ 180 0017 0B       		.uleb128 0xb
+ 181 0018 3E       		.uleb128 0x3e
+ 182 0019 0B       		.uleb128 0xb
+ 183 001a 03       		.uleb128 0x3
+ 184 001b 0E       		.uleb128 0xe
+ 185 001c 00       		.byte	0
+ 186 001d 00       		.byte	0
+ 187 001e 03       		.uleb128 0x3
+ 188 001f 16       		.uleb128 0x16
+ 189 0020 00       		.byte	0
+ 190 0021 03       		.uleb128 0x3
+ 191 0022 0E       		.uleb128 0xe
+ 192 0023 3A       		.uleb128 0x3a
+ 193 0024 0B       		.uleb128 0xb
+ 194 0025 3B       		.uleb128 0x3b
+ 195 0026 0B       		.uleb128 0xb
+ 196 0027 49       		.uleb128 0x49
+ 197 0028 13       		.uleb128 0x13
+ 198 0029 00       		.byte	0
+ 199 002a 00       		.byte	0
+ 200 002b 04       		.uleb128 0x4
+ 201 002c 24       		.uleb128 0x24
+ 202 002d 00       		.byte	0
+ 203 002e 0B       		.uleb128 0xb
+ 204 002f 0B       		.uleb128 0xb
+ 205 0030 3E       		.uleb128 0x3e
+ 206 0031 0B       		.uleb128 0xb
+ 207 0032 03       		.uleb128 0x3
+ 208 0033 08       		.uleb128 0x8
+ 209 0034 00       		.byte	0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 5
+
+
+ 210 0035 00       		.byte	0
+ 211 0036 05       		.uleb128 0x5
+ 212 0037 2E       		.uleb128 0x2e
+ 213 0038 00       		.byte	0
+ 214 0039 3F       		.uleb128 0x3f
+ 215 003a 19       		.uleb128 0x19
+ 216 003b 03       		.uleb128 0x3
+ 217 003c 0E       		.uleb128 0xe
+ 218 003d 3A       		.uleb128 0x3a
+ 219 003e 0B       		.uleb128 0xb
+ 220 003f 3B       		.uleb128 0x3b
+ 221 0040 0B       		.uleb128 0xb
+ 222 0041 27       		.uleb128 0x27
+ 223 0042 19       		.uleb128 0x19
+ 224 0043 11       		.uleb128 0x11
+ 225 0044 01       		.uleb128 0x1
+ 226 0045 12       		.uleb128 0x12
+ 227 0046 06       		.uleb128 0x6
+ 228 0047 40       		.uleb128 0x40
+ 229 0048 18       		.uleb128 0x18
+ 230 0049 9742     		.uleb128 0x2117
+ 231 004b 19       		.uleb128 0x19
+ 232 004c 00       		.byte	0
+ 233 004d 00       		.byte	0
+ 234 004e 06       		.uleb128 0x6
+ 235 004f 34       		.uleb128 0x34
+ 236 0050 00       		.byte	0
+ 237 0051 03       		.uleb128 0x3
+ 238 0052 0E       		.uleb128 0xe
+ 239 0053 3A       		.uleb128 0x3a
+ 240 0054 0B       		.uleb128 0xb
+ 241 0055 3B       		.uleb128 0x3b
+ 242 0056 05       		.uleb128 0x5
+ 243 0057 49       		.uleb128 0x49
+ 244 0058 13       		.uleb128 0x13
+ 245 0059 3F       		.uleb128 0x3f
+ 246 005a 19       		.uleb128 0x19
+ 247 005b 3C       		.uleb128 0x3c
+ 248 005c 19       		.uleb128 0x19
+ 249 005d 00       		.byte	0
+ 250 005e 00       		.byte	0
+ 251 005f 07       		.uleb128 0x7
+ 252 0060 35       		.uleb128 0x35
+ 253 0061 00       		.byte	0
+ 254 0062 49       		.uleb128 0x49
+ 255 0063 13       		.uleb128 0x13
+ 256 0064 00       		.byte	0
+ 257 0065 00       		.byte	0
+ 258 0066 00       		.byte	0
+ 259              		.section	.debug_aranges,"",%progbits
+ 260 0000 1C000000 		.4byte	0x1c
+ 261 0004 0200     		.2byte	0x2
+ 262 0006 00000000 		.4byte	.Ldebug_info0
+ 263 000a 04       		.byte	0x4
+ 264 000b 00       		.byte	0
+ 265 000c 0000     		.2byte	0
+ 266 000e 0000     		.2byte	0
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 6
+
+
+ 267 0010 00000000 		.4byte	.LFB63
+ 268 0014 0C000000 		.4byte	.LFE63-.LFB63
+ 269 0018 00000000 		.4byte	0
+ 270 001c 00000000 		.4byte	0
+ 271              		.section	.debug_ranges,"",%progbits
+ 272              	.Ldebug_ranges0:
+ 273 0000 00000000 		.4byte	.LFB63
+ 274 0004 0C000000 		.4byte	.LFE63
+ 275 0008 00000000 		.4byte	0
+ 276 000c 00000000 		.4byte	0
+ 277              		.section	.debug_line,"",%progbits
+ 278              	.Ldebug_line0:
+ 279 0000 60010000 		.section	.debug_str,"MS",%progbits,1
+ 279      02004A01 
+ 279      00000201 
+ 279      FB0E0D00 
+ 279      01010101 
+ 280              	.LASF6:
+ 281 0000 6C6F6E67 		.ascii	"long long int\000"
+ 281      206C6F6E 
+ 281      6720696E 
+ 281      7400
+ 282              	.LASF3:
+ 283 000e 73686F72 		.ascii	"short unsigned int\000"
+ 283      7420756E 
+ 283      7369676E 
+ 283      65642069 
+ 283      6E7400
+ 284              	.LASF20:
+ 285 0021 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 285      52784275 
+ 285      66666572 
+ 285      00
+ 286              	.LASF8:
+ 287 002e 756E7369 		.ascii	"unsigned int\000"
+ 287      676E6564 
+ 287      20696E74 
+ 287      00
+ 288              	.LASF19:
+ 289 003b 74657374 		.ascii	"testRPIHUB\000"
+ 289      52504948 
+ 289      554200
+ 290              	.LASF7:
+ 291 0046 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 291      206C6F6E 
+ 291      6720756E 
+ 291      7369676E 
+ 291      65642069 
+ 292              	.LASF16:
+ 293 005d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 293      43313120 
+ 293      352E342E 
+ 293      31203230 
+ 293      31363036 
+ 294 0090 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 294      20726576 
+ 294      6973696F 
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 7
+
+
+ 294      6E203233 
+ 294      37373135 
+ 295 00c3 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 295      66756E63 
+ 295      74696F6E 
+ 295      2D736563 
+ 295      74696F6E 
+ 296              	.LASF1:
+ 297 00eb 756E7369 		.ascii	"unsigned char\000"
+ 297      676E6564 
+ 297      20636861 
+ 297      7200
+ 298              	.LASF13:
+ 299 00f9 63686172 		.ascii	"char\000"
+ 299      00
+ 300              	.LASF4:
+ 301 00fe 6C6F6E67 		.ascii	"long int\000"
+ 301      20696E74 
+ 301      00
+ 302              	.LASF5:
+ 303 0107 6C6F6E67 		.ascii	"long unsigned int\000"
+ 303      20756E73 
+ 303      69676E65 
+ 303      6420696E 
+ 303      7400
+ 304              	.LASF12:
+ 305 0119 646F7562 		.ascii	"double\000"
+ 305      6C6500
+ 306              	.LASF18:
+ 307 0120 433A5C55 		.ascii	"C:\\Users\\dgilliland\\Documents\\GitHub\\RPI_PSOC5"
+ 307      73657273 
+ 307      5C646769 
+ 307      6C6C696C 
+ 307      616E645C 
+ 308 014e 5C525049 		.ascii	"\\RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial_01.cydsn\000"
+ 308      5F50534F 
+ 308      43355F53 
+ 308      65726961 
+ 308      6C5F3031 
+ 309              	.LASF0:
+ 310 017d 7369676E 		.ascii	"signed char\000"
+ 310      65642063 
+ 310      68617200 
+ 311              	.LASF14:
+ 312 0189 6C6F6E67 		.ascii	"long double\000"
+ 312      20646F75 
+ 312      626C6500 
+ 313              	.LASF9:
+ 314 0195 5F5F696E 		.ascii	"__int32_t\000"
+ 314      7433325F 
+ 314      7400
+ 315              	.LASF17:
+ 316 019f 54657374 		.ascii	"Test_RPI_2C_HUB.c\000"
+ 316      5F525049 
+ 316      5F32435F 
+ 316      4855422E 
+ 316      6300
+ARM GAS  C:\Users\DGILLI~1\AppData\Local\Temp\ccmueFn7.s 			page 8
+
+
+ 317              	.LASF11:
+ 318 01b1 666C6F61 		.ascii	"float\000"
+ 318      7400
+ 319              	.LASF2:
+ 320 01b7 73686F72 		.ascii	"short int\000"
+ 320      7420696E 
+ 320      7400
+ 321              	.LASF10:
+ 322 01c1 696E7433 		.ascii	"int32_t\000"
+ 322      325F7400 
+ 323              	.LASF15:
+ 324 01c9 73697A65 		.ascii	"sizetype\000"
+ 324      74797065 
+ 324      00
+ 325              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

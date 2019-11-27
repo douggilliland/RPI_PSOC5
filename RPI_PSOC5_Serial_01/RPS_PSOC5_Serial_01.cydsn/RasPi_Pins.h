@@ -9,6 +9,8 @@
  *
  * ========================================
 */
+#ifndef RASPIPINS_H
+#define RASPIPINS_H
 
 #include <project.h>
 
@@ -46,5 +48,7 @@ enum BCM_PINS
 
 void setRasPiPinValue(uint8 bcmPinNum, uint8 value);
 void setRasPiPinDrive(uint8 bcmPinNum, uint8 value);
+
+#endif
 
 /* [] END OF FILE */

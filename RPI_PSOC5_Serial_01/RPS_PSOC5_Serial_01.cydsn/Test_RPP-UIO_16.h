@@ -9,10 +9,14 @@
  *
  * ========================================
 */
+#ifndef TESTRPPUIO16_H
+#define TESTRPPUIO16_H
 
 #include <project.h>
 
 void blinkLED(uint8);
 void testRPPUIO16(void);
+
+#endif
 
 /* [] END OF FILE */

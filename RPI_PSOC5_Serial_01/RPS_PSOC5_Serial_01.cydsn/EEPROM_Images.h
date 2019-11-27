@@ -10,14 +10,8 @@
  * ========================================
 */
 
-enum EEPROM_Images {
-    UNSELECTED_CARD,
-    RPPUIO16,
-    RPPGVSCFG,
-    RPPSOC,
-    RASPIGVS,
-    RASPIPLUSGVS
-};
+#ifndef EEPROMIMAGES_H
+#define EEPROMIMAGES_H
 
 #include <project.h>
 
@@ -32,5 +26,7 @@ extern const uint8 rppsoc_eeprom[RPPSOC_EEPROM_LENGTH];
 
 #define RASPI_PLUS_GVS_EEPROM 114
 extern const uint8 raspi_plus_gvs[];
+
+#endif
 
 /* [] END OF FILE */

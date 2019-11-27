@@ -10,8 +10,7 @@
  * ========================================
 */
 
-#include "ExtEEPROM.h"
-#include "EEPROM_Images.h"
+#include "RPI_PSOC5.h"
 #include "stdio.h"
 
 void readEEPROM(uint8 * eepromBuffer)

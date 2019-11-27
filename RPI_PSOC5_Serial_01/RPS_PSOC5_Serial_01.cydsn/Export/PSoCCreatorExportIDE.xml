@@ -49,6 +49,11 @@
           <File BuildType="BUILD" Toolchain="">Test_RASPI_GVS.h</File>
           <File BuildType="BUILD" Toolchain="">Test_RASPI_PLUS_GVS.c</File>
           <File BuildType="BUILD" Toolchain="">Test_RASPI_PLUS_GVS.h</File>
+          <File BuildType="BUILD" Toolchain="">PSoC_Menu.c</File>
+          <File BuildType="BUILD" Toolchain="">PSoC_Menu.h</File>
+          <File BuildType="BUILD" Toolchain="">RPI_PSOC5.h</File>
+          <File BuildType="BUILD" Toolchain="">Test_RPI_2C_HUB.c</File>
+          <File BuildType="BUILD" Toolchain="">Test_RPI_2C_HUB.h</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
         </Files>
       </Folder>

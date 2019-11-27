@@ -15,7 +15,7 @@
 // https://mh-nexus.de/en/hxd/
 
 #include <project.h>
-#include "EEPROM_Images.h"
+#include "RPI_PSOC5.h"
 
 const uint8 rpp_uio_16_eeprom[RPP_UIO16_EEPROM_LENGTH] = {
 	0x52, 0x2D, 0x50, 0x69, 0x01, 0x00, 0x02, 0x00, 0x6D, 0x00, 0x00, 0x00,
