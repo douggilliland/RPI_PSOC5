@@ -1,10 +1,12 @@
 -- ======================================================================
 -- RPS_PSOC5_Serial_01.ctl generated from RPS_PSOC5_Serial_01
--- 10/22/2019 at 16:13
+-- 11/28/2019 at 06:03
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 
 -- I2C_EEPROM
+
+-- I2C1
 
 -- TopDesign
 -- =============================================================================

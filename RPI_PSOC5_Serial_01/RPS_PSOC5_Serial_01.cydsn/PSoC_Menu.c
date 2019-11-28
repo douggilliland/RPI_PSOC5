@@ -16,6 +16,7 @@
 uint8 receiveBuffer[80];
 uint8 receiveBufferPtr;
 uint8 gotCRorLF;
+uint16 cardType = UNSELECTED_CARD;
 
 ////////////////////////////////////////////////////////////////////////////
 // void printMenu(void) - Print the menu
@@ -43,7 +44,6 @@ void printMenuOptions(void)
 void psocMenu(void)
 {
     uint8 eepromBuffer[256];
-    uint16 cardType = UNSELECTED_CARD;
 
     while (0u == USBUART_CDCIsReady());
     if ((receiveBuffer[0] == 'r') || (receiveBuffer[0] == 'R'))
@@ -100,9 +100,9 @@ void psocMenu(void)
         }
         else if (cardType == RPII2CHUB)
         {
-            putStringToUSB("Blinking the LEDs on the RPI-I2C-HUB card, please wait\n\r");
+            putStringToUSB("Blinking the LEDs through the RPI-I2C-HUB card, please wait\n\r");
             testRPIHUB();
-            putStringToUSB("Completed blinking the LEDs on the RPP-UIO-16 card\n\r");
+            putStringToUSB("Completed blinking the LEDs through the RPI-I2C-HUB  card\n\r");
         }
         else
         {

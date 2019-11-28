@@ -10,12 +10,15 @@
  * ========================================
 */
 
-#include <project.h>
-#include "RPI_PSOC5.h"
+#ifndef TESTRPII2CHUB_H
+#define TESTRPII2CHUB_H
 
-void testRPIHUB(void)
-{
-    
-}
+#include <project.h>
+
+void testRPIHUB(void);
+
+extern uint16 cardType;
+
+#endif
 
 /* [] END OF FILE */

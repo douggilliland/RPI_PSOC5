@@ -1,0 +1,1118 @@
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"DIGIO8Driver.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	myWrBuffer,2,4
+  20              		.section	.text.readRegisterDIGIO8Card,"ax",%progbits
+  21              		.align	2
+  22              		.global	readRegisterDIGIO8Card
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	readRegisterDIGIO8Card, %function
+  26              	readRegisterDIGIO8Card:
+  27              	.LFB63:
+  28              		.file 1 "DIGIO8Driver.c"
+   1:DIGIO8Driver.c **** /* ========================================
+   2:DIGIO8Driver.c ****  * DIGIO8Driver.c
+   3:DIGIO8Driver.c ****  * Copyright Land Boards LLC, 2017
+   4:DIGIO8Driver.c ****  * All Rights Reserved
+   5:DIGIO8Driver.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:DIGIO8Driver.c ****  *
+   7:DIGIO8Driver.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:DIGIO8Driver.c ****  * WHICH IS THE PROPERTY OF Land Boards, LLC.
+   9:DIGIO8Driver.c ****  *
+  10:DIGIO8Driver.c ****  * ========================================
+  11:DIGIO8Driver.c **** */
+  12:DIGIO8Driver.c **** 
+  13:DIGIO8Driver.c **** #include <project.h>
+  14:DIGIO8Driver.c **** #include "RPI_PSOC5.h"
+  15:DIGIO8Driver.c **** 
+  16:DIGIO8Driver.c **** uint8 myWrBuffer[2];
+  17:DIGIO8Driver.c ****  
+  18:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  19:DIGIO8Driver.c **** // uint8 readRegisterDIGIO8Card(ctrlAdr) - 
+  20:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  21:DIGIO8Driver.c **** 
+  22:DIGIO8Driver.c **** uint8 readRegisterDIGIO8Card(uint8 slaveAdr, uint8 ctrlAdr)
+  23:DIGIO8Driver.c **** {
+  29              		.loc 1 23 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 16
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33 0000 80B5     		push	{r7, lr}
+  34              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 2
+
+
+  35              		.cfi_offset 7, -8
+  36              		.cfi_offset 14, -4
+  37 0002 84B0     		sub	sp, sp, #16
+  38              		.cfi_def_cfa_offset 24
+  39 0004 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  41 0006 0346     		mov	r3, r0
+  42 0008 0A46     		mov	r2, r1
+  43 000a FB71     		strb	r3, [r7, #7]
+  44 000c 1346     		mov	r3, r2
+  45 000e BB71     		strb	r3, [r7, #6]
+  24:DIGIO8Driver.c ****     uint8 rdBuff;
+  25:DIGIO8Driver.c ****     I2C1_MasterClearStatus();
+  46              		.loc 1 25 0
+  47 0010 FFF7FEFF 		bl	I2C1_MasterClearStatus
+  26:DIGIO8Driver.c ****     I2C1_MasterSendStart(0x20,I2C1_WRITE_XFER_MODE);
+  48              		.loc 1 26 0
+  49 0014 0021     		movs	r1, #0
+  50 0016 2020     		movs	r0, #32
+  51 0018 FFF7FEFF 		bl	I2C1_MasterSendStart
+  27:DIGIO8Driver.c ****     I2C1_MasterWriteByte(ctrlAdr);
+  52              		.loc 1 27 0
+  53 001c BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+  54 001e 1846     		mov	r0, r3
+  55 0020 FFF7FEFF 		bl	I2C1_MasterWriteByte
+  28:DIGIO8Driver.c ****     I2C1_MasterSendStop();
+  56              		.loc 1 28 0
+  57 0024 FFF7FEFF 		bl	I2C1_MasterSendStop
+  29:DIGIO8Driver.c **** //    while ((I2C1_MasterStatus() & I2C1_MSTAT_WR_CMPLT) == 0);
+  30:DIGIO8Driver.c ****     I2C1_MasterSendStart(slaveAdr,I2C1_READ_XFER_MODE);
+  58              		.loc 1 30 0
+  59 0028 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  60 002a 0121     		movs	r1, #1
+  61 002c 1846     		mov	r0, r3
+  62 002e FFF7FEFF 		bl	I2C1_MasterSendStart
+  31:DIGIO8Driver.c ****     rdBuff = I2C1_MasterReadByte(I2C1_NAK_DATA);
+  63              		.loc 1 31 0
+  64 0032 0020     		movs	r0, #0
+  65 0034 FFF7FEFF 		bl	I2C1_MasterReadByte
+  66 0038 0346     		mov	r3, r0
+  67 003a FB73     		strb	r3, [r7, #15]
+  32:DIGIO8Driver.c ****     I2C1_MasterSendStop();
+  68              		.loc 1 32 0
+  69 003c FFF7FEFF 		bl	I2C1_MasterSendStop
+  33:DIGIO8Driver.c **** //    while ((I2C1_MasterStatus() & I2C1_MSTAT_RD_CMPLT) == 0);
+  34:DIGIO8Driver.c ****     I2C1_MasterClearStatus();
+  70              		.loc 1 34 0
+  71 0040 FFF7FEFF 		bl	I2C1_MasterClearStatus
+  35:DIGIO8Driver.c ****     return rdBuff;
+  72              		.loc 1 35 0
+  73 0044 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  36:DIGIO8Driver.c **** }
+  74              		.loc 1 36 0
+  75 0046 1846     		mov	r0, r3
+  76 0048 1037     		adds	r7, r7, #16
+  77              		.cfi_def_cfa_offset 8
+  78 004a BD46     		mov	sp, r7
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 3
+
+
+  79              		.cfi_def_cfa_register 13
+  80              		@ sp needed
+  81 004c 80BD     		pop	{r7, pc}
+  82              		.cfi_endproc
+  83              	.LFE63:
+  84              		.size	readRegisterDIGIO8Card, .-readRegisterDIGIO8Card
+  85 004e 00BF     		.section	.text.writeRegisterDIGIO8Card,"ax",%progbits
+  86              		.align	2
+  87              		.global	writeRegisterDIGIO8Card
+  88              		.thumb
+  89              		.thumb_func
+  90              		.type	writeRegisterDIGIO8Card, %function
+  91              	writeRegisterDIGIO8Card:
+  92              	.LFB64:
+  37:DIGIO8Driver.c **** 
+  38:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  39:DIGIO8Driver.c **** // writeRegisterDIGIO8Card(ctrlAdr, ctrlVal) - 
+  40:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  41:DIGIO8Driver.c **** 
+  42:DIGIO8Driver.c **** void writeRegisterDIGIO8Card(uint8 slaveAdr, uint8 ctrlAdr, uint8 ctrlVal)
+  43:DIGIO8Driver.c **** {
+  93              		.loc 1 43 0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 8
+  96              		@ frame_needed = 1, uses_anonymous_args = 0
+  97 0000 80B5     		push	{r7, lr}
+  98              		.cfi_def_cfa_offset 8
+  99              		.cfi_offset 7, -8
+ 100              		.cfi_offset 14, -4
+ 101 0002 82B0     		sub	sp, sp, #8
+ 102              		.cfi_def_cfa_offset 16
+ 103 0004 00AF     		add	r7, sp, #0
+ 104              		.cfi_def_cfa_register 7
+ 105 0006 0346     		mov	r3, r0
+ 106 0008 FB71     		strb	r3, [r7, #7]
+ 107 000a 0B46     		mov	r3, r1
+ 108 000c BB71     		strb	r3, [r7, #6]
+ 109 000e 1346     		mov	r3, r2
+ 110 0010 7B71     		strb	r3, [r7, #5]
+  44:DIGIO8Driver.c ****     I2C1_MasterClearStatus();
+ 111              		.loc 1 44 0
+ 112 0012 FFF7FEFF 		bl	I2C1_MasterClearStatus
+  45:DIGIO8Driver.c ****     myWrBuffer[0] = ctrlAdr;
+ 113              		.loc 1 45 0
+ 114 0016 0D4A     		ldr	r2, .L5
+ 115 0018 BB79     		ldrb	r3, [r7, #6]
+ 116 001a 1370     		strb	r3, [r2]
+  46:DIGIO8Driver.c ****     myWrBuffer[1] = ctrlVal;
+ 117              		.loc 1 46 0
+ 118 001c 0B4A     		ldr	r2, .L5
+ 119 001e 7B79     		ldrb	r3, [r7, #5]
+ 120 0020 5370     		strb	r3, [r2, #1]
+  47:DIGIO8Driver.c ****     I2C1_MasterWriteBuf(slaveAdr, myWrBuffer, 2, I2C1_MODE_COMPLETE_XFER);
+ 121              		.loc 1 47 0
+ 122 0022 F879     		ldrb	r0, [r7, #7]	@ zero_extendqisi2
+ 123 0024 0023     		movs	r3, #0
+ 124 0026 0222     		movs	r2, #2
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 4
+
+
+ 125 0028 0849     		ldr	r1, .L5
+ 126 002a FFF7FEFF 		bl	I2C1_MasterWriteBuf
+  48:DIGIO8Driver.c ****     while (0u == (I2C1_MasterStatus() & I2C1_MSTAT_WR_CMPLT));
+ 127              		.loc 1 48 0
+ 128 002e 00BF     		nop
+ 129              	.L4:
+ 130              		.loc 1 48 0 is_stmt 0 discriminator 1
+ 131 0030 FFF7FEFF 		bl	I2C1_MasterStatus
+ 132 0034 0346     		mov	r3, r0
+ 133 0036 03F00203 		and	r3, r3, #2
+ 134 003a 002B     		cmp	r3, #0
+ 135 003c F8D0     		beq	.L4
+  49:DIGIO8Driver.c ****     I2C1_MasterClearStatus();
+ 136              		.loc 1 49 0 is_stmt 1
+ 137 003e FFF7FEFF 		bl	I2C1_MasterClearStatus
+  50:DIGIO8Driver.c **** }
+ 138              		.loc 1 50 0
+ 139 0042 00BF     		nop
+ 140 0044 0837     		adds	r7, r7, #8
+ 141              		.cfi_def_cfa_offset 8
+ 142 0046 BD46     		mov	sp, r7
+ 143              		.cfi_def_cfa_register 13
+ 144              		@ sp needed
+ 145 0048 80BD     		pop	{r7, pc}
+ 146              	.L6:
+ 147 004a 00BF     		.align	2
+ 148              	.L5:
+ 149 004c 00000000 		.word	myWrBuffer
+ 150              		.cfi_endproc
+ 151              	.LFE64:
+ 152              		.size	writeRegisterDIGIO8Card, .-writeRegisterDIGIO8Card
+ 153              		.section	.text.writeDIGIO8Card,"ax",%progbits
+ 154              		.align	2
+ 155              		.global	writeDIGIO8Card
+ 156              		.thumb
+ 157              		.thumb_func
+ 158              		.type	writeDIGIO8Card, %function
+ 159              	writeDIGIO8Card:
+ 160              	.LFB65:
+  51:DIGIO8Driver.c **** 
+  52:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  53:DIGIO8Driver.c **** // writeDIGIO8Card(uint8_t outData) - 
+  54:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  55:DIGIO8Driver.c **** 
+  56:DIGIO8Driver.c **** void writeDIGIO8Card(uint8 slaveAdr, uint8 outData)
+  57:DIGIO8Driver.c **** {
+ 161              		.loc 1 57 0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 8
+ 164              		@ frame_needed = 1, uses_anonymous_args = 0
+ 165 0000 80B5     		push	{r7, lr}
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 7, -8
+ 168              		.cfi_offset 14, -4
+ 169 0002 82B0     		sub	sp, sp, #8
+ 170              		.cfi_def_cfa_offset 16
+ 171 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 5
+
+
+ 172              		.cfi_def_cfa_register 7
+ 173 0006 0346     		mov	r3, r0
+ 174 0008 0A46     		mov	r2, r1
+ 175 000a FB71     		strb	r3, [r7, #7]
+ 176 000c 1346     		mov	r3, r2
+ 177 000e BB71     		strb	r3, [r7, #6]
+  58:DIGIO8Driver.c ****      writeRegisterDIGIO8Card(slaveAdr,MCP23008_OLAT_REGADR,outData);
+ 178              		.loc 1 58 0
+ 179 0010 BA79     		ldrb	r2, [r7, #6]	@ zero_extendqisi2
+ 180 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 181 0014 0A21     		movs	r1, #10
+ 182 0016 1846     		mov	r0, r3
+ 183 0018 FFF7FEFF 		bl	writeRegisterDIGIO8Card
+  59:DIGIO8Driver.c **** }
+ 184              		.loc 1 59 0
+ 185 001c 00BF     		nop
+ 186 001e 0837     		adds	r7, r7, #8
+ 187              		.cfi_def_cfa_offset 8
+ 188 0020 BD46     		mov	sp, r7
+ 189              		.cfi_def_cfa_register 13
+ 190              		@ sp needed
+ 191 0022 80BD     		pop	{r7, pc}
+ 192              		.cfi_endproc
+ 193              	.LFE65:
+ 194              		.size	writeDIGIO8Card, .-writeDIGIO8Card
+ 195              		.section	.text.readDIGIO8Card,"ax",%progbits
+ 196              		.align	2
+ 197              		.global	readDIGIO8Card
+ 198              		.thumb
+ 199              		.thumb_func
+ 200              		.type	readDIGIO8Card, %function
+ 201              	readDIGIO8Card:
+ 202              	.LFB66:
+  60:DIGIO8Driver.c **** 
+  61:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  62:DIGIO8Driver.c **** // readDIGIO8Card(void)
+  63:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  64:DIGIO8Driver.c **** 
+  65:DIGIO8Driver.c **** uint8 readDIGIO8Card(uint8 slaveAdr)
+  66:DIGIO8Driver.c **** {
+ 203              		.loc 1 66 0
+ 204              		.cfi_startproc
+ 205              		@ args = 0, pretend = 0, frame = 16
+ 206              		@ frame_needed = 1, uses_anonymous_args = 0
+ 207 0000 80B5     		push	{r7, lr}
+ 208              		.cfi_def_cfa_offset 8
+ 209              		.cfi_offset 7, -8
+ 210              		.cfi_offset 14, -4
+ 211 0002 84B0     		sub	sp, sp, #16
+ 212              		.cfi_def_cfa_offset 24
+ 213 0004 00AF     		add	r7, sp, #0
+ 214              		.cfi_def_cfa_register 7
+ 215 0006 0346     		mov	r3, r0
+ 216 0008 FB71     		strb	r3, [r7, #7]
+  67:DIGIO8Driver.c ****     uint8 rdBuff;
+  68:DIGIO8Driver.c ****     rdBuff = readRegisterDIGIO8Card(slaveAdr,MCP23008_GPIO_REGADR);
+ 217              		.loc 1 68 0
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 6
+
+
+ 218 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 219 000c 0921     		movs	r1, #9
+ 220 000e 1846     		mov	r0, r3
+ 221 0010 FFF7FEFF 		bl	readRegisterDIGIO8Card
+ 222 0014 0346     		mov	r3, r0
+ 223 0016 FB73     		strb	r3, [r7, #15]
+  69:DIGIO8Driver.c ****     return rdBuff>>4;
+ 224              		.loc 1 69 0
+ 225 0018 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 226 001a 1B09     		lsrs	r3, r3, #4
+ 227 001c DBB2     		uxtb	r3, r3
+  70:DIGIO8Driver.c **** }
+ 228              		.loc 1 70 0
+ 229 001e 1846     		mov	r0, r3
+ 230 0020 1037     		adds	r7, r7, #16
+ 231              		.cfi_def_cfa_offset 8
+ 232 0022 BD46     		mov	sp, r7
+ 233              		.cfi_def_cfa_register 13
+ 234              		@ sp needed
+ 235 0024 80BD     		pop	{r7, pc}
+ 236              		.cfi_endproc
+ 237              	.LFE66:
+ 238              		.size	readDIGIO8Card, .-readDIGIO8Card
+ 239 0026 00BF     		.section	.text.initDIGIO8Card,"ax",%progbits
+ 240              		.align	2
+ 241              		.global	initDIGIO8Card
+ 242              		.thumb
+ 243              		.thumb_func
+ 244              		.type	initDIGIO8Card, %function
+ 245              	initDIGIO8Card:
+ 246              	.LFB67:
+  71:DIGIO8Driver.c **** 
+  72:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  73:DIGIO8Driver.c **** // initDIGIO8Card(void) - 
+  74:DIGIO8Driver.c **** //////////////////////////////////////////////////////////////////////////////
+  75:DIGIO8Driver.c **** 
+  76:DIGIO8Driver.c **** void initDIGIO8Card(uint8 slaveAdr)
+  77:DIGIO8Driver.c **** {
+ 247              		.loc 1 77 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 8
+ 250              		@ frame_needed = 1, uses_anonymous_args = 0
+ 251 0000 80B5     		push	{r7, lr}
+ 252              		.cfi_def_cfa_offset 8
+ 253              		.cfi_offset 7, -8
+ 254              		.cfi_offset 14, -4
+ 255 0002 82B0     		sub	sp, sp, #8
+ 256              		.cfi_def_cfa_offset 16
+ 257 0004 00AF     		add	r7, sp, #0
+ 258              		.cfi_def_cfa_register 7
+ 259 0006 0346     		mov	r3, r0
+ 260 0008 FB71     		strb	r3, [r7, #7]
+  78:DIGIO8Driver.c **** //    I2C1_Start();    // Kick off the I2C interface
+  79:DIGIO8Driver.c ****     writeRegisterDIGIO8Card(slaveAdr,MCP23008_IOCON_REGADR,MCP23008_IOCON_DEFVAL);
+ 261              		.loc 1 79 0
+ 262 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 263 000c 0022     		movs	r2, #0
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 7
+
+
+ 264 000e 0521     		movs	r1, #5
+ 265 0010 1846     		mov	r0, r3
+ 266 0012 FFF7FEFF 		bl	writeRegisterDIGIO8Card
+  80:DIGIO8Driver.c ****     writeRegisterDIGIO8Card(slaveAdr,MCP23008_IODIR_REGADR,MCP23008_IODIR_DEFVAL);
+ 267              		.loc 1 80 0
+ 268 0016 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 269 0018 F022     		movs	r2, #240
+ 270 001a 0021     		movs	r1, #0
+ 271 001c 1846     		mov	r0, r3
+ 272 001e FFF7FEFF 		bl	writeRegisterDIGIO8Card
+  81:DIGIO8Driver.c ****     writeRegisterDIGIO8Card(slaveAdr,MCP23008_GPINTEN_REGADR,MCP23008_GPINTEN_DEFVAL);
+ 273              		.loc 1 81 0
+ 274 0022 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 275 0024 0022     		movs	r2, #0
+ 276 0026 0221     		movs	r1, #2
+ 277 0028 1846     		mov	r0, r3
+ 278 002a FFF7FEFF 		bl	writeRegisterDIGIO8Card
+  82:DIGIO8Driver.c ****     writeRegisterDIGIO8Card(slaveAdr,MCP23008_INTCON_REGADR,MCP23008_INTCON_DEFVAL);
+ 279              		.loc 1 82 0
+ 280 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 281 0030 0022     		movs	r2, #0
+ 282 0032 0421     		movs	r1, #4
+ 283 0034 1846     		mov	r0, r3
+ 284 0036 FFF7FEFF 		bl	writeRegisterDIGIO8Card
+  83:DIGIO8Driver.c ****     writeRegisterDIGIO8Card(slaveAdr,MCP23008_GPPU_REGADR,MCP23008_GPPU_DEFVAL);
+ 285              		.loc 1 83 0
+ 286 003a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 287 003c F022     		movs	r2, #240
+ 288 003e 0621     		movs	r1, #6
+ 289 0040 1846     		mov	r0, r3
+ 290 0042 FFF7FEFF 		bl	writeRegisterDIGIO8Card
+  84:DIGIO8Driver.c ****     readRegisterDIGIO8Card(slaveAdr,MCP23008_INTCAP_REGADR); // Clear interrupt LED
+ 291              		.loc 1 84 0
+ 292 0046 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 293 0048 0821     		movs	r1, #8
+ 294 004a 1846     		mov	r0, r3
+ 295 004c FFF7FEFF 		bl	readRegisterDIGIO8Card
+  85:DIGIO8Driver.c **** }
+ 296              		.loc 1 85 0
+ 297 0050 00BF     		nop
+ 298 0052 0837     		adds	r7, r7, #8
+ 299              		.cfi_def_cfa_offset 8
+ 300 0054 BD46     		mov	sp, r7
+ 301              		.cfi_def_cfa_register 13
+ 302              		@ sp needed
+ 303 0056 80BD     		pop	{r7, pc}
+ 304              		.cfi_endproc
+ 305              	.LFE67:
+ 306              		.size	initDIGIO8Card, .-initDIGIO8Card
+ 307              		.text
+ 308              	.Letext0:
+ 309              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 310              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 311              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 312              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 313              		.section	.debug_info,"",%progbits
+ 314              	.Ldebug_info0:
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 8
+
+
+ 315 0000 EF010000 		.4byte	0x1ef
+ 316 0004 0400     		.2byte	0x4
+ 317 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 318 000a 04       		.byte	0x4
+ 319 000b 01       		.uleb128 0x1
+ 320 000c 0F000000 		.4byte	.LASF29
+ 321 0010 0C       		.byte	0xc
+ 322 0011 D2010000 		.4byte	.LASF30
+ 323 0015 46010000 		.4byte	.LASF31
+ 324 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 325 001d 00000000 		.4byte	0
+ 326 0021 00000000 		.4byte	.Ldebug_line0
+ 327 0025 02       		.uleb128 0x2
+ 328 0026 01       		.byte	0x1
+ 329 0027 06       		.byte	0x6
+ 330 0028 31020000 		.4byte	.LASF0
+ 331 002c 02       		.uleb128 0x2
+ 332 002d 01       		.byte	0x1
+ 333 002e 08       		.byte	0x8
+ 334 002f EA000000 		.4byte	.LASF1
+ 335 0033 02       		.uleb128 0x2
+ 336 0034 02       		.byte	0x2
+ 337 0035 05       		.byte	0x5
+ 338 0036 05020000 		.4byte	.LASF2
+ 339 003a 02       		.uleb128 0x2
+ 340 003b 02       		.byte	0x2
+ 341 003c 07       		.byte	0x7
+ 342 003d 0A010000 		.4byte	.LASF3
+ 343 0041 03       		.uleb128 0x3
+ 344 0042 B4000000 		.4byte	.LASF9
+ 345 0046 02       		.byte	0x2
+ 346 0047 3F       		.byte	0x3f
+ 347 0048 4C000000 		.4byte	0x4c
+ 348 004c 02       		.uleb128 0x2
+ 349 004d 04       		.byte	0x4
+ 350 004e 05       		.byte	0x5
+ 351 004f 1C020000 		.4byte	.LASF4
+ 352 0053 02       		.uleb128 0x2
+ 353 0054 04       		.byte	0x4
+ 354 0055 07       		.byte	0x7
+ 355 0056 F8000000 		.4byte	.LASF5
+ 356 005a 02       		.uleb128 0x2
+ 357 005b 08       		.byte	0x8
+ 358 005c 05       		.byte	0x5
+ 359 005d F2010000 		.4byte	.LASF6
+ 360 0061 02       		.uleb128 0x2
+ 361 0062 08       		.byte	0x8
+ 362 0063 07       		.byte	0x7
+ 363 0064 BB010000 		.4byte	.LASF7
+ 364 0068 04       		.uleb128 0x4
+ 365 0069 04       		.byte	0x4
+ 366 006a 05       		.byte	0x5
+ 367 006b 696E7400 		.ascii	"int\000"
+ 368 006f 02       		.uleb128 0x2
+ 369 0070 04       		.byte	0x4
+ 370 0071 07       		.byte	0x7
+ 371 0072 AE010000 		.4byte	.LASF8
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 9
+
+
+ 372 0076 03       		.uleb128 0x3
+ 373 0077 E1010000 		.4byte	.LASF10
+ 374 007b 03       		.byte	0x3
+ 375 007c 2C       		.byte	0x2c
+ 376 007d 41000000 		.4byte	0x41
+ 377 0081 05       		.uleb128 0x5
+ 378 0082 0F020000 		.4byte	.LASF11
+ 379 0086 04       		.byte	0x4
+ 380 0087 E401     		.2byte	0x1e4
+ 381 0089 2C000000 		.4byte	0x2c
+ 382 008d 02       		.uleb128 0x2
+ 383 008e 04       		.byte	0x4
+ 384 008f 04       		.byte	0x4
+ 385 0090 E4000000 		.4byte	.LASF12
+ 386 0094 02       		.uleb128 0x2
+ 387 0095 08       		.byte	0x8
+ 388 0096 04       		.byte	0x4
+ 389 0097 C6000000 		.4byte	.LASF13
+ 390 009b 02       		.uleb128 0x2
+ 391 009c 01       		.byte	0x1
+ 392 009d 08       		.byte	0x8
+ 393 009e 00020000 		.4byte	.LASF14
+ 394 00a2 02       		.uleb128 0x2
+ 395 00a3 08       		.byte	0x8
+ 396 00a4 04       		.byte	0x4
+ 397 00a5 25020000 		.4byte	.LASF15
+ 398 00a9 02       		.uleb128 0x2
+ 399 00aa 04       		.byte	0x4
+ 400 00ab 07       		.byte	0x7
+ 401 00ac E9010000 		.4byte	.LASF16
+ 402 00b0 06       		.uleb128 0x6
+ 403 00b1 CD000000 		.4byte	.LASF23
+ 404 00b5 01       		.byte	0x1
+ 405 00b6 16       		.byte	0x16
+ 406 00b7 81000000 		.4byte	0x81
+ 407 00bb 00000000 		.4byte	.LFB63
+ 408 00bf 4E000000 		.4byte	.LFE63-.LFB63
+ 409 00c3 01       		.uleb128 0x1
+ 410 00c4 9C       		.byte	0x9c
+ 411 00c5 F4000000 		.4byte	0xf4
+ 412 00c9 07       		.uleb128 0x7
+ 413 00ca 3D010000 		.4byte	.LASF17
+ 414 00ce 01       		.byte	0x1
+ 415 00cf 16       		.byte	0x16
+ 416 00d0 81000000 		.4byte	0x81
+ 417 00d4 02       		.uleb128 0x2
+ 418 00d5 91       		.byte	0x91
+ 419 00d6 6F       		.sleb128 -17
+ 420 00d7 07       		.uleb128 0x7
+ 421 00d8 35010000 		.4byte	.LASF18
+ 422 00dc 01       		.byte	0x1
+ 423 00dd 16       		.byte	0x16
+ 424 00de 81000000 		.4byte	0x81
+ 425 00e2 02       		.uleb128 0x2
+ 426 00e3 91       		.byte	0x91
+ 427 00e4 6E       		.sleb128 -18
+ 428 00e5 08       		.uleb128 0x8
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 10
+
+
+ 429 00e6 15020000 		.4byte	.LASF25
+ 430 00ea 01       		.byte	0x1
+ 431 00eb 18       		.byte	0x18
+ 432 00ec 81000000 		.4byte	0x81
+ 433 00f0 02       		.uleb128 0x2
+ 434 00f1 91       		.byte	0x91
+ 435 00f2 77       		.sleb128 -9
+ 436 00f3 00       		.byte	0
+ 437 00f4 09       		.uleb128 0x9
+ 438 00f5 4D020000 		.4byte	.LASF20
+ 439 00f9 01       		.byte	0x1
+ 440 00fa 2A       		.byte	0x2a
+ 441 00fb 00000000 		.4byte	.LFB64
+ 442 00ff 50000000 		.4byte	.LFE64-.LFB64
+ 443 0103 01       		.uleb128 0x1
+ 444 0104 9C       		.byte	0x9c
+ 445 0105 34010000 		.4byte	0x134
+ 446 0109 07       		.uleb128 0x7
+ 447 010a 3D010000 		.4byte	.LASF17
+ 448 010e 01       		.byte	0x1
+ 449 010f 2A       		.byte	0x2a
+ 450 0110 81000000 		.4byte	0x81
+ 451 0114 02       		.uleb128 0x2
+ 452 0115 91       		.byte	0x91
+ 453 0116 77       		.sleb128 -9
+ 454 0117 07       		.uleb128 0x7
+ 455 0118 35010000 		.4byte	.LASF18
+ 456 011c 01       		.byte	0x1
+ 457 011d 2A       		.byte	0x2a
+ 458 011e 81000000 		.4byte	0x81
+ 459 0122 02       		.uleb128 0x2
+ 460 0123 91       		.byte	0x91
+ 461 0124 76       		.sleb128 -10
+ 462 0125 07       		.uleb128 0x7
+ 463 0126 AC000000 		.4byte	.LASF19
+ 464 012a 01       		.byte	0x1
+ 465 012b 2A       		.byte	0x2a
+ 466 012c 81000000 		.4byte	0x81
+ 467 0130 02       		.uleb128 0x2
+ 468 0131 91       		.byte	0x91
+ 469 0132 75       		.sleb128 -11
+ 470 0133 00       		.byte	0
+ 471 0134 09       		.uleb128 0x9
+ 472 0135 3D020000 		.4byte	.LASF21
+ 473 0139 01       		.byte	0x1
+ 474 013a 38       		.byte	0x38
+ 475 013b 00000000 		.4byte	.LFB65
+ 476 013f 24000000 		.4byte	.LFE65-.LFB65
+ 477 0143 01       		.uleb128 0x1
+ 478 0144 9C       		.byte	0x9c
+ 479 0145 66010000 		.4byte	0x166
+ 480 0149 07       		.uleb128 0x7
+ 481 014a 3D010000 		.4byte	.LASF17
+ 482 014e 01       		.byte	0x1
+ 483 014f 38       		.byte	0x38
+ 484 0150 81000000 		.4byte	0x81
+ 485 0154 02       		.uleb128 0x2
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 11
+
+
+ 486 0155 91       		.byte	0x91
+ 487 0156 77       		.sleb128 -9
+ 488 0157 07       		.uleb128 0x7
+ 489 0158 BE000000 		.4byte	.LASF22
+ 490 015c 01       		.byte	0x1
+ 491 015d 38       		.byte	0x38
+ 492 015e 81000000 		.4byte	0x81
+ 493 0162 02       		.uleb128 0x2
+ 494 0163 91       		.byte	0x91
+ 495 0164 76       		.sleb128 -10
+ 496 0165 00       		.byte	0
+ 497 0166 06       		.uleb128 0x6
+ 498 0167 9D000000 		.4byte	.LASF24
+ 499 016b 01       		.byte	0x1
+ 500 016c 41       		.byte	0x41
+ 501 016d 81000000 		.4byte	0x81
+ 502 0171 00000000 		.4byte	.LFB66
+ 503 0175 26000000 		.4byte	.LFE66-.LFB66
+ 504 0179 01       		.uleb128 0x1
+ 505 017a 9C       		.byte	0x9c
+ 506 017b 9C010000 		.4byte	0x19c
+ 507 017f 07       		.uleb128 0x7
+ 508 0180 3D010000 		.4byte	.LASF17
+ 509 0184 01       		.byte	0x1
+ 510 0185 41       		.byte	0x41
+ 511 0186 81000000 		.4byte	0x81
+ 512 018a 02       		.uleb128 0x2
+ 513 018b 91       		.byte	0x91
+ 514 018c 6F       		.sleb128 -17
+ 515 018d 08       		.uleb128 0x8
+ 516 018e 15020000 		.4byte	.LASF25
+ 517 0192 01       		.byte	0x1
+ 518 0193 43       		.byte	0x43
+ 519 0194 81000000 		.4byte	0x81
+ 520 0198 02       		.uleb128 0x2
+ 521 0199 91       		.byte	0x91
+ 522 019a 77       		.sleb128 -9
+ 523 019b 00       		.byte	0
+ 524 019c 09       		.uleb128 0x9
+ 525 019d 00000000 		.4byte	.LASF26
+ 526 01a1 01       		.byte	0x1
+ 527 01a2 4C       		.byte	0x4c
+ 528 01a3 00000000 		.4byte	.LFB67
+ 529 01a7 58000000 		.4byte	.LFE67-.LFB67
+ 530 01ab 01       		.uleb128 0x1
+ 531 01ac 9C       		.byte	0x9c
+ 532 01ad C0010000 		.4byte	0x1c0
+ 533 01b1 07       		.uleb128 0x7
+ 534 01b2 3D010000 		.4byte	.LASF17
+ 535 01b6 01       		.byte	0x1
+ 536 01b7 4C       		.byte	0x4c
+ 537 01b8 81000000 		.4byte	0x81
+ 538 01bc 02       		.uleb128 0x2
+ 539 01bd 91       		.byte	0x91
+ 540 01be 77       		.sleb128 -9
+ 541 01bf 00       		.byte	0
+ 542 01c0 0A       		.uleb128 0xa
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 12
+
+
+ 543 01c1 28010000 		.4byte	.LASF27
+ 544 01c5 05       		.byte	0x5
+ 545 01c6 1207     		.2byte	0x712
+ 546 01c8 CC010000 		.4byte	0x1cc
+ 547 01cc 0B       		.uleb128 0xb
+ 548 01cd 76000000 		.4byte	0x76
+ 549 01d1 0C       		.uleb128 0xc
+ 550 01d2 81000000 		.4byte	0x81
+ 551 01d6 E1010000 		.4byte	0x1e1
+ 552 01da 0D       		.uleb128 0xd
+ 553 01db A9000000 		.4byte	0xa9
+ 554 01df 01       		.byte	0x1
+ 555 01e0 00       		.byte	0
+ 556 01e1 0E       		.uleb128 0xe
+ 557 01e2 1D010000 		.4byte	.LASF28
+ 558 01e6 01       		.byte	0x1
+ 559 01e7 10       		.byte	0x10
+ 560 01e8 D1010000 		.4byte	0x1d1
+ 561 01ec 05       		.uleb128 0x5
+ 562 01ed 03       		.byte	0x3
+ 563 01ee 00000000 		.4byte	myWrBuffer
+ 564 01f2 00       		.byte	0
+ 565              		.section	.debug_abbrev,"",%progbits
+ 566              	.Ldebug_abbrev0:
+ 567 0000 01       		.uleb128 0x1
+ 568 0001 11       		.uleb128 0x11
+ 569 0002 01       		.byte	0x1
+ 570 0003 25       		.uleb128 0x25
+ 571 0004 0E       		.uleb128 0xe
+ 572 0005 13       		.uleb128 0x13
+ 573 0006 0B       		.uleb128 0xb
+ 574 0007 03       		.uleb128 0x3
+ 575 0008 0E       		.uleb128 0xe
+ 576 0009 1B       		.uleb128 0x1b
+ 577 000a 0E       		.uleb128 0xe
+ 578 000b 55       		.uleb128 0x55
+ 579 000c 17       		.uleb128 0x17
+ 580 000d 11       		.uleb128 0x11
+ 581 000e 01       		.uleb128 0x1
+ 582 000f 10       		.uleb128 0x10
+ 583 0010 17       		.uleb128 0x17
+ 584 0011 00       		.byte	0
+ 585 0012 00       		.byte	0
+ 586 0013 02       		.uleb128 0x2
+ 587 0014 24       		.uleb128 0x24
+ 588 0015 00       		.byte	0
+ 589 0016 0B       		.uleb128 0xb
+ 590 0017 0B       		.uleb128 0xb
+ 591 0018 3E       		.uleb128 0x3e
+ 592 0019 0B       		.uleb128 0xb
+ 593 001a 03       		.uleb128 0x3
+ 594 001b 0E       		.uleb128 0xe
+ 595 001c 00       		.byte	0
+ 596 001d 00       		.byte	0
+ 597 001e 03       		.uleb128 0x3
+ 598 001f 16       		.uleb128 0x16
+ 599 0020 00       		.byte	0
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 13
+
+
+ 600 0021 03       		.uleb128 0x3
+ 601 0022 0E       		.uleb128 0xe
+ 602 0023 3A       		.uleb128 0x3a
+ 603 0024 0B       		.uleb128 0xb
+ 604 0025 3B       		.uleb128 0x3b
+ 605 0026 0B       		.uleb128 0xb
+ 606 0027 49       		.uleb128 0x49
+ 607 0028 13       		.uleb128 0x13
+ 608 0029 00       		.byte	0
+ 609 002a 00       		.byte	0
+ 610 002b 04       		.uleb128 0x4
+ 611 002c 24       		.uleb128 0x24
+ 612 002d 00       		.byte	0
+ 613 002e 0B       		.uleb128 0xb
+ 614 002f 0B       		.uleb128 0xb
+ 615 0030 3E       		.uleb128 0x3e
+ 616 0031 0B       		.uleb128 0xb
+ 617 0032 03       		.uleb128 0x3
+ 618 0033 08       		.uleb128 0x8
+ 619 0034 00       		.byte	0
+ 620 0035 00       		.byte	0
+ 621 0036 05       		.uleb128 0x5
+ 622 0037 16       		.uleb128 0x16
+ 623 0038 00       		.byte	0
+ 624 0039 03       		.uleb128 0x3
+ 625 003a 0E       		.uleb128 0xe
+ 626 003b 3A       		.uleb128 0x3a
+ 627 003c 0B       		.uleb128 0xb
+ 628 003d 3B       		.uleb128 0x3b
+ 629 003e 05       		.uleb128 0x5
+ 630 003f 49       		.uleb128 0x49
+ 631 0040 13       		.uleb128 0x13
+ 632 0041 00       		.byte	0
+ 633 0042 00       		.byte	0
+ 634 0043 06       		.uleb128 0x6
+ 635 0044 2E       		.uleb128 0x2e
+ 636 0045 01       		.byte	0x1
+ 637 0046 3F       		.uleb128 0x3f
+ 638 0047 19       		.uleb128 0x19
+ 639 0048 03       		.uleb128 0x3
+ 640 0049 0E       		.uleb128 0xe
+ 641 004a 3A       		.uleb128 0x3a
+ 642 004b 0B       		.uleb128 0xb
+ 643 004c 3B       		.uleb128 0x3b
+ 644 004d 0B       		.uleb128 0xb
+ 645 004e 27       		.uleb128 0x27
+ 646 004f 19       		.uleb128 0x19
+ 647 0050 49       		.uleb128 0x49
+ 648 0051 13       		.uleb128 0x13
+ 649 0052 11       		.uleb128 0x11
+ 650 0053 01       		.uleb128 0x1
+ 651 0054 12       		.uleb128 0x12
+ 652 0055 06       		.uleb128 0x6
+ 653 0056 40       		.uleb128 0x40
+ 654 0057 18       		.uleb128 0x18
+ 655 0058 9642     		.uleb128 0x2116
+ 656 005a 19       		.uleb128 0x19
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 14
+
+
+ 657 005b 01       		.uleb128 0x1
+ 658 005c 13       		.uleb128 0x13
+ 659 005d 00       		.byte	0
+ 660 005e 00       		.byte	0
+ 661 005f 07       		.uleb128 0x7
+ 662 0060 05       		.uleb128 0x5
+ 663 0061 00       		.byte	0
+ 664 0062 03       		.uleb128 0x3
+ 665 0063 0E       		.uleb128 0xe
+ 666 0064 3A       		.uleb128 0x3a
+ 667 0065 0B       		.uleb128 0xb
+ 668 0066 3B       		.uleb128 0x3b
+ 669 0067 0B       		.uleb128 0xb
+ 670 0068 49       		.uleb128 0x49
+ 671 0069 13       		.uleb128 0x13
+ 672 006a 02       		.uleb128 0x2
+ 673 006b 18       		.uleb128 0x18
+ 674 006c 00       		.byte	0
+ 675 006d 00       		.byte	0
+ 676 006e 08       		.uleb128 0x8
+ 677 006f 34       		.uleb128 0x34
+ 678 0070 00       		.byte	0
+ 679 0071 03       		.uleb128 0x3
+ 680 0072 0E       		.uleb128 0xe
+ 681 0073 3A       		.uleb128 0x3a
+ 682 0074 0B       		.uleb128 0xb
+ 683 0075 3B       		.uleb128 0x3b
+ 684 0076 0B       		.uleb128 0xb
+ 685 0077 49       		.uleb128 0x49
+ 686 0078 13       		.uleb128 0x13
+ 687 0079 02       		.uleb128 0x2
+ 688 007a 18       		.uleb128 0x18
+ 689 007b 00       		.byte	0
+ 690 007c 00       		.byte	0
+ 691 007d 09       		.uleb128 0x9
+ 692 007e 2E       		.uleb128 0x2e
+ 693 007f 01       		.byte	0x1
+ 694 0080 3F       		.uleb128 0x3f
+ 695 0081 19       		.uleb128 0x19
+ 696 0082 03       		.uleb128 0x3
+ 697 0083 0E       		.uleb128 0xe
+ 698 0084 3A       		.uleb128 0x3a
+ 699 0085 0B       		.uleb128 0xb
+ 700 0086 3B       		.uleb128 0x3b
+ 701 0087 0B       		.uleb128 0xb
+ 702 0088 27       		.uleb128 0x27
+ 703 0089 19       		.uleb128 0x19
+ 704 008a 11       		.uleb128 0x11
+ 705 008b 01       		.uleb128 0x1
+ 706 008c 12       		.uleb128 0x12
+ 707 008d 06       		.uleb128 0x6
+ 708 008e 40       		.uleb128 0x40
+ 709 008f 18       		.uleb128 0x18
+ 710 0090 9642     		.uleb128 0x2116
+ 711 0092 19       		.uleb128 0x19
+ 712 0093 01       		.uleb128 0x1
+ 713 0094 13       		.uleb128 0x13
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 15
+
+
+ 714 0095 00       		.byte	0
+ 715 0096 00       		.byte	0
+ 716 0097 0A       		.uleb128 0xa
+ 717 0098 34       		.uleb128 0x34
+ 718 0099 00       		.byte	0
+ 719 009a 03       		.uleb128 0x3
+ 720 009b 0E       		.uleb128 0xe
+ 721 009c 3A       		.uleb128 0x3a
+ 722 009d 0B       		.uleb128 0xb
+ 723 009e 3B       		.uleb128 0x3b
+ 724 009f 05       		.uleb128 0x5
+ 725 00a0 49       		.uleb128 0x49
+ 726 00a1 13       		.uleb128 0x13
+ 727 00a2 3F       		.uleb128 0x3f
+ 728 00a3 19       		.uleb128 0x19
+ 729 00a4 3C       		.uleb128 0x3c
+ 730 00a5 19       		.uleb128 0x19
+ 731 00a6 00       		.byte	0
+ 732 00a7 00       		.byte	0
+ 733 00a8 0B       		.uleb128 0xb
+ 734 00a9 35       		.uleb128 0x35
+ 735 00aa 00       		.byte	0
+ 736 00ab 49       		.uleb128 0x49
+ 737 00ac 13       		.uleb128 0x13
+ 738 00ad 00       		.byte	0
+ 739 00ae 00       		.byte	0
+ 740 00af 0C       		.uleb128 0xc
+ 741 00b0 01       		.uleb128 0x1
+ 742 00b1 01       		.byte	0x1
+ 743 00b2 49       		.uleb128 0x49
+ 744 00b3 13       		.uleb128 0x13
+ 745 00b4 01       		.uleb128 0x1
+ 746 00b5 13       		.uleb128 0x13
+ 747 00b6 00       		.byte	0
+ 748 00b7 00       		.byte	0
+ 749 00b8 0D       		.uleb128 0xd
+ 750 00b9 21       		.uleb128 0x21
+ 751 00ba 00       		.byte	0
+ 752 00bb 49       		.uleb128 0x49
+ 753 00bc 13       		.uleb128 0x13
+ 754 00bd 2F       		.uleb128 0x2f
+ 755 00be 0B       		.uleb128 0xb
+ 756 00bf 00       		.byte	0
+ 757 00c0 00       		.byte	0
+ 758 00c1 0E       		.uleb128 0xe
+ 759 00c2 34       		.uleb128 0x34
+ 760 00c3 00       		.byte	0
+ 761 00c4 03       		.uleb128 0x3
+ 762 00c5 0E       		.uleb128 0xe
+ 763 00c6 3A       		.uleb128 0x3a
+ 764 00c7 0B       		.uleb128 0xb
+ 765 00c8 3B       		.uleb128 0x3b
+ 766 00c9 0B       		.uleb128 0xb
+ 767 00ca 49       		.uleb128 0x49
+ 768 00cb 13       		.uleb128 0x13
+ 769 00cc 3F       		.uleb128 0x3f
+ 770 00cd 19       		.uleb128 0x19
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 16
+
+
+ 771 00ce 02       		.uleb128 0x2
+ 772 00cf 18       		.uleb128 0x18
+ 773 00d0 00       		.byte	0
+ 774 00d1 00       		.byte	0
+ 775 00d2 00       		.byte	0
+ 776              		.section	.debug_aranges,"",%progbits
+ 777 0000 3C000000 		.4byte	0x3c
+ 778 0004 0200     		.2byte	0x2
+ 779 0006 00000000 		.4byte	.Ldebug_info0
+ 780 000a 04       		.byte	0x4
+ 781 000b 00       		.byte	0
+ 782 000c 0000     		.2byte	0
+ 783 000e 0000     		.2byte	0
+ 784 0010 00000000 		.4byte	.LFB63
+ 785 0014 4E000000 		.4byte	.LFE63-.LFB63
+ 786 0018 00000000 		.4byte	.LFB64
+ 787 001c 50000000 		.4byte	.LFE64-.LFB64
+ 788 0020 00000000 		.4byte	.LFB65
+ 789 0024 24000000 		.4byte	.LFE65-.LFB65
+ 790 0028 00000000 		.4byte	.LFB66
+ 791 002c 26000000 		.4byte	.LFE66-.LFB66
+ 792 0030 00000000 		.4byte	.LFB67
+ 793 0034 58000000 		.4byte	.LFE67-.LFB67
+ 794 0038 00000000 		.4byte	0
+ 795 003c 00000000 		.4byte	0
+ 796              		.section	.debug_ranges,"",%progbits
+ 797              	.Ldebug_ranges0:
+ 798 0000 00000000 		.4byte	.LFB63
+ 799 0004 4E000000 		.4byte	.LFE63
+ 800 0008 00000000 		.4byte	.LFB64
+ 801 000c 50000000 		.4byte	.LFE64
+ 802 0010 00000000 		.4byte	.LFB65
+ 803 0014 24000000 		.4byte	.LFE65
+ 804 0018 00000000 		.4byte	.LFB66
+ 805 001c 26000000 		.4byte	.LFE66
+ 806 0020 00000000 		.4byte	.LFB67
+ 807 0024 58000000 		.4byte	.LFE67
+ 808 0028 00000000 		.4byte	0
+ 809 002c 00000000 		.4byte	0
+ 810              		.section	.debug_line,"",%progbits
+ 811              	.Ldebug_line0:
+ 812 0000 CB010000 		.section	.debug_str,"MS",%progbits,1
+ 812      02005401 
+ 812      00000201 
+ 812      FB0E0D00 
+ 812      01010101 
+ 813              	.LASF26:
+ 814 0000 696E6974 		.ascii	"initDIGIO8Card\000"
+ 814      44494749 
+ 814      4F384361 
+ 814      726400
+ 815              	.LASF29:
+ 816 000f 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 816      43313120 
+ 816      352E342E 
+ 816      31203230 
+ 816      31363036 
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 17
+
+
+ 817 0042 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 817      20726576 
+ 817      6973696F 
+ 817      6E203233 
+ 817      37373135 
+ 818 0075 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 818      66756E63 
+ 818      74696F6E 
+ 818      2D736563 
+ 818      74696F6E 
+ 819              	.LASF24:
+ 820 009d 72656164 		.ascii	"readDIGIO8Card\000"
+ 820      44494749 
+ 820      4F384361 
+ 820      726400
+ 821              	.LASF19:
+ 822 00ac 6374726C 		.ascii	"ctrlVal\000"
+ 822      56616C00 
+ 823              	.LASF9:
+ 824 00b4 5F5F696E 		.ascii	"__int32_t\000"
+ 824      7433325F 
+ 824      7400
+ 825              	.LASF22:
+ 826 00be 6F757444 		.ascii	"outData\000"
+ 826      61746100 
+ 827              	.LASF13:
+ 828 00c6 646F7562 		.ascii	"double\000"
+ 828      6C6500
+ 829              	.LASF23:
+ 830 00cd 72656164 		.ascii	"readRegisterDIGIO8Card\000"
+ 830      52656769 
+ 830      73746572 
+ 830      44494749 
+ 830      4F384361 
+ 831              	.LASF12:
+ 832 00e4 666C6F61 		.ascii	"float\000"
+ 832      7400
+ 833              	.LASF1:
+ 834 00ea 756E7369 		.ascii	"unsigned char\000"
+ 834      676E6564 
+ 834      20636861 
+ 834      7200
+ 835              	.LASF5:
+ 836 00f8 6C6F6E67 		.ascii	"long unsigned int\000"
+ 836      20756E73 
+ 836      69676E65 
+ 836      6420696E 
+ 836      7400
+ 837              	.LASF3:
+ 838 010a 73686F72 		.ascii	"short unsigned int\000"
+ 838      7420756E 
+ 838      7369676E 
+ 838      65642069 
+ 838      6E7400
+ 839              	.LASF28:
+ 840 011d 6D795772 		.ascii	"myWrBuffer\000"
+ 840      42756666 
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 18
+
+
+ 840      657200
+ 841              	.LASF27:
+ 842 0128 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 842      52784275 
+ 842      66666572 
+ 842      00
+ 843              	.LASF18:
+ 844 0135 6374726C 		.ascii	"ctrlAdr\000"
+ 844      41647200 
+ 845              	.LASF17:
+ 846 013d 736C6176 		.ascii	"slaveAdr\000"
+ 846      65416472 
+ 846      00
+ 847              	.LASF31:
+ 848 0146 433A5C55 		.ascii	"C:\\Users\\HPz420\\Documents\\GitHub\\Doug Gillilan"
+ 848      73657273 
+ 848      5C48507A 
+ 848      3432305C 
+ 848      446F6375 
+ 849 0174 645C5250 		.ascii	"d\\RPI_PSOC5\\RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial"
+ 849      495F5053 
+ 849      4F43355C 
+ 849      5250495F 
+ 849      50534F43 
+ 850 01a4 5F30312E 		.ascii	"_01.cydsn\000"
+ 850      63796473 
+ 850      6E00
+ 851              	.LASF8:
+ 852 01ae 756E7369 		.ascii	"unsigned int\000"
+ 852      676E6564 
+ 852      20696E74 
+ 852      00
+ 853              	.LASF7:
+ 854 01bb 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 854      206C6F6E 
+ 854      6720756E 
+ 854      7369676E 
+ 854      65642069 
+ 855              	.LASF30:
+ 856 01d2 44494749 		.ascii	"DIGIO8Driver.c\000"
+ 856      4F384472 
+ 856      69766572 
+ 856      2E6300
+ 857              	.LASF10:
+ 858 01e1 696E7433 		.ascii	"int32_t\000"
+ 858      325F7400 
+ 859              	.LASF16:
+ 860 01e9 73697A65 		.ascii	"sizetype\000"
+ 860      74797065 
+ 860      00
+ 861              	.LASF6:
+ 862 01f2 6C6F6E67 		.ascii	"long long int\000"
+ 862      206C6F6E 
+ 862      6720696E 
+ 862      7400
+ 863              	.LASF14:
+ 864 0200 63686172 		.ascii	"char\000"
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccmFic6W.s 			page 19
+
+
+ 864      00
+ 865              	.LASF2:
+ 866 0205 73686F72 		.ascii	"short int\000"
+ 866      7420696E 
+ 866      7400
+ 867              	.LASF11:
+ 868 020f 75696E74 		.ascii	"uint8\000"
+ 868      3800
+ 869              	.LASF25:
+ 870 0215 72644275 		.ascii	"rdBuff\000"
+ 870      666600
+ 871              	.LASF4:
+ 872 021c 6C6F6E67 		.ascii	"long int\000"
+ 872      20696E74 
+ 872      00
+ 873              	.LASF15:
+ 874 0225 6C6F6E67 		.ascii	"long double\000"
+ 874      20646F75 
+ 874      626C6500 
+ 875              	.LASF0:
+ 876 0231 7369676E 		.ascii	"signed char\000"
+ 876      65642063 
+ 876      68617200 
+ 877              	.LASF21:
+ 878 023d 77726974 		.ascii	"writeDIGIO8Card\000"
+ 878      65444947 
+ 878      494F3843 
+ 878      61726400 
+ 879              	.LASF20:
+ 880 024d 77726974 		.ascii	"writeRegisterDIGIO8Card\000"
+ 880      65526567 
+ 880      69737465 
+ 880      72444947 
+ 880      494F3843 
+ 881              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

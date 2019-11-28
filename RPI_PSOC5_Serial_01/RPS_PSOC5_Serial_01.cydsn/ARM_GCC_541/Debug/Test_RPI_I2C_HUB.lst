@@ -1,0 +1,675 @@
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Test_RPI_I2C_HUB.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.testRPIHUB,"ax",%progbits
+  20              		.align	2
+  21              		.global	testRPIHUB
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	testRPIHUB, %function
+  25              	testRPIHUB:
+  26              	.LFB63:
+  27              		.file 1 "Test_RPI_I2C_HUB.c"
+   1:Test_RPI_I2C_HUB.c **** /* ========================================
+   2:Test_RPI_I2C_HUB.c ****  *
+   3:Test_RPI_I2C_HUB.c ****  * Copyright LAND BOARDS, LLC, 2019
+   4:Test_RPI_I2C_HUB.c ****  * All Rights Reserved
+   5:Test_RPI_I2C_HUB.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:Test_RPI_I2C_HUB.c ****  *
+   7:Test_RPI_I2C_HUB.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:Test_RPI_I2C_HUB.c ****  * WHICH IS THE PROPERTY OF Land Boards.
+   9:Test_RPI_I2C_HUB.c ****  *
+  10:Test_RPI_I2C_HUB.c ****  * ========================================
+  11:Test_RPI_I2C_HUB.c **** */
+  12:Test_RPI_I2C_HUB.c **** 
+  13:Test_RPI_I2C_HUB.c **** #include <project.h>
+  14:Test_RPI_I2C_HUB.c **** #include "RPI_PSOC5.h"
+  15:Test_RPI_I2C_HUB.c **** 
+  16:Test_RPI_I2C_HUB.c **** void testRPIHUB(void)
+  17:Test_RPI_I2C_HUB.c **** {
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 82B0     		sub	sp, sp, #8
+  37              		.cfi_def_cfa_offset 16
+  38 0004 00AF     		add	r7, sp, #0
+  39              		.cfi_def_cfa_register 7
+  18:Test_RPI_I2C_HUB.c ****     I2C1_Start();
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 2
+
+
+  40              		.loc 1 18 0
+  41 0006 FFF7FEFF 		bl	I2C1_Start
+  19:Test_RPI_I2C_HUB.c ****     uint8 SLAVE_ADDR = 0x71;
+  42              		.loc 1 19 0
+  43 000a 7123     		movs	r3, #113
+  44 000c BB71     		strb	r3, [r7, #6]
+  20:Test_RPI_I2C_HUB.c ****     uint8 cMessage[2];
+  21:Test_RPI_I2C_HUB.c ****     uint8 channel;
+  22:Test_RPI_I2C_HUB.c ****     //uint16 cLength = 256;
+  23:Test_RPI_I2C_HUB.c ****     
+  24:Test_RPI_I2C_HUB.c ****     // initialize the four DIGIO8 cards
+  25:Test_RPI_I2C_HUB.c ****     for (channel = 0; channel < 4; channel++)
+  45              		.loc 1 25 0
+  46 000e 0023     		movs	r3, #0
+  47 0010 FB71     		strb	r3, [r7, #7]
+  48 0012 10E0     		b	.L2
+  49              	.L3:
+  26:Test_RPI_I2C_HUB.c ****     {
+  27:Test_RPI_I2C_HUB.c ****         cMessage[0] = 0x04 | channel;
+  50              		.loc 1 27 0 discriminator 3
+  51 0014 FB79     		ldrb	r3, [r7, #7]
+  52 0016 43F00403 		orr	r3, r3, #4
+  53 001a DBB2     		uxtb	r3, r3
+  54 001c 3B71     		strb	r3, [r7, #4]
+  28:Test_RPI_I2C_HUB.c ****         I2C1_MasterWriteBuf(SLAVE_ADDR, cMessage, 1, I2C_EEPROM_MODE_COMPLETE_XFER);
+  55              		.loc 1 28 0 discriminator 3
+  56 001e 391D     		adds	r1, r7, #4
+  57 0020 B879     		ldrb	r0, [r7, #6]	@ zero_extendqisi2
+  58 0022 0023     		movs	r3, #0
+  59 0024 0122     		movs	r2, #1
+  60 0026 FFF7FEFF 		bl	I2C1_MasterWriteBuf
+  29:Test_RPI_I2C_HUB.c ****         initDIGIO8Card(0x20);
+  61              		.loc 1 29 0 discriminator 3
+  62 002a 2020     		movs	r0, #32
+  63 002c FFF7FEFF 		bl	initDIGIO8Card
+  25:Test_RPI_I2C_HUB.c ****     {
+  64              		.loc 1 25 0 discriminator 3
+  65 0030 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  66 0032 0133     		adds	r3, r3, #1
+  67 0034 FB71     		strb	r3, [r7, #7]
+  68              	.L2:
+  25:Test_RPI_I2C_HUB.c ****     {
+  69              		.loc 1 25 0 is_stmt 0 discriminator 1
+  70 0036 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  71 0038 032B     		cmp	r3, #3
+  72 003a EBD9     		bls	.L3
+  30:Test_RPI_I2C_HUB.c ****     }
+  31:Test_RPI_I2C_HUB.c ****     for (channel = 0; channel < 4; channel++)
+  73              		.loc 1 31 0 is_stmt 1
+  74 003c 0023     		movs	r3, #0
+  75 003e FB71     		strb	r3, [r7, #7]
+  76 0040 2DE0     		b	.L4
+  77              	.L5:
+  32:Test_RPI_I2C_HUB.c ****     {
+  33:Test_RPI_I2C_HUB.c ****         cMessage[0] = 0x04 | channel;
+  78              		.loc 1 33 0 discriminator 3
+  79 0042 FB79     		ldrb	r3, [r7, #7]
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 3
+
+
+  80 0044 43F00403 		orr	r3, r3, #4
+  81 0048 DBB2     		uxtb	r3, r3
+  82 004a 3B71     		strb	r3, [r7, #4]
+  34:Test_RPI_I2C_HUB.c ****         I2C1_MasterWriteBuf(SLAVE_ADDR, cMessage, 1, I2C_EEPROM_MODE_COMPLETE_XFER);
+  83              		.loc 1 34 0 discriminator 3
+  84 004c 391D     		adds	r1, r7, #4
+  85 004e B879     		ldrb	r0, [r7, #6]	@ zero_extendqisi2
+  86 0050 0023     		movs	r3, #0
+  87 0052 0122     		movs	r2, #1
+  88 0054 FFF7FEFF 		bl	I2C1_MasterWriteBuf
+  35:Test_RPI_I2C_HUB.c ****         writeDIGIO8Card(0x20, 0x01);
+  89              		.loc 1 35 0 discriminator 3
+  90 0058 0121     		movs	r1, #1
+  91 005a 2020     		movs	r0, #32
+  92 005c FFF7FEFF 		bl	writeDIGIO8Card
+  36:Test_RPI_I2C_HUB.c ****         CyDelay(200);
+  93              		.loc 1 36 0 discriminator 3
+  94 0060 C820     		movs	r0, #200
+  95 0062 FFF7FEFF 		bl	CyDelay
+  37:Test_RPI_I2C_HUB.c ****         writeDIGIO8Card(0x20, 0x02);
+  96              		.loc 1 37 0 discriminator 3
+  97 0066 0221     		movs	r1, #2
+  98 0068 2020     		movs	r0, #32
+  99 006a FFF7FEFF 		bl	writeDIGIO8Card
+  38:Test_RPI_I2C_HUB.c ****         CyDelay(200);
+ 100              		.loc 1 38 0 discriminator 3
+ 101 006e C820     		movs	r0, #200
+ 102 0070 FFF7FEFF 		bl	CyDelay
+  39:Test_RPI_I2C_HUB.c ****         writeDIGIO8Card(0x20, 0x04);
+ 103              		.loc 1 39 0 discriminator 3
+ 104 0074 0421     		movs	r1, #4
+ 105 0076 2020     		movs	r0, #32
+ 106 0078 FFF7FEFF 		bl	writeDIGIO8Card
+  40:Test_RPI_I2C_HUB.c ****         CyDelay(200);
+ 107              		.loc 1 40 0 discriminator 3
+ 108 007c C820     		movs	r0, #200
+ 109 007e FFF7FEFF 		bl	CyDelay
+  41:Test_RPI_I2C_HUB.c ****         writeDIGIO8Card(0x20, 0x08);
+ 110              		.loc 1 41 0 discriminator 3
+ 111 0082 0821     		movs	r1, #8
+ 112 0084 2020     		movs	r0, #32
+ 113 0086 FFF7FEFF 		bl	writeDIGIO8Card
+  42:Test_RPI_I2C_HUB.c ****         CyDelay(200);
+ 114              		.loc 1 42 0 discriminator 3
+ 115 008a C820     		movs	r0, #200
+ 116 008c FFF7FEFF 		bl	CyDelay
+  43:Test_RPI_I2C_HUB.c ****         writeDIGIO8Card(0x20, 0x00);
+ 117              		.loc 1 43 0 discriminator 3
+ 118 0090 0021     		movs	r1, #0
+ 119 0092 2020     		movs	r0, #32
+ 120 0094 FFF7FEFF 		bl	writeDIGIO8Card
+  31:Test_RPI_I2C_HUB.c ****     {
+ 121              		.loc 1 31 0 discriminator 3
+ 122 0098 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 123 009a 0133     		adds	r3, r3, #1
+ 124 009c FB71     		strb	r3, [r7, #7]
+ 125              	.L4:
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 4
+
+
+  31:Test_RPI_I2C_HUB.c ****     {
+ 126              		.loc 1 31 0 is_stmt 0 discriminator 1
+ 127 009e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 128 00a0 032B     		cmp	r3, #3
+ 129 00a2 CED9     		bls	.L5
+  44:Test_RPI_I2C_HUB.c ****     }
+  45:Test_RPI_I2C_HUB.c **** }
+ 130              		.loc 1 45 0 is_stmt 1
+ 131 00a4 00BF     		nop
+ 132 00a6 0837     		adds	r7, r7, #8
+ 133              		.cfi_def_cfa_offset 8
+ 134 00a8 BD46     		mov	sp, r7
+ 135              		.cfi_def_cfa_register 13
+ 136              		@ sp needed
+ 137 00aa 80BD     		pop	{r7, pc}
+ 138              		.cfi_endproc
+ 139              	.LFE63:
+ 140              		.size	testRPIHUB, .-testRPIHUB
+ 141              		.text
+ 142              	.Letext0:
+ 143              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 144              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 145              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 146              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 147              		.section	.debug_info,"",%progbits
+ 148              	.Ldebug_info0:
+ 149 0000 0E010000 		.4byte	0x10e
+ 150 0004 0400     		.2byte	0x4
+ 151 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 152 000a 04       		.byte	0x4
+ 153 000b 01       		.uleb128 0x1
+ 154 000c 69000000 		.4byte	.LASF20
+ 155 0010 0C       		.byte	0xc
+ 156 0011 2E000000 		.4byte	.LASF21
+ 157 0015 13010000 		.4byte	.LASF22
+ 158 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 159 001d 00000000 		.4byte	0
+ 160 0021 00000000 		.4byte	.Ldebug_line0
+ 161 0025 02       		.uleb128 0x2
+ 162 0026 01       		.byte	0x1
+ 163 0027 06       		.byte	0x6
+ 164 0028 B2010000 		.4byte	.LASF0
+ 165 002c 02       		.uleb128 0x2
+ 166 002d 01       		.byte	0x1
+ 167 002e 08       		.byte	0x8
+ 168 002f F7000000 		.4byte	.LASF1
+ 169 0033 02       		.uleb128 0x2
+ 170 0034 02       		.byte	0x2
+ 171 0035 05       		.byte	0x5
+ 172 0036 E5010000 		.4byte	.LASF2
+ 173 003a 02       		.uleb128 0x2
+ 174 003b 02       		.byte	0x2
+ 175 003c 07       		.byte	0x7
+ 176 003d 0E000000 		.4byte	.LASF3
+ 177 0041 03       		.uleb128 0x3
+ 178 0042 CA010000 		.4byte	.LASF9
+ 179 0046 02       		.byte	0x2
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 5
+
+
+ 180 0047 3F       		.byte	0x3f
+ 181 0048 4C000000 		.4byte	0x4c
+ 182 004c 02       		.uleb128 0x2
+ 183 004d 04       		.byte	0x4
+ 184 004e 05       		.byte	0x5
+ 185 004f 7B010000 		.4byte	.LASF4
+ 186 0053 02       		.uleb128 0x2
+ 187 0054 04       		.byte	0x4
+ 188 0055 07       		.byte	0x7
+ 189 0056 84010000 		.4byte	.LASF5
+ 190 005a 02       		.uleb128 0x2
+ 191 005b 08       		.byte	0x8
+ 192 005c 05       		.byte	0x5
+ 193 005d 00000000 		.4byte	.LASF6
+ 194 0061 02       		.uleb128 0x2
+ 195 0062 08       		.byte	0x8
+ 196 0063 07       		.byte	0x7
+ 197 0064 52000000 		.4byte	.LASF7
+ 198 0068 04       		.uleb128 0x4
+ 199 0069 04       		.byte	0x4
+ 200 006a 05       		.byte	0x5
+ 201 006b 696E7400 		.ascii	"int\000"
+ 202 006f 02       		.uleb128 0x2
+ 203 0070 04       		.byte	0x4
+ 204 0071 07       		.byte	0x7
+ 205 0072 21000000 		.4byte	.LASF8
+ 206 0076 03       		.uleb128 0x3
+ 207 0077 EF010000 		.4byte	.LASF10
+ 208 007b 03       		.byte	0x3
+ 209 007c 2C       		.byte	0x2c
+ 210 007d 41000000 		.4byte	0x41
+ 211 0081 05       		.uleb128 0x5
+ 212 0082 41000000 		.4byte	.LASF11
+ 213 0086 04       		.byte	0x4
+ 214 0087 E401     		.2byte	0x1e4
+ 215 0089 2C000000 		.4byte	0x2c
+ 216 008d 02       		.uleb128 0x2
+ 217 008e 04       		.byte	0x4
+ 218 008f 04       		.byte	0x4
+ 219 0090 DF010000 		.4byte	.LASF12
+ 220 0094 02       		.uleb128 0x2
+ 221 0095 08       		.byte	0x8
+ 222 0096 04       		.byte	0x4
+ 223 0097 96010000 		.4byte	.LASF13
+ 224 009b 02       		.uleb128 0x2
+ 225 009c 01       		.byte	0x1
+ 226 009d 08       		.byte	0x8
+ 227 009e 05010000 		.4byte	.LASF14
+ 228 00a2 02       		.uleb128 0x2
+ 229 00a3 08       		.byte	0x8
+ 230 00a4 04       		.byte	0x4
+ 231 00a5 BE010000 		.4byte	.LASF15
+ 232 00a9 02       		.uleb128 0x2
+ 233 00aa 04       		.byte	0x4
+ 234 00ab 07       		.byte	0x7
+ 235 00ac F7010000 		.4byte	.LASF16
+ 236 00b0 06       		.uleb128 0x6
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 6
+
+
+ 237 00b1 47000000 		.4byte	.LASF23
+ 238 00b5 01       		.byte	0x1
+ 239 00b6 10       		.byte	0x10
+ 240 00b7 00000000 		.4byte	.LFB63
+ 241 00bb AC000000 		.4byte	.LFE63-.LFB63
+ 242 00bf 01       		.uleb128 0x1
+ 243 00c0 9C       		.byte	0x9c
+ 244 00c1 F0000000 		.4byte	0xf0
+ 245 00c5 07       		.uleb128 0x7
+ 246 00c6 D4010000 		.4byte	.LASF17
+ 247 00ca 01       		.byte	0x1
+ 248 00cb 13       		.byte	0x13
+ 249 00cc 81000000 		.4byte	0x81
+ 250 00d0 02       		.uleb128 0x2
+ 251 00d1 91       		.byte	0x91
+ 252 00d2 76       		.sleb128 -10
+ 253 00d3 07       		.uleb128 0x7
+ 254 00d4 0A010000 		.4byte	.LASF18
+ 255 00d8 01       		.byte	0x1
+ 256 00d9 14       		.byte	0x14
+ 257 00da F0000000 		.4byte	0xf0
+ 258 00de 02       		.uleb128 0x2
+ 259 00df 91       		.byte	0x91
+ 260 00e0 74       		.sleb128 -12
+ 261 00e1 07       		.uleb128 0x7
+ 262 00e2 9D010000 		.4byte	.LASF19
+ 263 00e6 01       		.byte	0x1
+ 264 00e7 15       		.byte	0x15
+ 265 00e8 81000000 		.4byte	0x81
+ 266 00ec 02       		.uleb128 0x2
+ 267 00ed 91       		.byte	0x91
+ 268 00ee 77       		.sleb128 -9
+ 269 00ef 00       		.byte	0
+ 270 00f0 08       		.uleb128 0x8
+ 271 00f1 81000000 		.4byte	0x81
+ 272 00f5 00010000 		.4byte	0x100
+ 273 00f9 09       		.uleb128 0x9
+ 274 00fa A9000000 		.4byte	0xa9
+ 275 00fe 01       		.byte	0x1
+ 276 00ff 00       		.byte	0
+ 277 0100 0A       		.uleb128 0xa
+ 278 0101 A5010000 		.4byte	.LASF24
+ 279 0105 05       		.byte	0x5
+ 280 0106 1207     		.2byte	0x712
+ 281 0108 0C010000 		.4byte	0x10c
+ 282 010c 0B       		.uleb128 0xb
+ 283 010d 76000000 		.4byte	0x76
+ 284 0111 00       		.byte	0
+ 285              		.section	.debug_abbrev,"",%progbits
+ 286              	.Ldebug_abbrev0:
+ 287 0000 01       		.uleb128 0x1
+ 288 0001 11       		.uleb128 0x11
+ 289 0002 01       		.byte	0x1
+ 290 0003 25       		.uleb128 0x25
+ 291 0004 0E       		.uleb128 0xe
+ 292 0005 13       		.uleb128 0x13
+ 293 0006 0B       		.uleb128 0xb
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 7
+
+
+ 294 0007 03       		.uleb128 0x3
+ 295 0008 0E       		.uleb128 0xe
+ 296 0009 1B       		.uleb128 0x1b
+ 297 000a 0E       		.uleb128 0xe
+ 298 000b 55       		.uleb128 0x55
+ 299 000c 17       		.uleb128 0x17
+ 300 000d 11       		.uleb128 0x11
+ 301 000e 01       		.uleb128 0x1
+ 302 000f 10       		.uleb128 0x10
+ 303 0010 17       		.uleb128 0x17
+ 304 0011 00       		.byte	0
+ 305 0012 00       		.byte	0
+ 306 0013 02       		.uleb128 0x2
+ 307 0014 24       		.uleb128 0x24
+ 308 0015 00       		.byte	0
+ 309 0016 0B       		.uleb128 0xb
+ 310 0017 0B       		.uleb128 0xb
+ 311 0018 3E       		.uleb128 0x3e
+ 312 0019 0B       		.uleb128 0xb
+ 313 001a 03       		.uleb128 0x3
+ 314 001b 0E       		.uleb128 0xe
+ 315 001c 00       		.byte	0
+ 316 001d 00       		.byte	0
+ 317 001e 03       		.uleb128 0x3
+ 318 001f 16       		.uleb128 0x16
+ 319 0020 00       		.byte	0
+ 320 0021 03       		.uleb128 0x3
+ 321 0022 0E       		.uleb128 0xe
+ 322 0023 3A       		.uleb128 0x3a
+ 323 0024 0B       		.uleb128 0xb
+ 324 0025 3B       		.uleb128 0x3b
+ 325 0026 0B       		.uleb128 0xb
+ 326 0027 49       		.uleb128 0x49
+ 327 0028 13       		.uleb128 0x13
+ 328 0029 00       		.byte	0
+ 329 002a 00       		.byte	0
+ 330 002b 04       		.uleb128 0x4
+ 331 002c 24       		.uleb128 0x24
+ 332 002d 00       		.byte	0
+ 333 002e 0B       		.uleb128 0xb
+ 334 002f 0B       		.uleb128 0xb
+ 335 0030 3E       		.uleb128 0x3e
+ 336 0031 0B       		.uleb128 0xb
+ 337 0032 03       		.uleb128 0x3
+ 338 0033 08       		.uleb128 0x8
+ 339 0034 00       		.byte	0
+ 340 0035 00       		.byte	0
+ 341 0036 05       		.uleb128 0x5
+ 342 0037 16       		.uleb128 0x16
+ 343 0038 00       		.byte	0
+ 344 0039 03       		.uleb128 0x3
+ 345 003a 0E       		.uleb128 0xe
+ 346 003b 3A       		.uleb128 0x3a
+ 347 003c 0B       		.uleb128 0xb
+ 348 003d 3B       		.uleb128 0x3b
+ 349 003e 05       		.uleb128 0x5
+ 350 003f 49       		.uleb128 0x49
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 8
+
+
+ 351 0040 13       		.uleb128 0x13
+ 352 0041 00       		.byte	0
+ 353 0042 00       		.byte	0
+ 354 0043 06       		.uleb128 0x6
+ 355 0044 2E       		.uleb128 0x2e
+ 356 0045 01       		.byte	0x1
+ 357 0046 3F       		.uleb128 0x3f
+ 358 0047 19       		.uleb128 0x19
+ 359 0048 03       		.uleb128 0x3
+ 360 0049 0E       		.uleb128 0xe
+ 361 004a 3A       		.uleb128 0x3a
+ 362 004b 0B       		.uleb128 0xb
+ 363 004c 3B       		.uleb128 0x3b
+ 364 004d 0B       		.uleb128 0xb
+ 365 004e 27       		.uleb128 0x27
+ 366 004f 19       		.uleb128 0x19
+ 367 0050 11       		.uleb128 0x11
+ 368 0051 01       		.uleb128 0x1
+ 369 0052 12       		.uleb128 0x12
+ 370 0053 06       		.uleb128 0x6
+ 371 0054 40       		.uleb128 0x40
+ 372 0055 18       		.uleb128 0x18
+ 373 0056 9642     		.uleb128 0x2116
+ 374 0058 19       		.uleb128 0x19
+ 375 0059 01       		.uleb128 0x1
+ 376 005a 13       		.uleb128 0x13
+ 377 005b 00       		.byte	0
+ 378 005c 00       		.byte	0
+ 379 005d 07       		.uleb128 0x7
+ 380 005e 34       		.uleb128 0x34
+ 381 005f 00       		.byte	0
+ 382 0060 03       		.uleb128 0x3
+ 383 0061 0E       		.uleb128 0xe
+ 384 0062 3A       		.uleb128 0x3a
+ 385 0063 0B       		.uleb128 0xb
+ 386 0064 3B       		.uleb128 0x3b
+ 387 0065 0B       		.uleb128 0xb
+ 388 0066 49       		.uleb128 0x49
+ 389 0067 13       		.uleb128 0x13
+ 390 0068 02       		.uleb128 0x2
+ 391 0069 18       		.uleb128 0x18
+ 392 006a 00       		.byte	0
+ 393 006b 00       		.byte	0
+ 394 006c 08       		.uleb128 0x8
+ 395 006d 01       		.uleb128 0x1
+ 396 006e 01       		.byte	0x1
+ 397 006f 49       		.uleb128 0x49
+ 398 0070 13       		.uleb128 0x13
+ 399 0071 01       		.uleb128 0x1
+ 400 0072 13       		.uleb128 0x13
+ 401 0073 00       		.byte	0
+ 402 0074 00       		.byte	0
+ 403 0075 09       		.uleb128 0x9
+ 404 0076 21       		.uleb128 0x21
+ 405 0077 00       		.byte	0
+ 406 0078 49       		.uleb128 0x49
+ 407 0079 13       		.uleb128 0x13
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 9
+
+
+ 408 007a 2F       		.uleb128 0x2f
+ 409 007b 0B       		.uleb128 0xb
+ 410 007c 00       		.byte	0
+ 411 007d 00       		.byte	0
+ 412 007e 0A       		.uleb128 0xa
+ 413 007f 34       		.uleb128 0x34
+ 414 0080 00       		.byte	0
+ 415 0081 03       		.uleb128 0x3
+ 416 0082 0E       		.uleb128 0xe
+ 417 0083 3A       		.uleb128 0x3a
+ 418 0084 0B       		.uleb128 0xb
+ 419 0085 3B       		.uleb128 0x3b
+ 420 0086 05       		.uleb128 0x5
+ 421 0087 49       		.uleb128 0x49
+ 422 0088 13       		.uleb128 0x13
+ 423 0089 3F       		.uleb128 0x3f
+ 424 008a 19       		.uleb128 0x19
+ 425 008b 3C       		.uleb128 0x3c
+ 426 008c 19       		.uleb128 0x19
+ 427 008d 00       		.byte	0
+ 428 008e 00       		.byte	0
+ 429 008f 0B       		.uleb128 0xb
+ 430 0090 35       		.uleb128 0x35
+ 431 0091 00       		.byte	0
+ 432 0092 49       		.uleb128 0x49
+ 433 0093 13       		.uleb128 0x13
+ 434 0094 00       		.byte	0
+ 435 0095 00       		.byte	0
+ 436 0096 00       		.byte	0
+ 437              		.section	.debug_aranges,"",%progbits
+ 438 0000 1C000000 		.4byte	0x1c
+ 439 0004 0200     		.2byte	0x2
+ 440 0006 00000000 		.4byte	.Ldebug_info0
+ 441 000a 04       		.byte	0x4
+ 442 000b 00       		.byte	0
+ 443 000c 0000     		.2byte	0
+ 444 000e 0000     		.2byte	0
+ 445 0010 00000000 		.4byte	.LFB63
+ 446 0014 AC000000 		.4byte	.LFE63-.LFB63
+ 447 0018 00000000 		.4byte	0
+ 448 001c 00000000 		.4byte	0
+ 449              		.section	.debug_ranges,"",%progbits
+ 450              	.Ldebug_ranges0:
+ 451 0000 00000000 		.4byte	.LFB63
+ 452 0004 AC000000 		.4byte	.LFE63
+ 453 0008 00000000 		.4byte	0
+ 454 000c 00000000 		.4byte	0
+ 455              		.section	.debug_line,"",%progbits
+ 456              	.Ldebug_line0:
+ 457 0000 D4010000 		.section	.debug_str,"MS",%progbits,1
+ 457      02005801 
+ 457      00000201 
+ 457      FB0E0D00 
+ 457      01010101 
+ 458              	.LASF6:
+ 459 0000 6C6F6E67 		.ascii	"long long int\000"
+ 459      206C6F6E 
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 10
+
+
+ 459      6720696E 
+ 459      7400
+ 460              	.LASF3:
+ 461 000e 73686F72 		.ascii	"short unsigned int\000"
+ 461      7420756E 
+ 461      7369676E 
+ 461      65642069 
+ 461      6E7400
+ 462              	.LASF8:
+ 463 0021 756E7369 		.ascii	"unsigned int\000"
+ 463      676E6564 
+ 463      20696E74 
+ 463      00
+ 464              	.LASF21:
+ 465 002e 54657374 		.ascii	"Test_RPI_I2C_HUB.c\000"
+ 465      5F525049 
+ 465      5F493243 
+ 465      5F485542 
+ 465      2E6300
+ 466              	.LASF11:
+ 467 0041 75696E74 		.ascii	"uint8\000"
+ 467      3800
+ 468              	.LASF23:
+ 469 0047 74657374 		.ascii	"testRPIHUB\000"
+ 469      52504948 
+ 469      554200
+ 470              	.LASF7:
+ 471 0052 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 471      206C6F6E 
+ 471      6720756E 
+ 471      7369676E 
+ 471      65642069 
+ 472              	.LASF20:
+ 473 0069 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 473      43313120 
+ 473      352E342E 
+ 473      31203230 
+ 473      31363036 
+ 474 009c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 474      20726576 
+ 474      6973696F 
+ 474      6E203233 
+ 474      37373135 
+ 475 00cf 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 475      66756E63 
+ 475      74696F6E 
+ 475      2D736563 
+ 475      74696F6E 
+ 476              	.LASF1:
+ 477 00f7 756E7369 		.ascii	"unsigned char\000"
+ 477      676E6564 
+ 477      20636861 
+ 477      7200
+ 478              	.LASF14:
+ 479 0105 63686172 		.ascii	"char\000"
+ 479      00
+ 480              	.LASF18:
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 11
+
+
+ 481 010a 634D6573 		.ascii	"cMessage\000"
+ 481      73616765 
+ 481      00
+ 482              	.LASF22:
+ 483 0113 433A5C55 		.ascii	"C:\\Users\\HPz420\\Documents\\GitHub\\Doug Gillilan"
+ 483      73657273 
+ 483      5C48507A 
+ 483      3432305C 
+ 483      446F6375 
+ 484 0141 645C5250 		.ascii	"d\\RPI_PSOC5\\RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial"
+ 484      495F5053 
+ 484      4F43355C 
+ 484      5250495F 
+ 484      50534F43 
+ 485 0171 5F30312E 		.ascii	"_01.cydsn\000"
+ 485      63796473 
+ 485      6E00
+ 486              	.LASF4:
+ 487 017b 6C6F6E67 		.ascii	"long int\000"
+ 487      20696E74 
+ 487      00
+ 488              	.LASF5:
+ 489 0184 6C6F6E67 		.ascii	"long unsigned int\000"
+ 489      20756E73 
+ 489      69676E65 
+ 489      6420696E 
+ 489      7400
+ 490              	.LASF13:
+ 491 0196 646F7562 		.ascii	"double\000"
+ 491      6C6500
+ 492              	.LASF19:
+ 493 019d 6368616E 		.ascii	"channel\000"
+ 493      6E656C00 
+ 494              	.LASF24:
+ 495 01a5 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 495      52784275 
+ 495      66666572 
+ 495      00
+ 496              	.LASF0:
+ 497 01b2 7369676E 		.ascii	"signed char\000"
+ 497      65642063 
+ 497      68617200 
+ 498              	.LASF15:
+ 499 01be 6C6F6E67 		.ascii	"long double\000"
+ 499      20646F75 
+ 499      626C6500 
+ 500              	.LASF9:
+ 501 01ca 5F5F696E 		.ascii	"__int32_t\000"
+ 501      7433325F 
+ 501      7400
+ 502              	.LASF17:
+ 503 01d4 534C4156 		.ascii	"SLAVE_ADDR\000"
+ 503      455F4144 
+ 503      445200
+ 504              	.LASF12:
+ 505 01df 666C6F61 		.ascii	"float\000"
+ 505      7400
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccCdw4KJ.s 			page 12
+
+
+ 506              	.LASF2:
+ 507 01e5 73686F72 		.ascii	"short int\000"
+ 507      7420696E 
+ 507      7400
+ 508              	.LASF10:
+ 509 01ef 696E7433 		.ascii	"int32_t\000"
+ 509      325F7400 
+ 510              	.LASF16:
+ 511 01f7 73697A65 		.ascii	"sizetype\000"
+ 511      74797065 
+ 511      00
+ 512              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

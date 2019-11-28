@@ -18,6 +18,8 @@
 #include "RasPi_Pins.h"
 #include "ExtEEPROM.h"
 #include "EEPROM_Images.h"
+#include "Test_RPI_I2C_HUB.h"
+#include "DIGIO8Driver.h"
 #include "PSoC_Menu.h"
 
 enum Card_Types_Enum {
