@@ -1,6 +1,6 @@
 -- Project:   RPS_PSOC5_Serial_01
--- Generated: 11/28/2019 06:03:39
--- PSoC Creator  4.2
+-- Generated: 05/24/2020 13:26:27
+-- PSoC Creator  4.3
 
 ENTITY RPS_PSOC5_Serial_01 IS
     PORT(

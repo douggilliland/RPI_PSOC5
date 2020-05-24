@@ -1,6 +1,6 @@
--- Project:   C:\Users\HPz420\Documents\GitHub\Doug Gilliland\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj
--- Generated: 11/28/2019 06:03:43
--- PSoC Creator  4.2
+-- Project:   C:\Users\doug_000\Documents\GitHub\RPI_PSOC5\RPI_PSOC5_Serial_01\RPS_PSOC5_Serial_01.cydsn\RPS_PSOC5_Serial_01.cyprj
+-- Generated: 05/24/2020 13:26:36
+-- PSoC Creator  4.3
 
 ENTITY RPS_PSOC5_Serial_01 IS
     PORT(

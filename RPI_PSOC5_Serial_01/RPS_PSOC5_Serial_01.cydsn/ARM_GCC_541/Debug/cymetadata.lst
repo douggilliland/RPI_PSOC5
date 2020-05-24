@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
   52      00000000 
   52      00000000 
   53              		.global	cy_metadata
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 2
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 2
 
 
   54              		.section	.cymeta,"a",%progbits
@@ -80,8 +80,8 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
   70 000b 00       		.byte	0
   71              		.text
   72              	.Letext0:
-  73              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
-  74              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  73              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+  74              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
   75              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
   76              		.section	.debug_info,"",%progbits
   77              	.Ldebug_info0:
@@ -92,13 +92,13 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
   82 000b 01       		.uleb128 0x1
   83 000c 0A000000 		.4byte	.LASF17
   84 0010 0C       		.byte	0xc
-  85 0011 D7010000 		.4byte	.LASF18
-  86 0015 25010000 		.4byte	.LASF19
+  85 0011 D9010000 		.4byte	.LASF18
+  86 0015 72010000 		.4byte	.LASF19
   87 0019 00000000 		.4byte	.Ldebug_line0
   88 001d 02       		.uleb128 0x2
   89 001e 01       		.byte	0x1
   90 001f 06       		.byte	0x6
-  91 0020 CB010000 		.4byte	.LASF0
+  91 0020 CD010000 		.4byte	.LASF0
   92 0024 03       		.uleb128 0x3
   93 0025 00000000 		.4byte	.LASF9
   94 0029 01       		.byte	0x1
@@ -111,18 +111,18 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  101 0036 02       		.uleb128 0x2
  102 0037 02       		.byte	0x2
  103 0038 05       		.byte	0x5
- 104 0039 B8010000 		.4byte	.LASF2
+ 104 0039 5F010000 		.4byte	.LASF2
  105 003d 02       		.uleb128 0x2
  106 003e 02       		.byte	0x2
  107 003f 07       		.byte	0x7
  108 0040 C4000000 		.4byte	.LASF3
  109 0044 02       		.uleb128 0x2
  110 0045 04       		.byte	0x4
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 3
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 3
 
 
  111 0046 05       		.byte	0x5
- 112 0047 C2010000 		.4byte	.LASF4
+ 112 0047 69010000 		.4byte	.LASF4
  113 004b 02       		.uleb128 0x2
  114 004c 04       		.byte	0x4
  115 004d 07       		.byte	0x7
@@ -130,7 +130,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  117 0052 02       		.uleb128 0x2
  118 0053 08       		.byte	0x8
  119 0054 05       		.byte	0x5
- 120 0055 AA010000 		.4byte	.LASF6
+ 120 0055 51010000 		.4byte	.LASF6
  121 0059 02       		.uleb128 0x2
  122 005a 08       		.byte	0x8
  123 005b 07       		.byte	0x7
@@ -158,7 +158,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  145 0089 02       		.uleb128 0x2
  146 008a 04       		.byte	0x4
  147 008b 07       		.byte	0x7
- 148 008c A1010000 		.4byte	.LASF11
+ 148 008c 48010000 		.4byte	.LASF11
  149 0090 07       		.uleb128 0x7
  150 0091 6E000000 		.4byte	0x6e
  151 0095 08       		.uleb128 0x8
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  165 00b5 89000000 		.4byte	0x89
  166 00b9 03       		.byte	0x3
  167 00ba 00       		.byte	0
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 4
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 4
 
 
  168 00bb 08       		.uleb128 0x8
@@ -192,7 +192,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  176 00cc 07       		.uleb128 0x7
  177 00cd AB000000 		.4byte	0xab
  178 00d1 08       		.uleb128 0x8
- 179 00d2 93010000 		.4byte	.LASF14
+ 179 00d2 3A010000 		.4byte	.LASF14
  180 00d6 03       		.byte	0x3
  181 00d7 3B       		.byte	0x3b
  182 00d8 E2000000 		.4byte	0xe2
@@ -209,7 +209,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  193 00f5 7F       		.byte	0x7f
  194 00f6 00       		.byte	0
  195 00f7 08       		.uleb128 0x8
- 196 00f8 7E010000 		.4byte	.LASF15
+ 196 00f8 25010000 		.4byte	.LASF15
  197 00fc 03       		.byte	0x3
  198 00fd 49       		.byte	0x49
  199 00fe 08010000 		.4byte	0x108
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  222 0133 00       		.byte	0
  223              		.section	.debug_abbrev,"",%progbits
  224              	.Ldebug_abbrev0:
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 5
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 5
 
 
  225 0000 01       		.uleb128 0x1
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  279 0036 13       		.uleb128 0x13
  280 0037 01       		.uleb128 0x1
  281 0038 13       		.uleb128 0x13
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 6
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 6
 
 
  282 0039 00       		.byte	0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  332 0000 5F5F7569 		.ascii	"__uint8_t\000"
  332      6E74385F 
  332      7400
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 7
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 7
 
 
  333              	.LASF17:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  352 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
  352      206C6F6E 
  352      6720756E 
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 8
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccaIhMv0.s 			page 8
 
 
  352      7369676E 
@@ -426,51 +426,51 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cc7aHqmG.s 			page 1
  353              	.LASF10:
  354 011d 75696E74 		.ascii	"uint8_t\000"
  354      385F7400 
- 355              	.LASF19:
- 356 0125 433A5C55 		.ascii	"C:\\Users\\HPz420\\Documents\\GitHub\\RPI_PSOC5\\RP"
- 356      73657273 
- 356      5C48507A 
- 356      3432305C 
- 356      446F6375 
- 357 0152 495F5053 		.ascii	"I_PSOC5_Serial_01\\RPS_PSOC5_Serial_01.cydsn\000"
- 357      4F43355F 
- 357      53657269 
- 357      616C5F30 
- 357      315C5250 
- 358              	.LASF15:
- 359 017e 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 359      6574615F 
- 359      666C6173 
- 359      6870726F 
- 359      74656374 
- 360              	.LASF14:
- 361 0193 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 361      6574615F 
- 361      776F6E76 
- 361      6C00
- 362              	.LASF11:
- 363 01a1 73697A65 		.ascii	"sizetype\000"
- 363      74797065 
- 363      00
- 364              	.LASF6:
- 365 01aa 6C6F6E67 		.ascii	"long long int\000"
- 365      206C6F6E 
- 365      6720696E 
- 365      7400
- 366              	.LASF2:
- 367 01b8 73686F72 		.ascii	"short int\000"
- 367      7420696E 
- 367      7400
- 368              	.LASF4:
- 369 01c2 6C6F6E67 		.ascii	"long int\000"
- 369      20696E74 
- 369      00
+ 355              	.LASF15:
+ 356 0125 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 356      6574615F 
+ 356      666C6173 
+ 356      6870726F 
+ 356      74656374 
+ 357              	.LASF14:
+ 358 013a 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 358      6574615F 
+ 358      776F6E76 
+ 358      6C00
+ 359              	.LASF11:
+ 360 0148 73697A65 		.ascii	"sizetype\000"
+ 360      74797065 
+ 360      00
+ 361              	.LASF6:
+ 362 0151 6C6F6E67 		.ascii	"long long int\000"
+ 362      206C6F6E 
+ 362      6720696E 
+ 362      7400
+ 363              	.LASF2:
+ 364 015f 73686F72 		.ascii	"short int\000"
+ 364      7420696E 
+ 364      7400
+ 365              	.LASF4:
+ 366 0169 6C6F6E67 		.ascii	"long int\000"
+ 366      20696E74 
+ 366      00
+ 367              	.LASF19:
+ 368 0172 433A5C55 		.ascii	"C:\\Users\\doug_000\\Documents\\GitHub\\RPI_PSOC5\\"
+ 368      73657273 
+ 368      5C646F75 
+ 368      675F3030 
+ 368      305C446F 
+ 369 019f 5250495F 		.ascii	"RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial_01.cydsn\000"
+ 369      50534F43 
+ 369      355F5365 
+ 369      7269616C 
+ 369      5F30315C 
  370              	.LASF0:
- 371 01cb 7369676E 		.ascii	"signed char\000"
+ 371 01cd 7369676E 		.ascii	"signed char\000"
  371      65642063 
  371      68617200 
  372              	.LASF18:
- 373 01d7 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 373 01d9 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
  373      72617465 
  373      645F536F 
  373      75726365 

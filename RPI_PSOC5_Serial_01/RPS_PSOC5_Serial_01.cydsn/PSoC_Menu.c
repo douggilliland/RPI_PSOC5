@@ -100,9 +100,9 @@ void psocMenu(void)
         }
         else if (cardType == RPII2CHUB)
         {
-            putStringToUSB("Blinking the DIGIO-8 Card LEDs through the RPI-I2C-HUB card, please wait\n\r");
+            putStringToUSB("Blinking the DIGIO-8 Card LEDs, please wait\n\r");
             testRPIHUB();
-            putStringToUSB("Completed blinking the LEDs through the RPI-I2C-HUB  card\n\r");
+            putStringToUSB("Completed blinking the LEDs\n\r");
         }
         else
         {
@@ -183,6 +183,7 @@ void addToReceiveBuffer(uint16 inCount, uint8 * inBuffer)
             receiveBufferPtr++;
             echoString[inCount] = 0;
             echoString[receiveCt] = inBuffer[receiveCt];
+            echoString[receiveCt+1] = 0;
             putStringToUSB((char *)echoString);
         }
         // If the character is rubout and not the 0th character

@@ -4,9 +4,9 @@
 
 #Version:            1.1
 
-#Build Date:         Dec  5 2017 15:35:27
+#Build Date:         Sep  9 2019 11:47:43
 
-#File Generated:     Nov 28 2019 06:03:36
+#File Generated:     May 24 2020 13:26:21
 
 #Purpose:            
 
@@ -14,16 +14,16 @@
 
 #***************************************************************************
 
-Executing : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\bin/sjplacer.exe --proj-name RPS_PSOC5_Serial_01 --netlist-vh2 RPS_PSOC5_Serial_01_p.vh2 --arch p35_udb4x6 --arch-file C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata --ip-file C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/ip_blocks.cydata --rrg-file C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata --irq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/irqconn.cydata --drq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/dmaconn.cydata --dsi-conn-file C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/dsiconn.cydata --pins-file pins_100-TQFP.xml --lib-file RPS_PSOC5_Serial_01_p.lib --sdc-file RPS_PSOC5_Serial_01.sdc --io-pcf RPS_PSOC5_Serial_01.pci --outdir .
+Executing : C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\bin/sjplacer.exe --proj-name RPS_PSOC5_Serial_01 --netlist-vh2 RPS_PSOC5_Serial_01_p.vh2 --arch p35_udb4x6 --arch-file C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata --ip-file C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\psoc5/psoc5lp/ip_blocks.cydata --rrg-file C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata --irq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\psoc5/psoc5lp/irqconn.cydata --drq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\psoc5/psoc5lp/dmaconn.cydata --dsi-conn-file C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\psoc5/psoc5lp/dsiconn.cydata --pins-file pins_100-TQFP.xml --lib-file RPS_PSOC5_Serial_01_p.lib --sdc-file RPS_PSOC5_Serial_01.sdc --io-pcf RPS_PSOC5_Serial_01.pci --outdir .
 
 		Softjin Techologies Placer, Version 1.1
 
-Build Date : Dec  5 2017	15:33:41
+Build Date : Sep  9 2019	11:45:12
 
 D2004: Option and Settings Summary
 =============================================================
 Netlist vh2 file          - RPS_PSOC5_Serial_01_p.vh2
-Architecture file         - C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata
+Architecture file         - C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata
 Package                   - 
 Defparam file             - 
 SDC file                  - RPS_PSOC5_Serial_01.sdc
@@ -34,7 +34,7 @@ IO Placement file         - RPS_PSOC5_Serial_01.pci
 D2050: Starting reading inputs for placer
 =============================================================
 D2065: Reading netlist file : "RPS_PSOC5_Serial_01_p.vh2"
-D2065: Reading arch file : "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata"
+D2065: Reading arch file : "C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata"
 D2051: Reading of inputs for placer completed successfully
 
 D2053: Starting placement of the design
@@ -116,7 +116,7 @@ Clock: CyScBoostClk         | Frequency: N/A       | Target:  10.7 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.2 (sec)
+D2088: Phase 7, elapsed time : 0.3 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	10
@@ -212,7 +212,7 @@ Clock: CyScBoostClk         | Frequency: N/A       | Target:  10.7 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.6 (sec)
+D2088: Phase 7, elapsed time : 0.7 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	10
@@ -263,5 +263,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 2.1 sec.
+I2076: Total run-time: 4.3 sec.
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
   34              		.cfi_offset 7, -8
   35              		.cfi_offset 14, -4
   36 0002 82B0     		sub	sp, sp, #8
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 2
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 2
 
 
   37              		.cfi_def_cfa_offset 16
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
   75 003e FB71     		strb	r3, [r7, #7]
   76 0040 2DE0     		b	.L4
   77              	.L5:
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 3
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 3
 
 
   36:Test_RPI_I2C_HUB.c ****     {
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  120 0094 FFF7FEFF 		bl	writeDIGIO8Card
   35:Test_RPI_I2C_HUB.c ****     {
  121              		.loc 1 35 0 discriminator 3
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 4
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 4
 
 
  122 0098 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
@@ -205,8 +205,8 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  140              		.size	testRPIHUB, .-testRPIHUB
  141              		.text
  142              	.Letext0:
- 143              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 144              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 143              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 144              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
  145              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
  146              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
  147              		.section	.debug_info,"",%progbits
@@ -226,7 +226,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  161 0025 02       		.uleb128 0x2
  162 0026 01       		.byte	0x1
  163 0027 06       		.byte	0x6
- 164 0028 B2010000 		.4byte	.LASF0
+ 164 0028 A5010000 		.4byte	.LASF0
  165 002c 02       		.uleb128 0x2
  166 002d 01       		.byte	0x1
  167 002e 08       		.byte	0x8
@@ -234,27 +234,27 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  169 0033 02       		.uleb128 0x2
  170 0034 02       		.byte	0x2
  171 0035 05       		.byte	0x5
- 172 0036 E5010000 		.4byte	.LASF2
+ 172 0036 D8010000 		.4byte	.LASF2
  173 003a 02       		.uleb128 0x2
  174 003b 02       		.byte	0x2
  175 003c 07       		.byte	0x7
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 5
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 5
 
 
  176 003d 0E000000 		.4byte	.LASF3
  177 0041 03       		.uleb128 0x3
- 178 0042 CA010000 		.4byte	.LASF9
+ 178 0042 BD010000 		.4byte	.LASF9
  179 0046 02       		.byte	0x2
  180 0047 3F       		.byte	0x3f
  181 0048 4C000000 		.4byte	0x4c
  182 004c 02       		.uleb128 0x2
  183 004d 04       		.byte	0x4
  184 004e 05       		.byte	0x5
- 185 004f 7B010000 		.4byte	.LASF4
+ 185 004f 87010000 		.4byte	.LASF4
  186 0053 02       		.uleb128 0x2
  187 0054 04       		.byte	0x4
  188 0055 07       		.byte	0x7
- 189 0056 84010000 		.4byte	.LASF5
+ 189 0056 6E010000 		.4byte	.LASF5
  190 005a 02       		.uleb128 0x2
  191 005b 08       		.byte	0x8
  192 005c 05       		.byte	0x5
@@ -272,7 +272,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  204 0071 07       		.byte	0x7
  205 0072 21000000 		.4byte	.LASF8
  206 0076 03       		.uleb128 0x3
- 207 0077 EF010000 		.4byte	.LASF10
+ 207 0077 E2010000 		.4byte	.LASF10
  208 007b 03       		.byte	0x3
  209 007c 2C       		.byte	0x2c
  210 007d 41000000 		.4byte	0x41
@@ -284,11 +284,11 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  216 008d 02       		.uleb128 0x2
  217 008e 04       		.byte	0x4
  218 008f 04       		.byte	0x4
- 219 0090 DF010000 		.4byte	.LASF12
+ 219 0090 D2010000 		.4byte	.LASF12
  220 0094 02       		.uleb128 0x2
  221 0095 08       		.byte	0x8
  222 0096 04       		.byte	0x4
- 223 0097 96010000 		.4byte	.LASF13
+ 223 0097 80010000 		.4byte	.LASF13
  224 009b 02       		.uleb128 0x2
  225 009c 01       		.byte	0x1
  226 009d 08       		.byte	0x8
@@ -296,14 +296,14 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  228 00a2 02       		.uleb128 0x2
  229 00a3 08       		.byte	0x8
  230 00a4 04       		.byte	0x4
- 231 00a5 BE010000 		.4byte	.LASF15
+ 231 00a5 B1010000 		.4byte	.LASF15
  232 00a9 02       		.uleb128 0x2
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 6
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 6
 
 
  233 00aa 04       		.byte	0x4
  234 00ab 07       		.byte	0x7
- 235 00ac F7010000 		.4byte	.LASF16
+ 235 00ac EA010000 		.4byte	.LASF16
  236 00b0 06       		.uleb128 0x6
  237 00b1 47000000 		.4byte	.LASF23
  238 00b5 01       		.byte	0x1
@@ -314,7 +314,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  243 00c0 9C       		.byte	0x9c
  244 00c1 F0000000 		.4byte	0xf0
  245 00c5 07       		.uleb128 0x7
- 246 00c6 D4010000 		.4byte	.LASF17
+ 246 00c6 C7010000 		.4byte	.LASF17
  247 00ca 01       		.byte	0x1
  248 00cb 17       		.byte	0x17
  249 00cc 81000000 		.4byte	0x81
@@ -330,7 +330,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  259 00df 91       		.byte	0x91
  260 00e0 74       		.sleb128 -12
  261 00e1 07       		.uleb128 0x7
- 262 00e2 9D010000 		.4byte	.LASF19
+ 262 00e2 90010000 		.4byte	.LASF19
  263 00e6 01       		.byte	0x1
  264 00e7 19       		.byte	0x19
  265 00e8 81000000 		.4byte	0x81
@@ -346,7 +346,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  275 00fe 01       		.byte	0x1
  276 00ff 00       		.byte	0
  277 0100 0A       		.uleb128 0xa
- 278 0101 A5010000 		.4byte	.LASF24
+ 278 0101 98010000 		.4byte	.LASF24
  279 0105 05       		.byte	0x5
  280 0106 1207     		.2byte	0x712
  281 0108 0C010000 		.4byte	0x10c
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  287 0000 01       		.uleb128 0x1
  288 0001 11       		.uleb128 0x11
  289 0002 01       		.byte	0x1
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 7
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 7
 
 
  290 0003 25       		.uleb128 0x25
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  344 0039 03       		.uleb128 0x3
  345 003a 0E       		.uleb128 0xe
  346 003b 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 8
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 8
 
 
  347 003c 0B       		.uleb128 0xb
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  401 0073 00       		.byte	0
  402 0074 00       		.byte	0
  403 0075 09       		.uleb128 0x9
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 9
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 9
 
 
  404 0076 21       		.uleb128 0x21
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  457      02005801 
  457      00000201 
  457      FB0E0D00 
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 10
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 10
 
 
  457      01010101 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  477      676E6564 
  477      20636861 
  477      7200
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 11
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 11
 
 
  478              	.LASF14:
@@ -609,71 +609,68 @@ ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 1
  481      73616765 
  481      00
  482              	.LASF22:
- 483 0113 433A5C55 		.ascii	"C:\\Users\\HPz420\\Documents\\GitHub\\Doug Gillilan"
+ 483 0113 433A5C55 		.ascii	"C:\\Users\\doug_000\\Documents\\GitHub\\RPI_PSOC5\\"
  483      73657273 
- 483      5C48507A 
- 483      3432305C 
- 483      446F6375 
- 484 0141 645C5250 		.ascii	"d\\RPI_PSOC5\\RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial"
- 484      495F5053 
- 484      4F43355C 
- 484      5250495F 
+ 483      5C646F75 
+ 483      675F3030 
+ 483      305C446F 
+ 484 0140 5250495F 		.ascii	"RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial_01.cydsn\000"
  484      50534F43 
- 485 0171 5F30312E 		.ascii	"_01.cydsn\000"
- 485      63796473 
- 485      6E00
- 486              	.LASF4:
- 487 017b 6C6F6E67 		.ascii	"long int\000"
- 487      20696E74 
- 487      00
- 488              	.LASF5:
- 489 0184 6C6F6E67 		.ascii	"long unsigned int\000"
- 489      20756E73 
- 489      69676E65 
- 489      6420696E 
- 489      7400
- 490              	.LASF13:
- 491 0196 646F7562 		.ascii	"double\000"
- 491      6C6500
- 492              	.LASF19:
- 493 019d 6368616E 		.ascii	"channel\000"
- 493      6E656C00 
- 494              	.LASF24:
- 495 01a5 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 495      52784275 
- 495      66666572 
- 495      00
- 496              	.LASF0:
- 497 01b2 7369676E 		.ascii	"signed char\000"
- 497      65642063 
- 497      68617200 
- 498              	.LASF15:
- 499 01be 6C6F6E67 		.ascii	"long double\000"
- 499      20646F75 
- 499      626C6500 
- 500              	.LASF9:
- 501 01ca 5F5F696E 		.ascii	"__int32_t\000"
- 501      7433325F 
- 501      7400
- 502              	.LASF17:
- 503 01d4 534C4156 		.ascii	"SLAVE_ADDR\000"
- 503      455F4144 
-ARM GAS  C:\Users\HPz420\AppData\Local\Temp\cchXOPSd.s 			page 12
+ 484      355F5365 
+ 484      7269616C 
+ 484      5F30315C 
+ 485              	.LASF5:
+ 486 016e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 486      20756E73 
+ 486      69676E65 
+ 486      6420696E 
+ 486      7400
+ 487              	.LASF13:
+ 488 0180 646F7562 		.ascii	"double\000"
+ 488      6C6500
+ 489              	.LASF4:
+ 490 0187 6C6F6E67 		.ascii	"long int\000"
+ 490      20696E74 
+ 490      00
+ 491              	.LASF19:
+ 492 0190 6368616E 		.ascii	"channel\000"
+ 492      6E656C00 
+ 493              	.LASF24:
+ 494 0198 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 494      52784275 
+ 494      66666572 
+ 494      00
+ 495              	.LASF0:
+ 496 01a5 7369676E 		.ascii	"signed char\000"
+ 496      65642063 
+ 496      68617200 
+ 497              	.LASF15:
+ 498 01b1 6C6F6E67 		.ascii	"long double\000"
+ 498      20646F75 
+ 498      626C6500 
+ 499              	.LASF9:
+ 500 01bd 5F5F696E 		.ascii	"__int32_t\000"
+ 500      7433325F 
+ 500      7400
+ 501              	.LASF17:
+ 502 01c7 534C4156 		.ascii	"SLAVE_ADDR\000"
+ 502      455F4144 
+ 502      445200
+ 503              	.LASF12:
+ 504 01d2 666C6F61 		.ascii	"float\000"
+ARM GAS  C:\Users\doug_000\AppData\Local\Temp\cc3szR9P.s 			page 12
 
 
- 503      445200
- 504              	.LASF12:
- 505 01df 666C6F61 		.ascii	"float\000"
- 505      7400
- 506              	.LASF2:
- 507 01e5 73686F72 		.ascii	"short int\000"
- 507      7420696E 
- 507      7400
- 508              	.LASF10:
- 509 01ef 696E7433 		.ascii	"int32_t\000"
- 509      325F7400 
- 510              	.LASF16:
- 511 01f7 73697A65 		.ascii	"sizetype\000"
- 511      74797065 
- 511      00
- 512              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 504      7400
+ 505              	.LASF2:
+ 506 01d8 73686F72 		.ascii	"short int\000"
+ 506      7420696E 
+ 506      7400
+ 507              	.LASF10:
+ 508 01e2 696E7433 		.ascii	"int32_t\000"
+ 508      325F7400 
+ 509              	.LASF16:
+ 510 01ea 73697A65 		.ascii	"sizetype\000"
+ 510      74797065 
+ 510      00
+ 511              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
