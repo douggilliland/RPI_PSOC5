@@ -10,6 +10,10 @@
  * ========================================
 */
 
+// Test an RPI_I2C_HUB
+// Requires 4 DIGIO-8 cards
+// Test bounces an LED across the four DIGIO-8 cards
+
 #include <project.h>
 #include "RPI_PSOC5.h"
 

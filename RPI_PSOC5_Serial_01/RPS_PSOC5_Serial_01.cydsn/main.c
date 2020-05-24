@@ -4,8 +4,8 @@
 * Version: 2.0
 *
 * Description:
-*   The component is enumerated as a Virtual Com port. Receives data from the 
-*   serial port, then sends back the received data.
+*   The is based on the Cypress Virtual Com port code. 
+*   Receives data from the serial port, then sends back the received data.
 *
 * Related Document:
 *  Universal Serial Bus Specification Revision 2.0
@@ -75,7 +75,10 @@ int main()
     // enable I2C interrupts
 	I2C_EEPROM_EnableInt();  
 	//Start I2C
-	I2C_EEPROM_Start(); 
+	I2C_EEPROM_Start();
+    
+    // Default to no daughtercard
+    cardType = UNSELECTED_CARD;
     
     for(;;)
     {

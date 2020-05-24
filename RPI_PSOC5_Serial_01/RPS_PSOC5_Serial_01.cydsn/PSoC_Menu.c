@@ -100,7 +100,7 @@ void psocMenu(void)
         }
         else if (cardType == RPII2CHUB)
         {
-            putStringToUSB("Blinking the LEDs through the RPI-I2C-HUB card, please wait\n\r");
+            putStringToUSB("Blinking the DIGIO-8 Card LEDs through the RPI-I2C-HUB card, please wait\n\r");
             testRPIHUB();
             putStringToUSB("Completed blinking the LEDs through the RPI-I2C-HUB  card\n\r");
         }
