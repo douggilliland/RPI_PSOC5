@@ -15,7 +15,9 @@
 
 #include <project.h>
 
-void testRPIHUB(void);
+void init_RPII2CHUB(void);
+void bounceRPIHubLEDs(void);
+void test_RPII2CHUB(void);
 
 extern uint16 cardType;
 

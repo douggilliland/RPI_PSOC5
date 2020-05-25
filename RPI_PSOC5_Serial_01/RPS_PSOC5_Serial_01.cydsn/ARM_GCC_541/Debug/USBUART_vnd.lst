@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
   28:Generated_Source\PSoC5/USBUART_vnd.c **** 
   29:Generated_Source\PSoC5/USBUART_vnd.c **** 
   30:Generated_Source\PSoC5/USBUART_vnd.c **** /*******************************************************************************
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 2
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 2
 
 
   31:Generated_Source\PSoC5/USBUART_vnd.c **** * Function Name: USBUART_HandleVendorRqst
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
   54 001c 012B     		cmp	r3, #1
   55 001e 00D0     		beq	.L4
   59:Generated_Source\PSoC5/USBUART_vnd.c ****         {
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 3
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 3
 
 
   60:Generated_Source\PSoC5/USBUART_vnd.c ****             case USBUART_GET_EXTENDED_CONFIG_DESCRIPTOR:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
   80 0040 0837     		adds	r7, r7, #8
   81              		.cfi_def_cfa_offset 8
   82 0042 BD46     		mov	sp, r7
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 4
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 4
 
 
   83              		.cfi_def_cfa_register 13
@@ -208,14 +208,14 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  107 000c 32000000 		.4byte	.LASF27
  108 0010 0C       		.byte	0xc
  109 0011 00000000 		.4byte	.LASF28
- 110 0015 16020000 		.4byte	.LASF29
+ 110 0015 4E010000 		.4byte	.LASF29
  111 0019 00000000 		.4byte	.Ldebug_ranges0+0
  112 001d 00000000 		.4byte	0
  113 0021 00000000 		.4byte	.Ldebug_line0
  114 0025 02       		.uleb128 0x2
  115 0026 01       		.byte	0x1
  116 0027 06       		.byte	0x6
- 117 0028 7D020000 		.4byte	.LASF0
+ 117 0028 8A020000 		.4byte	.LASF0
  118 002c 02       		.uleb128 0x2
  119 002d 01       		.byte	0x1
  120 002e 08       		.byte	0x8
@@ -223,7 +223,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  122 0033 02       		.uleb128 0x2
  123 0034 02       		.byte	0x2
  124 0035 05       		.byte	0x5
- 125 0036 DB010000 		.4byte	.LASF2
+ 125 0036 43020000 		.4byte	.LASF2
  126 003a 02       		.uleb128 0x2
  127 003b 02       		.byte	0x2
  128 003c 07       		.byte	0x7
@@ -231,22 +231,22 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  130 0041 02       		.uleb128 0x2
  131 0042 04       		.byte	0x4
  132 0043 05       		.byte	0x5
- 133 0044 0D020000 		.4byte	.LASF4
+ 133 0044 75020000 		.4byte	.LASF4
  134 0048 02       		.uleb128 0x2
  135 0049 04       		.byte	0x4
  136 004a 07       		.byte	0x7
  137 004b 0E010000 		.4byte	.LASF5
  138 004f 02       		.uleb128 0x2
  139 0050 08       		.byte	0x8
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 5
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 5
 
 
  140 0051 05       		.byte	0x5
- 141 0052 C8010000 		.4byte	.LASF6
+ 141 0052 1E020000 		.4byte	.LASF6
  142 0056 02       		.uleb128 0x2
  143 0057 08       		.byte	0x8
  144 0058 07       		.byte	0x7
- 145 0059 74010000 		.4byte	.LASF7
+ 145 0059 CA010000 		.4byte	.LASF7
  146 005d 03       		.uleb128 0x3
  147 005e 04       		.byte	0x4
  148 005f 05       		.byte	0x5
@@ -254,14 +254,14 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  150 0064 02       		.uleb128 0x2
  151 0065 04       		.byte	0x4
  152 0066 07       		.byte	0x7
- 153 0067 67010000 		.4byte	.LASF8
+ 153 0067 BD010000 		.4byte	.LASF8
  154 006b 04       		.uleb128 0x4
  155 006c 20010000 		.4byte	.LASF9
  156 0070 02       		.byte	0x2
  157 0071 E401     		.2byte	0x1e4
  158 0073 2C000000 		.4byte	0x2c
  159 0077 04       		.uleb128 0x4
- 160 0078 60010000 		.4byte	.LASF10
+ 160 0078 B6010000 		.4byte	.LASF10
  161 007c 02       		.byte	0x2
  162 007d E501     		.2byte	0x1e5
  163 007f 3A000000 		.4byte	0x3a
@@ -276,17 +276,17 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  172 0091 02       		.uleb128 0x2
  173 0092 01       		.byte	0x1
  174 0093 08       		.byte	0x8
- 175 0094 D6010000 		.4byte	.LASF13
+ 175 0094 2C020000 		.4byte	.LASF13
  176 0098 05       		.uleb128 0x5
  177 0099 6B000000 		.4byte	0x6b
  178 009d 02       		.uleb128 0x2
  179 009e 08       		.byte	0x8
  180 009f 04       		.byte	0x4
- 181 00a0 71020000 		.4byte	.LASF14
+ 181 00a0 7E020000 		.4byte	.LASF14
  182 00a4 02       		.uleb128 0x2
  183 00a5 04       		.byte	0x4
  184 00a6 07       		.byte	0x7
- 185 00a7 BF010000 		.4byte	.LASF15
+ 185 00a7 15020000 		.4byte	.LASF15
  186 00ab 06       		.uleb128 0x6
  187 00ac 04       		.byte	0x4
  188 00ad 03       		.byte	0x3
@@ -298,18 +298,18 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  194 00b9 AA       		.byte	0xaa
  195 00ba 6B000000 		.4byte	0x6b
  196 00be 00       		.byte	0
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 6
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 6
 
 
  197 00bf 07       		.uleb128 0x7
- 198 00c0 89020000 		.4byte	.LASF17
+ 198 00c0 96020000 		.4byte	.LASF17
  199 00c4 03       		.byte	0x3
  200 00c5 AB       		.byte	0xab
  201 00c6 77000000 		.4byte	0x77
  202 00ca 02       		.byte	0x2
  203 00cb 00       		.byte	0
  204 00cc 08       		.uleb128 0x8
- 205 00cd 8B010000 		.4byte	.LASF18
+ 205 00cd E1010000 		.4byte	.LASF18
  206 00d1 03       		.byte	0x3
  207 00d2 AC       		.byte	0xac
  208 00d3 AB000000 		.4byte	0xab
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  251 0128 03       		.byte	0x3
  252 0129 CB       		.byte	0xcb
  253 012a 30010000 		.4byte	0x130
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 7
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 7
 
 
  254 012e 00       		.byte	0
@@ -371,12 +371,12 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  261 013e 07       		.byte	0x7
  262 013f 00       		.byte	0
  263 0140 08       		.uleb128 0x8
- 264 0141 A7010000 		.4byte	.LASF24
+ 264 0141 FD010000 		.4byte	.LASF24
  265 0145 03       		.byte	0x3
  266 0146 CC       		.byte	0xcc
  267 0147 1B010000 		.4byte	0x11b
  268 014b 0C       		.uleb128 0xc
- 269 014c E5010000 		.4byte	.LASF30
+ 269 014c 4D020000 		.4byte	.LASF30
  270 0150 01       		.byte	0x1
  271 0151 31       		.byte	0x31
  272 0152 6B000000 		.4byte	0x6b
@@ -386,7 +386,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  276 015f 9C       		.byte	0x9c
  277 0160 73010000 		.4byte	0x173
  278 0164 0D       		.uleb128 0xd
- 279 0165 FE010000 		.4byte	.LASF31
+ 279 0165 66020000 		.4byte	.LASF31
  280 0169 01       		.byte	0x1
  281 016a 33       		.byte	0x33
  282 016b 6B000000 		.4byte	0x6b
@@ -411,14 +411,14 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  301 0193 0E       		.uleb128 0xe
  302 0194 73010000 		.4byte	0x173
  303 0198 0F       		.uleb128 0xf
- 304 0199 4E010000 		.4byte	.LASF26
+ 304 0199 31020000 		.4byte	.LASF26
  305 019d 04       		.byte	0x4
  306 019e 7B       		.byte	0x7b
  307 019f A3010000 		.4byte	0x1a3
  308 01a3 05       		.uleb128 0x5
  309 01a4 10010000 		.4byte	0x110
  310 01a8 00       		.byte	0
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 8
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 8
 
 
  311              		.section	.debug_abbrev,"",%progbits
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  365 0034 00       		.byte	0
  366 0035 00       		.byte	0
  367 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 9
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 9
 
 
  368 0037 35       		.uleb128 0x35
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  422 006d 00       		.byte	0
  423 006e 00       		.byte	0
  424 006f 0A       		.uleb128 0xa
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 10
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 10
 
 
  425 0070 01       		.uleb128 0x1
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  479 00a7 13       		.uleb128 0x13
  480 00a8 02       		.uleb128 0x2
  481 00a9 18       		.uleb128 0x18
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 11
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 11
 
 
  482 00aa 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  531      72617465 
  531      645F536F 
  531      75726365 
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 12
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 12
 
 
  531      5C50536F 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  555 010e 6C6F6E67 		.ascii	"long unsigned int\000"
  555      20756E73 
  555      69676E65 
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 13
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 13
 
 
  555      6420696E 
@@ -735,92 +735,95 @@ ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 1
  560              	.LASF12:
  561 0147 646F7562 		.ascii	"double\000"
  561      6C6500
- 562              	.LASF26:
- 563 014e 55534255 		.ascii	"USBUART_currentTD\000"
- 563      4152545F 
- 563      63757272 
- 563      656E7454 
- 563      4400
- 564              	.LASF10:
- 565 0160 75696E74 		.ascii	"uint16\000"
- 565      313600
- 566              	.LASF8:
- 567 0167 756E7369 		.ascii	"unsigned int\000"
- 567      676E6564 
- 567      20696E74 
- 567      00
- 568              	.LASF7:
- 569 0174 6C6F6E67 		.ascii	"long long unsigned int\000"
- 569      206C6F6E 
- 569      6720756E 
- 569      7369676E 
- 569      65642069 
- 570              	.LASF18:
- 571 018b 545F5553 		.ascii	"T_USBUART_XFER_STATUS_BLOCK\000"
- 571      42554152 
- 571      545F5846 
- 571      45525F53 
- 571      54415455 
- 572              	.LASF24:
- 573 01a7 55534255 		.ascii	"USBUART_ep0_data_struct\000"
- 573      4152545F 
- 573      6570305F 
- 573      64617461 
- 573      5F737472 
- 574              	.LASF15:
- 575 01bf 73697A65 		.ascii	"sizetype\000"
- 575      74797065 
- 575      00
- 576              	.LASF6:
- 577 01c8 6C6F6E67 		.ascii	"long long int\000"
- 577      206C6F6E 
- 577      6720696E 
- 577      7400
- 578              	.LASF13:
- 579 01d6 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\doug_000\AppData\Local\Temp\ccPS03Cr.s 			page 14
+ 562              	.LASF29:
+ 563 014e 433A5C55 		.ascii	"C:\\Users\\HPz420\\Documents\\GitHub\\Doug Gillilan"
+ 563      73657273 
+ 563      5C48507A 
+ 563      3432305C 
+ 563      446F6375 
+ 564 017c 645C5250 		.ascii	"d\\RPI_PSOC5\\RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial"
+ 564      495F5053 
+ 564      4F43355C 
+ 564      5250495F 
+ 564      50534F43 
+ 565 01ac 5F30312E 		.ascii	"_01.cydsn\000"
+ 565      63796473 
+ 565      6E00
+ 566              	.LASF10:
+ 567 01b6 75696E74 		.ascii	"uint16\000"
+ 567      313600
+ 568              	.LASF8:
+ 569 01bd 756E7369 		.ascii	"unsigned int\000"
+ 569      676E6564 
+ 569      20696E74 
+ 569      00
+ 570              	.LASF7:
+ 571 01ca 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 571      206C6F6E 
+ 571      6720756E 
+ 571      7369676E 
+ 571      65642069 
+ 572              	.LASF18:
+ 573 01e1 545F5553 		.ascii	"T_USBUART_XFER_STATUS_BLOCK\000"
+ 573      42554152 
+ 573      545F5846 
+ 573      45525F53 
+ 573      54415455 
+ 574              	.LASF24:
+ 575 01fd 55534255 		.ascii	"USBUART_ep0_data_struct\000"
+ 575      4152545F 
+ 575      6570305F 
+ 575      64617461 
+ 575      5F737472 
+ 576              	.LASF15:
+ 577 0215 73697A65 		.ascii	"sizetype\000"
+ 577      74797065 
+ARM GAS  C:\Users\HPz420\AppData\Local\Temp\ccfjAGbH.s 			page 14
 
 
- 579      00
- 580              	.LASF2:
- 581 01db 73686F72 		.ascii	"short int\000"
- 581      7420696E 
- 581      7400
- 582              	.LASF30:
- 583 01e5 55534255 		.ascii	"USBUART_HandleVendorRqst\000"
+ 577      00
+ 578              	.LASF6:
+ 579 021e 6C6F6E67 		.ascii	"long long int\000"
+ 579      206C6F6E 
+ 579      6720696E 
+ 579      7400
+ 580              	.LASF13:
+ 581 022c 63686172 		.ascii	"char\000"
+ 581      00
+ 582              	.LASF26:
+ 583 0231 55534255 		.ascii	"USBUART_currentTD\000"
  583      4152545F 
- 583      48616E64 
- 583      6C655665 
- 583      6E646F72 
- 584              	.LASF31:
- 585 01fe 72657175 		.ascii	"requestHandled\000"
- 585      65737448 
- 585      616E646C 
- 585      656400
- 586              	.LASF4:
- 587 020d 6C6F6E67 		.ascii	"long int\000"
- 587      20696E74 
- 587      00
- 588              	.LASF29:
- 589 0216 433A5C55 		.ascii	"C:\\Users\\doug_000\\Documents\\GitHub\\RPI_PSOC5\\"
- 589      73657273 
- 589      5C646F75 
- 589      675F3030 
- 589      305C446F 
- 590 0243 5250495F 		.ascii	"RPI_PSOC5_Serial_01\\RPS_PSOC5_Serial_01.cydsn\000"
- 590      50534F43 
- 590      355F5365 
- 590      7269616C 
- 590      5F30315C 
- 591              	.LASF14:
- 592 0271 6C6F6E67 		.ascii	"long double\000"
- 592      20646F75 
- 592      626C6500 
- 593              	.LASF0:
- 594 027d 7369676E 		.ascii	"signed char\000"
- 594      65642063 
- 594      68617200 
- 595              	.LASF17:
- 596 0289 6C656E67 		.ascii	"length\000"
- 596      746800
- 597              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 583      63757272 
+ 583      656E7454 
+ 583      4400
+ 584              	.LASF2:
+ 585 0243 73686F72 		.ascii	"short int\000"
+ 585      7420696E 
+ 585      7400
+ 586              	.LASF30:
+ 587 024d 55534255 		.ascii	"USBUART_HandleVendorRqst\000"
+ 587      4152545F 
+ 587      48616E64 
+ 587      6C655665 
+ 587      6E646F72 
+ 588              	.LASF31:
+ 589 0266 72657175 		.ascii	"requestHandled\000"
+ 589      65737448 
+ 589      616E646C 
+ 589      656400
+ 590              	.LASF4:
+ 591 0275 6C6F6E67 		.ascii	"long int\000"
+ 591      20696E74 
+ 591      00
+ 592              	.LASF14:
+ 593 027e 6C6F6E67 		.ascii	"long double\000"
+ 593      20646F75 
+ 593      626C6500 
+ 594              	.LASF0:
+ 595 028a 7369676E 		.ascii	"signed char\000"
+ 595      65642063 
+ 595      68617200 
+ 596              	.LASF17:
+ 597 0296 6C656E67 		.ascii	"length\000"
+ 597      746800
+ 598              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

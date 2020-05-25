@@ -15,6 +15,8 @@
     
 #include <project.h>
     
+#define MPC23008_SLAVE_ADDR    0x20
+    
 #define MCP23008_IODIR_REGADR    0x00
 #define MCP23008_IPOL_REGADR     0x01
 #define MCP23008_GPINTEN_REGADR  0x02
@@ -28,9 +30,10 @@
 #define MCP23008_OLAT_REGADR     0x0a
 
 #define MCP23008_IODIR_DEFVAL    0xf0       // Upper 4 bits=JumperIns, lower=LEDS
+#define MCP23008_GPIO_DEFVAL     0x00
 #define MCP23008_IPOL_DEFVAL     0xf0       // Input polarity = invert jumpers
-#define MCP23008_GPINTEN_DEFVAL  0x00       // Disable GPIO for interrupt on change
-#define MCP23008_INTCON_DEFVAL   0x00       // Int for change from previous pin
+#define MCP23008_INTCON_DEFVAL   0x00       // 
+#define MCP23008_GPINTEN_DEFVAL  0xf0       // Disable GPIO for interrupt on change
 #define MCP23008_IOCON_DEFVAL    0x00       // Disable sequential,  active-low
 #define MCP23008_GPPU_DEFVAL     0xf0       // Default pullups
 

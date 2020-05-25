@@ -33,6 +33,7 @@ void printMenuOptions(void)
     putStringToUSB("R - Read EEPROM\n\r");
     putStringToUSB("W - Write EEPROM\n\r");
     putStringToUSB("B - Bounce LED across Card GPIOs\n\r");
+    putStringToUSB("T - Test Card\n\r");
     putStringToUSB("? - Print this menu\n\r");
 }
 
@@ -68,6 +69,23 @@ void psocMenu(void)
                 putStringToUSB("EEPROM write failed (does this card have an EEPROM?\n\r");
         }
     }
+    else if ((receiveBuffer[0] == 't') || (receiveBuffer[0] == 'T'))
+    {
+        if (cardType == UNSELECTED_CARD)
+        {
+            putStringToUSB("Must first select card type\n\r");
+        }
+        else if (cardType == RPII2CHUB)
+        {
+            putStringToUSB("Testing RPI-I2C-HUB input, please wait\n\r");
+            test_RPII2CHUB();
+            putStringToUSB("Completed Testing RPI-I2C-HUB input\n\r");
+        }
+        else
+        {
+            putStringToUSB("Card not yet implemented\n\r");
+        }
+    }
     else if ((receiveBuffer[0] == 'b') || (receiveBuffer[0] == 'B'))
     {
         if (cardType == UNSELECTED_CARD)
@@ -101,7 +119,7 @@ void psocMenu(void)
         else if (cardType == RPII2CHUB)
         {
             putStringToUSB("Blinking the DIGIO-8 Card LEDs, please wait\n\r");
-            testRPIHUB();
+            bounceRPIHubLEDs();
             putStringToUSB("Completed blinking the LEDs\n\r");
         }
         else
@@ -138,6 +156,8 @@ void psocMenu(void)
     {
         cardType = RPII2CHUB;
         putStringToUSB("Selected RPI-I2C-HUB card\n\r");
+        init_RPII2CHUB();
+        putStringToUSB("Initialized RPI-I2C-HUB card\n\r");
     }
     else if (receiveBuffer[0] == '?')
     {

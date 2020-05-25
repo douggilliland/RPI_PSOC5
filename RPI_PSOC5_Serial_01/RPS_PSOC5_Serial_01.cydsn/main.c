@@ -80,6 +80,8 @@ int main()
     // Default to no daughtercard
     cardType = UNSELECTED_CARD;
     
+//    printMenuOptions();
+    
     for(;;)
     {
         /* Host can send double SET_INTERFACE request. */

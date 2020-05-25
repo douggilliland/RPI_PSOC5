@@ -23,7 +23,7 @@ uint8 readRegisterDIGIO8Card(uint8 slaveAdr, uint8 ctrlAdr)
 {
     uint8 rdBuff;
     I2C1_MasterClearStatus();
-    I2C1_MasterSendStart(0x20,I2C1_WRITE_XFER_MODE);
+    I2C1_MasterSendStart(MPC23008_SLAVE_ADDR,I2C1_WRITE_XFER_MODE);
     I2C1_MasterWriteByte(ctrlAdr);
     I2C1_MasterSendStop();
 //    while ((I2C1_MasterStatus() & I2C1_MSTAT_WR_CMPLT) == 0);
@@ -75,14 +75,15 @@ uint8 readDIGIO8Card(uint8 slaveAdr)
 
 void initDIGIO8Card(uint8 slaveAdr)
 {
-//    I2C1_Start();    // Kick off the I2C interface
-    writeRegisterDIGIO8Card(slaveAdr,MCP23008_IOCON_REGADR,MCP23008_IOCON_DEFVAL);
+    I2C1_Start();    // Kick off the I2C interface
     writeRegisterDIGIO8Card(slaveAdr,MCP23008_IODIR_REGADR,MCP23008_IODIR_DEFVAL);
-    writeRegisterDIGIO8Card(slaveAdr,MCP23008_GPINTEN_REGADR,MCP23008_GPINTEN_DEFVAL);
+    writeRegisterDIGIO8Card(slaveAdr,MCP23008_GPIO_REGADR,MCP23008_GPIO_DEFVAL);
     writeRegisterDIGIO8Card(slaveAdr,MCP23008_INTCON_REGADR,MCP23008_INTCON_DEFVAL);
+    writeRegisterDIGIO8Card(slaveAdr,MCP23008_IOCON_REGADR,MCP23008_IOCON_DEFVAL);
+    writeRegisterDIGIO8Card(slaveAdr,MCP23008_IPOL_REGADR,MCP23008_IPOL_DEFVAL);
+    writeRegisterDIGIO8Card(slaveAdr,MCP23008_GPINTEN_REGADR,MCP23008_GPINTEN_DEFVAL);
     writeRegisterDIGIO8Card(slaveAdr,MCP23008_GPPU_REGADR,MCP23008_GPPU_DEFVAL);
     readRegisterDIGIO8Card(slaveAdr,MCP23008_INTCAP_REGADR); // Clear interrupt LED
 }
-
 
 /* [] END OF FILE */
