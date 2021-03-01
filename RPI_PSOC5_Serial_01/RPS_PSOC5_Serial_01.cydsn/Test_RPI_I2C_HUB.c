@@ -52,6 +52,9 @@ void test_RPII2CHUB(void)
     
     //I2C1_Start();
     
+    init_RPII2CHUB();
+    putStringToUSB("Initialized RPI-I2C-HUB card\n\r");
+    
     putStringToUSB("Polling interrupts\n\r");
 
     while (0u == USBUART_DataIsReady())
@@ -114,6 +117,9 @@ void bounceRPIHubLEDs(void)
     uint8 I2CIO8_SLAVE_ADDR = 0x20;
     uint8 cMessage[2];
     uint8 channel;
+    
+    init_RPII2CHUB();
+    putStringToUSB("Initialized RPI-I2C-HUB card\n\r");
     
     for (channel = 0; channel < 4; channel++)
     {

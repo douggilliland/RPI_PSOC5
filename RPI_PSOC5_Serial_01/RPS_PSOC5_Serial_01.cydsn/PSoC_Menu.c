@@ -10,8 +10,8 @@
  * ========================================
 */
 
-#include <project.h>
 #include "RPI_PSOC5.h"
+#include <project.h>
 
 uint8 receiveBuffer[80];
 uint8 receiveBufferPtr;
@@ -34,6 +34,7 @@ void printMenuOptions(void)
     putStringToUSB("W - Write EEPROM\n\r");
     putStringToUSB("B - Bounce LED across Card GPIOs\n\r");
     putStringToUSB("T - Test Card\n\r");
+    putStringToUSB("D - Debug Card\n\r");
     putStringToUSB("? - Print this menu\n\r");
 }
 
@@ -127,6 +128,47 @@ void psocMenu(void)
             putStringToUSB("Card not yet implemented\n\r");
         }
     }
+    else if ((receiveBuffer[0] == 'd') || (receiveBuffer[0] == 'D'))
+    {
+        if (cardType == UNSELECTED_CARD)
+        {
+            putStringToUSB("Must first select card type\n\r");
+        }
+        else if (cardType == RPPGVSCFG)
+        {
+            putStringToUSB("Debugging the RasPI-PLUS-GVS-CFG card\n\r");
+            debugRPPGVSCFG();
+            putStringToUSB("Completed debugging the RasPI-PLUS-GVS-CFG card\n\r");
+        }
+        else if (cardType == RASPIPLUSGVS)
+        {
+            putStringToUSB("Debugging the RASPI-PLUS-GVS card\n\r");
+            debugRPPGVS();
+            putStringToUSB("Completed debugging the RASPI-PLUS-GVS card\n\r");
+        }
+        else if (cardType == RASPIGVS)
+        {
+            putStringToUSB("Debugging the RASPI-GVS card\n\r");
+            debugRASPIGVS();
+            putStringToUSB("Completed debugging the RASPI-GVS card\n\r");
+        }
+        else if (cardType == RPPUIO16)
+        {
+            putStringToUSB("Debugging the RPP-UIO-16 card\n\r");
+            debugRPPUIO16();
+            putStringToUSB("Completed debugging the RPP-UIO-16 card\n\r");
+        }
+        else if (cardType == RPII2CHUB)
+        {
+            putStringToUSB("Debugging the RPI-I2C-HUB card\n\r");
+            debugRPIHub();
+            putStringToUSB("Completed debugging the RPI-I2C-HUB Card\n\r");
+        }
+        else
+        {
+            putStringToUSB("Card not yet implemented\n\r");
+        }
+    }
     else if (receiveBuffer[0] == '1')
     {
         cardType = RPPUIO16;
@@ -156,8 +198,6 @@ void psocMenu(void)
     {
         cardType = RPII2CHUB;
         putStringToUSB("Selected RPI-I2C-HUB card\n\r");
-        init_RPII2CHUB();
-        putStringToUSB("Initialized RPI-I2C-HUB card\n\r");
     }
     else if (receiveBuffer[0] == '?')
     {

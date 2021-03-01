@@ -1,4 +1,4 @@
-/* ========================================
+ /* ========================================
  * DIGIO8Driver.c
  * Copyright Land Boards LLC, 2017
  * All Rights Reserved
@@ -7,8 +7,7 @@
  * CONFIDENTIAL AND PROPRIETARY INFORMATION
  * WHICH IS THE PROPERTY OF Land Boards, LLC.
  *
- * ========================================
-*/
+ * ======================================== */
 
 #include <project.h>
 #include "RPI_PSOC5.h"

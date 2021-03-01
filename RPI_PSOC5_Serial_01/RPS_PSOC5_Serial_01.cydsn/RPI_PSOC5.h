@@ -21,6 +21,7 @@
 #include "Test_RPI_I2C_HUB.h"
 #include "DIGIO8Driver.h"
 #include "PSoC_Menu.h"
+#include "Debug_Cards.h"
 
 enum Card_Types_Enum {
     UNSELECTED_CARD,

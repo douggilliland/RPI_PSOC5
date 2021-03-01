@@ -42,7 +42,6 @@ void writeRegisterDIGIO8Card(uint8, uint8, uint8);
 void writeDIGIO8Card(uint8, uint8);
 uint8 readDIGIO8Card(uint8);
 void initDIGIO8Card(uint8);
-
  
 #endif
 
