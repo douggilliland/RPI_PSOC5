@@ -3754,8 +3754,6 @@
 <v>Cypress Component Catalog\Communications\I2C\I2C Slave (Fixed Function) [v3.50]</v>
 <v>Cypress Component Catalog\Communications\I2C\I2C Slave (UDB) [v3.50]</v>
 <v>Cypress Component Catalog\Communications\I2S</v>
-<v>Cypress Component Catalog\Communications\LIN [v4.0]</v>
-<v>Cypress Component Catalog\Communications\LIN Slave Macro [v4.0]</v>
 <v>Cypress Component Catalog\Communications\MDIO Interface</v>
 <v>Cypress Component Catalog\Communications\SMBus/PMBus Slave</v>
 <v>Cypress Component Catalog\Communications\Software Transmit UART [v1.50]</v>
@@ -3776,8 +3774,6 @@
 <v>Cypress Component Catalog\Digital\Logic\Logic Low '0' [v1.0]</v>
 <v>Cypress Component Catalog\Digital\Logic\Lookup Table [v1.60]</v>
 <v>Cypress Component Catalog\Digital\Logic\Multiplexer [v1.10]</v>
-<v>Cypress Component Catalog\Digital\Logic\Nand [v1.0]</v>
-<v>Cypress Component Catalog\Digital\Logic\Nor [v1.0]</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
