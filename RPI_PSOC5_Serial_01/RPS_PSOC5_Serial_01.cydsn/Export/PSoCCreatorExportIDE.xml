@@ -58,6 +58,8 @@
           <File BuildType="BUILD" Toolchain="">DIGIO8Driver.h</File>
           <File BuildType="BUILD" Toolchain="">Debug_Cards.c</File>
           <File BuildType="BUILD" Toolchain="">Debug_Cards.h</File>
+          <File BuildType="BUILD" Toolchain="">Test_RPI_SPI8.c</File>
+          <File BuildType="BUILD" Toolchain="">Test_RPI_SPI8.h</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
         </Files>
       </Folder>

@@ -30,6 +30,7 @@ void printMenuOptions(void)
     putStringToUSB("4 - Select RASPI-GVS Card\n\r");
     putStringToUSB("5 - Select RASPI-PLUS-GVS Card\n\r");
     putStringToUSB("6 - Select RPI-I2C-HUB Card\n\r");
+    putStringToUSB("7 - Select RPI-SPI8 Card\n\r");
     putStringToUSB("R - Read EEPROM\n\r");
     putStringToUSB("W - Write EEPROM\n\r");
     putStringToUSB("B - Bounce LED across Card GPIOs\n\r");
@@ -82,6 +83,12 @@ void psocMenu(void)
             test_RPII2CHUB();
             putStringToUSB("Completed Testing RPI-I2C-HUB input\n\r");
         }
+        else if (cardType == RPISPI8)
+        {
+            putStringToUSB("Testing RPI-SPI8 input, please wait\n\r");
+            testRPISPI8();
+            putStringToUSB("Completed Testing RPI-SPI8 input\n\r");
+        }
         else
         {
             putStringToUSB("Card not yet implemented\n\r");
@@ -121,6 +128,12 @@ void psocMenu(void)
         {
             putStringToUSB("Blinking the DIGIO-8 Card LEDs, please wait\n\r");
             bounceRPIHubLEDs();
+            putStringToUSB("Completed blinking the LEDs\n\r");
+        }
+        else if (cardType == RPISPI8)
+        {
+            putStringToUSB("Blinking the RPI-SPI8 Card LEDs, please wait\n\r");
+            testRPISPI8();
             putStringToUSB("Completed blinking the LEDs\n\r");
         }
         else
@@ -164,6 +177,12 @@ void psocMenu(void)
             debugRPIHub();
             putStringToUSB("Completed debugging the RPI-I2C-HUB Card\n\r");
         }
+        else if (cardType == RPISPI8)
+        {
+            putStringToUSB("Debugging the RPI-SPI8 card\n\r");
+            debugRPISPI8();
+            putStringToUSB("Completed debugging the RPI-SPI8 Card\n\r");
+        }
         else
         {
             putStringToUSB("Card not yet implemented\n\r");
@@ -199,9 +218,10 @@ void psocMenu(void)
         cardType = RPII2CHUB;
         putStringToUSB("Selected RPI-I2C-HUB card\n\r");
     }
-    else if (receiveBuffer[0] == '?')
+    else if (receiveBuffer[0] == '7')
     {
-        printMenuOptions();
+        cardType = RPISPI8;
+        putStringToUSB("Selected RPI-SPI8 card\n\r");
     }
     else
     {

@@ -13,6 +13,7 @@
 #include <I2C_EEPROM.h>
 
 #include "Test_RPP-UIO_16.h"
+#include "Test_RPI_SPI8.h"
 #include "Test_RASPI_GVS.h"
 #include "Test_RASPI_PLUS_GVS.h"
 #include "RasPi_Pins.h"
@@ -30,7 +31,8 @@ enum Card_Types_Enum {
     RPPSOC,
     RASPIGVS,
     RASPIPLUSGVS,
-    RPII2CHUB
+    RPII2CHUB,
+    RPISPI8
 };
 
 /* [] END OF FILE */
